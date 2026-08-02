@@ -1,0 +1,136 @@
+{
+  "schema_version": "0.1",
+  "id": "qcd.soft-wall-vector.kkss",
+  "title": "Quadratic soft-wall transverse-vector spectrum",
+  "mode": "forge-verify",
+  "domain": "holographic-qcd",
+  "maturity": "reproduced",
+  "summary": "A finite-difference reproduction of the exactly solvable transverse-vector spectrum in the quadratic soft-wall AdS/QCD model.",
+  "source": {
+    "title": "Linear Confinement and AdS/QCD",
+    "authors": [
+      "Andreas Karch",
+      "Emanuel Katz",
+      "Dam T. Son",
+      "Mikhail A. Stephanov"
+    ],
+    "locator": "arXiv:hep-ph/0602229",
+    "version": "v2",
+    "url": "https://arxiv.org/abs/hep-ph/0602229",
+    "doi": "10.1103/PhysRevD.74.015005",
+    "equation_refs": ["Eqs. (8)-(15)"]
+  },
+  "conventions": [
+    {
+      "name": "metric",
+      "value": "ds^2 = exp(2 A(z)) (dz^2 + eta_{mu nu} dx^mu dx^nu), A(z) = -log(z/R)",
+      "rationale": "Conformally flat AdS_5 convention used by the source."
+    },
+    {
+      "name": "dilaton",
+      "value": "Phi(z) = kappa^2 z^2 with kappa > 0",
+      "rationale": "Positive quadratic soft wall; the negative-sign branch has an unwanted massless vector mode."
+    },
+    {
+      "name": "units",
+      "value": "hbar = c = 1; kappa in GeV, z in GeV^-1, m^2 in GeV^2",
+      "rationale": "Makes the restored soft-wall scale explicit."
+    },
+    {
+      "name": "boundary conditions",
+      "value": "normalizable half-line modes; numerical psi(0) = psi(z_max) = 0",
+      "rationale": "The finite-domain Dirichlet problem approximates UV regularity and IR normalizability."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "soft-wall scale",
+      "symbol": "kappa",
+      "value": 1.0,
+      "unit": "GeV",
+      "role": "input",
+      "allowed_range": [0.000001, 1000000.0],
+      "description": "Positive scale controlling the radial level spacing; the benchmark default is not a phenomenological fit."
+    }
+  ],
+  "equations": [
+    {
+      "id": "vector-schrodinger",
+      "expression": "-psi_n''(z) + [kappa^4 z^2 + 3/(4 z^2)] psi_n(z) = m_n^2 psi_n(z)",
+      "description": "Schrodinger form of the transverse-vector fluctuation equation.",
+      "source_ref": "Derived from source Eqs. (8)-(11) after restoring kappa."
+    },
+    {
+      "id": "analytic-spectrum",
+      "expression": "m_n^2 = 4 kappa^2 (n + 1), n = 0, 1, 2, ...",
+      "description": "Exact squared-mass spectrum for the quadratic soft wall.",
+      "source_ref": "Source Eq. (15), with the soft-wall scale restored."
+    }
+  ],
+  "observables": [
+    {
+      "name": "vector-mode squared masses",
+      "symbol": "m_n^2",
+      "unit": "GeV^2",
+      "extraction": "Ordered eigenvalues of the discretized one-dimensional Schrodinger operator."
+    }
+  ],
+  "validation": {
+    "acceptance_criteria": [
+      "The first four numerical eigenvalues have maximum relative error below 2e-4 at the documented default resolution.",
+      "Refining the uniform grid reduces the maximum error for the first four modes with observed order between 1.8 and 2.2."
+    ],
+    "tests": [
+      {
+        "id": "exact-spectrum",
+        "kind": "analytic",
+        "command": "python3 -m unittest tests.test_soft_wall_vector -v",
+        "expected": "First four numerical squared masses reproduce 4, 8, 12, and 16 GeV^2 within tolerance.",
+        "status": "pass"
+      },
+      {
+        "id": "grid-refinement",
+        "kind": "convergence",
+        "command": "python3 -m unittest tests.test_soft_wall_vector -v",
+        "expected": "Maximum relative error decreases at the approximately second-order rate of the centered stencil.",
+        "status": "pass"
+      }
+    ],
+    "last_verified": "2026-08-02"
+  },
+  "claims": [
+    {
+      "statement": "The quadratic soft-wall vector equation has the exact spectrum m_n^2 = 4 kappa^2 (n + 1).",
+      "support_level": "established-source",
+      "evidence": "Karch et al., arXiv:hep-ph/0602229v2, Eqs. (8)-(15).",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-02"
+    },
+    {
+      "statement": "The HoloForge finite-difference implementation reproduces the first four exact eigenvalues within its declared tolerance.",
+      "support_level": "reproduced",
+      "evidence": "Automated analytic-spectrum and grid-refinement tests in tests/test_soft_wall_vector.py.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-02"
+    }
+  ],
+  "limitations": [
+    "This benchmark treats only transverse vector modes in a fixed quadratic soft-wall background.",
+    "It does not fit experimental data or validate the soft-wall model as a complete description of QCD.",
+    "The finite UV and IR numerical boundaries introduce discretization and truncation errors."
+  ],
+  "provenance": {
+    "created_on": "2026-08-02",
+    "created_by": "HoloForge project scaffold",
+    "implementation_path": "src/holoforge/benchmarks/soft_wall_vector.py",
+    "ai_assistance": true,
+    "ai_roles": ["schema drafting", "source transcription", "implementation drafting", "test drafting"],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-02"
+  }
+}

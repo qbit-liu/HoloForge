@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/model-card.schema.json",
+  "title": "HoloForge model card",
+  "description": "Scientific and computational contract for a Forge/Verify model.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "mode",
+    "domain",
+    "maturity",
+    "summary",
+    "source",
+    "conventions",
+    "parameters",
+    "equations",
+    "observables",
+    "validation",
+    "claims",
+    "limitations",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "const": "forge-verify"
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "maturity": {
+      "enum": ["reference", "reproduced", "validated", "extended", "deprecated"]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 20
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "authors", "locator", "url", "equation_refs"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "authors": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "locator": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "doi": {"type": "string", "minLength": 1},
+        "equation_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "conventions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/convention"}
+    },
+    "parameters": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/parameter"}
+    },
+    "equations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/equation"}
+    },
+    "observables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/observable"}
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["acceptance_criteria", "tests"],
+      "properties": {
+        "acceptance_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "tests": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/validation_test"}
+        },
+        "last_verified": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/claim"}
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    }
+  },
+  "$defs": {
+    "convention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "value"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "value": {"type": "string", "minLength": 1},
+        "rationale": {"type": "string", "minLength": 1}
+      }
+    },
+    "parameter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "symbol", "value", "unit", "role"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "symbol": {"type": "string", "minLength": 1},
+        "value": {"type": ["number", "string"]},
+        "unit": {"type": "string", "minLength": 1},
+        "role": {"enum": ["input", "fixed", "fitted", "derived"]},
+        "allowed_range": {
+          "type": "array",
+          "prefixItems": [{"type": "number"}, {"type": "number"}],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "equation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "expression", "description", "source_ref"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "expression": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "source_ref": {"type": "string", "minLength": 1}
+      }
+    },
+    "observable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "symbol", "unit", "extraction"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "symbol": {"type": "string", "minLength": 1},
+        "unit": {"type": "string", "minLength": 1},
+        "extraction": {"type": "string", "minLength": 1}
+      }
+    },
+    "validation_test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "command", "expected", "status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["analytic", "convergence", "regression", "external-data"]},
+        "command": {"type": "string", "minLength": 1},
+        "expected": {"type": "string", "minLength": 1},
+        "status": {"enum": ["pending", "pass", "fail"]}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statement",
+        "support_level",
+        "evidence",
+        "generated_by_ai",
+        "review_status"
+      ],
+      "properties": {
+        "statement": {"type": "string", "minLength": 1},
+        "support_level": {
+          "enum": ["established-source", "reproduced", "model-extension", "hypothesis"]
+        },
+        "evidence": {"type": "string", "minLength": 1},
+        "generated_by_ai": {"type": "boolean"},
+        "review_status": {
+          "enum": ["unreviewed", "checked", "approved", "rejected"]
+        },
+        "reviewed_by": {"type": "string", "minLength": 1},
+        "reviewed_on": {"type": "string", "format": "date"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "review_status": {"enum": ["checked", "approved", "rejected"]}
+            },
+            "required": ["review_status"]
+          },
+          "then": {"required": ["reviewed_by", "reviewed_on"]}
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_on",
+        "created_by",
+        "implementation_path",
+        "ai_assistance",
+        "ai_roles",
+        "review_status"
+      ],
+      "properties": {
+        "created_on": {"type": "string", "format": "date"},
+        "created_by": {"type": "string", "minLength": 1},
+        "implementation_path": {"type": "string", "minLength": 1},
+        "ai_assistance": {"type": "boolean"},
+        "ai_roles": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "review_status": {
+          "enum": ["unreviewed", "checked", "approved", "rejected"]
+        },
+        "reviewed_by": {"type": "string", "minLength": 1},
+        "reviewed_on": {"type": "string", "format": "date"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "review_status": {"enum": ["checked", "approved", "rejected"]}
+            },
+            "required": ["review_status"]
+          },
+          "then": {"required": ["reviewed_by", "reviewed_on"]}
+        }
+      ]
+    }
+  }
+}

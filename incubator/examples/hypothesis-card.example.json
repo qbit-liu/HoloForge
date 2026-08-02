@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1",
+  "id": "example.cross-domain-spectral-analogy",
+  "title": "Example only: cross-domain spectral analogy",
+  "mode": "explore",
+  "target_domain": "unspecified-strongly-coupled-system",
+  "status": "draft",
+  "analogy": {
+    "source_domain": "quadratic soft-wall holographic QCD",
+    "target_feature": "an approximately linear squared excitation spectrum",
+    "mapping": "Map excitation number to radial mode number and the observed slope to an effective soft-wall scale.",
+    "known_breakdown": "A matching spectral slope alone does not establish a holographic mechanism, a local five-dimensional dual, or matching dynamics."
+  },
+  "hypothesis_statement": "A target system with a robust linear squared excitation spectrum may admit a useful soft-wall-inspired reduced description over a specified finite regime.",
+  "mechanism": "An effective one-dimensional fluctuation operator with harmonic infrared growth could generate approximately equally spaced squared eigenvalues without implying a fundamental gravity dual.",
+  "assumptions": [
+    "The target spectrum and uncertainties are independently established.",
+    "The proposed mode identification is fixed before fitting.",
+    "A simpler non-holographic baseline is included."
+  ],
+  "predictions": [
+    {
+      "statement": "After fixing one overall scale, held-out squared excitation levels follow an approximately constant spacing within a preregistered tolerance.",
+      "observable": "successive differences of squared excitation energies",
+      "regime": "the finite excitation range declared before testing"
+    }
+  ],
+  "falsification_tests": [
+    {
+      "test": "Fit the scale on a training subset and compare held-out levels against both the soft-wall pattern and a simpler baseline.",
+      "failure_condition": "Reject the proposal if it does not outperform the baseline within the preregistered uncertainty and complexity penalty."
+    }
+  ],
+  "prior_work": {
+    "search_status": "not-searched",
+    "summary": "This file demonstrates the schema only; no target system or novelty claim has been selected.",
+    "references": [
+      "Karch et al., arXiv:hep-ph/0602229"
+    ]
+  },
+  "claims": [
+    {
+      "statement": "The proposed cross-domain mapping could be predictive after its scale is fixed.",
+      "support_level": "hypothesis",
+      "evidence": "No target-system evidence yet; this is a schema example awaiting prior-work and baseline tests.",
+      "generated_by_ai": true,
+      "review_status": "unreviewed"
+    }
+  ],
+  "risks": [
+    "Pattern matching may be mistaken for a dynamical explanation.",
+    "Flexible mode assignments may make the proposal unfalsifiable.",
+    "Existing non-holographic models may already explain the same spectrum."
+  ],
+  "promotion_gate": {
+    "required_evidence": [
+      "A systematic prior-work search",
+      "A fixed target system and mode dictionary",
+      "A preregistered comparison with a simpler baseline",
+      "A reproducible calculation with uncertainty propagation",
+      "Human scientific review"
+    ],
+    "decision_owner": "HoloForge human maintainer"
+  },
+  "provenance": {
+    "created_on": "2026-08-02",
+    "created_by": "HoloForge project scaffold",
+    "ai_assistance": true,
+    "ai_roles": ["hypothesis-card example drafting"],
+    "review_status": "unreviewed"
+  }
+}

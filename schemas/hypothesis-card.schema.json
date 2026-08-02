@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/hypothesis-card.schema.json",
+  "title": "HoloForge hypothesis card",
+  "description": "Falsifiable scientific contract for an Explore-mode proposal.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "mode",
+    "target_domain",
+    "status",
+    "analogy",
+    "hypothesis_statement",
+    "mechanism",
+    "assumptions",
+    "predictions",
+    "falsification_tests",
+    "prior_work",
+    "claims",
+    "risks",
+    "promotion_gate",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+    },
+    "title": {"type": "string", "minLength": 1},
+    "mode": {"const": "explore"},
+    "target_domain": {"type": "string", "minLength": 1},
+    "status": {
+      "enum": ["draft", "screened", "testable", "testing", "supported", "not-supported", "retired"]
+    },
+    "analogy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_domain", "target_feature", "mapping", "known_breakdown"],
+      "properties": {
+        "source_domain": {"type": "string", "minLength": 1},
+        "target_feature": {"type": "string", "minLength": 1},
+        "mapping": {"type": "string", "minLength": 1},
+        "known_breakdown": {"type": "string", "minLength": 1}
+      }
+    },
+    "hypothesis_statement": {"type": "string", "minLength": 20},
+    "mechanism": {"type": "string", "minLength": 20},
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "predictions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/prediction"}
+    },
+    "falsification_tests": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/falsification_test"}
+    },
+    "prior_work": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["search_status", "summary", "references"],
+      "properties": {
+        "search_status": {"enum": ["not-searched", "preliminary", "systematic"]},
+        "summary": {"type": "string", "minLength": 1},
+        "references": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/claim"}
+    },
+    "risks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "promotion_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_evidence", "decision_owner"],
+      "properties": {
+        "required_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "decision_owner": {"type": "string", "minLength": 1}
+      }
+    },
+    "provenance": {"$ref": "#/$defs/provenance"}
+  },
+  "$defs": {
+    "prediction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "observable", "regime"],
+      "properties": {
+        "statement": {"type": "string", "minLength": 1},
+        "observable": {"type": "string", "minLength": 1},
+        "regime": {"type": "string", "minLength": 1}
+      }
+    },
+    "falsification_test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["test", "failure_condition"],
+      "properties": {
+        "test": {"type": "string", "minLength": 1},
+        "failure_condition": {"type": "string", "minLength": 1}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statement",
+        "support_level",
+        "evidence",
+        "generated_by_ai",
+        "review_status"
+      ],
+      "properties": {
+        "statement": {"type": "string", "minLength": 1},
+        "support_level": {"const": "hypothesis"},
+        "evidence": {"type": "string", "minLength": 1},
+        "generated_by_ai": {"type": "boolean"},
+        "review_status": {
+          "enum": ["unreviewed", "checked", "approved", "rejected"]
+        },
+        "reviewed_by": {"type": "string", "minLength": 1},
+        "reviewed_on": {"type": "string", "format": "date"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "review_status": {"enum": ["checked", "approved", "rejected"]}
+            },
+            "required": ["review_status"]
+          },
+          "then": {"required": ["reviewed_by", "reviewed_on"]}
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_on", "created_by", "ai_assistance", "ai_roles", "review_status"],
+      "properties": {
+        "created_on": {"type": "string", "format": "date"},
+        "created_by": {"type": "string", "minLength": 1},
+        "ai_assistance": {"type": "boolean"},
+        "ai_roles": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "review_status": {
+          "enum": ["unreviewed", "checked", "approved", "rejected"]
+        },
+        "reviewed_by": {"type": "string", "minLength": 1},
+        "reviewed_on": {"type": "string", "format": "date"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "review_status": {"enum": ["checked", "approved", "rejected"]}
+            },
+            "required": ["review_status"]
+          },
+          "then": {"required": ["reviewed_by", "reviewed_on"]}
+        }
+      ]
+    }
+  }
+}
