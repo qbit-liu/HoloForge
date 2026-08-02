@@ -1,0 +1,179 @@
+{
+  "schema_version": "0.1",
+  "id": "condensed-matter.holographic-superconductor.hhh",
+  "title": "Minimal probe-limit holographic superconductor",
+  "mode": "forge-verify",
+  "domain": "holographic-condensed-matter",
+  "maturity": "reproduced",
+  "summary": "A linear-onset and nonlinear-boundary-value reproduction of the dimension-two condensate in the minimal probe-limit AdS4 holographic-superconductor model.",
+  "source": {
+    "title": "Building an AdS/CFT superconductor",
+    "authors": [
+      "Sean A. Hartnoll",
+      "Christopher P. Herzog",
+      "Gary T. Horowitz"
+    ],
+    "locator": "arXiv:0803.3295",
+    "version": "v1",
+    "url": "https://arxiv.org/abs/0803.3295",
+    "doi": "10.1103/PhysRevLett.101.031601",
+    "equation_refs": ["Eqs. (1)-(12)", "Figure 1, right panel"]
+  },
+  "conventions": [
+    {
+      "name": "background and coordinate",
+      "value": "Planar AdS4-Schwarzschild probe limit; u = r_h/r in [0,1], f(u) = 1-u^3, L = r_h = 1 during the solve",
+      "rationale": "Makes the horizon and UV boundary finite endpoints and isolates scale-invariant observables."
+    },
+    {
+      "name": "matter sector",
+      "value": "Real charged scalar psi(u), electric potential A_t = phi(u), m^2 L^2 = -2, q = 1",
+      "rationale": "Conventions of the source model after fixing the charge unit."
+    },
+    {
+      "name": "UV gauge source",
+      "value": "phi = mu - rho u + ... with nonzero chemical potential mu",
+      "rationale": "The chemical potential is the boundary gauge-field source and is not set to zero."
+    },
+    {
+      "name": "UV scalar quantization",
+      "value": "psi = psi_- u + psi_+ u^2 + ...; Delta = 2 quantization with psi_- = 0",
+      "rationale": "The scalar source vanishes while psi_+ gives spontaneous condensation."
+    },
+    {
+      "name": "ensembles and plotted ratios",
+      "value": "Grand-canonical onset reported through T_c/mu; condensate curve presented at fixed rho through T/T_c and sqrt(<O_2>)/T_c",
+      "rationale": "Separates the nonzero gauge source from the fixed-density presentation used by Figure 1."
+    },
+    {
+      "name": "operator normalization",
+      "value": "<O_2> = sqrt(2) psi_+",
+      "rationale": "Normalization stated in source Eq. (10)."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "scalar mass squared",
+      "symbol": "m^2 L^2",
+      "value": -2.0,
+      "unit": "dimensionless",
+      "role": "fixed",
+      "description": "Mass used for both normalizable AdS4 scalar falloffs."
+    },
+    {
+      "name": "scalar charge",
+      "symbol": "q",
+      "value": 1.0,
+      "unit": "charge unit",
+      "role": "fixed",
+      "description": "Set by the source's field-rescaling convention."
+    },
+    {
+      "name": "radial cutoff",
+      "symbol": "epsilon",
+      "value": 0.00001,
+      "unit": "dimensionless u",
+      "role": "input",
+      "allowed_range": [0.00000001, 0.01],
+      "description": "Regulates both singular coordinate endpoints; its effect is checked numerically."
+    }
+  ],
+  "equations": [
+    {
+      "id": "charged-scalar",
+      "expression": "psi'' + (f'/f - 2/u) psi' + [phi^2/f^2 + 2/(u^2 f)] psi = 0, f = 1-u^3",
+      "description": "Charged scalar equation in the fixed planar black-brane background.",
+      "source_ref": "Source Eq. (6), transformed from r to u = r_h/r."
+    },
+    {
+      "id": "electric-potential",
+      "expression": "phi'' - 2 psi^2 phi/(u^2 f) = 0",
+      "description": "Maxwell equation coupled to the scalar condensate.",
+      "source_ref": "Source Eq. (7), transformed from r to u = r_h/r."
+    }
+  ],
+  "observables": [
+    {
+      "name": "critical temperature",
+      "symbol": "T_c/sqrt(rho)",
+      "unit": "dimensionless",
+      "extraction": "Linear vanishing-scalar-source eigenvalue in the normal gauge background, followed by the black-brane scaling relation."
+    },
+    {
+      "name": "dimension-two condensate curve",
+      "symbol": "sqrt(<O_2>)/T_c versus T/T_c",
+      "unit": "dimensionless",
+      "extraction": "UV response coefficient psi_+ along nonlinear vanishing-scalar-source solutions, rescaled to the fixed-density Figure 1 presentation."
+    }
+  ],
+  "validation": {
+    "acceptance_criteria": [
+      "The scalar-source residual is below 1e-8 at onset and along the nonlinear branch.",
+      "The nonlinear boundary-value collocation residual satisfies the configured numerical tolerance.",
+      "The critical value T_c/sqrt(rho) agrees with the source's rounded 0.118 within an absolute tolerance of 0.001.",
+      "The near-critical coefficient agrees within 5 percent with source Eq. (12).",
+      "The regenerated dimension-two curve is monotonic and reaches the Figure 1 low-temperature plateau between 8.2 and 8.7."
+    ],
+    "tests": [
+      {
+        "id": "linear-onset",
+        "kind": "regression",
+        "command": "python3 -m unittest tests.test_holographic_superconductor -v",
+        "expected": "mu_c/r_h and T_c/sqrt(rho) reproduce the documented vanishing-scalar-source instability.",
+        "status": "pass"
+      },
+      {
+        "id": "nonlinear-condensate",
+        "kind": "regression",
+        "command": "python3 -m unittest tests.test_holographic_superconductor -v",
+        "expected": "The dimension-two branch reproduces the near-critical coefficient and low-temperature plateau.",
+        "status": "pass"
+      },
+      {
+        "id": "radial-cutoff-refinement",
+        "kind": "convergence",
+        "command": "python3 -m unittest tests.test_holographic_superconductor -v",
+        "expected": "Representative onset and nonlinear observables remain stable when the cutoff is reduced.",
+        "status": "pass"
+      }
+    ],
+    "last_verified": "2026-08-02"
+  },
+  "claims": [
+    {
+      "statement": "For the Delta = 2 boundary condition, the source reports T_c approximately 0.118 sqrt(rho) and a condensate curve shown in Figure 1's right panel.",
+      "support_level": "established-source",
+      "evidence": "Hartnoll, Herzog, and Horowitz, arXiv:0803.3295v1, Eqs. (10)-(12) and Figure 1.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-02"
+    },
+    {
+      "statement": "The HoloForge implementation numerically reproduces the linear critical point and the dimension-two nonlinear condensate curve within its declared acceptance gates.",
+      "support_level": "reproduced",
+      "evidence": "Automated onset, continuation, cutoff-refinement, and curve tests in tests/test_holographic_superconductor.py.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-02"
+    }
+  ],
+  "limitations": [
+    "The calculation neglects backreaction of the matter fields on the metric and is not a controlled zero-temperature solution.",
+    "The benchmark does not compute optical conductivity, free energy, or quasinormal modes.",
+    "The minimal boundary U(1) is global unless an additional weak gauging prescription is supplied; charged superfluid is then the more precise term.",
+    "The numerical endpoints use finite radial cutoffs and the plotted low-temperature plateau remains within the probe approximation of the source.",
+    "No fit to a real superconducting material is attempted."
+  ],
+  "provenance": {
+    "created_on": "2026-08-02",
+    "created_by": "HoloForge v0.2 development",
+    "implementation_path": "src/holoforge/benchmarks/holographic_superconductor.py",
+    "ai_assistance": true,
+    "ai_roles": ["source transcription", "equation transformation", "implementation drafting", "test drafting", "documentation drafting"],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-02"
+  }
+}

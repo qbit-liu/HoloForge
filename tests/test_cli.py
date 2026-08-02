@@ -77,6 +77,45 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(status, 2)
         self.assertIn("tolerance must be finite", error.getvalue())
 
+    def test_superconductor_json_contains_sources_and_curve(self) -> None:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = main(
+                [
+                    "verify",
+                    "holographic-superconductor",
+                    "--branch-points",
+                    "8",
+                    "--json",
+                ]
+            )
+        payload = json.loads(output.getvalue())
+
+        self.assertEqual(status, 0)
+        self.assertTrue(payload["passed"])
+        self.assertEqual(payload["benchmark"], "holographic-superconductor")
+        self.assertEqual(
+            payload["configuration"]["quantization"],
+            "Delta = 2 with psi_- = 0",
+        )
+        self.assertEqual(
+            len(payload["results"]["condensate_branch"]["points"]), 8
+        )
+
+    def test_invalid_superconductor_cutoff_has_clear_error(self) -> None:
+        error = io.StringIO()
+        with redirect_stderr(error):
+            status = main(
+                [
+                    "verify",
+                    "holographic-superconductor",
+                    "--radial-cutoff",
+                    "0",
+                ]
+            )
+        self.assertEqual(status, 2)
+        self.assertIn("radial_cutoff", error.getvalue())
+
 
 if __name__ == "__main__":
     unittest.main()

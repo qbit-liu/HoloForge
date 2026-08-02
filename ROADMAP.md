@@ -15,7 +15,7 @@
 - Add citation metadata, contribution guidance, and structured issue forms.
 - Preserve the `v0.1.0` scientific calculation and command interface.
 
-## Version 0.2 — reusable model interface
+## Version 0.2 — reusable model interface (complete)
 
 - Define common background, fluctuation-equation, boundary-condition, solver,
   observable, and result interfaces.
@@ -26,6 +26,9 @@
   nonzero boundary gauge-field source (chemical potential in the grand
   canonical ensemble) from the vanishing scalar source used to model
   spontaneous condensation; state the ensemble explicitly.
+- Reproduce the dimension-two nonlinear condensate curve corresponding to the
+  right panel of Figure 1 in arXiv:0803.3295v1, using generated numerical data
+  and an explicit fixed-density presentation.
 
 ## Version 0.3 — controlled comparison
 

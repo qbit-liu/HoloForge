@@ -14,13 +14,23 @@ from __future__ import annotations
 from dataclasses import dataclass
 import math
 from numbers import Real
-import platform
 from typing import Any, Dict, List, Optional
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
-import scipy
 from scipy.linalg import eigvalsh_tridiagonal
+
+from holoforge.core import (
+    AcceptanceCheck,
+    BackgroundSpec,
+    BenchmarkDefinition,
+    BoundaryConditionSpec,
+    EquationSpec,
+    ObservableSpec,
+    SolverSpec,
+    VerificationRecord,
+    runtime_versions,
+)
 
 
 DEFAULT_GRID_POINTS = 1_200
@@ -29,6 +39,66 @@ DEFAULT_TOLERANCE = 2.0e-4
 DEFAULT_DIMENSIONLESS_Z_MAX = 10.0
 EIGENSOLVER = "scipy.linalg.eigvalsh_tridiagonal"
 DISCRETIZATION = "second-order centered finite difference"
+
+
+SOFT_WALL_DEFINITION = BenchmarkDefinition(
+    identifier="soft-wall-vector",
+    support_level="reproduced",
+    background=BackgroundSpec(
+        identifier="quadratic-soft-wall-ads5",
+        dimension=5,
+        coordinate="z in (0, infinity)",
+        description=(
+            "Fixed AdS_5 background with dilaton Phi(z) = kappa^2 z^2."
+        ),
+    ),
+    equations=(
+        EquationSpec(
+            identifier="vector-schrodinger",
+            kind="Sturm-Liouville eigenvalue problem",
+            dependent_fields=("psi_n",),
+            expression=(
+                "-psi_n'' + (kappa^4 z^2 + 3/(4 z^2)) psi_n "
+                "= m_n^2 psi_n"
+            ),
+            source_reference=(
+                "Karch et al., arXiv:hep-ph/0602229v2, Eqs. (8)-(15)"
+            ),
+        ),
+    ),
+    boundary_conditions=(
+        BoundaryConditionSpec(
+            field="psi_n",
+            location="z = 0",
+            role="UV normalizability",
+            expression="psi_n(0) = 0",
+            interpretation="Dirichlet approximation to the normalizable UV mode.",
+        ),
+        BoundaryConditionSpec(
+            field="psi_n",
+            location="z = z_max",
+            role="IR truncation",
+            expression="psi_n(z_max) = 0",
+            interpretation="Finite-domain approximation to IR normalizability.",
+        ),
+    ),
+    solvers=(
+        SolverSpec(
+            problem_type="real symmetric tridiagonal eigenproblem",
+            library_function=EIGENSOLVER,
+            method="LAPACK driver selected by SciPy",
+            description=DISCRETIZATION,
+        ),
+    ),
+    observables=(
+        ObservableSpec(
+            identifier="vector-mode-masses",
+            symbol="m_n^2",
+            extraction="Ordered lowest eigenvalues of the discrete operator.",
+            normalization="GeV^2 with the input scale kappa expressed in GeV.",
+        ),
+    ),
+)
 
 
 @dataclass(frozen=True)
@@ -114,10 +184,19 @@ class SpectrumResult:
                 }
             )
 
-        return {
-            "benchmark": "soft-wall-vector",
-            "support_level": "reproduced",
-            "configuration": {
+        check = AcceptanceCheck(
+            identifier="exact-spectrum-relative-error",
+            description=(
+                "Maximum relative error of the requested eigenvalues is within "
+                "the declared tolerance."
+            ),
+            value=self.max_relative_error,
+            criterion=f"value <= {float(tolerance):.16g}",
+            passed=self.max_relative_error <= tolerance,
+        )
+        record = VerificationRecord(
+            definition=SOFT_WALL_DEFINITION,
+            configuration={
                 "kappa_gev": float(self.config.kappa_gev),
                 "num_modes": len(self.mode_numbers),
                 "grid_points": self.config.grid_points,
@@ -125,27 +204,26 @@ class SpectrumResult:
                 "dimensionless_z_max": self.dimensionless_z_max,
                 "grid_spacing_gev_inverse": self.grid_spacing_gev_inverse,
             },
-            "numerical_method": {
+            numerical_method={
                 "discretization": DISCRETIZATION,
                 "operator_structure": "real symmetric tridiagonal",
                 "eigensolver": EIGENSOLVER,
                 "lapack_driver": "auto",
                 "boundary_conditions": "psi(0) = psi(z_max) = 0",
             },
-            "software_versions": {
-                "python": platform.python_version(),
-                "numpy": np.__version__,
-                "scipy": scipy.__version__,
-            },
-            "results": records,
-            "tolerance": float(tolerance),
-            "max_relative_error": self.max_relative_error,
-            "passed": self.max_relative_error <= tolerance,
-            "scope": (
+            results=records,
+            acceptance_checks=(check,),
+            software_versions=runtime_versions(),
+            scope=(
                 "Numerical reproduction of the published mode equation; "
                 "not empirical validation of the model."
             ),
-        }
+            extra={
+                "tolerance": float(tolerance),
+                "max_relative_error": self.max_relative_error,
+            },
+        )
+        return record.to_dict()
 
 
 def schrodinger_potential(

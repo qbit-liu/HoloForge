@@ -19,6 +19,10 @@ a useful first benchmark because the numerical eigenvalue problem can be
 checked against the exact result
 `m_n^2 = 4 kappa^2 (n + 1)`.
 
+Version 0.2 adds a second, structurally different benchmark: the linear
+instability and nonlinear dimension-two condensate of the minimal probe-limit
+holographic superconductor.
+
 ## Quick start
 
 HoloForge currently requires Python 3.9 or newer, NumPy, and SciPy.
@@ -42,6 +46,18 @@ To change the soft-wall scale or emit machine-readable output:
 holoforge verify soft-wall-vector --kappa 0.388 --json
 ```
 
+Run the holographic-superconductor verifier and regenerate the dimension-two
+condensate curve with:
+
+```bash
+holoforge verify holographic-superconductor
+holoforge verify holographic-superconductor \
+  --plot artifacts/holographic-superconductor-delta2.png
+```
+
+The checked development output is shown in the
+[`Delta = 2` benchmark guide](docs/benchmarks/holographic-superconductor.md).
+
 For benchmark use without schema-test dependencies, install with
 `python3 -m pip install -e .`. Until the package is installed, the command can
 also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
@@ -52,7 +68,8 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
 - [`CONSTITUTION.md`](CONSTITUTION.md) defines the scientific rules of the
   project.
 - [`docs/version-0.1.md`](docs/version-0.1.md) and
-  [`docs/version-0.1.1.md`](docs/version-0.1.1.md) define the bounded release
+  [`docs/version-0.1.1.md`](docs/version-0.1.1.md), and
+  [`docs/version-0.2.md`](docs/version-0.2.md) define the bounded release
   contracts.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
   contribution workflow.
@@ -67,9 +84,10 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
 
 ## Project status
 
-This is an early scientific release (`0.1.1`), not a precision-QCD
-prediction package. The initial benchmark verifies a published model equation;
-it does not validate the model as a complete description of QCD.
+This is an early scientific release (`0.2.0`), not a precision-QCD or
+materials-prediction package. Its benchmarks reproduce published model
+calculations; they do not establish those models as complete descriptions of
+QCD or real materials.
 
 ## License
 
