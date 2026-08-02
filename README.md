@@ -23,6 +23,16 @@ Version 0.2 adds a second, structurally different benchmark: the linear
 instability and nonlinear dimension-two condensate of the minimal probe-limit
 holographic superconductor.
 
+## Privacy for Explore research
+
+HoloForge does **not** require novel work to be public while it is in progress.
+Potentially publishable Explore projects should use HoloForge from a separate,
+access-controlled repository. The public `incubator/` is reserved for synthetic
+examples, public-literature dry runs, and work explicitly approved for
+disclosure. After journal acceptance or another deliberate release decision, a
+reviewed reproducibility package may be promoted into this repository. See the
+[private-research workflow](docs/private-research-workflow.md).
+
 ## Quick start
 
 HoloForge currently requires Python 3.9 or newer, NumPy, and SciPy.
@@ -67,10 +77,11 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
 
 - [`CONSTITUTION.md`](CONSTITUTION.md) defines the scientific rules of the
   project.
-- [`docs/version-0.1.md`](docs/version-0.1.md) and
+- [`docs/version-0.1.md`](docs/version-0.1.md),
   [`docs/version-0.1.1.md`](docs/version-0.1.1.md), and
-  [`docs/version-0.2.md`](docs/version-0.2.md) define the bounded release
-  contracts.
+  [`docs/version-0.2.md`](docs/version-0.2.md) define the scientific release
+  contracts; [`docs/version-0.2.1.md`](docs/version-0.2.1.md) defines the
+  privacy-workflow patch.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
   contribution workflow.
 - [`CITATION.cff`](CITATION.cff) provides machine-readable citation metadata.
@@ -78,13 +89,14 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
 - [`schemas/`](schemas/) contains machine-readable model-card and
   hypothesis-card contracts.
 - [`domains/`](domains/) contains literature-anchored, testable models.
-- [`incubator/`](incubator/) contains speculative Explore-mode proposals.
+- [`incubator/`](incubator/) contains only public-safe Explore examples and
+  proposals.
 - [`src/holoforge/`](src/holoforge/) contains reusable software.
 - [`tests/`](tests/) holds analytic, numerical, schema, and interface checks.
 
 ## Project status
 
-This is an early scientific release (`0.2.0`), not a precision-QCD or
+This is an early scientific release (`0.2.1`), not a precision-QCD or
 materials-prediction package. Its benchmarks reproduce published model
 calculations; they do not establish those models as complete descriptions of
 QCD or real materials.

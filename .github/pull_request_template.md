@@ -21,5 +21,6 @@ List the exact tests, convergence checks, residuals, or build commands run.
 - [ ] I updated model or hypothesis cards when scientific claims changed.
 - [ ] I documented units, conventions, inputs, tolerances, and provenance where relevant.
 - [ ] I added or updated tests for changed behavior.
-- [ ] I did not include secrets, private paths, or unpublished research results.
+- [ ] I did not include secrets, private paths, restricted data, confidential notes, or unpublished research results.
+- [ ] Any formerly private material has an identified public source or publication and explicit release approval from its owner.
 - [ ] I ran the relevant test suite and inspected its result.

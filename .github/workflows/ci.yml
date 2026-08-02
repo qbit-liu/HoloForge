@@ -74,6 +74,6 @@ jobs:
       - name: Install and verify wheel
         run: |
           python -m pip install --force-reinstall dist/*.whl
-          python -c "import holoforge; assert holoforge.__version__ == '0.2.0'"
+          python -c "import holoforge; assert holoforge.__version__ == '0.2.1'"
           holoforge verify soft-wall-vector
           holoforge verify holographic-superconductor

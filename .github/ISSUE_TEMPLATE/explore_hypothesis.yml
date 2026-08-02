@@ -5,9 +5,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        Explore proposals are speculative by design. They remain in the
-        incubator until prior-work screening, consistency checks, a
+        Public Explore proposals are speculative by design. They remain in the
+        public incubator until prior-work screening, consistency checks, a
         discriminating calculation, and human review are complete.
+        This issue is public. Do not submit a novel project that has not been
+        cleared for disclosure; use a separate private repository instead.
 
   - type: textarea
     id: target
@@ -67,5 +69,7 @@ body:
       options:
         - label: I will label this proposal as a hypothesis, not an established application.
           required: true
-        - label: The proposal contains no private or unpublished research results.
+        - label: The proposal contains no private, confidential, restricted, or unpublished research material.
+          required: true
+        - label: The research owner has explicitly approved this proposal for public disclosure.
           required: true

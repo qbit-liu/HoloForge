@@ -7,6 +7,12 @@ HoloForge records two independent labels for a claim:
 - **Review state** describes human checking: `unreviewed`, `checked`,
   `approved`, or `rejected`.
 
+Public visibility is a separate decision from both labels. A strong support
+level does not require disclosure before the research owner is ready, and a
+public hypothesis is not strengthened merely by being visible. Novel Explore
+work may follow the [private-research workflow](private-research-workflow.md)
+until it is cleared for release.
+
 For example, a formula copied from a paper can be `established-source` while
 still `unreviewed` in HoloForge. A numerical value becomes `reproduced` only
 after an identified calculation passes its declared tolerance. Neither label

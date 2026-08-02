@@ -15,9 +15,10 @@ must state its source, conventions, parameters, equations, boundary conditions,
 observables, validation tests, and known limitations.
 
 **Explore** develops cross-domain analogies and candidate applications. Explore
-work remains under `incubator/`, uses a hypothesis card, gives a falsification
-test, and cannot be presented as established merely because code runs or an AI
-system proposed it.
+work uses a hypothesis card, gives a falsification test, and cannot be presented
+as established merely because code runs or an AI system proposed it. Novel,
+unpublished Explore work may remain in a separate private workspace; Explore is
+an evidence category, not a requirement to disclose research in progress.
 
 ## 3. Claim labels
 
@@ -46,20 +47,33 @@ Plots without underlying numerical checks are illustrations, not validation.
 
 ## 5. Separation and promotion
 
-Mature, literature-anchored work lives in `domains/`. Speculative work lives in
-`incubator/`. Promotion requires an identified source or derivation, a stable
-model card, executable tests, documented failure modes, and human review. File
-location is part of the scientific status and must not be changed merely for
-presentation.
+Mature, literature-anchored public work lives in `domains/`. The public
+`incubator/` contains only synthetic examples, public-literature dry runs, or
+speculative work whose owner has explicitly approved disclosure. Novel
+research-in-progress should live in a separate private repository. Promotion to
+`domains/` requires an identified source or derivation, a stable model card,
+executable tests, documented failure modes, and human review. File location is
+part of the scientific status and must not be changed merely for presentation.
 
-## 6. Reproducibility and provenance
+## 6. Confidentiality and publication timing
+
+HoloForge does not require researchers to open unpublished projects. By
+default, novel Explore work may remain private until journal acceptance or
+another explicit disclosure decision by its owner. Before any private work is
+copied into this public repository, a human must approve the exact export and
+check that it contains no secrets, private paths, restricted data, confidential
+notes, or results that are not cleared for release. An ignored local directory
+is not a confidentiality boundary; a separate access-controlled repository is
+preferred.
+
+## 7. Reproducibility and provenance
 
 Inputs and defaults must be serializable; generated outputs must record the
 configuration that produced them. Changes that alter scientific results require
 updated tests and documentation. Negative results and failed hypotheses should
 be retained when they provide useful provenance.
 
-## 7. Scientific restraint
+## 8. Scientific restraint
 
 HoloForge distinguishes verification of an implementation, reproduction of a
 model result, and empirical validation of nature. Passing one level never

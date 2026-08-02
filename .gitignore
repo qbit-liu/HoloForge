@@ -11,3 +11,8 @@ htmlcov/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+
+# Local guard only: keep unpublished Explore work in a separate private
+# repository whenever possible. These names must never be committed here.
+/.private-research/
+/unpublished/
