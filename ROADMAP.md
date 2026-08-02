@@ -30,6 +30,18 @@
   right panel of Figure 1 in arXiv:0803.3295v1, using generated numerical data
   and an explicit fixed-density presentation.
 
+## Version 0.2.1 — private Explore workflow (complete)
+
+- Make clear that Explore is a scientific-support category, not a requirement
+  to disclose work in progress.
+- Keep novel and potentially publishable work in a separate private repository
+  until journal acceptance or explicit release approval.
+- Restrict the public incubator to synthetic examples, public-literature dry
+  runs, and material approved for disclosure.
+- Add accidental-commit guards, a public-export checklist, and policy tests.
+- Exercise the public workflow on the deliberately synthetic hypothesis-card
+  example without introducing a novel scientific claim.
+
 ## Version 0.3 — controlled comparison
 
 - Add convergence studies and cross-solver comparisons.
@@ -38,9 +50,11 @@
 
 ## Explore-mode milestone
 
-- Run one incubator hypothesis through prior-work screening, dimensional and
-  symmetry checks, a discriminating calculation, and an explicit keep/reject
-  decision.
+- Publicly demonstrate the screening gates with synthetic or already-published
+  material.
+- Run the first genuinely novel hypothesis in a separate private repository;
+  disclose it only after journal acceptance or another explicit release
+  decision by the research owner.
 
 The roadmap intentionally does not name a speculative application before that
 screening is done.
