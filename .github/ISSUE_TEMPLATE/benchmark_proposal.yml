@@ -1,0 +1,79 @@
+name: Forge/Verify benchmark proposal
+description: Propose a literature-anchored model for reproducible verification.
+title: "[Benchmark]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Forge/Verify proposals must identify public sources, conventions,
+        boundary conditions, observables, and an acceptance test before code is
+        accepted.
+
+  - type: input
+    id: model
+    attributes:
+      label: Model and physical domain
+      placeholder: "For example: probe-limit holographic superconductor in AdS4"
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public primary sources
+      description: Provide DOI, arXiv, or journal links and identify the equations to reproduce.
+    validations:
+      required: true
+
+  - type: textarea
+    id: conventions
+    attributes:
+      label: Action, conventions, and assumptions
+      description: State dimensions, signs, normalizations, coordinates, probe limits, and units.
+    validations:
+      required: true
+
+  - type: textarea
+    id: boundary_conditions
+    attributes:
+      label: Boundary and regularity conditions
+      description: Distinguish sources, responses, horizon or IR conditions, and the chosen ensemble.
+    validations:
+      required: true
+
+  - type: textarea
+    id: observables
+    attributes:
+      label: Target observables
+      description: List the quantities the benchmark will calculate.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Verification and failure criteria
+      description: Propose analytic, convergence, residual, regression, or external benchmark checks.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: support
+    attributes:
+      label: Initial scientific-support level
+      options:
+        - established-source
+        - reproduced
+        - model-extension
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: The proposal contains no private or unpublished research results.
+          required: true
+        - label: I understand that executable code alone does not establish empirical validity.
+          required: true

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use HoloForge in research, please cite the software as below."
+type: software
+title: "HoloForge"
+abstract: >-
+  A verification-first platform for bottom-up gauge/gravity modelling with
+  separate Forge/Verify and Explore workflows.
+authors:
+  - family-names: "Liu"
+    given-names: "Xin-Yi"
+version: 0.1.1
+date-released: 2026-08-02
+license: BSD-3-Clause
+repository-code: "https://github.com/qbit-liu/HoloForge"
+url: "https://github.com/qbit-liu/HoloForge"
+keywords:
+  - gauge/gravity duality
+  - bottom-up holography
+  - scientific computing
+  - numerical verification

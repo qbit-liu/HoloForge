@@ -1,0 +1,67 @@
+name: Software or numerical bug
+description: Report reproducible incorrect behavior in HoloForge.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve HoloForge. Please provide a minimal,
+        reproducible example and distinguish software failure from disagreement
+        with a physical model.
+
+  - type: input
+    id: version
+    attributes:
+      label: HoloForge version or commit
+      placeholder: "0.1.1 or a Git commit hash"
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: Command or minimal example
+      description: Include the smallest command or code example that reproduces the problem.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Configuration and inputs
+      description: Record parameters, units, grid choices, tolerances, and boundary conditions when relevant.
+
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: Include the full error message or numerical result.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior and evidence
+      description: Explain the expected result and cite a test, derivation, or public primary source when applicable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "Operating system, Python, NumPy, and SciPy versions"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I searched the existing issues for this problem.
+          required: true
+        - label: I removed secrets, private paths, and unpublished research data.
+          required: true

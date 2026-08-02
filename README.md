@@ -1,5 +1,7 @@
 # HoloForge
 
+[![CI](https://github.com/qbit-liu/HoloForge/actions/workflows/ci.yml/badge.svg)](https://github.com/qbit-liu/HoloForge/actions/workflows/ci.yml)
+
 HoloForge is a verification-first platform for **bottom-up gauge/gravity
 modelling**. It is intended to make scientific assumptions, conventions,
 equations, numerical choices, validation evidence, and limitations inspectable
@@ -49,7 +51,13 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
 
 - [`CONSTITUTION.md`](CONSTITUTION.md) defines the scientific rules of the
   project.
-- [`docs/version-0.1.md`](docs/version-0.1.md) is the bounded v0.1 contract.
+- [`docs/version-0.1.md`](docs/version-0.1.md) and
+  [`docs/version-0.1.1.md`](docs/version-0.1.1.md) define the bounded release
+  contracts.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
+  contribution workflow.
+- [`CITATION.cff`](CITATION.cff) provides machine-readable citation metadata.
+- [`CHANGELOG.md`](CHANGELOG.md) records release-level changes.
 - [`schemas/`](schemas/) contains machine-readable model-card and
   hypothesis-card contracts.
 - [`domains/`](domains/) contains literature-anchored, testable models.
@@ -59,7 +67,7 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
 
 ## Project status
 
-This is an early scientific release (`0.1.0`), not a precision-QCD
+This is an early scientific release (`0.1.1`), not a precision-QCD
 prediction package. The initial benchmark verifies a published model equation;
 it does not validate the model as a complete description of QCD.
 

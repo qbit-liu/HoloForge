@@ -1,0 +1,71 @@
+name: Explore hypothesis
+description: Propose a falsifiable cross-domain gauge/gravity hypothesis.
+title: "[Explore]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Explore proposals are speculative by design. They remain in the
+        incubator until prior-work screening, consistency checks, a
+        discriminating calculation, and human review are complete.
+
+  - type: textarea
+    id: target
+    attributes:
+      label: Target phenomenon
+      description: Describe the physical system and the specific unresolved question.
+    validations:
+      required: true
+
+  - type: textarea
+    id: analogy
+    attributes:
+      label: Cross-domain analogy
+      description: Identify the established gauge/gravity structure being transferred and why the correspondence might be meaningful.
+    validations:
+      required: true
+
+  - type: textarea
+    id: dictionary
+    attributes:
+      label: Candidate boundary-to-bulk dictionary
+      description: Map symmetries, operators, sources, responses, conserved quantities, and bulk fields.
+    validations:
+      required: true
+
+  - type: textarea
+    id: observables
+    attributes:
+      label: Calculable observable and falsification test
+      description: State what will be calculated and which outcome would reject the hypothesis.
+    validations:
+      required: true
+
+  - type: textarea
+    id: prior_work
+    attributes:
+      label: Prior-work screening
+      description: Provide public searches or sources and explain what appears new.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ai_role
+    attributes:
+      label: AI involvement
+      options:
+        - No AI assistance
+        - AI assisted literature or analogy search
+        - Primarily AI generated and awaiting human review
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Scientific-status acknowledgement
+      options:
+        - label: I will label this proposal as a hypothesis, not an established application.
+          required: true
+        - label: The proposal contains no private or unpublished research results.
+          required: true
