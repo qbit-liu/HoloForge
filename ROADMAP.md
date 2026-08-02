@@ -9,7 +9,7 @@
 - Provide a small command-line verification path and automated tests.
 - Release under the BSD 3-Clause License.
 
-## Version 0.1.1 — public project hardening (release candidate)
+## Version 0.1.1 — public project hardening (complete)
 
 - Run tests and package builds automatically on GitHub.
 - Add citation metadata, contribution guidance, and structured issue forms.
