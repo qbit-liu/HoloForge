@@ -9,6 +9,12 @@
 - Provide a small command-line verification path and automated tests.
 - Release under the BSD 3-Clause License.
 
+## Version 0.1.1 — public project hardening (release candidate)
+
+- Run tests and package builds automatically on GitHub.
+- Add citation metadata, contribution guidance, and structured issue forms.
+- Preserve the `v0.1.0` scientific calculation and command interface.
+
 ## Version 0.2 — reusable model interface
 
 - Define common background, fluctuation-equation, boundary-condition, solver,
@@ -16,6 +22,10 @@
 - Add configuration serialization and provenance-rich result artifacts.
 - Add a second benchmark with genuinely different boundary conditions so the
   interface is tested rather than assumed.
+- For the candidate holographic-superconductor onset benchmark, distinguish the
+  nonzero boundary gauge-field source (chemical potential in the grand
+  canonical ensemble) from the vanishing scalar source used to model
+  spontaneous condensation; state the ensemble explicitly.
 
 ## Version 0.3 — controlled comparison
 
