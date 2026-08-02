@@ -8,7 +8,8 @@ HoloForge v0.1 uses JSON Schema Draft 2020-12.
   its scientific claims can only use the `hypothesis` support level.
 
 Canonical examples live at
-`domains/qcd/soft_wall_vector/model-card.json` and
+`domains/qcd/soft_wall_vector/model-card.json`,
+`domains/condensed_matter/holographic_superconductor/model-card.json`, and
 `incubator/examples/hypothesis-card.example.json`. Validate them by running:
 
 ```bash
