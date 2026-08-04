@@ -52,6 +52,39 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("stop: novelty", dry_run.lower())
         self.assertIn("do not promote", dry_run.lower())
 
+    def test_generic_gate_workflow_preserves_three_tracks_and_boundaries(self):
+        workflow = (ROOT / "docs/research-gate-workflow.md").read_text(
+            encoding="utf-8"
+        ).lower()
+
+        self.assertIn("new-domain application", workflow)
+        self.assertIn("new-subfield or new-phenomenon application", workflow)
+        self.assertIn("method transfer or model improvement", workflow)
+        self.assertIn("frozen contract", workflow)
+        self.assertIn("hostile critic report", workflow)
+        self.assertIn("owner review", workflow)
+        self.assertIn("scientific support", workflow)
+        self.assertIn("research authorization", workflow)
+        self.assertIn("disclosure status", workflow)
+
+    def test_review_packet_template_is_generic_and_privacy_safe(self):
+        template = (
+            ROOT / "docs/templates/review-packet-template.tex"
+        ).read_text(encoding="utf-8")
+        workflow = (ROOT / "docs/research-gate-workflow.md").read_text(
+            encoding="utf-8"
+        )
+        combined = "\n".join((template, workflow))
+
+        self.assertIn("Outcome.", template)
+        self.assertIn("Supported:", template)
+        self.assertIn("Not supported:", template)
+        self.assertIn("Owner decisions", template)
+        self.assertNotIn("/Users/", combined)
+        self.assertNotIn("HoloForge-Explore-Private", combined)
+        for private_identifier in ("C01", "C02", "C03", "D001", "M001"):
+            self.assertNotIn(private_identifier, combined)
+
 
 if __name__ == "__main__":
     unittest.main()

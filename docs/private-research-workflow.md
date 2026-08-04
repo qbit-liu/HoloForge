@@ -43,6 +43,11 @@ HoloForge public contract.
 
 ## Research gates
 
+The concise gate sequence below is expanded in the reusable
+[research-gate workflow](research-gate-workflow.md), including frozen
+contracts, hostile critic reports, owner decisions, local Git records, and the
+standard PDF review-packet style.
+
 1. **Intake:** record the candidate dictionary, assumptions, falsification
    test, AI involvement, and decision owner in a private hypothesis card.
 2. **Screening:** search prior work and test dimensional, symmetry, boundary,

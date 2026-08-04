@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.76in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,graphicx,xcolor,enumitem,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{navy}{RGB}{30,60,105}
+\definecolor{soft}{RGB}{242,246,251}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{nosep,leftmargin=1.5em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Gate name}
+\fancyhead[R]{\small Disclosure class}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\supported}[1]{\textcolor{navy}{\textbf{Supported:}} #1}
+\newcommand{\notsupported}[1]{\textcolor{navy}{\textbf{Not supported:}} #1}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries Review Packet Title}\\[4pt]
+{\Large Gate subtitle}\\[10pt]
+{\large Prepared for Decision Owner -- Date}
+\end{center}
+
+\vspace{4pt}
+\colorbox{soft}{\parbox{0.95\textwidth}{
+\textbf{Outcome.} State the bounded result first. Name the accepted checks and
+the most important limitation. Do not place an extrapolation or a broader
+physical claim in this box.
+}}
+
+\section*{1. Authorized scope}
+
+State the frozen question, inputs, methods, stops, and exclusions. Number any
+equation the owner must review:
+\begin{equation}
+y=f(x).
+\end{equation}
+
+\section*{2. Result and numerical evidence}
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+Check & Measured & Acceptance\\
+\midrule
+Example residual & $1.0\times10^{-9}$ & $<1.0\times10^{-8}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\clearpage
+\section*{3. Figure, if required}
+\thispagestyle{fancy}
+
+% \begin{center}
+% \includegraphics[width=0.92\textwidth]{path/to/figure.pdf}
+% \end{center}
+
+State what the figure demonstrates and what it does not. Do not show points or
+fits beyond the authorized scope.
+
+\section*{4. Evidence boundary}
+
+\supported{List only conclusions established by this gate.}
+
+\notsupported{List crossings, mechanisms, regimes, validation levels, novelty,
+publication, or disclosure conclusions that remain outside the evidence.}
+
+\clearpage
+\section*{5. Critic verdict and next gate}
+\thispagestyle{fancy}
+
+List the strongest objections and the cheapest discriminating next action.
+
+\section*{6. Owner decisions}
+
+\begin{enumerate}[itemsep=5pt,leftmargin=2em]
+\item Approve or revise the implementation and verification record.
+\item Approve or revise the numerical or analytic verdict.
+\item Approve or revise the evidence boundary.
+\item Authorize or reject the exact next bounded action.
+\end{enumerate}
+
+\textbf{Recommendation: state the recommendation and its reason.}
+
+\vfill
+\begin{center}
+\small State the disclosure boundary here.
+\end{center}
+
+\end{document}

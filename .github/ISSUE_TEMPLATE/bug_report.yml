@@ -13,7 +13,7 @@ body:
     id: version
     attributes:
       label: HoloForge version or commit
-      placeholder: "0.2.1 or a Git commit hash"
+      placeholder: "0.2.2 or a Git commit hash"
     validations:
       required: true
 

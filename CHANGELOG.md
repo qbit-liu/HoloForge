@@ -2,6 +2,30 @@
 
 All notable changes to HoloForge are recorded here.
 
+## [0.2.2] - 2026-08-04
+
+### Added
+
+- A generic contract-to-decision research-gate workflow for private Explore
+  projects.
+- A reusable LaTeX template and visual-QA checklist for owner-review PDF
+  packets.
+- Policy regression checks for gate records, three novelty tracks, and the
+  public/private disclosure boundary.
+
+### Changed
+
+- Distinguished new-domain, new-subfield/new-phenomenon, and method-transfer
+  or model-improvement Explore tracks.
+- Clarified that scientific support, research authorization, and disclosure
+  status are independent.
+
+### Scientific results
+
+- No model equation, solver, default, acceptance tolerance, benchmark output,
+  schema contract, or scientific result changed from `v0.2.1`. No private
+  research artifact or result is included.
+
 ## [0.2.1] - 2026-08-02
 
 ### Added
@@ -68,6 +92,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.2.2]: https://github.com/qbit-liu/HoloForge/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/qbit-liu/HoloForge/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/qbit-liu/HoloForge/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/qbit-liu/HoloForge/compare/v0.1.0...v0.1.1

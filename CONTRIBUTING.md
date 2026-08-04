@@ -38,6 +38,13 @@ state the candidate dictionary, prior-work screen, calculable observable, and a
 result that would falsify the idea. AI involvement must be recorded. Explore
 work cannot be labelled established because code executes.
 
+Before screening, classify it as a new-domain application, a new-subfield or
+new-phenomenon application within a holographically studied parent field, or a
+method-transfer/model-improvement project. Follow the bounded
+[research-gate workflow](docs/research-gate-workflow.md); freeze each contract
+before calculation and keep scientific support, owner authorization, and
+disclosure status separate.
+
 If the idea is novel, potentially publishable, or otherwise not cleared for
 public release, develop it in a separate private repository by following the
 [private Explore workflow](docs/private-research-workflow.md). The public
