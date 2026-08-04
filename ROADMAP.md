@@ -42,6 +42,19 @@
 - Exercise the public workflow on the deliberately synthetic hypothesis-card
   example without introducing a novel scientific claim.
 
+## Version 0.2.2 — auditable research gates (implemented)
+
+- Distinguish new-domain, new-subfield/new-phenomenon, and method-transfer or
+  model-improvement Explore tracks.
+- Document the frozen-contract, calculation, verification, critic,
+  owner-review, decision, and commit lifecycle.
+- Keep scientific support, research authorization, and disclosure as separate
+  states.
+- Standardize outcome-first PDF owner-review packets with a reusable LaTeX
+  template and rendered-page quality check.
+- Preserve all private candidate identities, calculations, and results outside
+  the public repository.
+
 ## Version 0.3 — controlled comparison
 
 - Add convergence studies and cross-solver comparisons.

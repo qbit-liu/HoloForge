@@ -18,6 +18,7 @@ List the exact tests, convergence checks, residuals, or build commands run.
 ## Checklist
 
 - [ ] I kept Forge/Verify work separate from speculative Explore work.
+- [ ] I froze any Explore gate scope before calculation and recorded the owner decisions.
 - [ ] I updated model or hypothesis cards when scientific claims changed.
 - [ ] I documented units, conventions, inputs, tolerances, and provenance where relevant.
 - [ ] I added or updated tests for changed behavior.

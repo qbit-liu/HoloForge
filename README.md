@@ -14,6 +14,11 @@ HoloForge has two deliberately separated modes:
 - **Explore** records new cross-domain ideas as falsifiable hypotheses without
   presenting them as established physics.
 
+Explore recognizes three useful research tracks: applications to a genuinely
+new parent domain, applications to an unexplored subfield or phenomenon inside
+an already holographic parent field, and method transfer or model improvement.
+See the [research-gate workflow](docs/research-gate-workflow.md).
+
 Version 0.1 starts with the quadratic soft-wall vector-meson spectrum. This is
 a useful first benchmark because the numerical eigenvalue problem can be
 checked against the exact result
@@ -81,7 +86,8 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
   [`docs/version-0.1.1.md`](docs/version-0.1.1.md), and
   [`docs/version-0.2.md`](docs/version-0.2.md) define the scientific release
   contracts; [`docs/version-0.2.1.md`](docs/version-0.2.1.md) defines the
-  privacy-workflow patch.
+  privacy-workflow patch, and [`docs/version-0.2.2.md`](docs/version-0.2.2.md)
+  defines the reusable gate-workflow patch.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
   contribution workflow.
 - [`CITATION.cff`](CITATION.cff) provides machine-readable citation metadata.
@@ -96,7 +102,7 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
 
 ## Project status
 
-This is an early scientific release (`0.2.1`), not a precision-QCD or
+This is an early scientific release (`0.2.2`), not a precision-QCD or
 materials-prediction package. Its benchmarks reproduce published model
 calculations; they do not establish those models as complete descriptions of
 QCD or real materials.
