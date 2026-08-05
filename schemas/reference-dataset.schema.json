@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/reference-dataset.schema.json",
+  "title": "HoloForge reference dataset",
+  "description": "A frozen, attributed set of external observations used for controlled model comparison.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "domain",
+    "observable",
+    "edition",
+    "conventions",
+    "entries",
+    "transformations",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.3"},
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+    },
+    "title": {"type": "string", "minLength": 1},
+    "domain": {"type": "string", "minLength": 1},
+    "observable": {"$ref": "#/$defs/observable"},
+    "edition": {"$ref": "#/$defs/edition"},
+    "conventions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/convention"}
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"$ref": "#/$defs/entry"}
+    },
+    "transformations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/transformation"}
+    },
+    "provenance": {"$ref": "#/$defs/provenance"}
+  },
+  "$defs": {
+    "observable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "symbol", "unit"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "symbol": {"type": "string", "minLength": 1},
+        "unit": {"type": "string", "minLength": 1}
+      }
+    },
+    "edition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "citation",
+        "published_year",
+        "doi",
+        "url",
+        "accessed_on",
+        "license",
+        "license_url",
+        "artifact_sha256"
+      ],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "citation": {"type": "string", "minLength": 1},
+        "published_year": {"type": "integer", "minimum": 1900},
+        "doi": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "accessed_on": {"type": "string", "format": "date"},
+        "license": {"type": "string", "minLength": 1},
+        "license_url": {"type": "string", "format": "uri"},
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "convention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "value", "rationale"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "value": {"type": "string", "minLength": 1},
+        "rationale": {"type": "string", "minLength": 1}
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "value",
+        "unit",
+        "uncertainty",
+        "source_locator",
+        "assignment_status",
+        "included",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+        },
+        "label": {"type": "string", "minLength": 1},
+        "value": {"type": "number"},
+        "unit": {"type": "string", "minLength": 1},
+        "uncertainty": {"$ref": "#/$defs/uncertainty"},
+        "source_locator": {"type": "string", "minLength": 1},
+        "assignment_status": {
+          "enum": ["anchor", "candidate", "ambiguous", "excluded"]
+        },
+        "included": {"type": "boolean"},
+        "notes": {"type": "string", "minLength": 1}
+      }
+    },
+    "uncertainty": {
+      "oneOf": [
+        {"$ref": "#/$defs/symmetric_uncertainty"},
+        {"$ref": "#/$defs/asymmetric_uncertainty"},
+        {"$ref": "#/$defs/range_uncertainty"},
+        {"$ref": "#/$defs/no_uncertainty"}
+      ]
+    },
+    "symmetric_uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "sigma", "unit", "source_text"],
+      "properties": {
+        "kind": {"const": "symmetric"},
+        "sigma": {"type": "number", "minimum": 0},
+        "unit": {"type": "string", "minLength": 1},
+        "source_text": {"type": "string", "minLength": 1}
+      }
+    },
+    "asymmetric_uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "plus", "minus", "unit", "source_text"],
+      "properties": {
+        "kind": {"const": "asymmetric"},
+        "plus": {"type": "number", "minimum": 0},
+        "minus": {"type": "number", "minimum": 0},
+        "unit": {"type": "string", "minLength": 1},
+        "source_text": {"type": "string", "minLength": 1},
+        "symmetrization": {"type": "string", "minLength": 1}
+      }
+    },
+    "range_uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "lower", "upper", "unit", "source_text"],
+      "properties": {
+        "kind": {"const": "range"},
+        "lower": {"type": "number"},
+        "upper": {"type": "number"},
+        "unit": {"type": "string", "minLength": 1},
+        "source_text": {"type": "string", "minLength": 1},
+        "symmetrization": {"type": "string", "minLength": 1}
+      }
+    },
+    "no_uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "reason"],
+      "properties": {
+        "kind": {"const": "none"},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "transformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "expression",
+        "description",
+        "uncertainty_propagation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+        },
+        "expression": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "uncertainty_propagation": {"type": "string", "minLength": 1}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_on",
+        "created_by",
+        "ai_assistance",
+        "ai_roles",
+        "review_status"
+      ],
+      "properties": {
+        "created_on": {"type": "string", "format": "date"},
+        "created_by": {"type": "string", "minLength": 1},
+        "ai_assistance": {"type": "boolean"},
+        "ai_roles": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "review_status": {
+          "enum": ["unreviewed", "checked", "approved", "rejected"]
+        },
+        "reviewed_by": {"type": "string", "minLength": 1},
+        "reviewed_on": {"type": "string", "format": "date"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "review_status": {"enum": ["checked", "approved", "rejected"]}
+            },
+            "required": ["review_status"]
+          },
+          "then": {"required": ["reviewed_by", "reviewed_on"]}
+        }
+      ]
+    }
+  }
+}

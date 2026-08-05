@@ -1,0 +1,108 @@
+{
+  "schema_version": "0.3",
+  "id": "pdg-2024-rho-masses",
+  "title": "Frozen 2024 PDG rho-meson mass snapshot",
+  "domain": "holographic QCD vector-spectrum comparison",
+  "observable": {
+    "name": "listed rho-meson mass",
+    "symbol": "m_rho",
+    "unit": "MeV"
+  },
+  "edition": {
+    "name": "2024 Review of Particle Physics light-meson summary table",
+    "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024)",
+    "published_year": 2024,
+    "doi": "10.1103/PhysRevD.110.030001",
+    "url": "https://pdg.lbl.gov/2024/tables/rpp2024-tab-mesons-light.pdf",
+    "accessed_on": "2026-08-05",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "artifact_sha256": "d08cef18f4d6b5b89d180ce3fea83540a6879d84133d151dee87ab017802fcf0"
+  },
+  "conventions": [
+    {
+      "name": "mass representation",
+      "value": "PDG listed mass; rho(770)^0 uses the listed Breit-Wigner mass",
+      "rationale": "The comparison must not mix pole and Breit-Wigner conventions silently."
+    },
+    {
+      "name": "radial assignment",
+      "value": "rho(770)^0 is the anchor; rho(1450) and rho(1700) are candidate radial excitations",
+      "rationale": "Excited light-meson assignments are phenomenological and remain visible rather than being treated as exact model labels."
+    },
+    {
+      "name": "comparison observable",
+      "value": "R_n = m_n / m_0",
+      "rationale": "Ratios remove the one dimensionful scale from each bottom-up construction."
+    }
+  ],
+  "entries": [
+    {
+      "id": "rho-770-neutral",
+      "label": "rho(770)^0",
+      "value": 775.26,
+      "unit": "MeV",
+      "uncertainty": {
+        "kind": "symmetric",
+        "sigma": 0.23,
+        "unit": "MeV",
+        "source_text": "775.26 +/- 0.23 MeV"
+      },
+      "source_locator": "Light-meson summary table, page 4, rho(770) listing",
+      "assignment_status": "anchor",
+      "included": true,
+      "notes": "Neutral-state Breit-Wigner mass used as the shared ratio denominator."
+    },
+    {
+      "id": "rho-1450",
+      "label": "rho(1450)",
+      "value": 1465.0,
+      "unit": "MeV",
+      "uncertainty": {
+        "kind": "symmetric",
+        "sigma": 25.0,
+        "unit": "MeV",
+        "source_text": "1465 +/- 25 MeV"
+      },
+      "source_locator": "Light-meson summary table, page 13, rho(1450) listing",
+      "assignment_status": "candidate",
+      "included": true,
+      "notes": "Included as a candidate first radial excitation; this assignment is not a validation claim."
+    },
+    {
+      "id": "rho-1700",
+      "label": "rho(1700)",
+      "value": 1720.0,
+      "unit": "MeV",
+      "uncertainty": {
+        "kind": "symmetric",
+        "sigma": 20.0,
+        "unit": "MeV",
+        "source_text": "1720 +/- 20 MeV"
+      },
+      "source_locator": "Light-meson summary table, page 18, rho(1700) listing",
+      "assignment_status": "candidate",
+      "included": true,
+      "notes": "Included as a candidate second radial excitation using the eta-rho0 and pi+pi- mode mass quoted by PDG."
+    }
+  ],
+  "transformations": [
+    {
+      "id": "ground-state-normalized-ratio",
+      "expression": "R_n = m_n / m_0",
+      "description": "Normalize every included mass to the rho(770)^0 anchor.",
+      "uncertainty_propagation": "Use the Jacobian of all ratios with respect to the independent listed masses so the shared m_0 uncertainty generates off-diagonal covariance."
+    }
+  ],
+  "provenance": {
+    "created_on": "2026-08-05",
+    "created_by": "HoloForge v0.3 development",
+    "ai_assistance": true,
+    "ai_roles": [
+      "source transcription",
+      "schema drafting",
+      "uncertainty metadata drafting"
+    ],
+    "review_status": "unreviewed"
+  }
+}
