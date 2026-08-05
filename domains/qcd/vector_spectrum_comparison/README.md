@@ -12,6 +12,12 @@ the reviewed source PDF. It is deliberately not a live query: a future PDG
 update must create a new versioned dataset rather than silently changing this
 comparison.
 
+The reusable `holoforge.core.normalize_spectrum` transformation computes these
+ratios and propagates a full input covariance with the exact Jacobian. This is
+important here because the common `rho(770)^0` denominator correlates the two
+excited-state ratios even when the three listed masses are initially treated
+as independent.
+
 The data transcription is currently marked `unreviewed`. Schema conformance
 checks its structure and provenance, not the correctness of the physical state
 assignments. Model agreement will be reported as a bounded phenomenological

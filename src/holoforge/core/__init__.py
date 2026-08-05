@@ -10,6 +10,7 @@ from holoforge.core.contracts import (
     SolverSpec,
     VerificationRecord,
 )
+from holoforge.core.comparison import NormalizedSpectrum, normalize_spectrum
 from holoforge.core.provenance import runtime_versions
 
 __all__ = [
@@ -19,7 +20,9 @@ __all__ = [
     "BoundaryConditionSpec",
     "EquationSpec",
     "ObservableSpec",
+    "NormalizedSpectrum",
     "SolverSpec",
     "VerificationRecord",
+    "normalize_spectrum",
     "runtime_versions",
 ]
