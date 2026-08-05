@@ -64,7 +64,7 @@
 - Clarify the distinction between pre-1.0 interface stability and bounded
   scientific readiness.
 
-## Version 0.3 — controlled comparison (specification proposed)
+## Version 0.3 — controlled comparison (specification approved)
 
 - Add convergence studies and cross-solver comparisons.
 - Introduce reference datasets with uncertainty and convention metadata.
