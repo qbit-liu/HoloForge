@@ -64,11 +64,14 @@
 - Clarify the distinction between pre-1.0 interface stability and bounded
   scientific readiness.
 
-## Version 0.3 — controlled comparison
+## Version 0.3 — controlled comparison (specification proposed)
 
 - Add convergence studies and cross-solver comparisons.
 - Introduce reference datasets with uncertainty and convention metadata.
 - Compare at least two bottom-up constructions against the same observable.
+- Implement the proposed
+  [soft-wall versus hard-wall vector-spectrum contract](docs/version-0.3.md)
+  without depending on private Explore research.
 
 ## Explore-mode milestone
 
