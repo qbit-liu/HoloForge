@@ -17,7 +17,7 @@ DATA_PATH = (
     / "holoforge"
     / "data"
     / "reference"
-    / "pdg-2024-rho-masses.json"
+    / "pdg-2026-rho-masses.json"
 )
 
 
@@ -45,14 +45,30 @@ class ReferenceDatasetTests(unittest.TestCase):
         self.assertEqual(len(anchors), 1)
         self.assertTrue(all(entry["notes"] for entry in entries))
         self.assertTrue(all(entry["unit"] == "MeV" for entry in entries))
-        self.assertEqual([entry["model_mode"] for entry in entries], [0, 1, 2])
+        self.assertEqual(
+            [entry["model_mode"] for entry in entries], [0, 1, 2, 2]
+        )
+        included = [entry for entry in entries if entry["included"]]
+        self.assertEqual([entry["model_mode"] for entry in included], [0, 1, 2])
+        rho_1570 = next(entry for entry in entries if entry["id"] == "rho-1570")
+        self.assertFalse(rho_1570["included"])
+        self.assertEqual(rho_1570["assignment_status"], "ambiguous")
 
     def test_frozen_source_has_hash_license_and_locators(self) -> None:
         edition = self.dataset["edition"]
-        self.assertEqual(len(edition["artifact_sha256"]), 64)
+        artifacts = edition["artifacts"]
+        self.assertEqual(len(artifacts), 4)
+        self.assertTrue(all(len(artifact["sha256"]) == 64 for artifact in artifacts))
         self.assertEqual(edition["license"], "CC BY 4.0")
+        artifact_ids = {artifact["id"] for artifact in artifacts}
         self.assertTrue(
             all(entry["source_locator"] for entry in self.dataset["entries"])
+        )
+        self.assertTrue(
+            all(
+                entry["source_artifact"] in artifact_ids
+                for entry in self.dataset["entries"]
+            )
         )
 
     def test_missing_source_locator_is_rejected(self) -> None:
@@ -69,6 +85,14 @@ class ReferenceDatasetTests(unittest.TestCase):
             "unit": "MeV",
             "source_text": "+25 MeV only",
         }
+        with self.assertRaises(ValidationError):
+            self.validator.validate(invalid)
+
+    def test_incomplete_component_uncertainty_is_rejected(self) -> None:
+        invalid = copy.deepcopy(self.dataset)
+        invalid["entries"][2]["uncertainty"]["components"] = [
+            {"label": "statistical", "sigma": 36.0}
+        ]
         with self.assertRaises(ValidationError):
             self.validator.validate(invalid)
 

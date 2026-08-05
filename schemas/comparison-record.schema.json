@@ -43,10 +43,33 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "label", "reason"],
+        "required": [
+          "id",
+          "label",
+          "value",
+          "unit",
+          "uncertainty",
+          "model_mode",
+          "assignment_status",
+          "source_artifact",
+          "source_locator",
+          "reason"
+        ],
         "properties": {
           "id": {"type": "string", "minLength": 1},
           "label": {"type": "string", "minLength": 1},
+          "value": {"type": "number"},
+          "unit": {"type": "string", "minLength": 1},
+          "uncertainty": {
+            "type": "object",
+            "required": ["kind"]
+          },
+          "model_mode": {"type": "integer", "minimum": 0},
+          "assignment_status": {
+            "enum": ["candidate", "ambiguous", "excluded"]
+          },
+          "source_artifact": {"type": "string", "minLength": 1},
+          "source_locator": {"type": "string", "minLength": 1},
           "reason": {"type": "string", "minLength": 1}
         }
       }

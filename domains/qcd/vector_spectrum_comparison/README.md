@@ -7,9 +7,9 @@ against the same dimensionless radial vector-meson mass ratios:
 - the hard wall of arXiv:hep-ph/0501128.
 
 The frozen PDG snapshot under
-`src/holoforge/data/reference/pdg-2024-rho-masses.json` records source locators,
-uncertainties, conventions, state-assignment caveats, licensing, and a hash of
-the reviewed source PDF. It is deliberately not a live query: a future PDG
+`src/holoforge/data/reference/pdg-2026-rho-masses.json` records source locators,
+uncertainties, conventions, state-assignment caveats, licensing, and hashes of
+the reviewed source PDFs. It is deliberately not a live query: a future PDG
 update must create a new versioned dataset rather than silently changing this
 comparison.
 
@@ -27,7 +27,14 @@ finite-cutoff effects separately from solver tolerances because agreement with
 the analytic Bessel zeros is a numerical reproduction gate, not an empirical
 claim about QCD.
 
-The data transcription is currently marked `unreviewed`. Schema conformance
-checks its structure and provenance, not the correctness of the physical state
-assignments. Model agreement will be reported as a bounded phenomenological
-comparison, not proof of QCD duality or precision validation.
+The default scenario uses `rho(1450)` and `rho(1700)` as candidate modes, while
+the listed `rho(1570)` is retained as an excluded, ambiguous `n=2` alternative.
+PDG omits `rho(1570)` from its Summary Table and notes that it may be an
+OZI-violating decay mode of `rho(1700)`, so HoloForge does not silently assume
+that it is an independent radial state.
+
+The data transcription and both excited-state assignments are currently
+marked `unreviewed`. Schema conformance checks their structure and provenance,
+not the correctness of the physical interpretation. Model agreement will be
+reported as a bounded phenomenological comparison, not proof of QCD duality or
+precision validation.

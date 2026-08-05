@@ -29,10 +29,11 @@ instability and nonlinear dimension-two condensate of the minimal probe-limit
 holographic superconductor.
 
 Version 0.3 adds a controlled comparison of quadratic soft-wall and hard-wall
-vector spectra against a frozen, uncertainty-aware PDG 2024 snapshot. The
-comparison uses ground-state-normalized ratios, preserves candidate state
-assignments, and treats numerical reproduction gates separately from
-descriptive agreement with the selected data.
+vector spectra against a frozen, uncertainty-aware PDG 2026 snapshot. The
+comparison uses ground-state-normalized ratios, preserves candidate and
+ambiguous state assignments from the current PDG 2026 listings, and treats
+numerical reproduction gates separately from descriptive agreement with the
+selected data.
 
 ## Release maturity and research use
 
@@ -161,10 +162,10 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-This is an early scientific release (`0.2.3`), not a precision-QCD or
-materials-prediction package. Its benchmarks reproduce published model
-calculations; they do not establish those models as complete descriptions of
-QCD or real materials.
+This is an early scientific release (`0.2.3`), not a universal phenomenology
+or first-principles prediction package. Its benchmarks reproduce published
+model calculations; they do not establish those models as complete
+descriptions of their target physical systems.
 
 ## License
 

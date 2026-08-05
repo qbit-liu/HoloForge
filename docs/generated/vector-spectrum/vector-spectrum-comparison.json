@@ -80,7 +80,35 @@
       "model_id": "hard-wall"
     }
   ],
-  "excluded_entries": [],
+  "excluded_entries": [
+    {
+      "assignment_status": "ambiguous",
+      "id": "rho-1570",
+      "label": "rho(1570)",
+      "model_mode": 2,
+      "reason": "Considered as an alternative n=2 assignment but excluded from the default comparison: PDG omits rho(1570) from the Summary Table and states that it may be an OZI-violating decay mode of rho(1700).",
+      "source_artifact": "rho-1570-listing",
+      "source_locator": "rho(1570) MASS, BABAR 08S listing",
+      "uncertainty": {
+        "combination": "Components are retained separately because this excluded entry is not used in the default covariance calculation.",
+        "components": [
+          {
+            "label": "statistical",
+            "sigma": 36.0
+          },
+          {
+            "label": "systematic",
+            "sigma": 62.0
+          }
+        ],
+        "kind": "components",
+        "source_text": "1570 +/- 36 +/- 62 MeV",
+        "unit": "MeV"
+      },
+      "unit": "MeV",
+      "value": 1570.0
+    }
+  ],
   "interpretation_limits": [
     "The PDG excited-state assignments are candidate phenomenological labels.",
     "Goodness-of-comparison values are descriptive and are not model acceptance gates.",
@@ -212,9 +240,14 @@
         "value": "PDG listed mass; rho(770)^0 uses the listed Breit-Wigner mass"
       },
       {
-        "name": "radial assignment",
-        "rationale": "Excited light-meson assignments are phenomenological and remain visible rather than being treated as exact model labels.",
+        "name": "default radial assignment",
+        "rationale": "The default reproduces a common phenomenological assignment but does not treat either excited-state label as exact.",
         "value": "rho(770)^0 is the anchor; rho(1450) and rho(1700) are candidate radial excitations"
+      },
+      {
+        "name": "rho(1570) sensitivity alternative",
+        "rationale": "PDG lists rho(1570) but omits it from the Summary Table and notes that it may be an OZI-violating decay mode of rho(1700), so it cannot be assumed to be an independent radial state.",
+        "value": "rho(1570) is recorded as an excluded, ambiguous alternative for model mode n=2"
       },
       {
         "name": "comparison observable",
@@ -223,21 +256,42 @@
       },
       {
         "name": "source covariance",
-        "rationale": "The frozen PDG summary listings do not provide a covariance matrix; the shared denominator correlation is then generated explicitly by the ratio Jacobian.",
+        "rationale": "The frozen PDG listings do not provide a covariance matrix; the shared denominator correlation is then generated explicitly by the ratio Jacobian.",
         "value": "Listed mass uncertainties are treated as mutually independent before ratio normalization"
       }
     ],
-    "dataset_id": "pdg-2024-rho-masses",
+    "dataset_id": "pdg-2026-rho-masses",
     "edition": {
       "accessed_on": "2026-08-05",
-      "artifact_sha256": "d08cef18f4d6b5b89d180ce3fea83540a6879d84133d151dee87ab017802fcf0",
-      "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024)",
-      "doi": "10.1103/PhysRevD.110.030001",
+      "artifacts": [
+        {
+          "id": "rho-770-listing",
+          "sha256": "ffd2af7d831a568bf4af14f80eb68b1329aca6072c1ef6b4a8de4e380a77cec9",
+          "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-rho-770.pdf"
+        },
+        {
+          "id": "rho-1450-listing",
+          "sha256": "5b08adabf11dcc7d77863d20a5ee0a2f5de7cd008c23f008dfdf86d968901784",
+          "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-rho-1450.pdf"
+        },
+        {
+          "id": "rho-1570-listing",
+          "sha256": "4e53faf5a47fe7b6501bf639614886a211a9ed6ec3f01a2ee7bb537af70bdbcc",
+          "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-rho-1570.pdf"
+        },
+        {
+          "id": "rho-1700-listing",
+          "sha256": "07e50c4994fc4dd82b4b9a102252acc0e6665ddfea0b4045ad9ea8637ab2bb01",
+          "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-rho-1700.pdf"
+        }
+      ],
+      "citation": "F. Takahashi et al. (Particle Data Group), Int. J. Mod. Phys. A 41, 2630011 (2026)",
+      "doi": "10.1142/S0217751X26300115",
       "license": "CC BY 4.0",
       "license_url": "https://creativecommons.org/licenses/by/4.0/",
-      "name": "2024 Review of Particle Physics light-meson summary table",
-      "published_year": 2024,
-      "url": "https://pdg.lbl.gov/2024/tables/rpp2024-tab-mesons-light.pdf"
+      "name": "2026 Review of Particle Physics rho-meson listings",
+      "published_year": 2026,
+      "url": "https://pdg.lbl.gov/2026/listings/contents_listings.html"
     },
     "entries": [
       {

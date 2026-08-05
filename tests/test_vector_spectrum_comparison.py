@@ -36,10 +36,19 @@ class VectorSpectrumComparisonTests(unittest.TestCase):
             for entry in payload["reference"]["entries"]
         ]
         self.assertEqual(statuses, ["anchor", "candidate", "candidate"])
+        self.assertEqual(
+            [entry["id"] for entry in payload["excluded_entries"]],
+            ["rho-1570"],
+        )
+        self.assertEqual(
+            payload["excluded_entries"][0]["assignment_status"], "ambiguous"
+        )
 
     def test_table_states_interpretation_limit(self) -> None:
         table = render_vector_spectrum_table(self.result)
-        self.assertIn("PDG 2024 ratio", table)
+        self.assertIn("PDG 2026 ratio", table)
+        self.assertIn("rho(1570)", table)
+        self.assertIn("excluded from the default comparison", table)
         self.assertIn("not acceptance gates", table)
         self.assertIn("do not establish model superiority", table)
 

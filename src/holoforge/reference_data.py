@@ -13,7 +13,7 @@ from numpy.typing import NDArray
 from holoforge.core import NormalizedSpectrum, normalize_spectrum
 
 
-PDG_2024_RHO_RESOURCE = "data/reference/pdg-2024-rho-masses.json"
+PDG_2026_RHO_RESOURCE = "data/reference/pdg-2026-rho-masses.json"
 
 
 @dataclass(frozen=True)
@@ -56,7 +56,7 @@ class ReferenceMassSpectrum:
 
 
 def load_reference_dataset(
-    resource_name: str = PDG_2024_RHO_RESOURCE,
+    resource_name: str = PDG_2026_RHO_RESOURCE,
 ) -> Dict[str, Any]:
     """Load a canonical packaged JSON resource without a repository path."""
 
@@ -75,7 +75,7 @@ def load_reference_dataset(
     return payload
 
 
-def load_pdg_2024_rho_spectrum() -> ReferenceMassSpectrum:
+def load_pdg_2026_rho_spectrum() -> ReferenceMassSpectrum:
     """Load included PDG rho entries and propagate their listed errors."""
 
     dataset = load_reference_dataset()

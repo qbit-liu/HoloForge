@@ -25,7 +25,7 @@ from holoforge.benchmarks.soft_wall_vector import (
 from holoforge.core import AcceptanceCheck, runtime_versions
 from holoforge.reference_data import (
     ReferenceMassSpectrum,
-    load_pdg_2024_rho_spectrum,
+    load_pdg_2026_rho_spectrum,
 )
 
 
@@ -131,6 +131,13 @@ class VectorSpectrumComparisonResult:
             {
                 "id": entry["id"],
                 "label": entry["label"],
+                "value": entry["value"],
+                "unit": entry["unit"],
+                "uncertainty": dict(entry["uncertainty"]),
+                "model_mode": entry["model_mode"],
+                "assignment_status": entry["assignment_status"],
+                "source_artifact": entry["source_artifact"],
+                "source_locator": entry["source_locator"],
                 "reason": entry["notes"],
             }
             for entry in self.reference.dataset["entries"]
@@ -178,7 +185,7 @@ class VectorSpectrumComparisonResult:
 def build_vector_spectrum_comparison() -> VectorSpectrumComparisonResult:
     """Compute the frozen v0.3 comparison with no fitted shape parameters."""
 
-    reference = load_pdg_2024_rho_spectrum()
+    reference = load_pdg_2026_rho_spectrum()
     if reference.normalized.anchor_index != 0:
         raise ValueError("the v0.3 comparison requires the ground state as anchor")
     highest_mode = int(np.max(reference.model_modes))
@@ -307,7 +314,7 @@ def render_vector_spectrum_table(result: VectorSpectrumComparisonResult) -> str:
     lines = [
         "# Vector-spectrum comparison",
         "",
-        "| Mode | PDG 2024 ratio | Assignment | Soft wall | Hard wall |",
+        "| Mode | PDG 2026 ratio | Assignment | Soft wall | Hard wall |",
         "| ---: | ---: | :--- | ---: | ---: |",
     ]
     for index, mode in enumerate(reference.model_modes):
@@ -328,6 +335,12 @@ def render_vector_spectrum_table(result: VectorSpectrumComparisonResult) -> str:
     }
     lines.extend(
         [
+            "",
+            "## Considered but excluded from the default comparison",
+            "",
+            "| Alternative mode | PDG listing | Status | Reason |",
+            "| ---: | :--- | :--- | :--- |",
+            *_render_excluded_rows(reference),
             "",
             "The ground state fixes the common normalization and is excluded from "
             "the covariance inversion.",
@@ -426,7 +439,7 @@ def _save_vector_spectrum_plot(
         marker="o",
         linestyle="none",
         capsize=4,
-        label="PDG 2024 candidate assignments",
+        label="PDG 2026 default candidate assignments",
     )
     axis.plot(modes, soft.ratios, marker="s", label="Quadratic soft wall")
     axis.plot(modes, hard.ratios, marker="^", label="Hard wall")
@@ -437,3 +450,18 @@ def _save_vector_spectrum_plot(
     axis.legend(frameon=False)
     figure.savefig(path, dpi=180)
     plt.close(figure)
+
+
+def _render_excluded_rows(reference: ReferenceMassSpectrum) -> list[str]:
+    """Render excluded alternatives without folding them into fit diagnostics."""
+
+    rows = []
+    for entry in reference.dataset["entries"]:
+        if entry["included"]:
+            continue
+        rows.append(
+            f"| {int(entry['model_mode'])} | {entry['label']} "
+            f"({entry['uncertainty']['source_text']}) | "
+            f"{entry['assignment_status']} | {entry['notes']} |"
+        )
+    return rows or ["| - | None | - | - |"]

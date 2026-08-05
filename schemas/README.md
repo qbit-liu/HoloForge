@@ -20,7 +20,7 @@ Canonical examples live at
 `domains/condensed_matter/holographic_superconductor/model-card.json`, and
 `domains/qcd/hard_wall_vector/model-card.json`,
 `incubator/examples/hypothesis-card.example.json`, and
-`src/holoforge/data/reference/pdg-2024-rho-masses.json`.
+`src/holoforge/data/reference/pdg-2026-rho-masses.json`.
 Validate them by running:
 
 ```bash

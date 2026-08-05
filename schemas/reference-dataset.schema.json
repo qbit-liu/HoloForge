@@ -67,7 +67,7 @@
         "accessed_on",
         "license",
         "license_url",
-        "artifact_sha256"
+        "artifacts"
       ],
       "properties": {
         "name": {"type": "string", "minLength": 1},
@@ -78,7 +78,24 @@
         "accessed_on": {"type": "string", "format": "date"},
         "license": {"type": "string", "minLength": 1},
         "license_url": {"type": "string", "format": "uri"},
-        "artifact_sha256": {
+        "artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/source_artifact"}
+        }
+      }
+    },
+    "source_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "url", "sha256"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+        },
+        "url": {"type": "string", "format": "uri"},
+        "sha256": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
         }
@@ -103,6 +120,7 @@
         "value",
         "unit",
         "uncertainty",
+        "source_artifact",
         "source_locator",
         "assignment_status",
         "model_mode",
@@ -118,6 +136,10 @@
         "value": {"type": "number"},
         "unit": {"type": "string", "minLength": 1},
         "uncertainty": {"$ref": "#/$defs/uncertainty"},
+        "source_artifact": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+        },
         "source_locator": {"type": "string", "minLength": 1},
         "assignment_status": {
           "enum": ["anchor", "candidate", "ambiguous", "excluded"]
@@ -130,6 +152,7 @@
     "uncertainty": {
       "oneOf": [
         {"$ref": "#/$defs/symmetric_uncertainty"},
+        {"$ref": "#/$defs/component_uncertainty"},
         {"$ref": "#/$defs/asymmetric_uncertainty"},
         {"$ref": "#/$defs/range_uncertainty"},
         {"$ref": "#/$defs/no_uncertainty"}
@@ -144,6 +167,36 @@
         "sigma": {"type": "number", "minimum": 0},
         "unit": {"type": "string", "minLength": 1},
         "source_text": {"type": "string", "minLength": 1}
+      }
+    },
+    "component_uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "components",
+        "unit",
+        "source_text",
+        "combination"
+      ],
+      "properties": {
+        "kind": {"const": "components"},
+        "components": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "sigma"],
+            "properties": {
+              "label": {"type": "string", "minLength": 1},
+              "sigma": {"type": "number", "minimum": 0}
+            }
+          }
+        },
+        "unit": {"type": "string", "minLength": 1},
+        "source_text": {"type": "string", "minLength": 1},
+        "combination": {"type": "string", "minLength": 1}
       }
     },
     "asymmetric_uncertainty": {
