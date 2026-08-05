@@ -81,6 +81,7 @@ are descriptive diagnostics and are deliberately excluded from release
 acceptance gates. They do not prove QCD duality, establish precision validity,
 or justify a universal ranking of the two constructions.
 
-The frozen dataset and hard-wall model card remain marked `unreviewed` until
-their source transcription, assignments, and interpretation limits receive
-owner review.
+Xin-Yi Liu approved the frozen source transcription, the default candidate
+assignments, the excluded `rho(1570)` alternative, and the hard-wall model card
+on 2026-08-05. Approval records human review of the documented convention; it
+does not promote candidate state assignments to exact QCD identifications.

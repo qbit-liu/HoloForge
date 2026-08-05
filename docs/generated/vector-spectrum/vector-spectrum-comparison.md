@@ -17,3 +17,5 @@ The ground state fixes the common normalization and is excluded from the covaria
 Descriptive covariance-aware chi-square values for the two candidate excited-state assignments: soft wall = 572.604304; hard wall = 3016.770508.
 
 These values are not acceptance gates and do not establish model superiority, QCD duality, or precision validity.
+
+Reference convention review: approved by Xin-Yi Liu on 2026-08-05.

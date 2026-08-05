@@ -148,7 +148,7 @@
       "assignment_status": "candidate",
       "model_mode": 2,
       "included": true,
-      "notes": "Included in the default scenario as a candidate second radial excitation; this phenomenological assignment remains unreviewed and is not a validation claim."
+      "notes": "Included in the owner-approved default scenario as a candidate second radial excitation; this phenomenological assignment is not a validation claim."
     }
   ],
   "transformations": [
@@ -168,6 +168,8 @@
       "schema drafting",
       "uncertainty metadata drafting"
     ],
-    "review_status": "unreviewed"
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-05"
   }
 }

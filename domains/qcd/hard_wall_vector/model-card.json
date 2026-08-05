@@ -112,14 +112,18 @@
       "support_level": "established-source",
       "evidence": "Erlich et al., arXiv:hep-ph/0501128v2, Eq. (5) and the vector-mode discussion.",
       "generated_by_ai": true,
-      "review_status": "unreviewed"
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-05"
     },
     {
       "statement": "The HoloForge shooting and collocation routes reproduce the first four normalized Bessel-zero masses within their declared tolerances.",
       "support_level": "reproduced",
       "evidence": "Automated analytic, cross-solver, and cutoff-refinement tests in tests/test_hard_wall_vector.py.",
       "generated_by_ai": true,
-      "review_status": "unreviewed"
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-05"
     }
   ],
   "limitations": [
@@ -138,6 +142,8 @@
       "test drafting",
       "numerical cross-checking"
     ],
-    "review_status": "unreviewed"
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-05"
   }
 }

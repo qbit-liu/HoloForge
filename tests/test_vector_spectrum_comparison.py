@@ -28,9 +28,9 @@ class VectorSpectrumComparisonTests(unittest.TestCase):
             )
         )
 
-    def test_reference_assignments_remain_unreviewed_and_visible(self) -> None:
+    def test_reference_approval_and_assignments_remain_visible(self) -> None:
         payload = self.result.to_dict()
-        self.assertEqual(payload["reference"]["review_status"], "unreviewed")
+        self.assertEqual(payload["reference"]["review_status"], "approved")
         statuses = [
             entry["assignment_status"]
             for entry in payload["reference"]["entries"]
@@ -51,6 +51,10 @@ class VectorSpectrumComparisonTests(unittest.TestCase):
         self.assertIn("excluded from the default comparison", table)
         self.assertIn("not acceptance gates", table)
         self.assertIn("do not establish model superiority", table)
+        self.assertIn(
+            "Reference convention review: approved by Xin-Yi Liu on 2026-08-05.",
+            table,
+        )
 
     def test_artifacts_are_generated_from_the_result(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

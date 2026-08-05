@@ -27,8 +27,10 @@ class ReferenceLoaderTests(unittest.TestCase):
         self.assertGreater(spectrum.normalized.ratio_covariance[1, 2], 0.0)
         self.assertEqual(
             spectrum.to_dict()["review_status"],
-            "unreviewed",
+            "approved",
         )
+        self.assertEqual(spectrum.to_dict()["reviewed_by"], "Xin-Yi Liu")
+        self.assertEqual(spectrum.to_dict()["reviewed_on"], "2026-08-05")
 
     def test_unknown_resource_fails_clearly(self) -> None:
         with self.assertRaisesRegex(ValueError, "unknown packaged"):

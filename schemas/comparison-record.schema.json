@@ -128,13 +128,26 @@
         "review_status": {
           "enum": ["unreviewed", "checked", "approved", "rejected"]
         },
+        "reviewed_by": {"type": "string", "minLength": 1},
+        "reviewed_on": {"type": "string", "format": "date"},
         "normalization": {"type": "string", "minLength": 1},
         "anchor_index": {"type": "integer", "minimum": 0},
         "entries": {"type": "array", "minItems": 2},
         "mass_covariance": {"$ref": "#/$defs/matrix"},
         "ratio_covariance": {"$ref": "#/$defs/matrix"},
         "jacobian": {"$ref": "#/$defs/matrix"}
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "review_status": {"enum": ["checked", "approved", "rejected"]}
+            },
+            "required": ["review_status"]
+          },
+          "then": {"required": ["reviewed_by", "reviewed_on"]}
+        }
+      ]
     },
     "matrix": {
       "type": "array",

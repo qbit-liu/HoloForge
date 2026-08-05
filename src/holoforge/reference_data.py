@@ -31,6 +31,7 @@ class ReferenceMassSpectrum:
         """Return data values, assignments, covariance, and source metadata."""
 
         transformation = self.normalized.to_dict(labels=self.labels)
+        provenance = self.dataset["provenance"]
         for entry, identifier, mode, assignment in zip(
             transformation["entries"],
             self.entry_ids,
@@ -49,7 +50,15 @@ class ReferenceMassSpectrum:
             "edition": dict(self.dataset["edition"]),
             "observable": dict(self.dataset["observable"]),
             "conventions": list(self.dataset["conventions"]),
-            "review_status": self.dataset["provenance"]["review_status"],
+            "review_status": provenance["review_status"],
+            **(
+                {
+                    "reviewed_by": provenance["reviewed_by"],
+                    "reviewed_on": provenance["reviewed_on"],
+                }
+                if "reviewed_by" in provenance and "reviewed_on" in provenance
+                else {}
+            ),
             "normalization": self.dataset["transformations"][0]["expression"],
             **transformation,
         }

@@ -33,8 +33,8 @@ PDG omits `rho(1570)` from its Summary Table and notes that it may be an
 OZI-violating decay mode of `rho(1700)`, so HoloForge does not silently assume
 that it is an independent radial state.
 
-The data transcription and both excited-state assignments are currently
-marked `unreviewed`. Schema conformance checks their structure and provenance,
-not the correctness of the physical interpretation. Model agreement will be
-reported as a bounded phenomenological comparison, not proof of QCD duality or
-precision validation.
+Xin-Yi Liu approved the data transcription, the default candidate assignments,
+and the excluded `rho(1570)` alternative on 2026-08-05. This records review of
+the documented convention without turning a candidate state assignment into
+an exact physical identification. Model agreement remains a bounded
+phenomenological comparison, not proof of QCD duality or precision validation.

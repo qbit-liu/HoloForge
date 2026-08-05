@@ -38,6 +38,9 @@ class ReferenceDatasetTests(unittest.TestCase):
 
     def test_pdg_snapshot_is_valid(self) -> None:
         self.validator.validate(self.dataset)
+        self.assertEqual(self.dataset["provenance"]["review_status"], "approved")
+        self.assertEqual(self.dataset["provenance"]["reviewed_by"], "Xin-Yi Liu")
+        self.assertEqual(self.dataset["provenance"]["reviewed_on"], "2026-08-05")
 
     def test_snapshot_has_one_anchor_and_visible_assignments(self) -> None:
         entries = self.dataset["entries"]

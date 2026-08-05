@@ -333,6 +333,14 @@ def render_vector_spectrum_table(result: VectorSpectrumComparisonResult) -> str:
     metrics: Mapping[str, DescriptiveModelComparison] = {
         item.model_id: item for item in result.comparisons
     }
+    review = reference.dataset["provenance"]
+    review_text = f"Reference convention review: {review['review_status']}"
+    if "reviewed_by" in review and "reviewed_on" in review:
+        review_text += (
+            f" by {review['reviewed_by']} on {review['reviewed_on']}."
+        )
+    else:
+        review_text += "."
     lines.extend(
         [
             "",
@@ -356,6 +364,8 @@ def render_vector_spectrum_table(result: VectorSpectrumComparisonResult) -> str:
                 "These values are not acceptance gates and do not establish model "
                 "superiority, QCD duality, or precision validity."
             ),
+            "",
+            review_text,
             "",
         ]
     )
