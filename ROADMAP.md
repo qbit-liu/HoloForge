@@ -52,6 +52,9 @@
   states.
 - Standardize outcome-first PDF owner-review packets with a reusable LaTeX
   template and rendered-page quality check.
+- Package the research-gate, benchmark-development, and public-export
+  procedures as repository-scoped agent skills, including a deterministic
+  export preflight utility.
 - Preserve all private candidate identities, calculations, and results outside
   the public repository.
 

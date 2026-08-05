@@ -30,6 +30,8 @@ before substantial implementation. The proposal must identify:
 - limitations of what a passing calculation establishes.
 
 Add or update a valid model card and automated tests with the implementation.
+Contributors using an agent may invoke `$holoforge-add-benchmark` from the
+repository-scoped skills for this workflow.
 
 ### Explore
 
@@ -43,13 +45,18 @@ new-phenomenon application within a holographically studied parent field, or a
 method-transfer/model-improvement project. Follow the bounded
 [research-gate workflow](docs/research-gate-workflow.md); freeze each contract
 before calculation and keep scientific support, owner authorization, and
-disclosure status separate.
+disclosure status separate. Every owner decision list must include an explicit
+item-by-item recommendation and a concise evidence-based reason.
 
 If the idea is novel, potentially publishable, or otherwise not cleared for
 public release, develop it in a separate private repository by following the
 [private Explore workflow](docs/private-research-workflow.md). The public
 `incubator/` accepts only synthetic examples, public-literature dry runs, or
 material whose owner has explicitly approved disclosure.
+Contributors using an agent may invoke `$holoforge-research-gate` for a bounded
+gate and `$holoforge-public-export` for any proposed private-to-public
+promotion. Automated scanning supplements rather than replaces human privacy,
+provenance, licensing, and scientific review.
 
 ## Pull requests
 

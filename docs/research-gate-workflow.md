@@ -39,12 +39,34 @@ Every research gate should contain the following records:
    uncontrolled assumptions, window artifacts, missing comparisons, and the
    cheapest defensible next test.
 6. **Owner review:** a short list of separate decisions covering the
-   implementation, numerical verdict, evidence boundary, and next action.
+   implementation, numerical verdict, evidence boundary, and next action,
+   followed by an explicit recommendation for every requested choice.
 7. **Decision record and commit:** after human approval, record what was
    accepted and what remains closed, then commit one logical reviewed gate.
 
 If a stop condition fires, stop the gate, preserve the negative result, and
 return to owner review. Do not expand the scope to rescue the hypothesis.
+
+## Every decision request includes a recommendation
+
+An owner should not receive a menu of approvals and choices without the
+reviewer's scientific judgment. Every owner-review gate must end with a
+**Recommendation** section that:
+
+1. maps each numbered decision to a recommended response, such as `approve`,
+   `revise`, `reject`, `pause`, or one named option;
+2. gives the shortest evidence-based reason for the recommendation;
+3. states what work the recommendation opens and what remains closed; and
+4. identifies the most important tradeoff or uncertainty when the choice is
+   not clear-cut.
+
+If the evidence cannot support a preferred scientific option, the
+recommendation is to pause and obtain the named missing evidence. The
+recommendation must not be omitted or replaced by an unsupported guess.
+
+A recommendation is advice, not owner approval. The decision owner retains the
+final choice unless authority for a bounded class of routine gates has been
+explicitly delegated and recorded.
 
 ## Three statuses that must not be confused
 
@@ -89,7 +111,9 @@ prepare a concise PDF packet in the standard HoloForge style:
 - one plot per page when a figure is needed, with no uncontrolled
   extrapolation;
 - navy `Supported` and `Not supported` evidence statements;
-- a hostile critic section followed by the exact owner decisions; and
+- a hostile critic section followed by the exact owner decisions;
+- an item-by-item recommended response with a concise reason and scope effect;
+  and
 - a footer reiterating the disclosure boundary.
 
 The reusable source is

@@ -28,6 +28,19 @@ Version 0.2 adds a second, structurally different benchmark: the linear
 instability and nonlinear dimension-two condensate of the minimal probe-limit
 holographic superconductor.
 
+## Release maturity and research use
+
+A pre-1.0 HoloForge release can be used for a bounded calculation when that
+calculation's equations, conventions, solver, acceptance gates, and exact
+package version or Git commit are recorded and independently checked. The
+`0.x` version number means the public interfaces may still change; it does not
+make a passing benchmark scientifically untrustworthy.
+
+Private research should combine a pinned HoloForge release with
+project-specific equations, code, and validation in a separate repository.
+HoloForge 1.0 will denote a stable public framework contract, not the first
+version capable of supporting any scientific research.
+
 ## Privacy for Explore research
 
 HoloForge does **not** require novel work to be public while it is in progress.
@@ -97,8 +110,29 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
 - [`domains/`](domains/) contains literature-anchored, testable models.
 - [`incubator/`](incubator/) contains only public-safe Explore examples and
   proposals.
+- [`.agents/skills/`](.agents/skills/) contains repository-scoped reusable
+  workflows for research gates, benchmark development, and privacy-reviewed
+  public exports. Current Codex versions discover these skills automatically
+  when launched inside the repository; they follow the open Agent Skills
+  format and can also be inspected or adapted by other agents.
 - [`src/holoforge/`](src/holoforge/) contains reusable software.
 - [`tests/`](tests/) holds analytic, numerical, schema, and interface checks.
+
+## Reusable agent skills
+
+The checked-in skills package procedures that are specific to HoloForge:
+
+- `$holoforge-research-gate` runs one frozen Explore gate through evidence,
+  criticism, recommendations, owner review, and decision recording;
+- `$holoforge-public-export` audits a proposed private-to-public artifact and
+  includes a deterministic scanner for common private-path and forbidden-token
+  leaks; and
+- `$holoforge-add-benchmark` guides a literature-anchored Forge/Verify
+  benchmark from contract through implementation and validation.
+
+These skills do not contain unpublished candidate identities, scientific
+results, private numerical implementations, or personal global preferences.
+They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 

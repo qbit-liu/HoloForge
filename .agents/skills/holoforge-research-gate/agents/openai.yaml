@@ -1,0 +1,4 @@
+interface:
+  display_name: "HoloForge Research Gate"
+  short_description: "Run auditable HoloForge research decision gates"
+  default_prompt: "Use $holoforge-research-gate to run the next bounded research gate and prepare an owner decision record."
