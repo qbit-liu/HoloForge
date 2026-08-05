@@ -1,0 +1,175 @@
+{
+  "schema_version": "0.3",
+  "id": "pdg-2026-rho-masses",
+  "title": "Frozen 2026 PDG rho-meson mass snapshot",
+  "domain": "holographic QCD vector-spectrum comparison",
+  "observable": {
+    "name": "listed rho-meson mass",
+    "symbol": "m_rho",
+    "unit": "MeV"
+  },
+  "edition": {
+    "name": "2026 Review of Particle Physics rho-meson listings",
+    "citation": "F. Takahashi et al. (Particle Data Group), Int. J. Mod. Phys. A 41, 2630011 (2026)",
+    "published_year": 2026,
+    "doi": "10.1142/S0217751X26300115",
+    "url": "https://pdg.lbl.gov/2026/listings/contents_listings.html",
+    "accessed_on": "2026-08-05",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "artifacts": [
+      {
+        "id": "rho-770-listing",
+        "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-rho-770.pdf",
+        "sha256": "ffd2af7d831a568bf4af14f80eb68b1329aca6072c1ef6b4a8de4e380a77cec9"
+      },
+      {
+        "id": "rho-1450-listing",
+        "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-rho-1450.pdf",
+        "sha256": "5b08adabf11dcc7d77863d20a5ee0a2f5de7cd008c23f008dfdf86d968901784"
+      },
+      {
+        "id": "rho-1570-listing",
+        "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-rho-1570.pdf",
+        "sha256": "4e53faf5a47fe7b6501bf639614886a211a9ed6ec3f01a2ee7bb537af70bdbcc"
+      },
+      {
+        "id": "rho-1700-listing",
+        "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-rho-1700.pdf",
+        "sha256": "07e50c4994fc4dd82b4b9a102252acc0e6665ddfea0b4045ad9ea8637ab2bb01"
+      }
+    ]
+  },
+  "conventions": [
+    {
+      "name": "mass representation",
+      "value": "PDG listed mass; rho(770)^0 uses the listed Breit-Wigner mass",
+      "rationale": "The comparison must not mix pole and Breit-Wigner conventions silently."
+    },
+    {
+      "name": "default radial assignment",
+      "value": "rho(770)^0 is the anchor; rho(1450) and rho(1700) are candidate radial excitations",
+      "rationale": "The default reproduces a common phenomenological assignment but does not treat either excited-state label as exact."
+    },
+    {
+      "name": "rho(1570) sensitivity alternative",
+      "value": "rho(1570) is recorded as an excluded, ambiguous alternative for model mode n=2",
+      "rationale": "PDG lists rho(1570) but omits it from the Summary Table and notes that it may be an OZI-violating decay mode of rho(1700), so it cannot be assumed to be an independent radial state."
+    },
+    {
+      "name": "comparison observable",
+      "value": "R_n = m_n / m_0",
+      "rationale": "Ratios remove the one dimensionful scale from each bottom-up construction."
+    },
+    {
+      "name": "source covariance",
+      "value": "Listed mass uncertainties are treated as mutually independent before ratio normalization",
+      "rationale": "The frozen PDG listings do not provide a covariance matrix; the shared denominator correlation is then generated explicitly by the ratio Jacobian."
+    }
+  ],
+  "entries": [
+    {
+      "id": "rho-770-neutral",
+      "label": "rho(770)^0",
+      "value": 775.26,
+      "unit": "MeV",
+      "uncertainty": {
+        "kind": "symmetric",
+        "sigma": 0.23,
+        "unit": "MeV",
+        "source_text": "775.26 +/- 0.23 MeV"
+      },
+      "source_artifact": "rho-770-listing",
+      "source_locator": "rho(770) MASS, OUR AVERAGE",
+      "assignment_status": "anchor",
+      "model_mode": 0,
+      "included": true,
+      "notes": "Neutral-state Breit-Wigner mass used as the shared ratio denominator."
+    },
+    {
+      "id": "rho-1450",
+      "label": "rho(1450)",
+      "value": 1465.0,
+      "unit": "MeV",
+      "uncertainty": {
+        "kind": "symmetric",
+        "sigma": 25.0,
+        "unit": "MeV",
+        "source_text": "1465 +/- 25 MeV"
+      },
+      "source_artifact": "rho-1450-listing",
+      "source_locator": "rho(1450) MASS, OUR ESTIMATE",
+      "assignment_status": "candidate",
+      "model_mode": 1,
+      "included": true,
+      "notes": "Included as a candidate first radial excitation. PDG calls this estimate an educated guess, and the model assignment is not a validation claim."
+    },
+    {
+      "id": "rho-1570",
+      "label": "rho(1570)",
+      "value": 1570.0,
+      "unit": "MeV",
+      "uncertainty": {
+        "kind": "components",
+        "components": [
+          {
+            "label": "statistical",
+            "sigma": 36.0
+          },
+          {
+            "label": "systematic",
+            "sigma": 62.0
+          }
+        ],
+        "unit": "MeV",
+        "source_text": "1570 +/- 36 +/- 62 MeV",
+        "combination": "Components are retained separately because this excluded entry is not used in the default covariance calculation."
+      },
+      "source_artifact": "rho-1570-listing",
+      "source_locator": "rho(1570) MASS, BABAR 08S listing",
+      "assignment_status": "ambiguous",
+      "model_mode": 2,
+      "included": false,
+      "notes": "Considered as an alternative n=2 assignment but excluded from the default comparison: PDG omits rho(1570) from the Summary Table and states that it may be an OZI-violating decay mode of rho(1700)."
+    },
+    {
+      "id": "rho-1700",
+      "label": "rho(1700)",
+      "value": 1720.0,
+      "unit": "MeV",
+      "uncertainty": {
+        "kind": "symmetric",
+        "sigma": 20.0,
+        "unit": "MeV",
+        "source_text": "1720 +/- 20 MeV"
+      },
+      "source_artifact": "rho-1700-listing",
+      "source_locator": "rho(1700) MASS, eta rho0 and pi+ pi- modes, OUR ESTIMATE",
+      "assignment_status": "candidate",
+      "model_mode": 2,
+      "included": true,
+      "notes": "Included in the owner-approved default scenario as a candidate second radial excitation; this phenomenological assignment is not a validation claim."
+    }
+  ],
+  "transformations": [
+    {
+      "id": "ground-state-normalized-ratio",
+      "expression": "R_n = m_n / m_0",
+      "description": "Normalize every included mass to the rho(770)^0 anchor.",
+      "uncertainty_propagation": "Use the Jacobian of all ratios with respect to the independent listed masses so the shared m_0 uncertainty generates off-diagonal covariance."
+    }
+  ],
+  "provenance": {
+    "created_on": "2026-08-05",
+    "created_by": "HoloForge v0.3 development",
+    "ai_assistance": true,
+    "ai_roles": [
+      "source transcription",
+      "schema drafting",
+      "uncertainty metadata drafting"
+    ],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-05"
+  }
+}

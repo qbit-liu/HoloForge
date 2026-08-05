@@ -28,6 +28,13 @@ Version 0.2 adds a second, structurally different benchmark: the linear
 instability and nonlinear dimension-two condensate of the minimal probe-limit
 holographic superconductor.
 
+Version 0.3 adds a controlled comparison of quadratic soft-wall and hard-wall
+vector spectra against a frozen, uncertainty-aware PDG 2026 snapshot. The
+comparison uses ground-state-normalized ratios, preserves candidate and
+ambiguous interpretations tied to the current PDG 2026 listings, and treats
+numerical reproduction gates separately from descriptive agreement with the
+selected data.
+
 ## Release maturity and research use
 
 A pre-1.0 HoloForge release can be used for a bounded calculation when that
@@ -72,6 +79,7 @@ To change the soft-wall scale or emit machine-readable output:
 
 ```bash
 holoforge verify soft-wall-vector --kappa 0.388 --json
+holoforge verify hard-wall-vector --json
 ```
 
 Run the holographic-superconductor verifier and regenerate the dimension-two
@@ -85,6 +93,21 @@ holoforge verify holographic-superconductor \
 
 The checked development output is shown in the
 [`Delta = 2` benchmark guide](docs/benchmarks/holographic-superconductor.md).
+
+Run the controlled v0.3 comparison and optionally regenerate its JSON,
+Markdown table, and plot with:
+
+```bash
+holoforge compare vector-spectrum
+holoforge compare vector-spectrum --output-dir artifacts/vector-spectrum
+```
+
+The plot requires the optional plotting dependency, installed with
+`python3 -m pip install -e ".[plot]"`.
+The equations, numerical cross-checks, reference-data assumptions, and
+interpretation limits are documented in the
+[`hard-wall benchmark guide`](docs/benchmarks/hard-wall-vector.md) and the
+[`vector-spectrum comparison guide`](docs/benchmarks/vector-spectrum-comparison.md).
 
 For benchmark use without schema-test dependencies, install with
 `python3 -m pip install -e .`. Until the package is installed, the command can
@@ -102,13 +125,14 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
   privacy-workflow patch, [`docs/version-0.2.2.md`](docs/version-0.2.2.md)
   defines the reusable gate-workflow release, and
   [`docs/version-0.2.3.md`](docs/version-0.2.3.md) defines the reusable-skills
-  patch.
+  patch, and [`docs/version-0.3.md`](docs/version-0.3.md) defines the controlled
+  comparison contract.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
   contribution workflow.
 - [`CITATION.cff`](CITATION.cff) provides machine-readable citation metadata.
 - [`CHANGELOG.md`](CHANGELOG.md) records release-level changes.
 - [`schemas/`](schemas/) contains machine-readable model-card and
-  hypothesis-card contracts.
+  hypothesis-card, reference-data, prediction, and comparison contracts.
 - [`domains/`](domains/) contains literature-anchored, testable models.
 - [`incubator/`](incubator/) contains only public-safe Explore examples and
   proposals.
@@ -138,10 +162,10 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-This is an early scientific release (`0.2.3`), not a precision-QCD or
-materials-prediction package. Its benchmarks reproduce published model
-calculations; they do not establish those models as complete descriptions of
-QCD or real materials.
+This is an early scientific release (`0.2.3`), not a universal phenomenology
+or first-principles prediction package. Its benchmarks reproduce published
+model calculations; they do not establish those models as complete
+descriptions of their target physical systems.
 
 ## License
 

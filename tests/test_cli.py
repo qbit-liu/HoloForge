@@ -2,6 +2,8 @@
 
 import io
 import json
+from pathlib import Path
+import tempfile
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 
@@ -115,6 +117,53 @@ class CommandLineTests(unittest.TestCase):
             )
         self.assertEqual(status, 2)
         self.assertIn("radial_cutoff", error.getvalue())
+
+    def test_hard_wall_json_contains_boundary_and_ratio_evidence(self) -> None:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = main(["verify", "hard-wall-vector", "--json"])
+        payload = json.loads(output.getvalue())
+
+        self.assertEqual(status, 0)
+        self.assertTrue(payload["passed"])
+        self.assertEqual(payload["benchmark"], "hard-wall-vector")
+        self.assertEqual(payload["numerical_method"]["route"], "shooting")
+        self.assertEqual(len(payload["results"]), 4)
+
+    def test_invalid_hard_wall_cutoff_has_clear_error(self) -> None:
+        error = io.StringIO()
+        with redirect_stderr(error):
+            status = main(
+                [
+                    "verify",
+                    "hard-wall-vector",
+                    "--epsilon-fraction",
+                    "1",
+                ]
+            )
+        self.assertEqual(status, 2)
+        self.assertIn("epsilon_fraction", error.getvalue())
+
+    def test_vector_comparison_json_and_artifacts(self) -> None:
+        output = io.StringIO()
+        with tempfile.TemporaryDirectory() as directory:
+            with redirect_stdout(output):
+                status = main(
+                    [
+                        "compare",
+                        "vector-spectrum",
+                        "--output-dir",
+                        directory,
+                        "--no-plot",
+                        "--json",
+                    ]
+                )
+            payload = json.loads(output.getvalue())
+            self.assertEqual(status, 0)
+            self.assertTrue(payload["passed"])
+            self.assertEqual(len(payload["model_predictions"]), 2)
+            self.assertTrue(Path(payload["artifacts"]["json"]).is_file())
+            self.assertNotIn("plot", payload["artifacts"])
 
 
 if __name__ == "__main__":

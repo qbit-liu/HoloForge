@@ -30,11 +30,11 @@ multi-parameter fits.
 - **Quadratic soft wall:** A. Karch, E. Katz, D. T. Son, and
   M. A. Stephanov, *Linear Confinement and AdS/QCD*,
   [arXiv:hep-ph/0602229](https://arxiv.org/abs/hep-ph/0602229).
-- **Reference data:** the fixed 2024 Particle Data Group edition,
-  S. Navas et al., *Review of Particle Physics*, Phys. Rev. D 110,
-  030001 (2024), with exact listing locators and access dates stored in the
-  dataset. The snapshot is fixed for reproducibility rather than silently
-  following the latest online values.
+- **Reference data:** the fixed 2026 Particle Data Group edition,
+  F. Takahashi et al., *Review of Particle Physics*, Int. J. Mod. Phys. A 41,
+  2630011 (2026), with exact listing locators, source hashes, and access dates
+  stored in the dataset. The snapshot is fixed for reproducibility rather than
+  silently following future online values.
 
 ## Scientific contract
 
