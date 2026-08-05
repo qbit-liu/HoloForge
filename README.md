@@ -99,8 +99,10 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
   [`docs/version-0.1.1.md`](docs/version-0.1.1.md), and
   [`docs/version-0.2.md`](docs/version-0.2.md) define the scientific release
   contracts; [`docs/version-0.2.1.md`](docs/version-0.2.1.md) defines the
-  privacy-workflow patch, and [`docs/version-0.2.2.md`](docs/version-0.2.2.md)
-  defines the reusable gate-workflow patch.
+  privacy-workflow patch, [`docs/version-0.2.2.md`](docs/version-0.2.2.md)
+  defines the reusable gate-workflow release, and
+  [`docs/version-0.2.3.md`](docs/version-0.2.3.md) defines the reusable-skills
+  patch.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
   contribution workflow.
 - [`CITATION.cff`](CITATION.cff) provides machine-readable citation metadata.
@@ -136,7 +138,7 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-This is an early scientific release (`0.2.2`), not a precision-QCD or
+This is an early scientific release (`0.2.3`), not a precision-QCD or
 materials-prediction package. Its benchmarks reproduce published model
 calculations; they do not establish those models as complete descriptions of
 QCD or real materials.

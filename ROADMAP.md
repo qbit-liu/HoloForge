@@ -42,7 +42,7 @@
 - Exercise the public workflow on the deliberately synthetic hypothesis-card
   example without introducing a novel scientific claim.
 
-## Version 0.2.2 — auditable research gates (implemented)
+## Version 0.2.2 — auditable research gates (complete)
 
 - Distinguish new-domain, new-subfield/new-phenomenon, and method-transfer or
   model-improvement Explore tracks.
@@ -52,11 +52,17 @@
   states.
 - Standardize outcome-first PDF owner-review packets with a reusable LaTeX
   template and rendered-page quality check.
-- Package the research-gate, benchmark-development, and public-export
-  procedures as repository-scoped agent skills, including a deterministic
-  export preflight utility.
 - Preserve all private candidate identities, calculations, and results outside
   the public repository.
+
+## Version 0.2.3 — reusable agent workflows (complete)
+
+- Require an evidence-based recommendation for every owner decision request.
+- Package research-gate, benchmark-development, and public-export procedures
+  as repository-scoped Agent Skills.
+- Add a deterministic export preflight utility and regression tests.
+- Clarify the distinction between pre-1.0 interface stability and bounded
+  scientific readiness.
 
 ## Version 0.3 — controlled comparison
 
