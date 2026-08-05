@@ -162,7 +162,7 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-This is an early scientific release (`0.2.3`), not a universal phenomenology
+This is an early scientific release (`0.3.0`), not a universal phenomenology
 or first-principles prediction package. Its benchmarks reproduce published
 model calculations; they do not establish those models as complete
 descriptions of their target physical systems.

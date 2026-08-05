@@ -1,7 +1,7 @@
 # HoloForge Version 0.3 Specification
 
-**Status:** approved by Xin-Yi Liu as the public implementation contract on
-2026-08-05.
+**Status:** implemented and approved by Xin-Yi Liu for the public `v0.3.0`
+release on 2026-08-05.
 
 ## Recommendation
 

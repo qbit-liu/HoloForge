@@ -2,6 +2,42 @@
 
 All notable changes to HoloForge are recorded here.
 
+## [0.3.0] - 2026-08-05
+
+### Added
+
+- A hard-wall transverse-vector benchmark with analytic Bessel-zero reference,
+  adaptive shooting, independent global collocation, and UV-cutoff refinement.
+- Reusable ground-state normalization with full covariance propagation for a
+  shared reference denominator.
+- Frozen, hashed 2026 Particle Data Group rho-meson listings with explicit
+  uncertainty, source, license, convention, assignment, exclusion, and human
+  review provenance.
+- Reference-dataset, model-prediction, and controlled-comparison schemas.
+- A `holoforge compare vector-spectrum` workflow with reproducible JSON,
+  Markdown, and plot artifacts comparing quadratic soft-wall and hard-wall
+  vector spectra.
+
+### Changed
+
+- Marked the hard-wall model card, PDG transcription, default candidate
+  assignments, and excluded `rho(1570)` alternative as reviewed and approved
+  by Xin-Yi Liu while retaining their scientific limitations.
+- Generalized the README project-status language so HoloForge remains clearly
+  identified as a gauge/gravity platform rather than a QCD-only package.
+
+### Scientific results
+
+- The hard-wall shooting and collocation routes reproduce the first four
+  normalized Bessel-zero masses within their declared `5e-4` and `1e-3`
+  acceptance tolerances, with monotonic three-level UV-cutoff refinement.
+- The default descriptive comparison treats `rho(1450)` and `rho(1700)` as
+  candidate radial assignments and records `rho(1570)` as an excluded,
+  ambiguous `n=2` alternative.
+- Covariance-aware agreement values are descriptive diagnostics, not model
+  acceptance gates or evidence of precision QCD validity. No private Explore
+  candidate, calculation, or unpublished result is included.
+
 ## [0.2.3] - 2026-08-05
 
 ### Added
@@ -114,6 +150,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.3.0]: https://github.com/qbit-liu/HoloForge/compare/v0.2.3...v0.3.0
 [0.2.3]: https://github.com/qbit-liu/HoloForge/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/qbit-liu/HoloForge/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/qbit-liu/HoloForge/compare/v0.2.0...v0.2.1
