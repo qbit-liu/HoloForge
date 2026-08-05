@@ -1,5 +1,13 @@
 """Literature-anchored numerical benchmarks."""
 
+from holoforge.benchmarks.hard_wall_vector import (
+    HardWallConfig,
+    HardWallRefinementResult,
+    HardWallSpectrumResult,
+    analytic_dimensionless_masses,
+    hard_wall_cutoff_refinement,
+    solve_hard_wall_spectrum,
+)
 from holoforge.benchmarks.holographic_superconductor import (
     CondensateBranchResult,
     CondensateConfig,
@@ -22,15 +30,21 @@ from holoforge.benchmarks.soft_wall_vector import (
 __all__ = [
     "CondensateBranchResult",
     "CondensateConfig",
+    "HardWallConfig",
+    "HardWallRefinementResult",
+    "HardWallSpectrumResult",
     "OnsetConfig",
     "OnsetResult",
     "SoftWallConfig",
     "SpectrumResult",
     "SuperconductorVerificationResult",
     "analytic_mass_squared",
+    "analytic_dimensionless_masses",
+    "hard_wall_cutoff_refinement",
     "save_condensate_plot",
     "schrodinger_potential",
     "solve_condensate_branch",
+    "solve_hard_wall_spectrum",
     "solve_onset",
     "solve_spectrum",
     "verify_superconductor",

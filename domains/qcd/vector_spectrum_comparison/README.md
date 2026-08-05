@@ -18,6 +18,14 @@ important here because the common `rho(770)^0` denominator correlates the two
 excited-state ratios even when the three listed masses are initially treated
 as independent.
 
+The hard-wall verifier uses the published UV Dirichlet and IR Neumann
+conditions. Its zero-cutoff reference is generated with
+`scipy.special.jn_zeros`; the finite-cutoff problem is then solved independently
+by adaptive shooting and global collocation. The implementation reports
+finite-cutoff effects separately from solver tolerances because agreement with
+the analytic Bessel zeros is a numerical reproduction gate, not an empirical
+claim about QCD.
+
 The data transcription is currently marked `unreviewed`. Schema conformance
 checks its structure and provenance, not the correctness of the physical state
 assignments. Model agreement will be reported as a bounded phenomenological
