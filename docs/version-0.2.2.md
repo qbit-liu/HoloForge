@@ -20,6 +20,13 @@ PDF owner-review packets.
 - Separate scientific-support, research-authorization, and disclosure states.
 - Local private-Git guidance that preserves reviewed and negative results.
 - A sanitized owner-review PDF style guide and reusable LaTeX template.
+- Three repository-scoped agent skills for research gates, Forge/Verify
+  benchmark additions, and privacy-reviewed public exports.
+- A deterministic export preflight utility that detects common home-directory
+  paths, private-key markers, and caller-supplied forbidden tokens while still
+  requiring manual scientific and disclosure review.
+- A public explanation separating pre-1.0 interface stability from the
+  scientific readiness of a pinned, bounded calculation.
 - Documentation and policy regression tests for the public/private boundary.
 - Package and citation version metadata for `0.2.2`.
 
@@ -45,5 +52,9 @@ PDF owner-review packets.
    insufficient, the recommendation is to pause for named missing evidence.
 5. Public policy tests reject private paths and require the generic workflow's
    owner-review and disclosure boundaries.
-6. The full pre-existing scientific and policy test suite passes.
-7. A built and installed wheel reports version `0.2.2`.
+6. All three repository skills pass structural validation and contain no
+   private candidate information.
+7. The export utility passes clean, leak, custom-token, and error-path tests
+   and explicitly warns that manual review remains required.
+8. The full pre-existing scientific and policy test suite passes.
+9. A built and installed wheel reports version `0.2.2`.

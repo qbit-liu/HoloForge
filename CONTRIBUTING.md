@@ -30,6 +30,8 @@ before substantial implementation. The proposal must identify:
 - limitations of what a passing calculation establishes.
 
 Add or update a valid model card and automated tests with the implementation.
+Contributors using an agent may invoke `$holoforge-add-benchmark` from the
+repository-scoped skills for this workflow.
 
 ### Explore
 
@@ -51,6 +53,10 @@ public release, develop it in a separate private repository by following the
 [private Explore workflow](docs/private-research-workflow.md). The public
 `incubator/` accepts only synthetic examples, public-literature dry runs, or
 material whose owner has explicitly approved disclosure.
+Contributors using an agent may invoke `$holoforge-research-gate` for a bounded
+gate and `$holoforge-public-export` for any proposed private-to-public
+promotion. Automated scanning supplements rather than replaces human privacy,
+provenance, licensing, and scientific review.
 
 ## Pull requests
 

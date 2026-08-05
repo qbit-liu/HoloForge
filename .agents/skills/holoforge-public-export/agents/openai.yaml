@@ -1,0 +1,4 @@
+interface:
+  display_name: "HoloForge Public Export"
+  short_description: "Audit private artifacts before public promotion"
+  default_prompt: "Use $holoforge-public-export to audit this proposed private-to-public HoloForge export."

@@ -21,6 +21,10 @@ All notable changes to HoloForge are recorded here.
   status are independent.
 - Required every owner approval or choice list to include an item-by-item
   recommendation, concise reason, scope effect, and main uncertainty.
+- Added three repository-scoped HoloForge agent skills for research gates,
+  benchmark development, and privacy-reviewed public exports.
+- Added a tested export preflight scanner and clarified that pre-1.0 interface
+  evolution is separate from bounded scientific verification.
 
 ### Scientific results
 
