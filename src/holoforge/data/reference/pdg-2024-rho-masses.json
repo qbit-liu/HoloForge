@@ -34,6 +34,11 @@
       "name": "comparison observable",
       "value": "R_n = m_n / m_0",
       "rationale": "Ratios remove the one dimensionful scale from each bottom-up construction."
+    },
+    {
+      "name": "source covariance",
+      "value": "Listed mass uncertainties are treated as mutually independent before ratio normalization",
+      "rationale": "The frozen PDG summary listings do not provide a covariance matrix; the shared denominator correlation is then generated explicitly by the ratio Jacobian."
     }
   ],
   "entries": [
@@ -50,6 +55,7 @@
       },
       "source_locator": "Light-meson summary table, page 4, rho(770) listing",
       "assignment_status": "anchor",
+      "model_mode": 0,
       "included": true,
       "notes": "Neutral-state Breit-Wigner mass used as the shared ratio denominator."
     },
@@ -66,6 +72,7 @@
       },
       "source_locator": "Light-meson summary table, page 13, rho(1450) listing",
       "assignment_status": "candidate",
+      "model_mode": 1,
       "included": true,
       "notes": "Included as a candidate first radial excitation; this assignment is not a validation claim."
     },
@@ -82,6 +89,7 @@
       },
       "source_locator": "Light-meson summary table, page 18, rho(1700) listing",
       "assignment_status": "candidate",
+      "model_mode": 2,
       "included": true,
       "notes": "Included as a candidate second radial excitation using the eta-rho0 and pi+pi- mode mass quoted by PDG."
     }

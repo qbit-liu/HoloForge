@@ -6,7 +6,8 @@ against the same dimensionless radial vector-meson mass ratios:
 - the quadratic soft wall of arXiv:hep-ph/0602229; and
 - the hard wall of arXiv:hep-ph/0501128.
 
-The frozen PDG snapshot under `reference-data/` records source locators,
+The frozen PDG snapshot under
+`src/holoforge/data/reference/pdg-2024-rho-masses.json` records source locators,
 uncertainties, conventions, state-assignment caveats, licensing, and a hash of
 the reviewed source PDF. It is deliberately not a live query: a future PDG
 update must create a new versioned dataset rather than silently changing this

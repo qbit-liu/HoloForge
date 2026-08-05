@@ -14,7 +14,7 @@ Canonical examples live at
 `domains/qcd/soft_wall_vector/model-card.json`,
 `domains/condensed_matter/holographic_superconductor/model-card.json`, and
 `incubator/examples/hypothesis-card.example.json`, and
-`domains/qcd/vector_spectrum_comparison/reference-data/pdg-2024-rho-masses.json`.
+`src/holoforge/data/reference/pdg-2024-rho-masses.json`.
 Validate them by running:
 
 ```bash

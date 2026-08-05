@@ -105,6 +105,7 @@
         "uncertainty",
         "source_locator",
         "assignment_status",
+        "model_mode",
         "included",
         "notes"
       ],
@@ -121,6 +122,7 @@
         "assignment_status": {
           "enum": ["anchor", "candidate", "ambiguous", "excluded"]
         },
+        "model_mode": {"type": "integer", "minimum": 0},
         "included": {"type": "boolean"},
         "notes": {"type": "string", "minLength": 1}
       }

@@ -13,10 +13,10 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "schemas" / "reference-dataset.schema.json"
 DATA_PATH = (
     ROOT
-    / "domains"
-    / "qcd"
-    / "vector_spectrum_comparison"
-    / "reference-data"
+    / "src"
+    / "holoforge"
+    / "data"
+    / "reference"
     / "pdg-2024-rho-masses.json"
 )
 
@@ -45,6 +45,7 @@ class ReferenceDatasetTests(unittest.TestCase):
         self.assertEqual(len(anchors), 1)
         self.assertTrue(all(entry["notes"] for entry in entries))
         self.assertTrue(all(entry["unit"] == "MeV" for entry in entries))
+        self.assertEqual([entry["model_mode"] for entry in entries], [0, 1, 2])
 
     def test_frozen_source_has_hash_license_and_locators(self) -> None:
         edition = self.dataset["edition"]
