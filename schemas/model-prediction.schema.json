@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/model-prediction.schema.json",
+  "title": "HoloForge model prediction",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "label",
+    "construction",
+    "source_reference",
+    "calibration",
+    "solver_provenance",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.3"},
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+    },
+    "label": {"type": "string", "minLength": 1},
+    "construction": {"type": "string", "minLength": 1},
+    "source_reference": {"type": "string", "minLength": 1},
+    "calibration": {"type": "string", "minLength": 1},
+    "solver_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_library_function",
+        "formulation",
+        "settings",
+        "independent_check"
+      ],
+      "properties": {
+        "primary_library_function": {"type": "string", "minLength": 1},
+        "formulation": {"type": "string", "minLength": 1},
+        "settings": {"type": "object"},
+        "independent_check": {"type": "string", "minLength": 1}
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "model_mode",
+          "ratio",
+          "analytic_ratio",
+          "numerical_absolute_error"
+        ],
+        "properties": {
+          "model_mode": {"type": "integer", "minimum": 0},
+          "ratio": {"type": "number", "exclusiveMinimum": 0},
+          "analytic_ratio": {"type": "number", "exclusiveMinimum": 0},
+          "numerical_absolute_error": {"type": "number", "minimum": 0}
+        }
+      }
+    }
+  }
+}

@@ -9,10 +9,16 @@ HoloForge v0.1 uses JSON Schema Draft 2020-12.
 - `reference-dataset.schema.json` records a frozen external dataset, including
   its edition, exact source, license, conventions, uncertainties, entry
   assignments, transformations, and review provenance.
+- `model-prediction.schema.json` records one construction, calibration rule,
+  solver provenance, aligned values, and numerical errors.
+- `comparison-record.schema.json` records the aligned reference, model
+  predictions, covariance-aware descriptive residuals, numerical gates,
+  exclusions, and interpretation limits.
 
 Canonical examples live at
 `domains/qcd/soft_wall_vector/model-card.json`,
 `domains/condensed_matter/holographic_superconductor/model-card.json`, and
+`domains/qcd/hard_wall_vector/model-card.json`,
 `incubator/examples/hypothesis-card.example.json`, and
 `src/holoforge/data/reference/pdg-2024-rho-masses.json`.
 Validate them by running:

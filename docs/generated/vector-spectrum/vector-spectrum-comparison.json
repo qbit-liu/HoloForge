@@ -1,0 +1,338 @@
+{
+  "acceptance_checks": [
+    {
+      "criterion": "value <= 0.0002",
+      "description": "The unchanged soft-wall verifier remains within tolerance.",
+      "id": "soft-wall-existing-verifier",
+      "passed": true,
+      "value": 3.103071401063436e-05
+    },
+    {
+      "criterion": "value <= 0.0005",
+      "description": "Hard-wall shooting ratios reproduce Bessel-zero ratios.",
+      "id": "hard-wall-analytic-ratios",
+      "passed": true,
+      "value": 4.931330928929469e-08
+    },
+    {
+      "criterion": "value <= 0.001",
+      "description": "Shooting and collocation agree on their common ratios.",
+      "id": "hard-wall-independent-solvers",
+      "passed": true,
+      "value": 3.047716708578713e-11
+    },
+    {
+      "description": "All three decreasing UV cutoffs reduce the ratio error.",
+      "id": "hard-wall-cutoff-refinement",
+      "passed": true
+    }
+  ],
+  "comparison": "soft-wall-hard-wall-vector-ratios",
+  "descriptive_comparisons": [
+    {
+      "chi_square": 572.6043041418698,
+      "chi_square_per_dof": 286.3021520709349,
+      "covariance": "frozen reference-data ratio covariance",
+      "degrees_of_freedom": 2,
+      "entries": [
+        {
+          "included_in_chi_square": false,
+          "model_mode": 0,
+          "residual": 0.0
+        },
+        {
+          "included_in_chi_square": true,
+          "model_mode": 1,
+          "residual": -0.47547998936046465
+        },
+        {
+          "included_in_chi_square": true,
+          "model_mode": 2,
+          "residual": -0.48657266199368254
+        }
+      ],
+      "is_acceptance_gate": false,
+      "model_id": "quadratic-soft-wall"
+    },
+    {
+      "chi_square": 3016.770507578708,
+      "chi_square_per_dof": 1508.385253789354,
+      "covariance": "frozen reference-data ratio covariance",
+      "degrees_of_freedom": 2,
+      "entries": [
+        {
+          "included_in_chi_square": false,
+          "model_mode": 0,
+          "residual": 0.0
+        },
+        {
+          "included_in_chi_square": true,
+          "model_mode": 1,
+          "residual": 0.40572870339506517
+        },
+        {
+          "included_in_chi_square": true,
+          "model_mode": 2,
+          "residual": 1.3798743207506199
+        }
+      ],
+      "is_acceptance_gate": false,
+      "model_id": "hard-wall"
+    }
+  ],
+  "excluded_entries": [],
+  "interpretation_limits": [
+    "The PDG excited-state assignments are candidate phenomenological labels.",
+    "Goodness-of-comparison values are descriptive and are not model acceptance gates.",
+    "Agreement does not prove QCD duality or precision-model validity.",
+    "The comparison does not rank either construction outside this selected observable."
+  ],
+  "model_predictions": [
+    {
+      "calibration": "m_0 is normalized to the rho(770)^0 anchor",
+      "construction": "dilaton Phi(z) = kappa^2 z^2 on fixed AdS5",
+      "entries": [
+        {
+          "analytic_ratio": 1.0,
+          "model_mode": 0,
+          "numerical_absolute_error": 0.0,
+          "ratio": 1.0
+        },
+        {
+          "analytic_ratio": 1.4142135623730951,
+          "model_mode": 1,
+          "numerical_absolute_error": 4.931141758257596e-06,
+          "ratio": 1.4142086312313369
+        },
+        {
+          "analytic_ratio": 1.7320508075688772,
+          "model_mode": 2,
+          "numerical_absolute_error": 1.2938901878145614e-05,
+          "ratio": 1.732037868666999
+        }
+      ],
+      "id": "quadratic-soft-wall",
+      "label": "Quadratic soft wall",
+      "schema_version": "0.3",
+      "solver_provenance": {
+        "formulation": "second-order centered finite-difference eigenproblem",
+        "independent_check": "exact analytic spectrum",
+        "primary_library_function": "scipy.linalg.eigvalsh_tridiagonal",
+        "settings": {
+          "dimensionless_z_max": 10.0,
+          "grid_points": 1200
+        }
+      },
+      "source_reference": "Karch et al., arXiv:hep-ph/0602229v2, Eqs. (8)-(15)"
+    },
+    {
+      "calibration": "m_0 is normalized to the rho(770)^0 anchor",
+      "construction": "fixed AdS5 slice with a phenomenological IR wall",
+      "entries": [
+        {
+          "analytic_ratio": 1.0,
+          "model_mode": 0,
+          "numerical_absolute_error": 0.0,
+          "ratio": 1.0
+        },
+        {
+          "analytic_ratio": 2.295417267427694,
+          "model_mode": 1,
+          "numerical_absolute_error": 5.6559172900705335e-08,
+          "ratio": 2.2954173239868667
+        },
+        {
+          "analytic_ratio": 3.5984846739581138,
+          "model_mode": 2,
+          "numerical_absolute_error": 1.774531876996832e-07,
+          "ratio": 3.5984848514113015
+        }
+      ],
+      "id": "hard-wall",
+      "label": "Hard wall",
+      "schema_version": "0.3",
+      "solver_provenance": {
+        "formulation": "adaptive shooting with an IR Neumann residual",
+        "independent_check": "scipy.integrate.solve_bvp global collocation",
+        "primary_library_function": "scipy.integrate.solve_ivp + scipy.optimize.root_scalar",
+        "settings": {
+          "epsilon_fraction": 0.0001,
+          "integration_atol": 1e-11,
+          "integration_rtol": 1e-09,
+          "root_rtol": 1e-10
+        }
+      },
+      "source_reference": "Erlich et al., arXiv:hep-ph/0501128v2, Eq. (5)"
+    }
+  ],
+  "numerical_validation": {
+    "hard_wall_cross_solver_max_relative_difference": 3.047716708578713e-11,
+    "hard_wall_cutoff_refinement": {
+      "improves_at_every_level": true,
+      "interpretation": "This sequence estimates finite-cutoff effects; integration, root, and collocation tolerances remain separate settings.",
+      "levels": [
+        {
+          "epsilon_fraction": 0.01,
+          "mass_ratios": [
+            1.0,
+            2.2959782017936985,
+            3.6002324223965356
+          ],
+          "max_ratio_relative_error": 0.0004856901159174401
+        },
+        {
+          "epsilon_fraction": 0.003,
+          "mass_ratios": [
+            1.0,
+            2.295468106835546,
+            3.5986440464527805
+          ],
+          "max_ratio_relative_error": 4.428877961327745e-05
+        },
+        {
+          "epsilon_fraction": 0.001,
+          "mass_ratios": [
+            1.0,
+            2.295422921062656,
+            3.5985024109780936
+          ],
+          "max_ratio_relative_error": 4.9290247387267936e-06
+        }
+      ],
+      "method": "shooting"
+    }
+  },
+  "passed": true,
+  "reference": {
+    "anchor_index": 0,
+    "conventions": [
+      {
+        "name": "mass representation",
+        "rationale": "The comparison must not mix pole and Breit-Wigner conventions silently.",
+        "value": "PDG listed mass; rho(770)^0 uses the listed Breit-Wigner mass"
+      },
+      {
+        "name": "radial assignment",
+        "rationale": "Excited light-meson assignments are phenomenological and remain visible rather than being treated as exact model labels.",
+        "value": "rho(770)^0 is the anchor; rho(1450) and rho(1700) are candidate radial excitations"
+      },
+      {
+        "name": "comparison observable",
+        "rationale": "Ratios remove the one dimensionful scale from each bottom-up construction.",
+        "value": "R_n = m_n / m_0"
+      },
+      {
+        "name": "source covariance",
+        "rationale": "The frozen PDG summary listings do not provide a covariance matrix; the shared denominator correlation is then generated explicitly by the ratio Jacobian.",
+        "value": "Listed mass uncertainties are treated as mutually independent before ratio normalization"
+      }
+    ],
+    "dataset_id": "pdg-2024-rho-masses",
+    "edition": {
+      "accessed_on": "2026-08-05",
+      "artifact_sha256": "d08cef18f4d6b5b89d180ce3fea83540a6879d84133d151dee87ab017802fcf0",
+      "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024)",
+      "doi": "10.1103/PhysRevD.110.030001",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "name": "2024 Review of Particle Physics light-meson summary table",
+      "published_year": 2024,
+      "url": "https://pdg.lbl.gov/2024/tables/rpp2024-tab-mesons-light.pdf"
+    },
+    "entries": [
+      {
+        "assignment_status": "anchor",
+        "id": "rho-770-neutral",
+        "label": "rho(770)^0",
+        "mass": 775.26,
+        "model_mode": 0,
+        "ratio": 1.0,
+        "ratio_standard_deviation": 0.0
+      },
+      {
+        "assignment_status": "candidate",
+        "id": "rho-1450",
+        "label": "rho(1450)",
+        "mass": 1465.0,
+        "model_mode": 1,
+        "ratio": 1.8896886205918015,
+        "ratio_standard_deviation": 0.03225211896807976
+      },
+      {
+        "assignment_status": "candidate",
+        "id": "rho-1700",
+        "label": "rho(1700)",
+        "mass": 1720.0,
+        "model_mode": 2,
+        "ratio": 2.2186105306606816,
+        "ratio_standard_deviation": 0.025806192237034602
+      }
+    ],
+    "jacobian": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.0024374901589038537,
+        0.001289889843407373,
+        0.0
+      ],
+      [
+        -0.0028617631899758556,
+        0.0,
+        0.001289889843407373
+      ]
+    ],
+    "mass_covariance": [
+      [
+        0.0529,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        625.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        400.0
+      ]
+    ],
+    "normalization": "R_n = m_n / m_0",
+    "observable": {
+      "name": "listed rho-meson mass",
+      "symbol": "m_rho",
+      "unit": "MeV"
+    },
+    "ratio_covariance": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0010401991779311703,
+        3.690049875107428e-07
+      ],
+      [
+        0.0,
+        3.690049875107428e-07,
+        0.000665959557774785
+      ]
+    ],
+    "review_status": "unreviewed"
+  },
+  "schema_version": "0.3",
+  "software_versions": {
+    "holoforge": "0.2.3",
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "scipy": "1.17.1"
+  },
+  "support_level": "reproduced"
+}

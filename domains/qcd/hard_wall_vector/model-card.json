@@ -1,0 +1,143 @@
+{
+  "schema_version": "0.1",
+  "id": "qcd.hard-wall-vector.ekss",
+  "title": "Hard-wall transverse-vector spectrum",
+  "mode": "forge-verify",
+  "domain": "holographic-qcd",
+  "maturity": "reproduced",
+  "summary": "A shooting and collocation reproduction of the transverse-vector spectrum on the standard hard-wall AdS/QCD slice.",
+  "source": {
+    "title": "QCD and a Holographic Model of Hadrons",
+    "authors": [
+      "Joshua Erlich",
+      "Emanuel Katz",
+      "Dam T. Son",
+      "Mikhail A. Stephanov"
+    ],
+    "locator": "arXiv:hep-ph/0501128",
+    "version": "v2",
+    "url": "https://arxiv.org/abs/hep-ph/0501128",
+    "doi": "10.1103/PhysRevLett.95.261602",
+    "equation_refs": ["Eq. (5) and the vector-mode discussion"]
+  },
+  "conventions": [
+    {
+      "name": "radial interval",
+      "value": "epsilon <= z <= z_m on a fixed AdS_5 slice",
+      "rationale": "The IR wall is a phenomenological cutoff rather than a dynamically derived geometry."
+    },
+    {
+      "name": "UV boundary condition",
+      "value": "V(epsilon) = 0",
+      "rationale": "Finite-cutoff Dirichlet approximation to the normalizable vector mode."
+    },
+    {
+      "name": "IR boundary condition",
+      "value": "partial_z V(z_m) = 0",
+      "rationale": "Standard Neumann condition used by the source model."
+    },
+    {
+      "name": "comparison normalization",
+      "value": "R_n = m_n / m_0",
+      "rationale": "The ratios remove the single hard-wall scale z_m."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "hard-wall position",
+      "symbol": "z_m",
+      "value": 1.0,
+      "unit": "GeV^-1",
+      "role": "input",
+      "allowed_range": [0.000001, 1000000.0],
+      "description": "Positive IR-wall position; the benchmark default is not a phenomenological fit."
+    }
+  ],
+  "equations": [
+    {
+      "id": "transverse-vector",
+      "expression": "partial_z[(1/z) partial_z V_n] + (m_n^2/z) V_n = 0",
+      "description": "Normal-mode equation for a transverse flavor-vector field on the AdS_5 slice.",
+      "source_ref": "Erlich et al., arXiv:hep-ph/0501128v2, Eq. (5)."
+    },
+    {
+      "id": "analytic-spectrum",
+      "expression": "m_n z_m = j_(0,n+1)",
+      "description": "Zero-cutoff eigenvalues are positive zeros of the Bessel function J_0.",
+      "source_ref": "Source vector-mode discussion following Eq. (5)."
+    }
+  ],
+  "observables": [
+    {
+      "name": "ground-state-normalized vector-mode masses",
+      "symbol": "R_n = m_n / m_0",
+      "unit": "dimensionless",
+      "extraction": "Ordered finite-cutoff eigenvalues divided by the lowest eigenvalue."
+    }
+  ],
+  "validation": {
+    "acceptance_criteria": [
+      "The first four shooting mass ratios agree with the analytic Bessel-zero ratios within 5e-4.",
+      "Adaptive shooting and global collocation agree on their first four ratios within 1e-3.",
+      "Three decreasing UV cutoffs monotonically reduce the maximum analytic-ratio error."
+    ],
+    "tests": [
+      {
+        "id": "analytic-bessel-ratios",
+        "kind": "analytic",
+        "command": "python3 -m unittest tests.test_hard_wall_vector -v",
+        "expected": "The numerical ratios reproduce the first four J_0-zero ratios within tolerance.",
+        "status": "pass"
+      },
+      {
+        "id": "independent-solvers",
+        "kind": "regression",
+        "command": "python3 -m unittest tests.test_hard_wall_vector -v",
+        "expected": "Shooting and collocation agree within the declared cross-solver tolerance.",
+        "status": "pass"
+      },
+      {
+        "id": "uv-cutoff-refinement",
+        "kind": "convergence",
+        "command": "python3 -m unittest tests.test_hard_wall_vector -v",
+        "expected": "The maximum ratio error decreases across all three cutoff levels.",
+        "status": "pass"
+      }
+    ],
+    "last_verified": "2026-08-05"
+  },
+  "claims": [
+    {
+      "statement": "The standard hard-wall vector spectrum approaches the positive J_0 zeros when the UV cutoff vanishes.",
+      "support_level": "established-source",
+      "evidence": "Erlich et al., arXiv:hep-ph/0501128v2, Eq. (5) and the vector-mode discussion.",
+      "generated_by_ai": true,
+      "review_status": "unreviewed"
+    },
+    {
+      "statement": "The HoloForge shooting and collocation routes reproduce the first four normalized Bessel-zero masses within their declared tolerances.",
+      "support_level": "reproduced",
+      "evidence": "Automated analytic, cross-solver, and cutoff-refinement tests in tests/test_hard_wall_vector.py.",
+      "generated_by_ai": true,
+      "review_status": "unreviewed"
+    }
+  ],
+  "limitations": [
+    "The IR wall and its boundary condition are phenomenological inputs rather than consequences derived from QCD.",
+    "The finite UV cutoff creates a separate approximation error even when the numerical solver converges.",
+    "The benchmark does not test decay constants, chiral observables, or the global phenomenological adequacy of the hard-wall model."
+  ],
+  "provenance": {
+    "created_on": "2026-08-05",
+    "created_by": "HoloForge v0.3 development",
+    "implementation_path": "src/holoforge/benchmarks/hard_wall_vector.py",
+    "ai_assistance": true,
+    "ai_roles": [
+      "source transcription",
+      "implementation drafting",
+      "test drafting",
+      "numerical cross-checking"
+    ],
+    "review_status": "unreviewed"
+  }
+}

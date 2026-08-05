@@ -39,8 +39,9 @@ class SpectrumPrediction:
     identifier: str
     label: str
     construction: str
+    source_reference: str
     calibration: str
-    solver: str
+    solver_provenance: Mapping[str, Any]
     model_modes: NDArray[np.int64]
     ratios: NDArray[np.float64]
     analytic_ratios: NDArray[np.float64]
@@ -48,11 +49,13 @@ class SpectrumPrediction:
 
     def to_dict(self) -> Dict[str, Any]:
         return {
+            "schema_version": "0.3",
             "id": self.identifier,
             "label": self.label,
             "construction": self.construction,
+            "source_reference": self.source_reference,
             "calibration": self.calibration,
-            "solver": self.solver,
+            "solver_provenance": dict(self.solver_provenance),
             "entries": [
                 {
                     "model_mode": int(mode),
@@ -134,6 +137,7 @@ class VectorSpectrumComparisonResult:
             if not entry["included"]
         ]
         return {
+            "schema_version": "0.3",
             "comparison": COMPARISON_ID,
             "support_level": "reproduced",
             "reference": self.reference.to_dict(),
@@ -191,8 +195,17 @@ def build_vector_spectrum_comparison() -> VectorSpectrumComparisonResult:
         identifier="quadratic-soft-wall",
         label="Quadratic soft wall",
         construction="dilaton Phi(z) = kappa^2 z^2 on fixed AdS5",
+        source_reference="Karch et al., arXiv:hep-ph/0602229v2, Eqs. (8)-(15)",
         calibration="m_0 is normalized to the rho(770)^0 anchor",
-        solver="scipy.linalg.eigvalsh_tridiagonal",
+        solver_provenance={
+            "primary_library_function": "scipy.linalg.eigvalsh_tridiagonal",
+            "formulation": "second-order centered finite-difference eigenproblem",
+            "settings": {
+                "grid_points": soft_result.config.grid_points,
+                "dimensionless_z_max": soft_result.dimensionless_z_max,
+            },
+            "independent_check": "exact analytic spectrum",
+        },
         model_modes=reference.model_modes.copy(),
         ratios=soft_ratios,
         analytic_ratios=soft_exact_ratios,
@@ -211,8 +224,21 @@ def build_vector_spectrum_comparison() -> VectorSpectrumComparisonResult:
         identifier="hard-wall",
         label="Hard wall",
         construction="fixed AdS5 slice with a phenomenological IR wall",
+        source_reference="Erlich et al., arXiv:hep-ph/0501128v2, Eq. (5)",
         calibration="m_0 is normalized to the rho(770)^0 anchor",
-        solver="adaptive shooting; independently checked by global collocation",
+        solver_provenance={
+            "primary_library_function": (
+                "scipy.integrate.solve_ivp + scipy.optimize.root_scalar"
+            ),
+            "formulation": "adaptive shooting with an IR Neumann residual",
+            "settings": {
+                "epsilon_fraction": hard_shooting.config.epsilon_fraction,
+                "integration_rtol": hard_shooting.config.integration_rtol,
+                "integration_atol": hard_shooting.config.integration_atol,
+                "root_rtol": hard_shooting.config.root_rtol,
+            },
+            "independent_check": "scipy.integrate.solve_bvp global collocation",
+        },
         model_modes=reference.model_modes.copy(),
         ratios=hard_ratios,
         analytic_ratios=hard_exact_ratios,

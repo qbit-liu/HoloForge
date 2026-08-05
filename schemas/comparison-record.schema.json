@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/comparison-record.schema.json",
+  "title": "HoloForge controlled comparison record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "comparison",
+    "support_level",
+    "reference",
+    "model_predictions",
+    "descriptive_comparisons",
+    "excluded_entries",
+    "numerical_validation",
+    "acceptance_checks",
+    "software_versions",
+    "passed",
+    "interpretation_limits"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.3"},
+    "comparison": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+    },
+    "support_level": {"enum": ["reproduced", "established"]},
+    "reference": {"$ref": "#/$defs/reference"},
+    "model_predictions": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "https://holoforge.dev/schemas/model-prediction.schema.json"
+      }
+    },
+    "descriptive_comparisons": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"$ref": "#/$defs/descriptive_comparison"}
+    },
+    "excluded_entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "reason"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "label": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "numerical_validation": {
+      "type": "object",
+      "required": [
+        "hard_wall_cross_solver_max_relative_difference",
+        "hard_wall_cutoff_refinement"
+      ],
+      "properties": {
+        "hard_wall_cross_solver_max_relative_difference": {
+          "type": "number",
+          "minimum": 0
+        },
+        "hard_wall_cutoff_refinement": {"type": "object"}
+      }
+    },
+    "acceptance_checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/acceptance_check"}
+    },
+    "software_versions": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "passed": {"type": "boolean"},
+    "interpretation_limits": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "reference": {
+      "type": "object",
+      "required": [
+        "dataset_id",
+        "edition",
+        "observable",
+        "conventions",
+        "review_status",
+        "normalization",
+        "anchor_index",
+        "entries",
+        "mass_covariance",
+        "ratio_covariance",
+        "jacobian"
+      ],
+      "properties": {
+        "dataset_id": {"type": "string", "minLength": 1},
+        "edition": {"type": "object"},
+        "observable": {"type": "object"},
+        "conventions": {"type": "array", "minItems": 1},
+        "review_status": {
+          "enum": ["unreviewed", "checked", "approved", "rejected"]
+        },
+        "normalization": {"type": "string", "minLength": 1},
+        "anchor_index": {"type": "integer", "minimum": 0},
+        "entries": {"type": "array", "minItems": 2},
+        "mass_covariance": {"$ref": "#/$defs/matrix"},
+        "ratio_covariance": {"$ref": "#/$defs/matrix"},
+        "jacobian": {"$ref": "#/$defs/matrix"}
+      }
+    },
+    "matrix": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "items": {"type": "number"}
+      }
+    },
+    "descriptive_comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_id",
+        "entries",
+        "chi_square",
+        "degrees_of_freedom",
+        "chi_square_per_dof",
+        "covariance",
+        "is_acceptance_gate"
+      ],
+      "properties": {
+        "model_id": {"type": "string", "minLength": 1},
+        "entries": {"type": "array", "minItems": 2},
+        "chi_square": {"type": "number", "minimum": 0},
+        "degrees_of_freedom": {"type": "integer", "minimum": 1},
+        "chi_square_per_dof": {"type": "number", "minimum": 0},
+        "covariance": {"type": "string", "minLength": 1},
+        "is_acceptance_gate": {"const": false}
+      }
+    },
+    "acceptance_check": {
+      "type": "object",
+      "required": ["id", "description", "passed"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "passed": {"type": "boolean"},
+        "value": {"type": "number"},
+        "criterion": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}
