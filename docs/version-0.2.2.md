@@ -1,6 +1,6 @@
 # HoloForge Version 0.2.2 Specification
 
-**Status:** implemented for owner review on 2026-08-04.
+**Status:** implemented for owner review on 2026-08-05.
 
 ## Objective
 
@@ -15,6 +15,8 @@ PDF owner-review packets.
   phenomenon, and method transfer or model improvement.
 - A reusable frozen-contract, calculation, verification, critic, owner-review,
   decision, and commit sequence.
+- A mandatory item-by-item recommendation, reason, scope effect, and tradeoff
+  whenever an owner is asked to approve or choose.
 - Separate scientific-support, research-authorization, and disclosure states.
 - Local private-Git guidance that preserves reviewed and negative results.
 - A sanitized owner-review PDF style guide and reusable LaTeX template.
@@ -38,7 +40,10 @@ PDF owner-review packets.
    authorization from scientific support and disclosure.
 3. The PDF style and template are generic, reusable, and contain no private
    research information.
-4. Public policy tests reject private paths and require the generic workflow's
+4. Every owner decision list includes an explicit item-by-item recommendation,
+   reason, scope effect, and uncertainty or tradeoff; if evidence is
+   insufficient, the recommendation is to pause for named missing evidence.
+5. Public policy tests reject private paths and require the generic workflow's
    owner-review and disclosure boundaries.
-5. The full pre-existing scientific and policy test suite passes.
-6. A built and installed wheel reports version `0.2.2`.
+6. The full pre-existing scientific and policy test suite passes.
+7. A built and installed wheel reports version `0.2.2`.

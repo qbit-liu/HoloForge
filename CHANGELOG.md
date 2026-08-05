@@ -2,7 +2,7 @@
 
 All notable changes to HoloForge are recorded here.
 
-## [0.2.2] - 2026-08-04
+## [0.2.2] - 2026-08-05
 
 ### Added
 
@@ -19,6 +19,8 @@ All notable changes to HoloForge are recorded here.
   or model-improvement Explore tracks.
 - Clarified that scientific support, research authorization, and disclosure
   status are independent.
+- Required every owner approval or choice list to include an item-by-item
+  recommendation, concise reason, scope effect, and main uncertainty.
 
 ### Scientific results
 

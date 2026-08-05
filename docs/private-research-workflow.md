@@ -46,7 +46,8 @@ HoloForge public contract.
 The concise gate sequence below is expanded in the reusable
 [research-gate workflow](research-gate-workflow.md), including frozen
 contracts, hostile critic reports, owner decisions, local Git records, and the
-standard PDF review-packet style.
+standard PDF review-packet style. Every request for owner approval or choice
+must also include an item-by-item recommendation and its reason.
 
 1. **Intake:** record the candidate dictionary, assumptions, falsification
    test, AI involvement, and decision owner in a private hypothesis card.

@@ -85,6 +85,24 @@ class PublicContentPolicyTests(unittest.TestCase):
         for private_identifier in ("C01", "C02", "C03", "D001", "M001"):
             self.assertNotIn(private_identifier, combined)
 
+    def test_every_owner_decision_request_requires_a_recommendation(self):
+        workflow = (ROOT / "docs/research-gate-workflow.md").read_text(
+            encoding="utf-8"
+        ).lower()
+        template = (
+            ROOT / "docs/templates/review-packet-template.tex"
+        ).read_text(encoding="utf-8").lower()
+
+        self.assertIn("every decision request includes a recommendation", workflow)
+        self.assertIn("maps each numbered decision", workflow)
+        self.assertIn("evidence-based reason", workflow)
+        self.assertIn("what work the recommendation opens", workflow)
+        self.assertIn("tradeoff or uncertainty", workflow)
+        self.assertIn("recommendation is to pause", workflow)
+        self.assertIn("recommendation is advice, not owner approval", workflow)
+        self.assertIn("recommended selections", template)
+        self.assertIn("reason and scope effect", template)
+
 
 if __name__ == "__main__":
     unittest.main()
