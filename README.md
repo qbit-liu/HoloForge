@@ -31,7 +31,7 @@ holographic superconductor.
 Version 0.3 adds a controlled comparison of quadratic soft-wall and hard-wall
 vector spectra against a frozen, uncertainty-aware PDG 2026 snapshot. The
 comparison uses ground-state-normalized ratios, preserves candidate and
-ambiguous state assignments from the current PDG 2026 listings, and treats
+ambiguous interpretations tied to the current PDG 2026 listings, and treats
 numerical reproduction gates separately from descriptive agreement with the
 selected data.
 

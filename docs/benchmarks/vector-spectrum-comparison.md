@@ -38,7 +38,7 @@ that it may be an OZI-violating decay mode of `rho(1700)`. Its statistical and
 systematic uncertainties are stored separately rather than silently combined.
 
 The listed mass errors are initially treated as independent because the
-summary table does not provide their covariance. After normalization, the
+particle listings do not provide their covariance. After normalization, the
 shared `rho(770)^0` denominator generates a positive covariance between the
 two excited-state ratios. HoloForge propagates that covariance with the exact
 Jacobian rather than treating the ratios as independent.
