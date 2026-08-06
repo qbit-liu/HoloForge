@@ -1,7 +1,7 @@
 # HoloForge Version 0.4 Specification
 
-**Status:** specification and implementation authorized by Xin-Yi Liu on
-2026-08-06; implementation prepared for review but not committed or released.
+**Status:** implemented and approved by Xin-Yi Liu for the public `v0.4.0`
+release on 2026-08-06.
 
 ## Recommendation
 
@@ -49,7 +49,7 @@ together and an explicit compatibility contract for calculations that claim to
 belong to one state family. Version 0.4 should add that layer rather than a new
 benchmark.
 
-## Planned evidence bundle
+## Evidence bundle
 
 An evidence bundle should use a small, inspectable directory layout:
 
@@ -87,7 +87,7 @@ Absolute filesystem paths, credentials, hostnames, user names, and undeclared
 external files are forbidden. Timestamps may be recorded as execution metadata
 but may not alter the scientific-payload digest.
 
-## Planned compatibility preflight
+## Compatibility preflight
 
 Version 0.4 should implement one narrow relation:
 `same-state-family`. It is intended for inputs that will be differentiated,
@@ -113,7 +113,7 @@ Cross-model phenomenological comparison is not part of this relation. The
 controlled-comparison contracts introduced in Version 0.3 remain the correct
 path for comparing different constructions on a common observable.
 
-## Proposed command surface
+## Command surface
 
 All current public verification and comparison commands should gain an
 optional portable-output path:
@@ -152,7 +152,7 @@ Public demonstrations should use only:
 The export preflight scanner and manual disclosure review must be run on every
 proposed Version 0.4 file before a public pull request.
 
-## Planned implementation surfaces
+## Implementation surfaces
 
 The implementation proposal is limited to:
 

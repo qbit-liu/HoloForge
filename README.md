@@ -154,11 +154,11 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-The latest public release is `0.3.0`; Version 0.4 is under development. This is
-not a universal phenomenology or first-principles prediction package. Its
-current reference implementations reproduce published model calculations;
-they do not establish those models as complete descriptions of their target
-physical systems.
+The latest public release is `0.4.0`. HoloForge remains a pre-1.0 project, not
+a universal phenomenology or first-principles prediction package. Its current
+reference implementations reproduce published model calculations; they do not
+establish those models as complete descriptions of their target physical
+systems.
 
 ## License
 
