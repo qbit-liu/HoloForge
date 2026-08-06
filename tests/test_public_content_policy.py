@@ -112,8 +112,6 @@ class PublicContentPolicyTests(unittest.TestCase):
 
         self.assertIn("bottom-up gauge/gravity", lower_overview)
         self.assertIn("do not define holoforge's scientific scope", lower_overview)
-        self.assertIn("remains **unreleased**", lower_overview)
-        self.assertIn("release tag or an exact commit", lower_overview)
         for example_specific_term in (
             "qcd",
             "soft-wall",

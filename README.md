@@ -40,11 +40,6 @@ package version or Git commit are recorded and independently checked. The
 `0.x` version number means the public interfaces may still change; it does not
 make a passing benchmark scientifically untrustworthy.
 
-The public `main` branch can move between releases. A merged change is visible
-and usable immediately, but remains **Unreleased** until it is included in a
-new version, Git tag, and GitHub Release. For reproducible work, pin either a
-release tag or an exact commit instead of relying on the moving branch.
-
 Private research should combine a pinned HoloForge release with
 project-specific equations, code, and validation in a separate repository.
 HoloForge 1.0 will denote a stable public framework contract, not the first
