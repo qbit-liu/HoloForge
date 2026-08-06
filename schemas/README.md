@@ -14,6 +14,12 @@ HoloForge v0.1 uses JSON Schema Draft 2020-12.
 - `comparison-record.schema.json` records the aligned reference, model
   predictions, covariance-aware descriptive residuals, numerical gates,
   exclusions, and interpretation limits.
+- `evidence-bundle.schema.json` records a portable bundle manifest with
+  scientific-state metadata, relative file paths, checksums, acceptance
+  evidence, software versions, support level, and limitations.
+- `evidence-compatibility.schema.json` records every match, mismatch, declared
+  control, and allowed control change in a fail-closed `same-state-family`
+  preflight.
 
 Canonical examples live at
 `domains/qcd/soft_wall_vector/model-card.json`,
@@ -25,6 +31,7 @@ Validate them by running:
 
 ```bash
 python3 -m unittest tests.test_schemas -v
+python3 -m unittest tests.test_evidence_schemas -v
 ```
 
 Schema conformance checks structure and required provenance. It does not replace

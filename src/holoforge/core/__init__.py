@@ -11,6 +11,15 @@ from holoforge.core.contracts import (
     VerificationRecord,
 )
 from holoforge.core.comparison import NormalizedSpectrum, normalize_spectrum
+from holoforge.core.evidence import (
+    BundleAuditResult,
+    CompatibilityAuditResult,
+    EvidenceBundleError,
+    audit_evidence_bundle,
+    audit_same_state_family,
+    canonical_json_sha256,
+    write_evidence_bundle,
+)
 from holoforge.core.provenance import runtime_versions
 
 __all__ = [
@@ -18,11 +27,18 @@ __all__ = [
     "BackgroundSpec",
     "BenchmarkDefinition",
     "BoundaryConditionSpec",
+    "BundleAuditResult",
+    "CompatibilityAuditResult",
     "EquationSpec",
+    "EvidenceBundleError",
     "ObservableSpec",
     "NormalizedSpectrum",
     "SolverSpec",
     "VerificationRecord",
+    "audit_evidence_bundle",
+    "audit_same_state_family",
+    "canonical_json_sha256",
     "normalize_spectrum",
     "runtime_versions",
+    "write_evidence_bundle",
 ]

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/evidence-compatibility.schema.json",
+  "title": "HoloForge evidence-bundle compatibility report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "relation",
+    "bundle_a",
+    "bundle_b",
+    "matched_fields",
+    "mismatches",
+    "declared_controls",
+    "control_changes",
+    "passed",
+    "scope"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.4"},
+    "relation": {"const": "same-state-family"},
+    "bundle_a": {"type": ["string", "null"]},
+    "bundle_b": {"type": ["string", "null"]},
+    "matched_fields": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "mismatches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "left", "right", "reason"],
+        "properties": {
+          "field": {"type": "string", "minLength": 1},
+          "left": {},
+          "right": {},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "declared_controls": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "control_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "left", "right"],
+        "properties": {
+          "field": {"type": "string", "minLength": 1},
+          "left": {},
+          "right": {}
+        }
+      }
+    },
+    "passed": {"type": "boolean"},
+    "scope": {"type": "string", "minLength": 1}
+  }
+}

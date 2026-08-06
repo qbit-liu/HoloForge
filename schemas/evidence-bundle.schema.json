@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/evidence-bundle.schema.json",
+  "title": "HoloForge portable evidence-bundle manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "command_identity",
+    "holoforge_version",
+    "support_level",
+    "disclosure_class",
+    "scientific_state",
+    "model_cards",
+    "acceptance",
+    "software_versions",
+    "scope",
+    "limitations",
+    "files",
+    "execution",
+    "scientific_payload_digest"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.4"},
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-[0-9a-f]{16}$"
+    },
+    "command_identity": {"type": "string", "minLength": 1},
+    "holoforge_version": {"type": "string", "minLength": 1},
+    "support_level": {"type": "string", "minLength": 1},
+    "disclosure_class": {"const": "public"},
+    "scientific_state": {"$ref": "#/$defs/scientific_state"},
+    "model_cards": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/model_card_reference"}
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "checks"],
+      "properties": {
+        "passed": {"type": "boolean"},
+        "checks": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "software_versions": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "scope": {"type": "string", "minLength": 1},
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "files": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"$ref": "#/$defs/file_entry"}
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at_utc"],
+      "properties": {
+        "created_at_utc": {"type": "string", "format": "date-time"}
+      }
+    },
+    "scientific_payload_digest": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "scientific_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_identifier",
+        "ensemble",
+        "fixed_variables",
+        "approximation",
+        "phase_branch",
+        "parameters",
+        "declared_controls",
+        "boundary_source_conditions",
+        "conventions",
+        "source_record_versions"
+      ],
+      "properties": {
+        "model_identifier": {"type": "string", "minLength": 1},
+        "ensemble": {"type": "string", "minLength": 1},
+        "fixed_variables": {
+          "type": "object",
+          "minProperties": 1
+        },
+        "approximation": {"type": "string", "minLength": 1},
+        "phase_branch": {"type": "string", "minLength": 1},
+        "parameters": {"type": "object", "minProperties": 1},
+        "declared_controls": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+          }
+        },
+        "boundary_source_conditions": {
+          "type": "object",
+          "minProperties": 1
+        },
+        "conventions": {"type": "object", "minProperties": 1},
+        "source_record_versions": {
+          "type": "object",
+          "minProperties": 1
+        }
+      }
+    },
+    "model_card_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "schema_version", "repository_path", "sha256"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "repository_path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+        },
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "file_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "role", "media_type", "sha256"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+        },
+        "role": {"type": "string", "minLength": 1},
+        "media_type": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

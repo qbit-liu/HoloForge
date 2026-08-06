@@ -73,6 +73,21 @@
   [soft-wall versus hard-wall vector-spectrum contract](docs/version-0.3.md)
   without depending on private Explore research.
 
+## Version 0.4 — portable evidence bundles (complete)
+
+- Bind configuration, scientific context, source records, results, acceptance
+  checks, software versions, limitations, artifacts, and checksums into one
+  relocatable evidence bundle.
+- Add a fail-closed `same-state-family` compatibility preflight for ensemble,
+  approximation, branch, parameter, boundary/source, convention, and unit
+  metadata.
+- Add optional bundle output to existing public verification and comparison
+  commands without changing their defaults or scientific results.
+- Demonstrate the workflow only with existing public benchmarks and synthetic
+  mismatch fixtures.
+- Follow the approved [Version 0.4 contract](docs/version-0.4.md) with public
+  schemas, documentation, command integration, and regression coverage.
+
 ## Explore-mode milestone
 
 - Publicly demonstrate the screening gates with synthetic or already-published
