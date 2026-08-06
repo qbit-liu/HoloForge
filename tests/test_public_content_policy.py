@@ -103,6 +103,32 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("recommended selections", template)
         self.assertIn("reason and scope effect", template)
 
+    def test_readme_leads_with_the_general_platform_not_example_domains(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        overview, implementations = readme.split(
+            "## Included reference implementations", maxsplit=1
+        )
+        lower_overview = " ".join(overview.lower().split())
+
+        self.assertIn("bottom-up gauge/gravity", lower_overview)
+        self.assertIn("do not define holoforge's scientific scope", lower_overview)
+        self.assertIn("remains **unreleased**", lower_overview)
+        self.assertIn("release tag or an exact commit", lower_overview)
+        for example_specific_term in (
+            "qcd",
+            "soft-wall",
+            "hard-wall",
+            "vector-meson",
+            "superconductor",
+            "pdg",
+            "kappa",
+            "m_n^2",
+        ):
+            self.assertNotIn(example_specific_term, lower_overview)
+
+        self.assertIn("holoforge verify soft-wall-vector", implementations)
+        self.assertIn("holoforge verify holographic-superconductor", implementations)
+
 
 if __name__ == "__main__":
     unittest.main()

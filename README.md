@@ -19,21 +19,18 @@ new parent domain, applications to an unexplored subfield or phenomenon inside
 an already holographic parent field, and method transfer or model improvement.
 See the [research-gate workflow](docs/research-gate-workflow.md).
 
-Version 0.1 starts with the quadratic soft-wall vector-meson spectrum. This is
-a useful first benchmark because the numerical eigenvalue problem can be
-checked against the exact result
-`m_n^2 = 4 kappa^2 (n + 1)`.
+## Framework scope
 
-Version 0.2 adds a second, structurally different benchmark: the linear
-instability and nonlinear dimension-two condensate of the minimal probe-limit
-holographic superconductor.
+HoloForge is not organized around one physical domain, model family, or
+observable. Its reusable contract is the chain from assumptions and sources
+to equations, boundary conditions, numerical evidence, observables, and
+explicit limitations.
 
-Version 0.3 adds a controlled comparison of quadratic soft-wall and hard-wall
-vector spectra against a frozen, uncertainty-aware PDG 2026 snapshot. The
-comparison uses ground-state-normalized ratios, preserves candidate and
-ambiguous interpretations tied to the current PDG 2026 listings, and treats
-numerical reproduction gates separately from descriptive agreement with the
-selected data.
+The current public release contains a deliberately small reference suite,
+chosen because its calculations have analytic or literature checks suitable
+for testing that contract. These examples demonstrate the framework; they do
+not define HoloForge's scientific scope or priority. Technical model details
+belong in the linked benchmark guides and version specifications.
 
 ## Release maturity and research use
 
@@ -42,6 +39,11 @@ calculation's equations, conventions, solver, acceptance gates, and exact
 package version or Git commit are recorded and independently checked. The
 `0.x` version number means the public interfaces may still change; it does not
 make a passing benchmark scientifically untrustworthy.
+
+The public `main` branch can move between releases. A merged change is visible
+and usable immediately, but remains **Unreleased** until it is included in a
+new version, Git tag, and GitHub Release. For reproducible work, pin either a
+release tag or an exact commit instead of relying on the moving branch.
 
 Private research should combine a pinned HoloForge release with
 project-specific equations, code, and validation in a separate repository.
@@ -67,47 +69,13 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python3 -m pip install -e ".[test]"
-holoforge verify soft-wall-vector
+holoforge --help
 python3 -m unittest discover -s tests -v
 ```
 
 Conda users may replace the first two commands with
 `conda create -n holoforge python=3.11` followed by
 `conda activate holoforge`.
-
-To change the soft-wall scale or emit machine-readable output:
-
-```bash
-holoforge verify soft-wall-vector --kappa 0.388 --json
-holoforge verify hard-wall-vector --json
-```
-
-Run the holographic-superconductor verifier and regenerate the dimension-two
-condensate curve with:
-
-```bash
-holoforge verify holographic-superconductor
-holoforge verify holographic-superconductor \
-  --plot artifacts/holographic-superconductor-delta2.png
-```
-
-The checked development output is shown in the
-[`Delta = 2` benchmark guide](docs/benchmarks/holographic-superconductor.md).
-
-Run the controlled v0.3 comparison and optionally regenerate its JSON,
-Markdown table, and plot with:
-
-```bash
-holoforge compare vector-spectrum
-holoforge compare vector-spectrum --output-dir artifacts/vector-spectrum
-```
-
-The plot requires the optional plotting dependency, installed with
-`python3 -m pip install -e ".[plot]"`.
-The equations, numerical cross-checks, reference-data assumptions, and
-interpretation limits are documented in the
-[`hard-wall benchmark guide`](docs/benchmarks/hard-wall-vector.md) and the
-[`vector-spectrum comparison guide`](docs/benchmarks/vector-spectrum-comparison.md).
 
 For benchmark use without schema-test dependencies, install with
 `python3 -m pip install -e .`. Until the package is installed, the command can
@@ -132,19 +100,27 @@ An agent can help execute a workflow, but it does not replace the benchmark
 acceptance gates, scientific review, or explicit authorization to disclose
 private research.
 
+## Included reference implementations
+
+The following are the reference calculations implemented today. Their names
+identify executable examples, not a restriction on future HoloForge domains.
+
+| Capability demonstrated | Command | Documentation |
+| --- | --- | --- |
+| Spectral eigenvalue verification with analytic and independent numerical checks | `holoforge verify soft-wall-vector` and `holoforge verify hard-wall-vector` | [soft-wall guide](docs/benchmarks/soft-wall-vector.md) and [hard-wall guide](docs/benchmarks/hard-wall-vector.md) |
+| Linear-instability and nonlinear-condensate verification | `holoforge verify holographic-superconductor` | [condensate benchmark guide](docs/benchmarks/holographic-superconductor.md) |
+| Controlled model/reference comparison with uncertainty provenance | `holoforge compare vector-spectrum` | [comparison guide](docs/benchmarks/vector-spectrum-comparison.md) |
+
+Commands accept documented options for machine-readable records and generated
+artifacts. Plot generation requires the optional dependency installed with
+`python3 -m pip install -e ".[plot]"`.
+
 ## Repository map
 
 - [`CONSTITUTION.md`](CONSTITUTION.md) defines the scientific rules of the
   project.
-- [`docs/version-0.1.md`](docs/version-0.1.md),
-  [`docs/version-0.1.1.md`](docs/version-0.1.1.md), and
-  [`docs/version-0.2.md`](docs/version-0.2.md) define the scientific release
-  contracts; [`docs/version-0.2.1.md`](docs/version-0.2.1.md) defines the
-  privacy-workflow patch, [`docs/version-0.2.2.md`](docs/version-0.2.2.md)
-  defines the reusable gate-workflow release, and
-  [`docs/version-0.2.3.md`](docs/version-0.2.3.md) defines the reusable-skills
-  patch, and [`docs/version-0.3.md`](docs/version-0.3.md) defines the controlled
-  comparison contract.
+- [`docs/version-*.md`](docs/) contains the scientific and infrastructure
+  contracts for each public release.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
   contribution workflow.
 - [`docs/agent-quickstart.md`](docs/agent-quickstart.md) explains how a new
@@ -182,9 +158,9 @@ They are repository workflows, not substitutes for scientific review.
 ## Project status
 
 This is an early scientific release (`0.3.0`), not a universal phenomenology
-or first-principles prediction package. Its benchmarks reproduce published
-model calculations; they do not establish those models as complete
-descriptions of their target physical systems.
+or first-principles prediction package. Its current reference implementations
+reproduce published model calculations; they do not establish those models as
+complete descriptions of their target physical systems.
 
 ## License
 

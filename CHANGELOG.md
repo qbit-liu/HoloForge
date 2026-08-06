@@ -10,6 +10,13 @@ All notable changes to HoloForge are recorded here.
   compatibility import, and a first-session guide with safe prompts,
   workflow selection, validation, and private Explore boundaries.
 
+### Changed
+
+- Reframed the README around HoloForge's domain-general gauge/gravity contract
+  and moved concrete model names into a compact reference-implementation
+  section, where they document current executable examples rather than define
+  the platform's scope.
+
 ### Scientific results
 
 - No model equation, solver, default, acceptance tolerance, benchmark output,
