@@ -73,5 +73,10 @@ material. A pull request that exports formerly private work must identify the
 public source or publication and confirm the research owner's explicit release
 approval without copying confidential review or working notes.
 
+Infrastructure changes to portable evidence or compatibility contracts must
+also run `tests.test_evidence`, `tests.test_evidence_schemas`, the full suite,
+and every affected public command. A passing evidence audit demonstrates
+integrity and declared compatibility only; it is not a new scientific result.
+
 By contributing, you agree that your contribution is licensed under the
 project's [BSD 3-Clause License](LICENSE).

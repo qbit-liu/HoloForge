@@ -105,6 +105,7 @@ identify executable examples, not a restriction on future HoloForge domains.
 | Spectral eigenvalue verification with analytic and independent numerical checks | `holoforge verify soft-wall-vector` and `holoforge verify hard-wall-vector` | [soft-wall guide](docs/benchmarks/soft-wall-vector.md) and [hard-wall guide](docs/benchmarks/hard-wall-vector.md) |
 | Linear-instability and nonlinear-condensate verification | `holoforge verify holographic-superconductor` | [condensate benchmark guide](docs/benchmarks/holographic-superconductor.md) |
 | Controlled model/reference comparison with uncertainty provenance | `holoforge compare vector-spectrum` | [comparison guide](docs/benchmarks/vector-spectrum-comparison.md) |
+| Portable provenance and scientific-state compatibility | Add `--bundle-dir PATH` to any command, then use `holoforge audit bundle` or `holoforge audit compatibility` | [evidence-bundle guide](docs/evidence-bundles.md) |
 
 Commands accept documented options for machine-readable records and generated
 artifacts. Plot generation requires the optional dependency installed with
@@ -122,8 +123,9 @@ artifacts. Plot generation requires the optional dependency installed with
   user starts HoloForge safely with Codex, Claude Code, or another agent.
 - [`CITATION.cff`](CITATION.cff) provides machine-readable citation metadata.
 - [`CHANGELOG.md`](CHANGELOG.md) records release-level changes.
-- [`schemas/`](schemas/) contains machine-readable model-card and
-  hypothesis-card, reference-data, prediction, and comparison contracts.
+- [`schemas/`](schemas/) contains machine-readable model-card,
+  hypothesis-card, reference-data, prediction, comparison, evidence-bundle,
+  and compatibility contracts.
 - [`domains/`](domains/) contains literature-anchored, testable models.
 - [`incubator/`](incubator/) contains only public-safe Explore examples and
   proposals.
@@ -152,10 +154,11 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-This is an early scientific release (`0.3.0`), not a universal phenomenology
-or first-principles prediction package. Its current reference implementations
-reproduce published model calculations; they do not establish those models as
-complete descriptions of their target physical systems.
+The latest public release is `0.3.0`; Version 0.4 is under development. This is
+not a universal phenomenology or first-principles prediction package. Its
+current reference implementations reproduce published model calculations;
+they do not establish those models as complete descriptions of their target
+physical systems.
 
 ## License
 

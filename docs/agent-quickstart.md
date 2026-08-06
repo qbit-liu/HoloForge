@@ -75,6 +75,12 @@ passing result does and does not establish. Do not change files.
 
 The available commands and benchmark guides are listed in `README.md`.
 
+To retain a portable, integrity-checked record, ask the agent to add
+`--bundle-dir` to the selected command and run `holoforge audit bundle` on the
+result. The [evidence-bundle guide](evidence-bundles.md) explains what the
+audit establishes, the narrower `same-state-family` compatibility check, and
+the disclosure review still required before sharing an artifact.
+
 ### Add a public Forge/Verify benchmark
 
 Use a published, established model and request the benchmark workflow:

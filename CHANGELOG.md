@@ -9,6 +9,15 @@ All notable changes to HoloForge are recorded here.
 - Cross-agent onboarding through a canonical `AGENTS.md`, a Claude Code
   compatibility import, and a first-session guide with safe prompts,
   workflow selection, validation, and private Explore boundaries.
+- Portable evidence bundles for every current verification and comparison
+  command, with relative paths, SHA-256 file hashes, deterministic scientific
+  payload identities, model-card provenance, acceptance evidence, software
+  versions, support levels, and limitations.
+- `holoforge audit bundle` integrity checks and a fail-closed
+  `holoforge audit compatibility` preflight for the narrow
+  `same-state-family` relation.
+- Versioned evidence-bundle and compatibility-report schemas, public usage
+  guidance, and focused portability, mutation, schema, CLI, and privacy tests.
 
 ### Changed
 
@@ -16,12 +25,15 @@ All notable changes to HoloForge are recorded here.
   and moved concrete model names into a compact reference-implementation
   section, where they document current executable examples rather than define
   the platform's scope.
+- Added optional `--bundle-dir` output without changing existing command
+  defaults, ordinary JSON records when the option is omitted, numerical
+  methods, or acceptance gates.
 
 ### Scientific results
 
-- No model equation, solver, default, acceptance tolerance, benchmark output,
-  schema contract, or scientific result changed. No private research artifact
-  or result is included.
+- No model equation, solver, default, acceptance tolerance, benchmark result,
+  or scientific interpretation changed. New schemas describe infrastructure
+  evidence only. No private research artifact or result is included.
 
 ## [0.3.0] - 2026-08-05
 

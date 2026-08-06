@@ -7,7 +7,12 @@ import tempfile
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 
+from jsonschema import Draft202012Validator
+
 from holoforge.cli import main
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class CommandLineTests(unittest.TestCase):
@@ -164,6 +169,92 @@ class CommandLineTests(unittest.TestCase):
             self.assertEqual(len(payload["model_predictions"]), 2)
             self.assertTrue(Path(payload["artifacts"]["json"]).is_file())
             self.assertNotIn("plot", payload["artifacts"])
+
+    def test_soft_wall_bundle_can_be_created_and_audited(self) -> None:
+        output = io.StringIO()
+        with tempfile.TemporaryDirectory() as directory:
+            bundle = Path(directory) / "bundle"
+            with redirect_stdout(output):
+                status = main(
+                    [
+                        "verify",
+                        "soft-wall-vector",
+                        "--grid-points",
+                        "600",
+                        "--tolerance",
+                        "2e-4",
+                        "--bundle-dir",
+                        str(bundle),
+                        "--json",
+                    ]
+                )
+            payload = json.loads(output.getvalue())
+            self.assertEqual(status, 0)
+            self.assertEqual(Path(payload["evidence_bundle"]), bundle)
+
+            output = io.StringIO()
+            with redirect_stdout(output):
+                audit_status = main(["audit", "bundle", str(bundle), "--json"])
+            audit_payload = json.loads(output.getvalue())
+            self.assertEqual(audit_status, 0)
+            self.assertTrue(audit_payload["passed"])
+
+    def test_bundle_generation_preserves_existing_directory_content(self) -> None:
+        error = io.StringIO()
+        with tempfile.TemporaryDirectory() as directory:
+            bundle = Path(directory) / "bundle"
+            bundle.mkdir()
+            marker = bundle / "keep.txt"
+            marker.write_text("keep", encoding="utf-8")
+            with redirect_stderr(error):
+                status = main(
+                    [
+                        "verify",
+                        "soft-wall-vector",
+                        "--bundle-dir",
+                        str(bundle),
+                    ]
+                )
+            self.assertEqual(status, 2)
+            self.assertEqual(marker.read_text(encoding="utf-8"), "keep")
+            self.assertIn("must be empty", error.getvalue())
+
+    def test_every_current_command_can_emit_an_auditable_bundle(self) -> None:
+        bundle_schema = json.loads(
+            (ROOT / "schemas/evidence-bundle.schema.json").read_text()
+        )
+        validator = Draft202012Validator(bundle_schema)
+        cases = (
+            ("soft-wall", ["verify", "soft-wall-vector", "--grid-points", "600"]),
+            ("hard-wall", ["verify", "hard-wall-vector", "--modes", "2"]),
+            (
+                "superconductor",
+                [
+                    "verify",
+                    "holographic-superconductor",
+                    "--branch-points",
+                    "8",
+                ],
+            ),
+            ("comparison", ["compare", "vector-spectrum"]),
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            for label, command in cases:
+                with self.subTest(command=label):
+                    bundle = Path(directory) / label
+                    output = io.StringIO()
+                    with redirect_stdout(output):
+                        status = main(command + ["--bundle-dir", str(bundle)])
+                    self.assertEqual(status, 0, output.getvalue())
+                    audit_output = io.StringIO()
+                    with redirect_stdout(audit_output):
+                        audit_status = main(
+                            ["audit", "bundle", str(bundle), "--json"]
+                        )
+                    self.assertEqual(audit_status, 0, audit_output.getvalue())
+                    validator.validate(
+                        json.loads((bundle / "manifest.json").read_text())
+                    )
 
 
 if __name__ == "__main__":
