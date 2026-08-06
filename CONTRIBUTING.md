@@ -15,6 +15,11 @@ python -m unittest discover -s tests -v
 holoforge verify soft-wall-vector
 ```
 
+Contributors using Codex, Claude Code, or another coding agent should first
+follow the [agent quick-start guide](docs/agent-quickstart.md). The canonical
+repository context is `AGENTS.md`; `CLAUDE.md` imports the same instructions so
+the scientific and privacy rules are not duplicated across agent products.
+
 ## Choose the correct workflow
 
 ### Forge/Verify
