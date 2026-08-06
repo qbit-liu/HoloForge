@@ -113,6 +113,24 @@ For benchmark use without schema-test dependencies, install with
 `python3 -m pip install -e .`. Until the package is installed, the command can
 also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
 
+## Start with an AI coding agent
+
+Open the cloned HoloForge folder as the agent's workspace so it can see the
+repository instructions, documentation, and scoped workflows. Begin with the
+[agent quick-start guide](docs/agent-quickstart.md), which provides setup
+commands, an inspect-only first prompt, task-specific prompts, private Explore
+guidance, and a checklist for reviewing agent-generated changes.
+
+- `AGENTS.md` is the canonical cross-agent project context and is read by
+  Codex.
+- `CLAUDE.md` imports that same context for Claude Code.
+- Agents without automatic project-instruction or skill discovery should be
+  asked explicitly to read `AGENTS.md` and the matching workflow under
+  `.agents/skills/`.
+
+An agent can help execute a workflow, but it does not replace the benchmark
+acceptance gates, scientific review, or explicit authorization to disclose
+private research.
 
 ## Repository map
 
@@ -129,6 +147,8 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
   comparison contract.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
   contribution workflow.
+- [`docs/agent-quickstart.md`](docs/agent-quickstart.md) explains how a new
+  user starts HoloForge safely with Codex, Claude Code, or another agent.
 - [`CITATION.cff`](CITATION.cff) provides machine-readable citation metadata.
 - [`CHANGELOG.md`](CHANGELOG.md) records release-level changes.
 - [`schemas/`](schemas/) contains machine-readable model-card and
@@ -138,9 +158,8 @@ also be run from the checkout with `PYTHONPATH=src python3 -m holoforge ...`.
   proposals.
 - [`.agents/skills/`](.agents/skills/) contains repository-scoped reusable
   workflows for research gates, benchmark development, and privacy-reviewed
-  public exports. Current Codex versions discover these skills automatically
-  when launched inside the repository; they follow the open Agent Skills
-  format and can also be inspected or adapted by other agents.
+  public exports. Supported agents may discover these skills automatically;
+  every agent can instead read the matching `SKILL.md` directly.
 - [`src/holoforge/`](src/holoforge/) contains reusable software.
 - [`tests/`](tests/) holds analytic, numerical, schema, and interface checks.
 

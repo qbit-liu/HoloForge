@@ -2,6 +2,20 @@
 
 All notable changes to HoloForge are recorded here.
 
+## [Unreleased]
+
+### Added
+
+- Cross-agent onboarding through a canonical `AGENTS.md`, a Claude Code
+  compatibility import, and a first-session guide with safe prompts,
+  workflow selection, validation, and private Explore boundaries.
+
+### Scientific results
+
+- No model equation, solver, default, acceptance tolerance, benchmark output,
+  schema contract, or scientific result changed. No private research artifact
+  or result is included.
+
 ## [0.3.0] - 2026-08-05
 
 ### Added
