@@ -26,10 +26,12 @@ from holoforge.benchmarks.soft_wall_vector import (
     schrodinger_potential,
     solve_spectrum,
 )
+from holoforge.benchmarks.registry import BUILTIN_BENCHMARKS
 
 __all__ = [
     "CondensateBranchResult",
     "CondensateConfig",
+    "BUILTIN_BENCHMARKS",
     "HardWallConfig",
     "HardWallRefinementResult",
     "HardWallSpectrumResult",

@@ -122,6 +122,13 @@ Compile twice, inspect the log for layout warnings, render every page to an
 image, and visually check clipping, overlaps, equations, tables, plots,
 headers, and page numbers before delivery.
 
+This conditional rule applies to both private Explore gates and public
+Forge/Verify scientific-contract reviews. When the decision owner has stated
+that Markdown equations are difficult to review, prepare and verify the PDF
+before requesting scientific approval. The requirement must be read from this
+checked-in workflow and the matching agent skill, not inferred from
+conversational memory.
+
 ## Public contribution boundary
 
 Public HoloForge may receive the generic workflow, reusable framework

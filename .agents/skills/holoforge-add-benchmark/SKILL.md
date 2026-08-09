@@ -1,6 +1,6 @@
 ---
 name: holoforge-add-benchmark
-description: Design, implement, review, or extend a public HoloForge Forge/Verify benchmark with explicit literature provenance, equations, boundary conditions, maintained numerical libraries, convergence evidence, acceptance gates, model cards, documentation, and tests. Use for established bottom-up models cleared for public release. Do not use for unpublished Explore candidates or to present model agreement as empirical validation.
+description: Design, review, implement, or extend a public HoloForge Forge/Verify benchmark with explicit literature provenance, equations, boundary conditions, maintained numerical libraries, convergence evidence, acceptance gates, model cards, documentation, and tests. Use for established bottom-up models cleared for public release, including owner review of scientific contracts. When equations, tables, or plots are difficult to review reliably in Markdown, prepare a compiled and visually checked PDF review packet before requesting scientific approval. Do not use for unpublished Explore candidates or to present model agreement as empirical validation.
 ---
 
 # HoloForge Add Benchmark
@@ -22,6 +22,20 @@ new numerical problem into an unsuitable common solver interface.
 
 Do not begin substantial implementation until the scientific contract is
 reviewable.
+
+## Make scientific review readable
+
+When equations, tables, or plots are difficult to review reliably in Markdown,
+stop before requesting owner approval and prepare a PDF from
+`docs/templates/review-packet-template.tex`. Include the conventions, sources
+and responses, equations, parameters, acceptance gates, limitations, hostile
+critic, and exact owner decisions with an item-by-item recommendation.
+
+Compile twice, inspect the log for layout warnings, render every page to an
+image, and visually check clipping, overlaps, equations, tables, plots,
+headers, and page numbers. A readable packet enables review; it is not itself
+approval. Do not begin implementation until the owner reviews the packet and
+confirms or revises the scientific contract.
 
 ## Implement narrowly
 

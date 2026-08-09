@@ -21,11 +21,24 @@ from holoforge.core.evidence import (
     write_evidence_bundle,
 )
 from holoforge.core.provenance import runtime_versions
+from holoforge.core.registry import (
+    BenchmarkAdapter,
+    BenchmarkExecution,
+    BenchmarkExecutionError,
+    BenchmarkRegistry,
+    BenchmarkRegistryError,
+    ModelCardReference,
+)
 
 __all__ = [
     "AcceptanceCheck",
     "BackgroundSpec",
+    "BenchmarkAdapter",
     "BenchmarkDefinition",
+    "BenchmarkExecution",
+    "BenchmarkExecutionError",
+    "BenchmarkRegistry",
+    "BenchmarkRegistryError",
     "BoundaryConditionSpec",
     "BundleAuditResult",
     "CompatibilityAuditResult",
@@ -33,6 +46,7 @@ __all__ = [
     "EvidenceBundleError",
     "ObservableSpec",
     "NormalizedSpectrum",
+    "ModelCardReference",
     "SolverSpec",
     "VerificationRecord",
     "audit_evidence_bundle",
