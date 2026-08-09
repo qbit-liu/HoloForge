@@ -54,6 +54,10 @@ class Version05PolicyTests(unittest.TestCase):
         self.assertIn("holoforge audit bundle relocated/portability-bundle", workflow)
         self.assertNotIn("continue-on-error", workflow)
 
+    def test_scientific_json_hashes_are_checkout_portable(self) -> None:
+        attributes = (ROOT / ".gitattributes").read_text()
+        self.assertIn("*.json text eol=lf", attributes)
+
     def test_release_metadata_is_synchronized(self) -> None:
         self.assertEqual(holoforge.__version__, "0.5.0")
         citation = (ROOT / "CITATION.cff").read_text()

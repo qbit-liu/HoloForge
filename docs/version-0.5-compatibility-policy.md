@@ -36,6 +36,9 @@ audit gate failed. Exit `2` means invalid input, an unsupported setup, or a
 controlled execution failure. A patch may add an optional field or option only
 when existing invocations and meanings remain valid.
 
+Checked-in JSON records use LF line endings on every supported platform so
+their reviewed raw SHA-256 digests do not change during a Windows checkout.
+
 ## Protected Python API
 
 The following deliberately exported names are protected throughout `0.5.x`.
