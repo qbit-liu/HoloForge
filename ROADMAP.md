@@ -88,7 +88,7 @@
 - Follow the approved [Version 0.4 contract](docs/version-0.4.md) with public
   schemas, documentation, command integration, and regression coverage.
 
-## Version 0.5 — stable extension and compatibility beta (specification approved)
+## Version 0.5 — stable extension and compatibility beta (complete)
 
 - Replace benchmark-specific central dispatch with a tested in-repository
   registry and adapter while preserving existing public behavior.
@@ -100,10 +100,9 @@
   Windows CI runners.
 - Add one owner-selected, literature-anchored public benchmark through the
   extension contract without a new central special case.
-- Follow the owner-review draft
-  [Version 0.5 specification](docs/version-0.5.md) and its
-  [public benchmark shortlist](docs/version-0.5-benchmark-shortlist.md) before
-  implementation.
+- Follow the implemented [Version 0.5 specification](docs/version-0.5.md),
+  [compatibility policy](docs/version-0.5-compatibility-policy.md), and
+  [public benchmark shortlist](docs/version-0.5-benchmark-shortlist.md).
 
 ## Explore-mode milestone
 

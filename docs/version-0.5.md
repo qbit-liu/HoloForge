@@ -1,8 +1,7 @@
 # HoloForge Version 0.5 Specification
 
-**Status:** specification and Decisions 1–5 approved by Xin-Yi Liu on
-2026-08-06. Candidate A is selected only for detailed contract preparation.
-Implementation, commit, publication, and release remain separate decisions.
+**Status:** implemented and approved by Xin-Yi Liu for the public `v0.5.0`
+release on 2026-08-09.
 
 ## Recommendation
 
@@ -193,14 +192,13 @@ The detailed owner-review contract is
   artifacts.
 - Confirm that no central dispatch or evidence special case was needed.
 
-The selected benchmark now has a locally verified implementation whose
+The selected benchmark has a merged, publicly reviewable implementation whose
 scientific result and provenance were owner-approved on 2026-08-09.
 Its equations, finite-frequency reconstruction, radial-flux audit, DC
 extrapolation, refinements, machine record, and exact numerical results are
 documented in the
 [`linear-axion-dc` guide](benchmarks/linear-axion-dc.md). The model-card support
-level remains `reproduced`; the approval does not authorize a commit,
-publication, or release.
+level remains `reproduced`; release approval does not broaden that claim.
 
 Candidate A's detailed owner-review contract is
 [`benchmarks/linear-axion-dc-contract.md`](benchmarks/linear-axion-dc-contract.md).
@@ -346,3 +344,15 @@ benchmark, is selected only for preparation of a separate scientific
 contract. No registry refactor, benchmark implementation, commit, push, pull
 request, merge, tag, release, private transfer, or research disclosure is
 authorized by this approval record.
+
+## Subsequent implementation and release record
+
+After the specification approval above, Xin-Yi Liu separately approved the
+Phase A registry migration, the selected benchmark's frozen scientific
+contract and reproduced support state, its implementation and provenance, the
+public commits and pull request, merge, and the `v0.5.0` release on
+2026-08-09. Version 0.5 also publishes the bounded
+[compatibility and support policy](version-0.5-compatibility-policy.md) and
+tests built-wheel portability on Ubuntu, macOS, and Windows. The historical
+decision boundaries above are retained to show that scientific approval did
+not silently authorize publication.
