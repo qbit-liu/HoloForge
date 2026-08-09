@@ -85,6 +85,36 @@ class PublicContentPolicyTests(unittest.TestCase):
         for private_identifier in ("C01", "C02", "C03", "D001", "M001"):
             self.assertNotIn(private_identifier, combined)
 
+    def test_pdf_review_rule_covers_explore_and_forge_verify(self):
+        workflow = " ".join(
+            (ROOT / "docs/research-gate-workflow.md")
+            .read_text(encoding="utf-8")
+            .lower()
+            .split()
+        )
+        benchmark_skill = " ".join(
+            (ROOT / ".agents/skills/holoforge-add-benchmark/SKILL.md")
+            .read_text(encoding="utf-8")
+            .lower()
+            .split()
+        )
+
+        self.assertIn("private explore gates", workflow)
+        self.assertIn("public forge/verify scientific-contract reviews", workflow)
+        self.assertIn("difficult to review reliably in markdown", benchmark_skill)
+        self.assertIn("before requesting owner approval", benchmark_skill)
+        self.assertIn("docs/templates/review-packet-template.tex", benchmark_skill)
+        self.assertIn("compile twice", benchmark_skill)
+        self.assertIn("render every page", benchmark_skill)
+        self.assertIn("not itself approval", benchmark_skill)
+
+        ignored = {
+            line.strip()
+            for line in (ROOT / ".gitignore").read_text(encoding="utf-8").splitlines()
+        }
+        self.assertIn("/output/", ignored)
+        self.assertIn("/tmp/", ignored)
+
     def test_every_owner_decision_request_requires_a_recommendation(self):
         workflow = (ROOT / "docs/research-gate-workflow.md").read_text(
             encoding="utf-8"

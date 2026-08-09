@@ -1,0 +1,212 @@
+{
+  "schema_version": "0.1",
+  "id": "transport.linear-axion-dc.andrade-withers",
+  "title": "Linear-axion DC conductivity",
+  "mode": "forge-verify",
+  "domain": "holographic-transport",
+  "maturity": "reproduced",
+  "summary": "A finite-frequency master-field reproduction of the four-dimensional DC conductivity in the homogeneous bottom-up Einstein-Maxwell model with two linear massless-scalar sources.",
+  "source": {
+    "title": "A simple holographic model of momentum relaxation",
+    "authors": [
+      "Tomas Andrade",
+      "Benjamin Withers"
+    ],
+    "locator": "arXiv:1311.5157",
+    "version": "v2",
+    "url": "https://arxiv.org/abs/1311.5157",
+    "doi": "10.1007/JHEP05(2014)101",
+    "equation_refs": [
+      "Eqs. (2.1)-(2.9)",
+      "Eqs. (3.2)-(3.21)",
+      "Eqs. (3.24)-(3.26)",
+      "Appendix A"
+    ]
+  },
+  "conventions": [
+    {
+      "name": "bulk theory and units",
+      "value": "Four bulk dimensions, AdS radius L = 1, metric signature (-,+,+,+), 16 pi G = 1, Lambda = -3",
+      "rationale": "Matches the source action and the d = 3 specialization used for the exact DC target."
+    },
+    {
+      "name": "radial scale",
+      "value": "Source coordinate r with horizon r0 = 1 and UV boundary r -> infinity",
+      "rationale": "Uses scaling symmetry while retaining mu/r0, alpha/r0, and omega/r0 as dimensionless inputs."
+    },
+    {
+      "name": "background sources and ensemble",
+      "value": "Grand canonical with nonzero chemical-potential source mu and nonzero scalar-source gradient alpha",
+      "rationale": "The background is homogeneous but not source free; the scalar sources explicitly break translations."
+    },
+    {
+      "name": "fluctuation sources",
+      "value": "Unit gauge perturbation a_x^(0) = 1 and zero gauge-invariant scalar/metric source omega chi_0 - i alpha^2 H_tx^(0)",
+      "rationale": "The invariant obstruction vanishes, after which one residual boundary diffeomorphism sets the individual scalar and metric sources to zero."
+    },
+    {
+      "name": "retarded response",
+      "value": "Fields have time dependence exp(-i omega t) and use the ingoing horizon branch",
+      "rationale": "Fixes the sign of the retarded conductivity and the Frobenius exponent."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "horizon scale",
+      "symbol": "r0",
+      "value": 1.0,
+      "unit": "scale unit",
+      "role": "fixed",
+      "description": "Fixed by scaling symmetry in every numerical solve."
+    },
+    {
+      "name": "chemical-potential cases",
+      "symbol": "mu/r0",
+      "value": "P1: 0.5; P2: 1.0; P3: 1.0",
+      "unit": "dimensionless",
+      "role": "input",
+      "description": "Frozen nonzero gauge-source values."
+    },
+    {
+      "name": "axion-gradient cases",
+      "symbol": "alpha/r0",
+      "value": "P1: 1.0; P2: 1.0; P3: sqrt(2)",
+      "unit": "dimensionless",
+      "role": "input",
+      "description": "Frozen nonzero translation-breaking scalar-source gradients."
+    },
+    {
+      "name": "frequency sequence",
+      "symbol": "omega/r0",
+      "value": "0.08, 0.05, 0.03, 0.02",
+      "unit": "dimensionless",
+      "role": "input",
+      "description": "Preregistered finite-frequency sequence used for the DC extrapolation."
+    },
+    {
+      "name": "horizon cutoff",
+      "symbol": "epsilon_h/r0",
+      "value": 0.000001,
+      "unit": "dimensionless",
+      "role": "input",
+      "allowed_range": [0.0000001, 0.001],
+      "description": "Numerical regulator for the ingoing Frobenius initialization; halved in the refinement test."
+    }
+  ],
+  "equations": [
+    {
+      "id": "background",
+      "expression": "f(r) = r^2 - alpha^2/2 - m0/r + mu^2/(4 r^2), m0 = 1 + mu^2/4 - alpha^2/2, A_t = mu(1 - 1/r)",
+      "description": "Exact charged linear-axion black-brane background with r0 = 1.",
+      "source_ref": "Source Eqs. (2.3)-(2.5), specialized to d = 3."
+    },
+    {
+      "id": "master-fields",
+      "expression": "r^2 (f Phi_pm')' + [r^2 omega^2/f - mu^2/r^2 + c_pm mu/r] Phi_pm = 0",
+      "description": "Two decoupled gauge-invariant complex master equations.",
+      "source_ref": "Source Eqs. (3.24)-(3.26), specialized to d = 3 and zero momentum."
+    },
+    {
+      "id": "reconstruction",
+      "expression": "phi = r(c_plus Phi_plus + c_minus Phi_minus), a_x = -i(Phi_plus + Phi_minus)",
+      "description": "Reconstruction of the coupled gauge/scalar fluctuation variables.",
+      "source_ref": "Source Eq. (3.24), specialized to d = 3."
+    },
+    {
+      "id": "flux-balance",
+      "expression": "Pi' + omega^2 B lambda_1/f = 0",
+      "description": "Finite-frequency radial balance identity whose DC limit is conserved.",
+      "source_ref": "Source Eqs. (3.10)-(3.16), specialized to d = 3."
+    }
+  ],
+  "observables": [
+    {
+      "name": "complex electric conductivity",
+      "symbol": "sigma(omega)",
+      "unit": "dimensionless",
+      "extraction": "Fit a_x = a_x^(0) + J_x/r + ... and evaluate J_x/[i omega a_x^(0)]."
+    },
+    {
+      "name": "DC electric conductivity",
+      "symbol": "sigma_DC",
+      "unit": "dimensionless",
+      "extraction": "Extrapolate Re sigma linearly in omega^2 and compare with independent radial-flux intercepts and the exact target 1 + mu^2/alpha^2."
+    }
+  ],
+  "validation": {
+    "acceptance_criteria": [
+      "The exact horizon, temperature identity, and Maxwell radial flux satisfy gates 1-3.",
+      "The ingoing initialization improves under horizon-cutoff refinement and the UV source-map residuals are below 1e-8 with condition number below 1e10.",
+      "The reconstructed source equations and finite-frequency flux balance have normalized residuals below 1e-6.",
+      "The radial DC intercepts agree within 5e-3 relative spread and each boundary DC value agrees with 1 + mu^2/alpha^2 within 5e-3 relative error.",
+      "The imaginary intercept, frequency-fit stability, horizon refinement, UV refinement, and integrator-tolerance refinement pass the frozen gates."
+    ],
+    "tests": [
+      {
+        "id": "source-and-equation-gates",
+        "kind": "analytic",
+        "command": "python3 -m unittest tests.test_linear_axion_dc -v",
+        "expected": "Background identities, source conditions, reconstructed equations, and flux balance pass their declared residual gates.",
+        "status": "pass"
+      },
+      {
+        "id": "dc-reproduction",
+        "kind": "regression",
+        "command": "python3 -m unittest tests.test_linear_axion_dc -v",
+        "expected": "All three finite-frequency DC extrapolations reproduce the exact source-model values within 5e-3 relative error.",
+        "status": "pass"
+      },
+      {
+        "id": "numerical-refinements",
+        "kind": "convergence",
+        "command": "python3 -m unittest tests.test_linear_axion_dc -v",
+        "expected": "Horizon-cutoff, UV-endpoint, and integrator-tolerance refinements remain within their frozen limits.",
+        "status": "pass"
+      }
+    ],
+    "last_verified": "2026-08-09"
+  },
+  "claims": [
+    {
+      "statement": "For four bulk dimensions, the source model has exact DC conductivity sigma_DC = 1 + mu^2/alpha^2 at fixed nonzero chemical-potential and scalar-gradient sources.",
+      "support_level": "established-source",
+      "evidence": "Andrade and Withers, arXiv:1311.5157v2, Eq. (3.21).",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-07"
+    },
+    {
+      "statement": "The HoloForge finite-frequency master-field implementation reproduces all three frozen DC conductivities within the declared thirteen-gate contract.",
+      "support_level": "reproduced",
+      "evidence": "Automated source-map, reconstruction, flux, DC-extrapolation, and refinement checks in tests/test_linear_axion_dc.py.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-09"
+    }
+  ],
+  "limitations": [
+    "This is a classical bottom-up effective model and no top-down string embedding is claimed.",
+    "The nonzero scalar sources explicitly break translations; the UV problem is not source free.",
+    "The neutral mu = 0, translation-invariant alpha = 0, and extremal limits are excluded from the verifier.",
+    "The frozen low-frequency sequence tests the DC limit but is not a full optical-conductivity spectrum.",
+    "Agreement verifies the implementation of the selected source model; it is not empirical validation of a material or a microscopic momentum-relaxation mechanism."
+  ],
+  "provenance": {
+    "created_on": "2026-08-09",
+    "created_by": "HoloForge Version 0.5 development",
+    "implementation_path": "src/holoforge/benchmarks/linear_axion_dc.py",
+    "ai_assistance": true,
+    "ai_roles": [
+      "source transcription",
+      "asymptotic source-map derivation",
+      "implementation drafting",
+      "test drafting",
+      "documentation drafting"
+    ],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-09"
+  }
+}

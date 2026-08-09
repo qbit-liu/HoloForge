@@ -6,10 +6,11 @@ import shutil
 import tempfile
 import unittest
 
-from holoforge.cli import (
-    _HARD_WALL_MODEL_CARD,
-    _SOFT_WALL_MODEL_CARD,
-    _SUPERCONDUCTOR_MODEL_CARD,
+from holoforge.benchmarks.registry import (
+    HARD_WALL_MODEL_CARD,
+    LINEAR_AXION_MODEL_CARD,
+    SOFT_WALL_MODEL_CARD,
+    SUPERCONDUCTOR_MODEL_CARD,
 )
 from holoforge.core.evidence import (
     EvidenceBundleError,
@@ -69,7 +70,7 @@ def write_synthetic_bundle(
         command_identity="verify synthetic-public-evidence-test",
         result_record=synthetic_result(),
         scientific_state=state,
-        model_card_references=(_SOFT_WALL_MODEL_CARD,),
+        model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
         created_at_utc="2026-08-06T00:00:00Z",
     )
 
@@ -117,7 +118,7 @@ class EvidenceBundleTests(unittest.TestCase):
                 command_identity="verify synthetic-public-evidence-test",
                 result_record=synthetic_result(),
                 scientific_state=synthetic_state(),
-                model_card_references=(_SOFT_WALL_MODEL_CARD,),
+                model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
                 created_at_utc="2026-08-06T00:00:00Z",
             )
             write_evidence_bundle(
@@ -125,7 +126,7 @@ class EvidenceBundleTests(unittest.TestCase):
                 command_identity="verify synthetic-public-evidence-test",
                 result_record=synthetic_result(),
                 scientific_state=synthetic_state(),
-                model_card_references=(_SOFT_WALL_MODEL_CARD,),
+                model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
                 created_at_utc="2026-08-06T01:00:00Z",
             )
             first_manifest = json.loads((first / "manifest.json").read_text())
@@ -243,7 +244,7 @@ class EvidenceBundleTests(unittest.TestCase):
                     command_identity="verify synthetic-public-evidence-test",
                     result_record=result,
                     scientific_state=synthetic_state(),
-                    model_card_references=(_SOFT_WALL_MODEL_CARD,),
+                    model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
                 )
 
     def test_private_identity_metadata_is_rejected(self) -> None:
@@ -256,7 +257,7 @@ class EvidenceBundleTests(unittest.TestCase):
                     command_identity="verify synthetic-public-evidence-test",
                     result_record=result,
                     scientific_state=synthetic_state(),
-                    model_card_references=(_SOFT_WALL_MODEL_CARD,),
+                    model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
                 )
 
     def test_manifest_records_support_level_and_limitations(self) -> None:
@@ -279,13 +280,14 @@ class EvidenceBundleTests(unittest.TestCase):
 
     def test_embedded_model_card_hashes_match_public_records(self) -> None:
         for reference in (
-            _SOFT_WALL_MODEL_CARD,
-            _HARD_WALL_MODEL_CARD,
-            _SUPERCONDUCTOR_MODEL_CARD,
+            SOFT_WALL_MODEL_CARD,
+            HARD_WALL_MODEL_CARD,
+            SUPERCONDUCTOR_MODEL_CARD,
+            LINEAR_AXION_MODEL_CARD,
         ):
-            with self.subTest(model_card=reference["id"]):
-                model_card_path = ROOT / reference["repository_path"]
-                self.assertEqual(file_sha256(model_card_path), reference["sha256"])
+            with self.subTest(model_card=reference.identifier):
+                model_card_path = ROOT / reference.repository_path
+                self.assertEqual(file_sha256(model_card_path), reference.sha256)
 
     def test_artifact_is_copied_and_audited_inside_bundle(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -297,7 +299,7 @@ class EvidenceBundleTests(unittest.TestCase):
                 command_identity="verify synthetic-public-evidence-test",
                 result_record=synthetic_result(),
                 scientific_state=synthetic_state(),
-                model_card_references=(_SOFT_WALL_MODEL_CARD,),
+                model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
                 artifacts={"figure": source},
             )
             manifest = json.loads((bundle / "manifest.json").read_text())

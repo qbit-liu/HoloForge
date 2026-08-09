@@ -19,6 +19,16 @@ from holoforge.benchmarks.holographic_superconductor import (
     solve_onset,
     verify_superconductor,
 )
+from holoforge.benchmarks.linear_axion_dc import (
+    LinearAxionCaseResult,
+    LinearAxionFrequencyResult,
+    LinearAxionPreflightConfig,
+    LinearAxionRefinementEvidence,
+    LinearAxionVerificationResult,
+    solve_linear_axion_case,
+    solve_linear_axion_frequency,
+    verify_linear_axion_dc,
+)
 from holoforge.benchmarks.soft_wall_vector import (
     SoftWallConfig,
     SpectrumResult,
@@ -26,13 +36,20 @@ from holoforge.benchmarks.soft_wall_vector import (
     schrodinger_potential,
     solve_spectrum,
 )
+from holoforge.benchmarks.registry import BUILTIN_BENCHMARKS
 
 __all__ = [
     "CondensateBranchResult",
     "CondensateConfig",
+    "BUILTIN_BENCHMARKS",
     "HardWallConfig",
     "HardWallRefinementResult",
     "HardWallSpectrumResult",
+    "LinearAxionCaseResult",
+    "LinearAxionFrequencyResult",
+    "LinearAxionPreflightConfig",
+    "LinearAxionRefinementEvidence",
+    "LinearAxionVerificationResult",
     "OnsetConfig",
     "OnsetResult",
     "SoftWallConfig",
@@ -45,7 +62,10 @@ __all__ = [
     "schrodinger_potential",
     "solve_condensate_branch",
     "solve_hard_wall_spectrum",
+    "solve_linear_axion_case",
+    "solve_linear_axion_frequency",
     "solve_onset",
     "solve_spectrum",
     "verify_superconductor",
+    "verify_linear_axion_dc",
 ]

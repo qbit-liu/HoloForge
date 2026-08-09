@@ -13,6 +13,10 @@ htmlcov/
 .ruff_cache/
 .mypy_cache/
 
+# Locally compiled owner-review packets and their build intermediates.
+/output/
+/tmp/
+
 # Local guard only: keep unpublished Explore work in a separate private
 # repository whenever possible. These names must never be committed here.
 /.private-research/

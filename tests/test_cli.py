@@ -149,6 +149,28 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(status, 2)
         self.assertIn("epsilon_fraction", error.getvalue())
 
+    def test_linear_axion_dc_json_contains_sources_and_dc_checks(self) -> None:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = main(["verify", "linear-axion-dc", "--json"])
+        payload = json.loads(output.getvalue())
+
+        self.assertEqual(status, 0)
+        self.assertTrue(payload["passed"])
+        self.assertEqual(payload["benchmark"], "linear-axion-dc")
+        self.assertIn("grand canonical", payload["configuration"]["ensemble"])
+        self.assertEqual(len(payload["results"]["cases"]), 3)
+        self.assertEqual(len(payload["acceptance_checks"]), 15)
+
+    def test_linear_axion_dc_human_output_states_scope(self) -> None:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = main(["verify", "linear-axion-dc"])
+
+        self.assertEqual(status, 0)
+        self.assertIn("PASS: all declared acceptance gates", output.getvalue())
+        self.assertIn("not empirical validation", output.getvalue())
+
     def test_vector_comparison_json_and_artifacts(self) -> None:
         output = io.StringIO()
         with tempfile.TemporaryDirectory() as directory:
@@ -236,6 +258,7 @@ class CommandLineTests(unittest.TestCase):
                     "8",
                 ],
             ),
+            ("linear-axion", ["verify", "linear-axion-dc"]),
             ("comparison", ["compare", "vector-spectrum"]),
         )
         with tempfile.TemporaryDirectory() as directory:

@@ -1,4 +1,4 @@
 interface:
   display_name: "HoloForge Add Benchmark"
   short_description: "Add a verification-first holographic benchmark"
-  default_prompt: "Use $holoforge-add-benchmark to design and implement a verified HoloForge benchmark."
+  default_prompt: "Use $holoforge-add-benchmark to design, review, and implement a verified HoloForge benchmark."
