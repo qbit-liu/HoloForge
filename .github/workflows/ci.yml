@@ -46,6 +46,7 @@ jobs:
         run: |
           holoforge verify soft-wall-vector
           holoforge verify holographic-superconductor
+          holoforge verify linear-axion-dc
 
   package:
     name: Build and smoke-test wheel
@@ -77,3 +78,4 @@ jobs:
           python -c "from importlib.metadata import version; import holoforge; assert holoforge.__version__ == version('holoforge')"
           holoforge verify soft-wall-vector
           holoforge verify holographic-superconductor
+          holoforge verify linear-axion-dc

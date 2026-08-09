@@ -8,6 +8,7 @@ import unittest
 
 from holoforge.benchmarks.registry import (
     HARD_WALL_MODEL_CARD,
+    LINEAR_AXION_MODEL_CARD,
     SOFT_WALL_MODEL_CARD,
     SUPERCONDUCTOR_MODEL_CARD,
 )
@@ -282,6 +283,7 @@ class EvidenceBundleTests(unittest.TestCase):
             SOFT_WALL_MODEL_CARD,
             HARD_WALL_MODEL_CARD,
             SUPERCONDUCTOR_MODEL_CARD,
+            LINEAR_AXION_MODEL_CARD,
         ):
             with self.subTest(model_card=reference.identifier):
                 model_card_path = ROOT / reference.repository_path
