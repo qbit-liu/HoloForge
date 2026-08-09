@@ -1,0 +1,3 @@
+# Scientific JSON records may be referenced by raw SHA-256 digests. Keep their
+# checkout bytes identical on Windows, macOS, and Linux.
+*.json text eol=lf

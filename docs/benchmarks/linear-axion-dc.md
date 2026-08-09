@@ -96,5 +96,6 @@ record requirements are in
 - It verifies a bounded DC extrapolation, not a full optical spectrum.
 - The fields are classical and the model is phenomenological and bottom-up.
 - No fit to experimental transport data is performed.
-- Commit, publication, and release require separate owner decisions. The model
-  card records the owner's 2026-08-09 scientific and provenance review.
+- The model card records the owner's 2026-08-09 scientific and provenance
+  review. Public release does not broaden the reproduced claim or authorize
+  disclosure of any private Explore work.

@@ -4,6 +4,40 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-08-09
+
+### Added
+
+- A deterministic in-repository benchmark registry and adapter contract for
+  command execution, evidence handoff, model-card references, and controlled
+  failures without a common numerical-solver abstraction.
+- The literature-anchored linear-axion DC-conductivity verifier, model card,
+  scientific contract, source-map and finite-frequency reconstruction checks,
+  radial-flux audit, DC extrapolation, refinements, and public guide.
+- A protected `0.5.x` command, Python API, schema-migration, deprecation,
+  platform-support, and private security-reporting policy.
+- Built-wheel portability checks on Ubuntu, macOS, and Windows, including
+  evidence-bundle relocation and integrity audit.
+- A reusable compiled-PDF owner-review rule for scientific contracts whose
+  equations, tables, or plots are difficult to review reliably in Markdown.
+
+### Changed
+
+- Migrated all existing verification commands to generic registry dispatch
+  while preserving names, defaults, JSON semantics, exit meanings, model-card
+  digests, and evidence behavior.
+- Extended installed-wheel smoke coverage to all four public verifiers.
+
+### Scientific results
+
+- Reproduced the selected four-dimensional Andrade-Withers linear-axion model
+  result `sigma_DC = 1 + mu^2/alpha^2` for three frozen nonzero-source cases
+  within the preregistered numerical gates. This verifies the declared
+  bottom-up calculation; it is not empirical validation of a material,
+  microscopic mechanism, or top-down embedding.
+- No private Explore candidate, calculation, identifier, path, or unpublished
+  research result is included.
+
 ## [0.4.0] - 2026-08-06
 
 ### Added
@@ -185,6 +219,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.5.0]: https://github.com/qbit-liu/HoloForge/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/qbit-liu/HoloForge/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/qbit-liu/HoloForge/compare/v0.2.3...v0.3.0
 [0.2.3]: https://github.com/qbit-liu/HoloForge/compare/v0.2.2...v0.2.3

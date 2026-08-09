@@ -122,6 +122,10 @@ artifacts. Plot generation requires the optional dependency installed with
   contribution workflow.
 - [`docs/agent-quickstart.md`](docs/agent-quickstart.md) explains how a new
   user starts HoloForge safely with Codex, Claude Code, or another agent.
+- [`docs/version-0.5-compatibility-policy.md`](docs/version-0.5-compatibility-policy.md)
+  defines the protected `0.5.x` commands, Python API, schemas, migrations, and
+  platform support; [`SECURITY.md`](SECURITY.md) gives the private reporting
+  route.
 - [`CITATION.cff`](CITATION.cff) provides machine-readable citation metadata.
 - [`CHANGELOG.md`](CHANGELOG.md) records release-level changes.
 - [`schemas/`](schemas/) contains machine-readable model-card,
@@ -155,7 +159,7 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-The latest public release is `0.4.0`. HoloForge remains a pre-1.0 project, not
+The latest public release is `0.5.0`. HoloForge remains a pre-1.0 project, not
 a universal phenomenology or first-principles prediction package. Its current
 reference implementations reproduce published model calculations; they do not
 establish those models as complete descriptions of their target physical
