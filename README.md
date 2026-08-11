@@ -146,7 +146,9 @@ artifacts. Plot generation requires the optional dependency installed with
 The checked-in skills package procedures that are specific to HoloForge:
 
 - `$holoforge-research-gate` runs one frozen Explore gate through evidence,
-  criticism, recommendations, owner review, and decision recording;
+  criticism, recommendations, owner review, and decision recording, with A-E
+  response paths and an optional project-local research-progress map in
+  Markdown/Mermaid, standalone vector, and PDF-ready forms;
 - `$holoforge-public-export` audits a proposed private-to-public artifact and
   includes a deterministic scanner for common private-path and forbidden-token
   leaks; and
@@ -159,7 +161,7 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-The latest public release is `0.5.0`. HoloForge remains a pre-1.0 project, not
+The latest public release is `0.5.1`. HoloForge remains a pre-1.0 project, not
 a universal phenomenology or first-principles prediction package. Its current
 reference implementations reproduce published model calculations; they do not
 establish those models as complete descriptions of their target physical

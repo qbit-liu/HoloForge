@@ -36,11 +36,55 @@ this summary.
    explanation and the cheapest discriminating next test.
 6. Prepare an outcome-first owner review. For every numbered decision, give a
    recommended response, concise evidence-based reason, work opened, work
-   remaining closed, and the leading uncertainty or tradeoff.
-7. Stop for the owner unless authority for this exact class of bounded gate is
+   remaining closed, and the leading uncertainty or tradeoff. State what is
+   completed, the current stage, the proposed next stage, and what remains
+   closed.
+7. End the request with five response paths: A, approve all item-by-item
+   recommendations; B, approve only named decisions; C, request a revision or
+   named missing evidence; D, receive a status walkthrough without authorizing
+   work; and E, give a free-form custom response. Mark one path as recommended
+   for the present evidence, and confirm any ambiguous custom response.
+8. Stop for the owner unless authority for this exact class of bounded gate is
    already delegated and recorded.
-8. After the decision, record the selected responses, update status and
+9. After the decision, record the selected responses, update status and
    evidence boundaries, run checks, and commit only the reviewed gate.
+
+## Maintain a progress snapshot
+
+When the owner wants workflow visibility, represent the research project, not
+the development history of HoloForge. Copy
+`assets/research-progress.example.json` into the private project and replace
+its generic groups, stages, transitions, branches, and status values with the
+reviewed state of that research. Keep exactly one stage `current`.
+
+Render Markdown/Mermaid plus standalone vector and PDF figures with:
+
+```bash
+python PATH_TO_HOLOFORGE/.agents/skills/holoforge-research-gate/scripts/render_research_progress.py \
+  RESEARCH_PROGRESS.json --output RESEARCH_PROGRESS.md \
+  --figure-output RESEARCH_PROGRESS.svg \
+  --figure-output RESEARCH_PROGRESS.pdf
+```
+
+Markdown output requires only Python. Standalone SVG, PNG, or PDF output uses
+the maintained Graphviz `dot` layout engine when it is installed. Use the
+standalone SVG as the ordinary full-size progress view. When preparing an
+owner-review packet, include the PDF rendering as a dated snapshot on its own
+page by defining `\HoloForgeIncludeProgress` in the packet source and setting
+the generated PDF path and timestamp. Do not replace the project-local state
+file or standalone figure with the embedded copy.
+
+Update and re-render the snapshot after the contract is frozen, calculation
+finishes, verification or criticism changes the evidence boundary, an owner
+decision is recorded, or the gate closes. At every handoff, offer to explain
+the completed, current, and next stages directly in conversation.
+
+The snapshot is agent-updated state, not background telemetry. Stage completion
+means a workflow task is recorded as finished; it does not itself strengthen a
+scientific claim. A local file can change during an active agent session;
+GitHub shows only the latest committed and pushed snapshot. Keep unpublished
+state and figures in the private project and never copy them into public
+HoloForge without a separate export review.
 
 ## Apply hard boundaries
 
@@ -63,8 +107,12 @@ Return:
 3. verification performed and failures preserved;
 4. the critic verdict;
 5. numbered owner decisions with item-by-item recommendations; and
-6. the exact work that remains unauthorized.
+6. the exact work that remains unauthorized; and
+7. the A-E response paths, including the recommended path and status-only
+   path.
 
 When a PDF review packet is requested, use
 `docs/templates/review-packet-template.tex`, compile twice, render every page,
-and visually inspect equations, tables, figures, and page breaks.
+and visually inspect equations, tables, figures, and page breaks. When a
+research-progress view is requested, generate its PDF from the same project
+state and enable the template's optional progress-snapshot page.

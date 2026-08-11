@@ -68,6 +68,81 @@ A recommendation is advice, not owner approval. The decision owner retains the
 final choice unless authority for a bounded class of routine gates has been
 explicitly delegated and recorded.
 
+## Give the owner clear response paths
+
+After the numbered recommendations, offer these five response paths. Adapt the
+details to the gate, but do not change their meaning:
+
+- **Option A — approve all recommendations:** apply every item-by-item
+  recommended response and only the scope each item says it opens.
+- **Option B — approve selected items:** the owner names decision numbers;
+  unselected decisions and later work remain closed.
+- **Option C — request revision or evidence:** pause while the owner identifies
+  a concern or the missing evidence to obtain.
+- **Option D — status walkthrough only:** explain what is completed, the
+  current stage, the proposed next stage, and what remains closed, without
+  treating the request as approval.
+- **Option E — custom response:** accept the owner's own wording and confirm
+  any ambiguous mapping before acting.
+
+Mark the option recommended for the present evidence and explain why. Option A
+is not automatically recommended: a failed stop condition, unresolved
+uncertainty, or missing evidence may make Option C or D safer. The menu is a
+convenience layer over the numbered decisions, not blanket authorization for
+unlisted work, publication, merging, or release.
+
+## Agent-updated workflow snapshot
+
+A reviewable research-progress picture is possible without adding a workflow
+server. It represents the state of one research project: literature screening,
+frozen questions, theoretical and numerical checks, verification, critic
+review, owner decisions, feedback loops, later gates, and possible completion.
+It is not a timeline of HoloForge's own software development.
+
+The research-gate skill includes:
+
+- `assets/research-progress.example.json`, a generic project-state template;
+  and
+- `scripts/render_research_progress.py`, a renderer that validates groups,
+  stages, transitions, branches, one current stage, and the owner menu.
+
+Copy the JSON template into the research project, update it after each durable
+milestone, and render Markdown/Mermaid from the public HoloForge checkout:
+
+```bash
+python PATH_TO_HOLOFORGE/.agents/skills/holoforge-research-gate/scripts/render_research_progress.py \
+  RESEARCH_PROGRESS.json --output RESEARCH_PROGRESS.md
+```
+
+For a standalone figure and a PDF-ready copy, use the maintained Graphviz
+layout engine:
+
+```bash
+python PATH_TO_HOLOFORGE/.agents/skills/holoforge-research-gate/scripts/render_research_progress.py \
+  RESEARCH_PROGRESS.json --output RESEARCH_PROGRESS.md \
+  --figure-output RESEARCH_PROGRESS.svg \
+  --figure-output RESEARCH_PROGRESS.pdf
+```
+
+The SVG is the ordinary full-size progress figure. The PDF rendering may be
+embedded as a dated snapshot in an owner-review packet. Both are derived from
+the same project-local JSON record; the embedded page does not replace the
+standalone figure or the canonical state. If Graphviz `dot` is unavailable,
+the Markdown/Mermaid route still works without it.
+
+The state records completed work, one current research stage, pending and
+blocked branches, next action, closed scope, owner decisions, and A-E response
+paths. The renderer fails on malformed state, unknown or duplicate stages,
+invalid transitions, more than one current stage, or an incomplete owner menu.
+Marking a stage completed means that workflow task is recorded as finished; it
+does not itself raise a claim's scientific-support level.
+
+This is an **agent-updated live snapshot**, not automatic background telemetry.
+It is current after the agent updates the JSON and reruns the renderer. GitHub
+can display the Mermaid picture but only at the latest committed and pushed
+state. Unpublished project state and generated figures remain in the private
+research repository unless a separate public-export review authorizes them.
+
 ## Three statuses that must not be confused
 
 - **Scientific support:** what the current evidence establishes, using the
@@ -113,7 +188,10 @@ prepare a concise PDF packet in the standard HoloForge style:
 - navy `Supported` and `Not supported` evidence statements;
 - a hostile critic section followed by the exact owner decisions;
 - an item-by-item recommended response with a concise reason and scope effect;
-  and
+- the completed, current, and proposed next stage plus the A-E response
+  paths;
+- when requested, a dated research-progress snapshot generated from the same
+  project-local state as the standalone figure; and
 - a footer reiterating the disclosure boundary.
 
 The reusable source is
@@ -121,6 +199,13 @@ The reusable source is
 Compile twice, inspect the log for layout warnings, render every page to an
 image, and visually check clipping, overlaps, equations, tables, plots,
 headers, and page numbers before delivery.
+
+The standalone SVG remains the easiest way to inspect the full research map.
+When a review packet is already required, enable the template's optional
+progress page by defining `\HoloForgeIncludeProgress`, set the generated PDF
+path and timestamp, and compile it into the packet. Do not create a PDF solely
+to show the progress figure when the standalone SVG or Markdown view is
+sufficient.
 
 This conditional rule applies to both private Explore gates and public
 Forge/Verify scientific-contract reviews. When the decision owner has stated

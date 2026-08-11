@@ -114,6 +114,27 @@ scientific support, authorization, and disclosure status separate. Do not
 publish, transfer, or disclose any artifact without a later explicit review.
 ```
 
+At each owner gate, the agent should state what is completed, the current
+stage, the proposed next stage, and what remains closed. It should then offer
+five paths: A, approve all recommendations; B, approve selected decisions; C,
+request revision or evidence; D, receive a status walkthrough only; or E,
+write a custom response. Ask for the optional project-local research picture
+with:
+
+```text
+Update the research-progress state and render the current research map. Show
+literature screening, the frozen gate, parallel theoretical and numerical
+checks, verification, decision branches, completed/current/pending status, and
+the exact next action. Do not show HoloForge's software-development timeline,
+and do not treat this status request as approval for further work.
+```
+
+The snapshot is updated when the agent records a milestone; it is not a
+background monitor. Keep the full-size SVG and canonical state in the private
+project. If a PDF review packet is already required, include a dated PDF
+rendering of the same map; GitHub can show only the last committed and pushed
+state.
+
 See `docs/private-research-workflow.md` for the recommended private structure.
 
 ### Propose a private-to-public export

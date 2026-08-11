@@ -75,3 +75,10 @@ results require synchronized documentation, model records, and tests.
   authorization.
 - Before requesting an owner decision, give an item-by-item recommendation,
   reason, scope opened, scope remaining closed, and important uncertainty.
+- At an owner gate, also state completed, current, and proposed next stages,
+  then offer A-E paths: approve all recommendations, approve selected items,
+  request revision or evidence, status walkthrough only, or a custom response.
+  Recommend one path and never infer authorization beyond its stated scope.
+- When a progress picture is requested, map the actual research project rather
+  than HoloForge development. Keep its state and full-size figure project-local;
+  embed a dated PDF snapshot in a review packet only when that packet is needed.

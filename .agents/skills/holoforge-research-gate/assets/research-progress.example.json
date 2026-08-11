@@ -1,0 +1,274 @@
+{
+  "schema_version": "1",
+  "research_id": "example-research",
+  "title": "Example research project progress",
+  "current_gate": "Gate 1: bounded feasibility test",
+  "disclosure": "private",
+  "updated_at": "2026-01-01T00:00:00Z",
+  "layout_direction": "TB",
+  "current_stage": "owner_review",
+  "groups": [
+    {
+      "id": "discovery",
+      "label": "Discovery and framing"
+    },
+    {
+      "id": "evidence",
+      "label": "Bounded evidence"
+    },
+    {
+      "id": "review",
+      "label": "Owner gate"
+    },
+    {
+      "id": "outcomes",
+      "label": "Gate outcomes"
+    },
+    {
+      "id": "completion",
+      "label": "Research completion"
+    }
+  ],
+  "stages": [
+    {
+      "id": "question",
+      "label": "Research question and novelty track",
+      "group": "discovery",
+      "kind": "task",
+      "status": "completed"
+    },
+    {
+      "id": "literature",
+      "label": "Literature and prior-work screen",
+      "group": "discovery",
+      "kind": "task",
+      "status": "completed"
+    },
+    {
+      "id": "contract",
+      "label": "Freeze one falsifiable gate",
+      "group": "discovery",
+      "kind": "task",
+      "status": "completed"
+    },
+    {
+      "id": "theory",
+      "label": "Theoretical consistency checks",
+      "group": "evidence",
+      "kind": "check",
+      "status": "completed"
+    },
+    {
+      "id": "calculation",
+      "label": "Discriminating calculation",
+      "group": "evidence",
+      "kind": "task",
+      "status": "completed"
+    },
+    {
+      "id": "verification",
+      "label": "Independent numerical or analytic verification",
+      "group": "evidence",
+      "kind": "check",
+      "status": "completed"
+    },
+    {
+      "id": "critic",
+      "label": "Evidence synthesis and hostile critic",
+      "group": "evidence",
+      "kind": "check",
+      "status": "completed"
+    },
+    {
+      "id": "owner_review",
+      "label": "Owner review and decision",
+      "group": "review",
+      "kind": "decision",
+      "status": "current"
+    },
+    {
+      "id": "next_gate",
+      "label": "Advance to the next bounded gate",
+      "group": "outcomes",
+      "kind": "outcome",
+      "status": "pending"
+    },
+    {
+      "id": "revise",
+      "label": "Revise and refreeze the contract",
+      "group": "outcomes",
+      "kind": "outcome",
+      "status": "pending"
+    },
+    {
+      "id": "pause",
+      "label": "Pause or close; preserve the result",
+      "group": "outcomes",
+      "kind": "outcome",
+      "status": "pending"
+    },
+    {
+      "id": "core_results",
+      "label": "Core arguments and calculations complete",
+      "group": "completion",
+      "kind": "outcome",
+      "status": "pending"
+    },
+    {
+      "id": "manuscript",
+      "label": "Manuscript and reproducibility package",
+      "group": "completion",
+      "kind": "task",
+      "status": "pending"
+    },
+    {
+      "id": "release_review",
+      "label": "Separate disclosure and release review",
+      "group": "completion",
+      "kind": "decision",
+      "status": "pending"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "question",
+      "to": "literature",
+      "label": "screen",
+      "kind": "normal"
+    },
+    {
+      "from": "literature",
+      "to": "contract",
+      "label": "viable question",
+      "kind": "advance"
+    },
+    {
+      "from": "contract",
+      "to": "theory",
+      "label": "consistency",
+      "kind": "normal"
+    },
+    {
+      "from": "contract",
+      "to": "calculation",
+      "label": "calculation",
+      "kind": "normal"
+    },
+    {
+      "from": "theory",
+      "to": "verification",
+      "label": "check",
+      "kind": "normal"
+    },
+    {
+      "from": "calculation",
+      "to": "verification",
+      "label": "check",
+      "kind": "normal"
+    },
+    {
+      "from": "verification",
+      "to": "critic",
+      "label": "evidence",
+      "kind": "normal"
+    },
+    {
+      "from": "critic",
+      "to": "owner_review",
+      "label": "review packet",
+      "kind": "normal"
+    },
+    {
+      "from": "owner_review",
+      "to": "next_gate",
+      "label": "advance",
+      "kind": "advance"
+    },
+    {
+      "from": "next_gate",
+      "to": "contract",
+      "label": "next question",
+      "kind": "revision",
+      "constraint": false
+    },
+    {
+      "from": "owner_review",
+      "to": "revise",
+      "label": "revise",
+      "kind": "revision"
+    },
+    {
+      "from": "revise",
+      "to": "contract",
+      "label": "refreeze",
+      "kind": "revision",
+      "constraint": false
+    },
+    {
+      "from": "owner_review",
+      "to": "pause",
+      "label": "stop or pause",
+      "kind": "stop"
+    },
+    {
+      "from": "owner_review",
+      "to": "core_results",
+      "label": "project criteria met",
+      "kind": "advance"
+    },
+    {
+      "from": "core_results",
+      "to": "manuscript",
+      "label": "write",
+      "kind": "normal"
+    },
+    {
+      "from": "manuscript",
+      "to": "release_review",
+      "label": "separate decision",
+      "kind": "normal"
+    }
+  ],
+  "completed_summary": [
+    "The research question, literature screen, and first gate were frozen before calculation.",
+    "The bounded calculation, independent checks, and hostile critic review are recorded."
+  ],
+  "next_action": "The owner chooses whether this gate advances, is revised, or pauses; no later research stage opens automatically.",
+  "scope_remaining_closed": [
+    "Unapproved follow-on gates or enlargement of the failed hypothesis",
+    "Manuscript claims, public transfer, publication, merge, or release"
+  ],
+  "awaiting_owner": true,
+  "owner_decisions": [
+    "Accept, revise, or reject the implementation and verification record.",
+    "Choose whether the current gate advances, is revised, or pauses."
+  ],
+  "recommended_option": "A",
+  "response_options": [
+    {
+      "id": "A",
+      "label": "Approve all recommendations",
+      "effect": "Apply every item-by-item recommended response and only its stated scope."
+    },
+    {
+      "id": "B",
+      "label": "Approve selected items",
+      "effect": "Apply only the decision numbers named by the owner; all others remain closed."
+    },
+    {
+      "id": "C",
+      "label": "Request revision or evidence",
+      "effect": "Keep the gate paused while the owner names the concern or missing evidence."
+    },
+    {
+      "id": "D",
+      "label": "Status walkthrough only",
+      "effect": "Explain completed, current, and next research stages without authorizing work."
+    },
+    {
+      "id": "E",
+      "label": "Custom response",
+      "effect": "Use the owner's own words; the agent must confirm any ambiguous mapping."
+    }
+  ]
+}

@@ -4,6 +4,30 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-08-11
+
+### Added
+
+- A validated research-progress renderer and generic JSON template that model
+  project-local research groups, parallel checks, branches, feedback loops,
+  and one current stage. It produces Markdown/Mermaid without extra packages
+  and standalone SVG, PNG, or PDF through the maintained Graphviz engine.
+
+### Changed
+
+- Owner-review handoffs now include completed/current/next status, closed
+  scope, one recommended A-E response path, and a status-only option that does
+  not authorize further work.
+- The review-packet template can include an optional dated progress page while
+  preserving the standalone figure and private project state as the canonical
+  research record.
+
+### Scientific results
+
+- No model equation, solver, default, acceptance tolerance, benchmark output,
+  schema contract, or scientific result changed. No private Explore artifact,
+  identifier, path, or unpublished result is included.
+
 ## [0.5.0] - 2026-08-09
 
 ### Added
@@ -219,6 +243,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.5.1]: https://github.com/qbit-liu/HoloForge/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/qbit-liu/HoloForge/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/qbit-liu/HoloForge/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/qbit-liu/HoloForge/compare/v0.2.3...v0.3.0
