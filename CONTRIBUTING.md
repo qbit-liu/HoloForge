@@ -51,7 +51,10 @@ method-transfer/model-improvement project. Follow the bounded
 [research-gate workflow](docs/research-gate-workflow.md); freeze each contract
 before calculation and keep scientific support, owner authorization, and
 disclosure status separate. Every owner decision list must include an explicit
-item-by-item recommendation and a concise evidence-based reason.
+item-by-item recommendation, a concise evidence-based reason, a
+completed/current/next status summary, and the standard A-E response paths.
+When requested, maintain the optional research-progress map in the private
+project; it describes research stages and branches, not HoloForge development.
 
 If the idea is novel, potentially publishable, or otherwise not cleared for
 public release, develop it in a separate private repository by following the

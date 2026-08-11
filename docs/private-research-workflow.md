@@ -47,7 +47,12 @@ The concise gate sequence below is expanded in the reusable
 [research-gate workflow](research-gate-workflow.md), including frozen
 contracts, hostile critic reports, owner decisions, local Git records, and the
 standard PDF review-packet style. Every request for owner approval or choice
-must also include an item-by-item recommendation and its reason.
+must also include an item-by-item recommendation and its reason, an A-E
+response menu, and a completed/current/next status summary. The optional
+agent-updated research-progress map is generated from a state file kept in the
+private repository. Its standalone figure tracks literature, frozen gates,
+parallel checks, decisions, and later research stages; a dated PDF rendering
+may also be embedded in an owner-review packet.
 
 1. **Intake:** record the candidate dictionary, assumptions, falsification
    test, AI involvement, and decision owner in a private hypothesis card.
