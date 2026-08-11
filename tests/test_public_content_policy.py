@@ -133,6 +133,37 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("recommended selections", template)
         self.assertIn("reason and scope effect", template)
 
+    def test_post_closure_handoff_repeats_status_and_response_paths(self):
+        workflow = " ".join(
+            (ROOT / "docs/research-gate-workflow.md")
+            .read_text(encoding="utf-8")
+            .lower()
+            .split()
+        )
+        private_workflow = " ".join(
+            (ROOT / "docs/private-research-workflow.md")
+            .read_text(encoding="utf-8")
+            .lower()
+            .split()
+        )
+        skill = " ".join(
+            (ROOT / ".agents/skills/holoforge-research-gate/SKILL.md")
+            .read_text(encoding="utf-8")
+            .lower()
+            .split()
+        )
+
+        for text in (workflow, private_workflow, skill):
+            self.assertIn("after", text)
+            self.assertIn("closed", text)
+            self.assertIn("completed/current/next", text)
+            self.assertIn("a-e", text)
+            self.assertIn("remain paused", text)
+
+        self.assertIn("awaiting_owner: false", workflow)
+        self.assertIn("must not receive a fabricated pending owner menu", workflow)
+        self.assertIn("does not reopen the completed gate", private_workflow)
+
     def test_readme_leads_with_the_general_platform_not_example_domains(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         overview, implementations = readme.split(

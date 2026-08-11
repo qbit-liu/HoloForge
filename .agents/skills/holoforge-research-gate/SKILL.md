@@ -47,7 +47,10 @@ this summary.
 8. Stop for the owner unless authority for this exact class of bounded gate is
    already delegated and recorded.
 9. After the decision, record the selected responses, update status and
-   evidence boundaries, run checks, and commit only the reviewed gate.
+   evidence boundaries, run checks, and commit only the reviewed gate. The
+   closure handoff must then repeat completed/current/next status and fresh
+   A-E choices for the next eligible decision; do not end only with `no
+   approval pending`.
 
 ## Maintain a progress snapshot
 
@@ -77,7 +80,11 @@ file or standalone figure with the embedded copy.
 Update and re-render the snapshot after the contract is frozen, calculation
 finishes, verification or criticism changes the evidence boundary, an owner
 decision is recorded, or the gate closes. At every handoff, offer to explain
-the completed, current, and next stages directly in conversation.
+the completed, current, and next stages directly in conversation. After a
+closure, give fresh A-E response paths for the next eligible decision even if
+the recommendation is to remain paused. Do not add a fabricated owner menu to
+a closed project whose canonical state correctly has `awaiting_owner: false`;
+identify a separate portfolio or project decision as a separate handoff.
 
 The snapshot is agent-updated state, not background telemetry. Stage completion
 means a workflow task is recorded as finished; it does not itself strengthen a
@@ -110,6 +117,10 @@ Return:
 6. the exact work that remains unauthorized; and
 7. the A-E response paths, including the recommended path and status-only
    path.
+
+Apply the same delivery contract to the receipt after a gate is recorded and
+closed. The post-closure menu governs only the newly stated next handoff and
+never retroactively enlarges the completed gate.
 
 When a PDF review packet is requested, use
 `docs/templates/review-packet-template.tex`, compile twice, render every page,

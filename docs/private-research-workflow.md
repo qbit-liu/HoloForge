@@ -54,6 +54,14 @@ private repository. Its standalone figure tracks literature, frozen gates,
 parallel checks, decisions, and later research stages; a dated PDF rendering
 may also be embedded in an owner-review packet.
 
+After an approved gate is recorded and closed, the agent must repeat the
+completed/current/next summary and present fresh A-E choices for the next
+eligible handoff. This requirement applies even when the recommendation is to
+remain paused. The new menu does not reopen the completed gate, authorize a
+calculation, or turn `no approval pending` into an approval. A separate
+portfolio choice must be identified as a separate gate rather than inserted as
+false pending state in the closed research project.
+
 1. **Intake:** record the candidate dictionary, assumptions, falsification
    test, AI involvement, and decision owner in a private hypothesis card.
 2. **Screening:** search prior work and test dimensional, symmetry, boundary,

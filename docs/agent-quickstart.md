@@ -114,12 +114,14 @@ scientific support, authorization, and disclosure status separate. Do not
 publish, transfer, or disclose any artifact without a later explicit review.
 ```
 
-At each owner gate, the agent should state what is completed, the current
-stage, the proposed next stage, and what remains closed. It should then offer
-five paths: A, approve all recommendations; B, approve selected decisions; C,
-request revision or evidence; D, receive a status walkthrough only; or E,
-write a custom response. Ask for the optional project-local research picture
-with:
+At each owner gate, and again after an approved gate is recorded and closed,
+the agent should state what is completed, the current stage, the proposed next
+stage, and what remains closed. It should then offer five paths: A, approve all
+recommendations; B, approve selected decisions; C, request revision or
+evidence; D, receive a status walkthrough only; or E, write a custom response.
+The post-closure menu applies only to the next eligible handoff and must not
+silently reopen the completed gate. Ask for the optional project-local
+research picture with:
 
 ```text
 Update the research-progress state and render the current research map. Show

@@ -91,6 +91,24 @@ uncertainty, or missing evidence may make Option C or D safer. The menu is a
 convenience layer over the numbered decisions, not blanket authorization for
 unlisted work, publication, merging, or release.
 
+## Repeat the choices after a gate closes
+
+Recording an owner decision does not end the conversational handoff. The
+closure receipt must repeat the completed/current/next status, identify what
+remains closed, and name the next eligible decision. It must then give the
+owner a fresh A-E response menu for that next handoff, with an item-by-item
+recommendation when new work is proposed. Do not end only with statements such
+as `no approval is pending` or `a later portfolio decision is required` when
+the eligible choices can already be named.
+
+The fresh menu is not retrospective approval and does not silently reopen the
+closed gate. If no scientifically justified next action exists, recommend that
+the project remain paused and make the status-walkthrough path explicit. If
+the next choice belongs to a separate project or portfolio gate, say so and
+keep the closed project's own state accurate. A project whose canonical state
+has `awaiting_owner: false` must not receive a fabricated pending owner menu
+merely to satisfy the conversational handoff rule.
+
 ## Agent-updated workflow snapshot
 
 A reviewable research-progress picture is possible without adding a workflow
