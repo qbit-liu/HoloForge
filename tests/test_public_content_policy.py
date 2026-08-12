@@ -164,6 +164,35 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("must not receive a fabricated pending owner menu", workflow)
         self.assertIn("does not reopen the completed gate", private_workflow)
 
+    def test_explore_intake_scorecard_requires_all_five_readiness_tests(self):
+        workflow = (ROOT / "docs/research-gate-workflow.md").read_text(
+            encoding="utf-8"
+        ).lower()
+        skill = (
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md"
+        ).read_text(encoding="utf-8").lower()
+        scorecard = (
+            ROOT
+            / ".agents/skills/holoforge-research-gate/assets/explore-intake-scorecard.example.md"
+        ).read_text(encoding="utf-8").lower()
+        combined = " ".join("\n".join((workflow, skill, scorecard)).split())
+
+        for readiness_test in (
+            "source-complete inputs",
+            "invariant target beyond the generic baseline",
+            "cheap kill test",
+            "positive-result endpoint",
+            "cost ceiling",
+        ):
+            self.assertIn(readiness_test, combined)
+
+        self.assertIn("all five pass", combined)
+        self.assertIn("one named evidence task", combined)
+        self.assertIn("any failed item defers or rejects", combined)
+        self.assertIn("not a novelty", scorecard)
+        self.assertNotIn("/users/", scorecard)
+        self.assertNotIn("holoforge-explore-private", scorecard)
+
     def test_readme_leads_with_the_general_platform_not_example_domains(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         overview, implementations = readme.split(

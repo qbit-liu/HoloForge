@@ -20,6 +20,21 @@ scientific support, authorization, and disclosure as separate states.
 Treat the repository documents as authoritative when they are stricter than
 this summary.
 
+## Qualify the candidate before a detailed gate
+
+Before freezing a calculation contract, copy and complete
+`assets/explore-intake-scorecard.example.md` in the private project. Audit five
+questions: source-complete inputs, an invariant target beyond the generic
+baseline, a cheap kill test, a defined positive-result endpoint, and an
+explicit cost ceiling.
+
+Use `pass`, `conditional`, or `fail` for each item. A detailed research gate
+may open only when all five items pass. A conditional item may open only one
+named, bounded evidence task that is cheaper than the proposed gate. Any
+failed item defers or rejects the candidate; do not compensate for it by
+adding scores from other rows. Record the evidence and owner disposition so
+the intake decision remains auditable.
+
 ## Run one gate
 
 1. State the question, frozen inputs, allowed methods, acceptance criteria,
