@@ -3,6 +3,7 @@
 ## Metadata
 
 - Research or gate ID:
+- Stable lesson ID:
 - Gate title:
 - Closure date:
 - Decision owner:
@@ -12,6 +13,9 @@
 - Disclosure status:
 - Primary outcome class: positive / negative / inconclusive / conditional /
   source stop / prior-art stop / technical stop
+- Retrieval tags: source / prior art / dictionary / observable / ensemble /
+  branch / normalization / physical norm / conditioning / solver /
+  convergence / verification / cost / other
 
 ## Frozen question and accepted outcome
 
@@ -55,6 +59,13 @@ State the strongest tempting conclusion that the evidence does not support.
 Name one concrete change to a future intake scorecard, frozen contract,
 verification plan, or stop rule. Write `none` when the existing workflow caught
 the problem at the intended cost.
+
+## Applicability to future gates
+
+State which future failure modes, model classes, numerical methods, or contract
+fields should retrieve this lesson. Also state the conditions under which the
+lesson does not apply. This section helps an agent find the record; it does not
+make the lesson universal.
 
 ## Reopening trigger
 

@@ -30,6 +30,7 @@ keeping its research record independent:
 private-project/
   README.private.md
   hypothesis-card.json
+  RESEARCH_LESSONS.md
   notes/
   code/
   results/
@@ -63,10 +64,13 @@ calculation, or turn `no approval pending` into an approval. A separate
 portfolio choice must be identified as a separate gate rather than inserted as
 false pending state in the closed research project.
 
-1. **Intake:** record the candidate dictionary, assumptions, falsification
-   test, AI involvement, and decision owner in a private hypothesis card. Then
-   complete the five-part Explore intake scorecard: source-complete inputs,
-   an invariant target beyond the generic baseline, a cheap kill test, a
+1. **Intake:** read the current private lesson index and record which stable
+   lesson IDs and evidence apply to this candidate. Translate each into a
+   candidate-specific control; if none applies, record the failure-mode tags
+   searched. Then record the candidate dictionary, assumptions, falsification
+   test, AI involvement, and decision owner in a private hypothesis card and
+   complete the five-part Explore intake scorecard: source-complete inputs, an
+   invariant target beyond the generic baseline, a cheap kill test, a
    positive-result endpoint, and a cost ceiling. A detailed gate opens only
    after all five pass; a conditional item may open only one cheaper bounded
    evidence task.

@@ -16,6 +16,9 @@ scientific support, authorization, and disclosure as separate states.
 4. For unpublished work, also read `docs/private-research-workflow.md` and
    inspect the private project's current hypothesis card, decision log, and Git
    status.
+5. Before a new intake, read the private project's lesson index and the primary
+   evidence behind potentially applicable entries. Record the index revision,
+   stable lesson IDs, and applicability in the intake scorecard.
 
 Treat the repository documents as authoritative when they are stricter than
 this summary.
@@ -27,6 +30,12 @@ Before freezing a calculation contract, copy and complete
 questions: source-complete inputs, an invariant target beyond the generic
 baseline, a cheap kill test, a defined positive-result endpoint, and an
 explicit cost ceiling.
+
+Retrieve prior lessons by failure mode and method risk as well as topic. For
+each applicable stable lesson ID, add a candidate-specific source check,
+baseline, diagnostic, threshold, or stop rule. If none applies, record which
+tags were searched. Never infer that a new candidate fails because an earlier
+one did, and never copy an old threshold without re-establishing applicability.
 
 Use `pass`, `conditional`, or `fail` for each item. A detailed research gate
 may open only when all five items pass. A conditional item may open only one
@@ -64,7 +73,8 @@ the intake decision remains auditable.
 9. After the decision, record the selected responses and complete a project-
    local closure retrospective from
    `docs/templates/research-retrospective-template.md`. Classify the outcome,
-   link primary evidence, preserve what failed, state what must not be inferred,
+   assign a stable lesson ID and retrieval tags, link primary evidence,
+   preserve what failed, state applicability and what must not be inferred,
    record any prospective intake or contract lesson, and name the evidence
    required to reopen the direction. Do not use reflection to rewrite the
    frozen gate or strengthen its support label.

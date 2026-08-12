@@ -27,6 +27,13 @@ Before writing a detailed frozen contract, complete the generic
 inside the private research repository. It tests five conditions that should
 be cheap to decide before substantial calculation:
 
+First read the current private lesson index and the primary evidence behind
+potentially relevant entries. Record the index revision, applicable stable
+lesson IDs, and the candidate-specific control each lesson adds to the
+scorecard. Search by failure mode and numerical risk as well as topic. If no
+lesson applies, record which tags were checked. Prior failure guides the next
+test; it is not evidence that a different candidate must fail.
+
 1. **Source-complete inputs:** the primary sources and private records identify
    every equation, convention, branch, ensemble, coefficient, and comparison
    needed by the proposed first gate, or identify one bounded source check
@@ -96,7 +103,9 @@ and follow [Learning From Every Research Result](learning-from-results.md).
 The retrospective links the primary evidence and records what held, what
 failed, what the gate taught, what must not be inferred, one prospective
 workflow improvement when warranted, and the evidence required to reopen the
-direction. It does not replace the result record or hostile critic report.
+direction. Give the lesson a stable ID, retrieval tags, and explicit
+applicability and non-applicability conditions. It does not replace the result
+record or hostile critic report.
 
 Lessons feed forward into later intake scorecards, contracts, numerical
 methods, and stop rules. They must not retroactively change the frozen gate,

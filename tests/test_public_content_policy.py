@@ -190,6 +190,12 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("one named evidence task", combined)
         self.assertIn("any failed item defers or rejects", combined)
         self.assertIn("not a novelty", scorecard)
+        self.assertIn("prior-lessons review", scorecard)
+        self.assertIn("stable lesson id", combined)
+        self.assertIn("primary evidence", combined)
+        self.assertIn("candidate-specific control", combined)
+        self.assertIn("if no lesson applies", scorecard)
+        self.assertIn("previous gate's failure", scorecard)
         self.assertNotIn("/users/", scorecard)
         self.assertNotIn("holoforge-explore-private", scorecard)
 
@@ -225,6 +231,10 @@ class PublicContentPolicyTests(unittest.TestCase):
             "feed forward",
             "must not retroactively change",
             "physical negative result",
+            "agent retrieval loop",
+            "applicability to future gates",
+            "stable lesson id",
+            "retrieval tags",
         ):
             self.assertIn(required_boundary, combined)
 

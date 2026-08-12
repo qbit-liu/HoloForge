@@ -64,6 +64,29 @@ Lessons feed forward. They may change how future candidates are scored or how
 new contracts are written, but they must not retroactively change a frozen
 contract, acceptance threshold, support label, or owner decision.
 
+## Agent retrieval loop
+
+Most portfolio lessons will be consumed by a research agent. A private lesson
+index should therefore give each entry a stable lesson ID, retrieval tags, a
+link to primary evidence, an applicability statement, and a non-applicability
+boundary. Keep Markdown as the canonical record so an owner can still inspect
+it; do not maintain a second machine-readable copy unless a real automation
+requires one and consistency is tested.
+
+Before scoring a new candidate, the agent must:
+
+1. read the current private lesson index and its Git revision;
+2. search by failure mode and method risk as well as scientific topic;
+3. open the primary evidence behind every potentially applicable lesson;
+4. record the selected lesson IDs in the new intake scorecard;
+5. translate each applicable lesson into a candidate-specific source check,
+   baseline, diagnostic, acceptance threshold, or stop rule; and
+6. state which tags were searched when no prior lesson applies.
+
+The agent must not copy a past conclusion or threshold merely because two
+projects sound similar. A previous failure is a prompt for a cheaper or sharper
+test, not evidence that the new candidate is false.
+
 For a portfolio with several private directions, maintain a private index of
 retrospectives so a later intake can find recurring failure modes. Keep the
 index claim-bounded: link the primary records instead of replacing them with a
