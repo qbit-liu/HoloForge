@@ -193,6 +193,48 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertNotIn("/users/", scorecard)
         self.assertNotIn("holoforge-explore-private", scorecard)
 
+    def test_closed_gate_requires_a_generic_research_retrospective(self):
+        workflow = (
+            ROOT / "docs/research-gate-workflow.md"
+        ).read_text(encoding="utf-8").lower()
+        lesson_guide = (
+            ROOT / "docs/learning-from-results.md"
+        ).read_text(encoding="utf-8").lower()
+        template = (
+            ROOT / "docs/templates/research-retrospective-template.md"
+        ).read_text(encoding="utf-8").lower()
+        skill = (
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md"
+        ).read_text(encoding="utf-8").lower()
+        combined = "\n".join((workflow, lesson_guide, template, skill))
+
+        for outcome in (
+            "positive",
+            "negative",
+            "inconclusive",
+            "conditional",
+            "source stop",
+            "prior-art stop",
+            "technical stop",
+        ):
+            self.assertIn(outcome, combined)
+
+        for required_boundary in (
+            "what must not be inferred",
+            "reopening trigger",
+            "feed forward",
+            "must not retroactively change",
+            "physical negative result",
+        ):
+            self.assertIn(required_boundary, combined)
+
+        self.assertIn("research-retrospective-template.md", workflow)
+        self.assertIn("research-retrospective-template.md", skill)
+        self.assertNotIn("/users/", combined)
+        self.assertNotIn("holoforge-explore-private", combined)
+        for private_identifier in ("c01", "c02", "c03", "d001", "m001"):
+            self.assertNotIn(private_identifier, combined)
+
     def test_readme_leads_with_the_general_platform_not_example_domains(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         overview, implementations = readme.split(

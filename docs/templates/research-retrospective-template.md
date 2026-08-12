@@ -1,0 +1,69 @@
+# Research-gate closure retrospective
+
+## Metadata
+
+- Research or gate ID:
+- Gate title:
+- Closure date:
+- Decision owner:
+- Generated with AI assistance: yes / no
+- Scientific-support label:
+- Review status:
+- Disclosure status:
+- Primary outcome class: positive / negative / inconclusive / conditional /
+  source stop / prior-art stop / technical stop
+
+## Frozen question and accepted outcome
+
+State the original bounded question and the owner-accepted outcome. Link the
+frozen contract, result record, hostile critic report, owner review, decision
+record, and machine-readable evidence. Do not broaden the conclusion.
+
+## What held
+
+List the checks or assumptions that survived within their stated domain.
+
+## What failed or remained unresolved
+
+List failed checks, missing sources, conditioning problems, prior-art
+conflicts, uncontrolled assumptions, or evidence gaps. Distinguish failure of
+the physical endpoint from failure of the frozen method or representation.
+
+## What we learned
+
+### Scientific lesson
+
+What did the gate teach about the proposed dictionary, observable, mechanism,
+ensemble, branch, or comparison?
+
+### Numerical or methodological lesson
+
+What did it teach about formulations, solvers, norms, diagnostics,
+convergence, conditioning, or independent checks?
+
+### Portfolio or workflow lesson
+
+What cheap test should occur earlier, or what contract field should be clearer,
+when screening later candidates?
+
+## What must not be inferred
+
+State the strongest tempting conclusion that the evidence does not support.
+
+## Prospective workflow change
+
+Name one concrete change to a future intake scorecard, frozen contract,
+verification plan, or stop rule. Write `none` when the existing workflow caught
+the problem at the intended cost.
+
+## Reopening trigger
+
+Name the evidence and new owner-approved contract required to reopen the
+direction. Do not use this section as authorization to begin that work.
+
+## Owner review
+
+- Owner disposition: accepted / revise / rejected / pending
+- Decision-record link:
+- Scope opened:
+- Scope remaining closed:

@@ -33,6 +33,7 @@ private-project/
   notes/
   code/
   results/
+  RETROSPECTIVE.md
   paper/
 ```
 
@@ -73,8 +74,12 @@ false pending state in the closed research project.
    and ensemble consistency before investing in a large calculation.
 3. **Discriminating calculation:** compare against a simpler baseline and use a
    preregistered keep/reject criterion where practical.
-4. **Internal decision:** retain, revise, or reject the hypothesis. Keeping the
-   work private does not change its scientific-support label.
+4. **Internal decision and reflection:** retain, revise, or reject the
+   hypothesis, then complete the generic
+   [closure retrospective](templates/research-retrospective-template.md). Record
+   the outcome class, evidence, lesson, non-inference boundary, prospective
+   workflow change, and reopening trigger. Keeping the work private does not
+   change its scientific-support label.
 5. **Publication:** submit and revise the paper without copying confidential
    correspondence into the public project.
 6. **Release review:** after journal acceptance or another explicit disclosure
