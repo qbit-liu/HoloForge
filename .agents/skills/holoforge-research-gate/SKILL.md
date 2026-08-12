@@ -16,6 +16,9 @@ scientific support, authorization, and disclosure as separate states.
 4. For unpublished work, also read `docs/private-research-workflow.md` and
    inspect the private project's current hypothesis card, decision log, and Git
    status.
+5. Before a new intake, read the private project's lesson index and the primary
+   evidence behind potentially applicable entries. Record the index revision,
+   stable lesson IDs, and applicability in the intake scorecard.
 
 Treat the repository documents as authoritative when they are stricter than
 this summary.
@@ -27,6 +30,12 @@ Before freezing a calculation contract, copy and complete
 questions: source-complete inputs, an invariant target beyond the generic
 baseline, a cheap kill test, a defined positive-result endpoint, and an
 explicit cost ceiling.
+
+Retrieve prior lessons by failure mode and method risk as well as topic. For
+each applicable stable lesson ID, add a candidate-specific source check,
+baseline, diagnostic, threshold, or stop rule. If none applies, record which
+tags were searched. Never infer that a new candidate fails because an earlier
+one did, and never copy an old threshold without re-establishing applicability.
 
 Use `pass`, `conditional`, or `fail` for each item. A detailed research gate
 may open only when all five items pass. A conditional item may open only one
@@ -61,11 +70,18 @@ the intake decision remains auditable.
    for the present evidence, and confirm any ambiguous custom response.
 8. Stop for the owner unless authority for this exact class of bounded gate is
    already delegated and recorded.
-9. After the decision, record the selected responses, update status and
-   evidence boundaries, run checks, and commit only the reviewed gate. The
-   closure handoff must then repeat completed/current/next status and fresh
-   A-E choices for the next eligible decision; do not end only with `no
-   approval pending`.
+9. After the decision, record the selected responses and complete a project-
+   local closure retrospective from
+   `docs/templates/research-retrospective-template.md`. Classify the outcome,
+   assign a stable lesson ID and retrieval tags, link primary evidence,
+   preserve what failed, state applicability and what must not be inferred,
+   record any prospective intake or contract lesson, and name the evidence
+   required to reopen the direction. Do not use reflection to rewrite the
+   frozen gate or strengthen its support label.
+10. Update status and evidence boundaries, run checks, and commit only the
+    reviewed gate and its retrospective. The closure handoff must then repeat
+    completed/current/next status and fresh A-E choices for the next eligible
+    decision; do not end only with `no approval pending`.
 
 ## Maintain a progress snapshot
 
@@ -112,6 +128,9 @@ HoloForge without a separate export review.
 
 - Do not enlarge a failed gate to rescue a hypothesis.
 - Do not infer a physical claim from solver convergence alone.
+- Do not classify a source, prior-art, representation, or numerical failure as
+  a physical negative result unless the frozen physical endpoint actually
+  passed.
 - Do not call a literature screen exhaustive unless its search contract and
   coverage justify that label.
 - Do not move unpublished identities, equations, data, paths, or results into
@@ -127,10 +146,11 @@ Return:
 1. the bounded outcome first;
 2. supported and not-supported statements;
 3. verification performed and failures preserved;
-4. the critic verdict;
-5. numbered owner decisions with item-by-item recommendations; and
-6. the exact work that remains unauthorized; and
-7. the A-E response paths, including the recommended path and status-only
+4. the outcome class and bounded lesson;
+5. the critic verdict;
+6. numbered owner decisions with item-by-item recommendations;
+7. the exact work that remains unauthorized; and
+8. the A-E response paths, including the recommended path and status-only
    path.
 
 Apply the same delivery contract to the receipt after a gate is recorded and

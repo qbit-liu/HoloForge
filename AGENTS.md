@@ -47,6 +47,12 @@ These workflows do not replace human scientific or disclosure approval.
   method, tolerances, validation evidence, and limitations.
 - Use the support and review labels defined in `docs/scientific-support.md`.
 - Mark material AI involvement; human review must not erase AI provenance.
+- Before a new Explore intake, read the private lesson index, inspect primary
+  evidence for applicable entries, and record how their stable IDs change the
+  new scorecard or contract.
+- At every closed Explore gate, preserve the result and complete the generic
+  closure retrospective in `docs/templates/research-retrospective-template.md`;
+  feed lessons into future gates without rewriting the closed one.
 - Keep unpublished hypotheses, calculations, results, literature notes, and
   manuscripts in a separate access-controlled repository.
 - Never add secrets, private filesystem paths, confidential correspondence,

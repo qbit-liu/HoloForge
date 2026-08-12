@@ -55,6 +55,10 @@ item-by-item recommendation, a concise evidence-based reason, a
 completed/current/next status summary, and the standard A-E response paths.
 When requested, maintain the optional research-progress map in the private
 project; it describes research stages and branches, not HoloForge development.
+When a gate closes, preserve its result and complete the generic
+[research retrospective](docs/learning-from-results.md), including failed and
+inconclusive gates. A technical, source, or prior-art stop must not be relabeled
+as a physical negative result.
 
 If the idea is novel, potentially publishable, or otherwise not cleared for
 public release, develop it in a separate private repository by following the

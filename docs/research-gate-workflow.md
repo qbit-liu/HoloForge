@@ -27,6 +27,13 @@ Before writing a detailed frozen contract, complete the generic
 inside the private research repository. It tests five conditions that should
 be cheap to decide before substantial calculation:
 
+First read the current private lesson index and the primary evidence behind
+potentially relevant entries. Record the index revision, applicable stable
+lesson IDs, and the candidate-specific control each lesson adds to the
+scorecard. Search by failure mode and numerical risk as well as topic. If no
+lesson applies, record which tags were checked. Prior failure guides the next
+test; it is not evidence that a different candidate must fail.
+
 1. **Source-complete inputs:** the primary sources and private records identify
    every equation, convention, branch, ensemble, coefficient, and comparison
    needed by the proposed first gate, or identify one bounded source check
@@ -75,11 +82,37 @@ Every research gate should contain the following records:
 6. **Owner review:** a short list of separate decisions covering the
    implementation, numerical verdict, evidence boundary, and next action,
    followed by an explicit recommendation for every requested choice.
-7. **Decision record and commit:** after human approval, record what was
-   accepted and what remains closed, then commit one logical reviewed gate.
+7. **Decision record:** after human approval, record what was accepted and what
+   remains closed.
+8. **Closure retrospective and commit:** classify the outcome, preserve what
+   failed as well as what held, state the reusable lesson and non-inference
+   boundary, name a reopening trigger, then commit one logical reviewed gate.
 
-If a stop condition fires, stop the gate, preserve the negative result, and
-return to owner review. Do not expand the scope to rescue the hypothesis.
+If a stop condition fires, stop the gate, preserve the bounded stopped result
+under its correct outcome class, and return to owner review. Do not expand the
+scope to rescue the hypothesis.
+
+## Learn from every closed gate
+
+Every closed gate receives a short research retrospective, including gates
+with positive, negative, inconclusive, conditional, source-stopped,
+prior-art-stopped, or technically stopped outcomes. Use
+[`docs/templates/research-retrospective-template.md`](templates/research-retrospective-template.md)
+and follow [Learning From Every Research Result](learning-from-results.md).
+
+The retrospective links the primary evidence and records what held, what
+failed, what the gate taught, what must not be inferred, one prospective
+workflow improvement when warranted, and the evidence required to reopen the
+direction. Give the lesson a stable ID, retrieval tags, and explicit
+applicability and non-applicability conditions. It does not replace the result
+record or hostile critic report.
+
+Lessons feed forward into later intake scorecards, contracts, numerical
+methods, and stop rules. They must not retroactively change the frozen gate,
+acceptance threshold, support label, or owner decision. Keep any retrospective
+that names unpublished candidates or results in the private research
+repository. Public HoloForge receives only generic, privacy-reviewed workflow
+improvements or separately disclosure-approved artifacts.
 
 ## Every decision request includes a recommendation
 
@@ -217,6 +250,8 @@ practice is:
   decision change at a time;
 - use descriptive messages that state the scientific scope;
 - preserve reviewed negative results and rejected hypotheses;
+- preserve a closure retrospective that makes each accepted outcome,
+  non-inference boundary, reusable lesson, and reopening trigger searchable;
 - do not rewrite reviewed history merely to make it look cleaner; and
 - use optional annotated local tags for reviewed gates, remembering that a tag
   does not strengthen a scientific claim.

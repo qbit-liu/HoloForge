@@ -4,6 +4,31 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-08-12
+
+### Added
+
+- A generic closure-retrospective template and outcome taxonomy for positive,
+  negative, inconclusive, conditional, source-stopped, prior-art-stopped, and
+  technically stopped Explore gates.
+- An agent-facing lesson-retrieval checkpoint with stable lesson IDs, retrieval
+  tags, primary-evidence review, applicability boundaries, and explicit
+  candidate-specific controls in the Explore intake scorecard.
+
+### Changed
+
+- Closed research gates now preserve both their bounded result and a reusable
+  lesson with a non-inference boundary and reopening trigger.
+- New Explore intakes must review relevant prior lessons before assigning
+  readiness statuses; prior failure guides a sharper test but is not evidence
+  that a new candidate is false.
+
+### Scientific results
+
+- No model equation, solver, default, acceptance tolerance, benchmark output,
+  schema contract, or scientific result changed. No private Explore artifact,
+  identifier, path, unpublished result, or private lesson ledger is included.
+
 ## [0.5.1] - 2026-08-11
 
 ### Added

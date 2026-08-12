@@ -122,6 +122,9 @@ artifacts. Plot generation requires the optional dependency installed with
   contribution workflow.
 - [`docs/agent-quickstart.md`](docs/agent-quickstart.md) explains how a new
   user starts HoloForge safely with Codex, Claude Code, or another agent.
+- [`docs/learning-from-results.md`](docs/learning-from-results.md) requires a
+  claim-bounded closure retrospective so later gates can learn from positive,
+  failed, stopped, conditional, and inconclusive work.
 - [`docs/version-0.5-compatibility-policy.md`](docs/version-0.5-compatibility-policy.md)
   defines the protected `0.5.x` commands, Python API, schemas, migrations, and
   platform support; [`SECURITY.md`](SECURITY.md) gives the private reporting
@@ -148,7 +151,8 @@ The checked-in skills package procedures that are specific to HoloForge:
 - `$holoforge-research-gate` runs one frozen Explore gate through evidence,
   criticism, recommendations, owner review, and decision recording, with A-E
   response paths and an optional project-local research-progress map in
-  Markdown/Mermaid, standalone vector, and PDF-ready forms;
+  Markdown/Mermaid, standalone vector, and PDF-ready forms, then preserves a
+  closure retrospective that feeds bounded lessons into later gates;
 - `$holoforge-public-export` audits a proposed private-to-public artifact and
   includes a deterministic scanner for common private-path and forbidden-token
   leaks; and
@@ -161,7 +165,7 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-The latest public release is `0.5.1`. HoloForge remains a pre-1.0 project, not
+The latest public release is `0.5.2`. HoloForge remains a pre-1.0 project, not
 a universal phenomenology or first-principles prediction package. Its current
 reference implementations reproduce published model calculations; they do not
 establish those models as complete descriptions of their target physical
