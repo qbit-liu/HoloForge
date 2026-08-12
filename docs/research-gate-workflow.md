@@ -20,6 +20,40 @@ Classify the intended contribution before screening it:
 All three can be scientifically valuable. The class must be stated explicitly,
 and any priority or novelty claim requires a targeted literature search.
 
+## Qualify candidates with an Explore intake scorecard
+
+Before writing a detailed frozen contract, complete the generic
+[`Explore intake scorecard`](../.agents/skills/holoforge-research-gate/assets/explore-intake-scorecard.example.md)
+inside the private research repository. It tests five conditions that should
+be cheap to decide before substantial calculation:
+
+1. **Source-complete inputs:** the primary sources and private records identify
+   every equation, convention, branch, ensemble, coefficient, and comparison
+   needed by the proposed first gate, or identify one bounded source check
+   that can settle the gap.
+2. **Invariant target beyond the generic baseline:** the candidate names a
+   dimensionless ratio, branch-resolved feature, consistency condition, or
+   other observable that cannot be removed by conventions or obtained from a
+   simpler generic model alone.
+3. **Cheap kill test:** one preregistered source, analytic, or low-cost
+   numerical check can reject the candidate before a solver or broad scan.
+4. **Positive-result endpoint:** the record states exactly what result would
+   count as meaningful, what evidence it would support, and which next
+   decision it would open.
+5. **Cost ceiling:** the owner fixes the maximum literature, implementation,
+   compute, and review cost of the first gate and the conditions that stop
+   further investment.
+
+Mark every item `pass`, `conditional`, or `fail` and cite the evidence. A
+detailed gate opens only when all five pass. One or more conditional items may
+open only a single named intake-evidence task that is cheaper than the proposed
+gate. Any failed item defers or rejects the candidate. There is no aggregate
+score that can hide a failed scientific prerequisite.
+
+The scorecard ranks readiness for the next bounded test, not novelty,
+importance, truth, or publication value. It remains private when it contains
+unpublished candidate identities, literature notes, equations, or results.
+
 ## One gate, one bounded question
 
 Every research gate should contain the following records:

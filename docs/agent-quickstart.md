@@ -114,6 +114,12 @@ scientific support, authorization, and disclosure status separate. Do not
 publish, transfer, or disclose any artifact without a later explicit review.
 ```
 
+Before the detailed gate, ask the agent to copy and complete
+`.agents/skills/holoforge-research-gate/assets/explore-intake-scorecard.example.md`
+inside the private repository. The agent should admit the candidate only when
+all five readiness tests pass; a conditional item may open only one named
+cheaper evidence task, and a failed item must defer or reject the candidate.
+
 At each owner gate, and again after an approved gate is recorded and closed,
 the agent should state what is completed, the current stage, the proposed next
 stage, and what remains closed. It should then offer five paths: A, approve all

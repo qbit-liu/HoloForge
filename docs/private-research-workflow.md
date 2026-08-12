@@ -63,7 +63,12 @@ portfolio choice must be identified as a separate gate rather than inserted as
 false pending state in the closed research project.
 
 1. **Intake:** record the candidate dictionary, assumptions, falsification
-   test, AI involvement, and decision owner in a private hypothesis card.
+   test, AI involvement, and decision owner in a private hypothesis card. Then
+   complete the five-part Explore intake scorecard: source-complete inputs,
+   an invariant target beyond the generic baseline, a cheap kill test, a
+   positive-result endpoint, and a cost ceiling. A detailed gate opens only
+   after all five pass; a conditional item may open only one cheaper bounded
+   evidence task.
 2. **Screening:** search prior work and test dimensional, symmetry, boundary,
    and ensemble consistency before investing in a large calculation.
 3. **Discriminating calculation:** compare against a simpler baseline and use a
