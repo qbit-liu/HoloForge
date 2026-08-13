@@ -116,6 +116,9 @@ artifacts. Plot generation requires the optional dependency installed with
 
 - [`CONSTITUTION.md`](CONSTITUTION.md) defines the scientific rules of the
   project.
+- [`docs/architecture.md`](docs/architecture.md) maps the benchmark-harness
+  execution path, repository layers, dependency rules, and deliberate
+  non-goals.
 - [`docs/version-*.md`](docs/) contains the scientific and infrastructure
   contracts for each public release.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
@@ -123,8 +126,9 @@ artifacts. Plot generation requires the optional dependency installed with
 - [`docs/agent-quickstart.md`](docs/agent-quickstart.md) explains how a new
   user starts HoloForge safely with Codex, Claude Code, or another agent.
 - [`docs/learning-from-results.md`](docs/learning-from-results.md) requires a
-  claim-bounded closure retrospective so later gates can learn from positive,
-  failed, stopped, conditional, and inconclusive work.
+  claim-bounded, event-driven research knowledge base that learns from papers,
+  derivations, methods, data, decisions, reproducibility work, and every bounded
+  result, plus a closure retrospective for each completed gate.
 - [`docs/version-0.5-compatibility-policy.md`](docs/version-0.5-compatibility-policy.md)
   defines the protected `0.5.x` commands, Python API, schemas, migrations, and
   platform support; [`SECURITY.md`](SECURITY.md) gives the private reporting
@@ -151,8 +155,9 @@ The checked-in skills package procedures that are specific to HoloForge:
 - `$holoforge-research-gate` runs one frozen Explore gate through evidence,
   criticism, recommendations, owner review, and decision recording, with A-E
   response paths and an optional project-local research-progress map in
-  Markdown/Mermaid, standalone vector, and PDF-ready forms, then preserves a
-  closure retrospective that feeds bounded lessons into later gates;
+  Markdown/Mermaid, standalone vector, and PDF-ready forms, while updating the
+  reviewed research knowledge base and preserving a closure retrospective that
+  feeds bounded lessons into later gates;
 - `$holoforge-public-export` audits a proposed private-to-public artifact and
   includes a deterministic scanner for common private-path and forbidden-token
   leaks; and

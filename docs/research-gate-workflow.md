@@ -27,12 +27,13 @@ Before writing a detailed frozen contract, complete the generic
 inside the private research repository. It tests five conditions that should
 be cheap to decide before substantial calculation:
 
-First read the current private lesson index and the primary evidence behind
-potentially relevant entries. Record the index revision, applicable stable
-lesson IDs, and the candidate-specific control each lesson adds to the
-scorecard. Search by failure mode and numerical risk as well as topic. If no
-lesson applies, record which tags were checked. Prior failure guides the next
-test; it is not evidence that a different candidate must fail.
+First read the current private reviewed-knowledge and closure-lesson indexes
+and the primary evidence behind potentially relevant entries. Record the index
+revision, applicable stable knowledge and lesson IDs, and the candidate-
+specific control each item adds to the scorecard. Search by knowledge class,
+topic, source convention, method risk, outcome, and failure mode. If no item
+applies, record which classes and tags were checked. Prior knowledge sharpens
+the next test; it does not decide a different candidate in advance.
 
 1. **Source-complete inputs:** the primary sources and private records identify
    every equation, convention, branch, ensemble, coefficient, and comparison
@@ -91,6 +92,50 @@ Every research gate should contain the following records:
 If a stop condition fires, stop the gate, preserve the bounded stopped result
 under its correct outcome class, and return to owner review. Do not expand the
 scope to rescue the hypothesis.
+
+## Update research knowledge during the gate
+
+Use one private, human-readable research knowledge base with two states:
+
+1. a **working knowledge queue** for evidence-linked observations that change
+   during active research; and
+2. a **reviewed knowledge layer** for reusable items whose evidence, scope,
+   support level, review state, and non-inference boundary were checked by a
+   named human. Stable closure lessons are a subtype approved at gate closure.
+
+Start from
+[`docs/templates/research-knowledge-template.md`](templates/research-knowledge-template.md).
+Create or revise a working entry whenever a durable milestone changes the
+evidence boundary: source review, contract freeze, calculation completion,
+verification, hostile criticism, owner decision, or closure. Record the
+knowledge class; primary evidence and exact locator; support and review state;
+what held; what failed or remains unresolved; what must not be inferred; the
+next discriminating check; applicability; AI provenance; and one lifecycle
+state: `provisional`, `corroborated`, `challenged`, `ready for owner review`,
+`promoted`, or `retired`.
+
+Capture reusable knowledge from literature/source review, model dictionaries,
+analytic derivations, numerical methods, data and comparisons, bounded
+results, decisions and workflow, and tooling or reproducibility. Do not ingest
+every paper or raw note. A literature item must be reusable or decision-
+relevant, summarize the claim in original words, cite the exact source version
+and locator, preserve uncertainty or disagreement, and avoid an unsupported
+claim of exhaustive coverage.
+
+Do not delete an observation merely because a later check challenges it. Mark
+the transition and retain the evidence so the knowledge base records which
+representations, assumptions, sources, or methods were unreliable. General
+knowledge may receive a stable knowledge ID after the named human review is
+recorded. At owner-reviewed closure, promote a reusable gate lesson to a stable
+lesson ID or retire it with the reason and decision link. An unresolved entry
+may remain provisional or challenged. Promotion must not retroactively change
+the frozen contract, thresholds, support label, result record, or owner
+decision.
+
+Update the knowledge base and research-progress snapshot in the same bounded
+work session when a milestone changes both evidence and stage. This is
+agent-updated live state, not background telemetry; its currency is the last
+recorded evidence-linked revision.
 
 ## Learn from every closed gate
 

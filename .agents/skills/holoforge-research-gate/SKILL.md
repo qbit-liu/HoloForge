@@ -16,9 +16,15 @@ scientific support, authorization, and disclosure as separate states.
 4. For unpublished work, also read `docs/private-research-workflow.md` and
    inspect the private project's current hypothesis card, decision log, and Git
    status.
-5. Before a new intake, read the private project's lesson index and the primary
-   evidence behind potentially applicable entries. Record the index revision,
-   stable lesson IDs, and applicability in the intake scorecard.
+5. During an active gate, read and update the private research knowledge base
+   using `docs/templates/research-knowledge-template.md`. Keep working entries
+   separate from human-reviewed stable knowledge. Capture reusable knowledge
+   from sources, dictionaries, derivations, methods, data, results, decisions,
+   and reproducibility work, not only failures.
+6. Before a new intake, read the private project's reviewed-knowledge and
+   closure-lesson indexes and the primary evidence behind potentially
+   applicable entries. Record the index revision, stable knowledge and lesson
+   IDs, and applicability in the intake scorecard.
 
 Treat the repository documents as authoritative when they are stricter than
 this summary.
@@ -31,11 +37,12 @@ questions: source-complete inputs, an invariant target beyond the generic
 baseline, a cheap kill test, a defined positive-result endpoint, and an
 explicit cost ceiling.
 
-Retrieve prior lessons by failure mode and method risk as well as topic. For
-each applicable stable lesson ID, add a candidate-specific source check,
-baseline, diagnostic, threshold, or stop rule. If none applies, record which
-tags were searched. Never infer that a new candidate fails because an earlier
-one did, and never copy an old threshold without re-establishing applicability.
+Retrieve prior knowledge by class, topic, source convention, method risk,
+outcome, and failure mode. For each applicable stable knowledge or lesson ID,
+add a candidate-specific source check, baseline, diagnostic, threshold, or stop
+rule. If none applies, record which classes and tags were searched. Never infer
+that a new candidate fails because an earlier one did, and never copy an old
+threshold without re-establishing applicability.
 
 Use `pass`, `conditional`, or `fail` for each item. A detailed research gate
 may open only when all five items pass. A conditional item may open only one
@@ -58,27 +65,38 @@ the intake decision remains auditable.
    methods, and comparison data.
 5. Write a hostile critic report that identifies the strongest alternative
    explanation and the cheapest discriminating next test.
-6. Prepare an outcome-first owner review. For every numbered decision, give a
+6. After every durable milestone that changes the evidence boundary, update a
+   working knowledge entry with its knowledge class, primary evidence and exact
+   locator, support and review state, lifecycle state, what held, what failed,
+   what must not be inferred, and the next discriminating check. Preserve
+   challenged or retired entries. A named human may review and promote general
+   knowledge at a durable milestone; do not promote a gate-outcome lesson to a
+   stable lesson ID before owner-reviewed closure.
+7. Prepare an outcome-first owner review. For every numbered decision, give a
    recommended response, concise evidence-based reason, work opened, work
    remaining closed, and the leading uncertainty or tradeoff. State what is
    completed, the current stage, the proposed next stage, and what remains
    closed.
-7. End the request with five response paths: A, approve all item-by-item
+8. End the request with five response paths: A, approve all item-by-item
    recommendations; B, approve only named decisions; C, request a revision or
    named missing evidence; D, receive a status walkthrough without authorizing
    work; and E, give a free-form custom response. Mark one path as recommended
    for the present evidence, and confirm any ambiguous custom response.
-8. Stop for the owner unless authority for this exact class of bounded gate is
+9. Stop for the owner unless authority for this exact class of bounded gate is
    already delegated and recorded.
-9. After the decision, record the selected responses and complete a project-
+10. After the decision, record the selected responses and complete a project-
    local closure retrospective from
    `docs/templates/research-retrospective-template.md`. Classify the outcome,
    assign a stable lesson ID and retrieval tags, link primary evidence,
    preserve what failed, state applicability and what must not be inferred,
    record any prospective intake or contract lesson, and name the evidence
-   required to reopen the direction. Do not use reflection to rewrite the
-   frozen gate or strengthen its support label.
-10. Update status and evidence boundaries, run checks, and commit only the
+   required to reopen the direction. Reconcile the gate's working knowledge:
+   preserve already reviewed knowledge, promote only the owner-accepted
+   reusable closure lesson, retire non-reusable entries with reasons, and retain
+   unresolved entries as provisional or challenged.
+   Do not use reflection to rewrite the frozen gate or strengthen its support
+   label.
+11. Update status and evidence boundaries, run checks, and commit only the
     reviewed gate and its retrospective. The closure handoff must then repeat
     completed/current/next status and fresh A-E choices for the next eligible
     decision; do not end only with `no approval pending`.

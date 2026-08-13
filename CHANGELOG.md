@@ -4,6 +4,30 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- A current architecture guide covering the Forge/Verify execution path,
+  repository layers, dependency rules, extension point, and deliberate
+  Version 0.5 non-goals.
+- A generic two-state research-knowledge template that keeps live working
+  observations separate from human-reviewed knowledge and owner-accepted
+  closure lessons.
+
+### Changed
+
+- Isolated each built-in benchmark's command-facing adapter glue in its own
+  module and reduced `holoforge.benchmarks.registry` to the explicit
+  composition root.
+- Explore workflows now capture reusable knowledge from literature, model
+  dictionaries, derivations, numerical methods, data, bounded results,
+  decisions, and reproducibility work. General items require named human review;
+  closure lessons still require owner-reviewed closure.
+
+### Scientific results
+
+- No model equation, solver, default, acceptance tolerance, command behavior,
+  schema contract, model card, evidence metadata, or scientific result changed.
+
 ## [0.5.2] - 2026-08-12
 
 ### Added
