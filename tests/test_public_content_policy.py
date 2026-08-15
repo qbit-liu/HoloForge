@@ -85,6 +85,39 @@ class PublicContentPolicyTests(unittest.TestCase):
         for private_identifier in ("C01", "C02", "C03", "D001", "M001"):
             self.assertNotIn(private_identifier, combined)
 
+    def test_review_packet_uses_accessible_status_colors_and_critic_leads(self):
+        template = (
+            ROOT / "docs/templates/review-packet-template.tex"
+        ).read_text(encoding="utf-8")
+        workflow = " ".join(
+            (ROOT / "docs/research-gate-workflow.md")
+            .read_text(encoding="utf-8")
+            .lower()
+            .split()
+        )
+        skill = " ".join(
+            (ROOT / ".agents/skills/holoforge-research-gate/SKILL.md")
+            .read_text(encoding="utf-8")
+            .lower()
+            .split()
+        )
+
+        for command in (
+            r"\statuspass",
+            r"\statusfail",
+            r"\statusstop",
+            r"\statuspending",
+            r"\statusskipped",
+            r"\statusclosed",
+            r"\statusretained",
+        ):
+            self.assertIn(command, template)
+
+        self.assertIn("color is never the only carrier of meaning", workflow)
+        self.assertIn("short bold challenge sentence", workflow)
+        self.assertIn("semantic status commands", skill)
+        self.assertIn("short bold challenge sentence", skill)
+
     def test_pdf_review_rule_covers_explore_and_forge_verify(self):
         workflow = " ".join(
             (ROOT / "docs/research-gate-workflow.md")

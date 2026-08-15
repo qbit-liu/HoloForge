@@ -333,10 +333,16 @@ prepare a concise PDF packet in the standard HoloForge style:
 - a title, subtitle, owner/date line, and shaded outcome-first summary;
 - numbered sections and equations;
 - compact booktabs-style tables with declared tolerances;
+- semantic status words in tables, with green for `pass`, red for `fail` or
+  `stop`, amber for `pending` or `skipped`, and navy for informational states
+  such as `closed` or `retained`; preserve the written status so color is never
+  the only carrier of meaning;
 - one plot per page when a figure is needed, with no uncontrolled
   extrapolation;
 - navy `Supported` and `Not supported` evidence statements;
-- a hostile critic section followed by the exact owner decisions;
+- a hostile critic section in which each objection begins with a short bold
+  challenge sentence and is followed immediately by the bounded response,
+  followed by the exact owner decisions;
 - an item-by-item recommended response with a concise reason and scope effect;
 - the completed, current, and proposed next stage plus the A-E response
   paths;
