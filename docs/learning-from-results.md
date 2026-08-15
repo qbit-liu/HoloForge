@@ -1,14 +1,87 @@
-# Learning From Every Research Result
+# Learning Throughout Research
+
+Research knowledge does not come only from failures or closed gates. HoloForge
+captures reusable, evidence-linked knowledge while reading literature,
+defining a model dictionary, deriving equations, selecting data, calculating,
+verifying, criticizing, deciding, and closing a gate. Positive, negative,
+inconclusive, conditional, source-stopped, prior-art-stopped, and technically
+stopped results are all possible sources of knowledge.
 
 A research gate is useful even when it stops a hypothesis. HoloForge therefore
-preserves both the evidence and a short closure retrospective for every closed
-Explore gate. This rule applies to positive, negative, inconclusive,
-conditional, source-stopped, prior-art-stopped, and technically stopped gates.
+also preserves both the evidence and a short closure retrospective for every
+closed Explore gate.
 
 The retrospective is not a substitute for the result record. The result says
 what the frozen gate established. The retrospective says how that bounded
 experience should improve later candidate selection, contracts, methods, or
 verification.
+
+## Two-state research knowledge base
+
+Maintain one private Markdown knowledge base with two visibly distinct states:
+
+- **Working knowledge** changes during an active gate. Entries are
+  evidence-linked and carry a lifecycle state: `provisional`, `corroborated`,
+  `challenged`, `ready for owner review`, `promoted`, or `retired`.
+- **Reviewed knowledge** contains stable, retrieval-oriented summaries whose
+  evidence, scope, support level, review state, and non-inference boundary were
+  checked by a named human. It includes literature/source, model/dictionary,
+  analytic/derivation, numerical/method, data/comparison, result,
+  decision/workflow, and tooling/reproducibility knowledge. Closure lessons are
+  a subtype promoted only after owner-reviewed gate closure.
+
+Use the generic
+[`research-knowledge-template.md`](templates/research-knowledge-template.md).
+Update a working entry after a durable milestone changes the evidence boundary:
+source review, contract freeze, calculation, verification, hostile criticism,
+owner decision, or closure. State what held, what failed or remains unresolved,
+what must not be inferred, the next discriminating check, and applicability.
+
+This event-driven update is agent-maintained, not background telemetry. A
+working entry can guide the next check, but it is not reviewed knowledge and
+must not silently strengthen a scientific claim. Preserve challenged and
+retired observations with their evidence so later work can learn why an
+apparent result, source interpretation, or method was unreliable.
+
+## What belongs in the knowledge base
+
+A reusable item may come from:
+
+- a paper or source audit that establishes a scoped equation, convention,
+  dictionary, comparison, or explicit disagreement;
+- a derivation or analytic limit that was independently checked;
+- numerical work that establishes method behavior, convergence limits,
+  conditioning, diagnostics, or representation dependence;
+- a dataset review that fixes version, uncertainty, transformation, licensing,
+  or comparison conventions;
+- a bounded positive, negative, conditional, inconclusive, or stopped result;
+- hostile criticism that exposes a live alternative explanation or sharper
+  test;
+- an owner decision or workflow change with reusable rationale; or
+- a reusable test, environment constraint, or reproducibility procedure.
+
+Do not ingest every paper, conversation, command, or intermediate number. Raw
+papers, literature notes, derivations, result files, and decision records remain
+primary evidence. Add a distilled item only when it is reusable or
+decision-relevant, evidence-linked, scoped, non-duplicative, explicit about
+uncertainty, and safe for the knowledge base's disclosure class. For literature
+knowledge, record the exact document version and page, equation, figure, or
+section; summarize in original words; represent conflicting sources; and never
+upgrade a targeted search into an exhaustive literature claim.
+
+## Review and promotion
+
+Working items use `WK-YYYYMMDD-NNN` identifiers. General reviewed knowledge
+uses stable IDs such as `HF-K001`; owner-accepted closure lessons retain stable
+IDs such as `HF-L001`. These namespaces are record types inside the same
+canonical knowledge base, not separate knowledge bases.
+
+Literature, derivation, method, data, decision, and tooling knowledge may be
+promoted at a durable review milestone when a named human confirms its primary
+evidence and locator, statement, applicability, uncertainty, support level,
+review state, and non-inference boundary. A gate-outcome lesson still requires
+owner-reviewed closure and its retrospective. Conversation or agent confidence
+alone cannot promote an item.
 
 ## Required evidence layers
 
@@ -64,24 +137,34 @@ Lessons feed forward. They may change how future candidates are scored or how
 new contracts are written, but they must not retroactively change a frozen
 contract, acceptance threshold, support label, or owner decision.
 
+At owner-reviewed closure, reconcile every working entry touched by the gate:
+promote the reusable accepted lesson, preserve already reviewed knowledge,
+retire an unsupported or non-reusable entry with its reason, or leave an
+unresolved entry visibly provisional or challenged. Do not erase the working
+history after promotion.
+
 ## Agent retrieval loop
 
-Most portfolio lessons will be consumed by a research agent. A private lesson
-index should therefore give each entry a stable lesson ID, retrieval tags, a
-link to primary evidence, an applicability statement, and a non-applicability
-boundary. Keep Markdown as the canonical record so an owner can still inspect
-it; do not maintain a second machine-readable copy unless a real automation
-requires one and consistency is tested.
+Most portfolio knowledge will be consumed by a research agent. A private
+reviewed index should therefore give each entry a stable knowledge or lesson
+ID, knowledge class, retrieval tags, a link and locator to primary evidence,
+an applicability statement, and a non-applicability boundary. Keep Markdown as
+the canonical record so an owner can still inspect it; do not maintain a second
+machine-readable copy unless a real automation requires one and consistency is
+tested.
 
 Before scoring a new candidate, the agent must:
 
-1. read the current private lesson index and its Git revision;
-2. search by failure mode and method risk as well as scientific topic;
-3. open the primary evidence behind every potentially applicable lesson;
-4. record the selected lesson IDs in the new intake scorecard;
-5. translate each applicable lesson into a candidate-specific source check,
+1. read the current private reviewed-knowledge and lesson indexes and their Git
+   revision;
+2. search by knowledge class, scientific topic, method risk, source convention,
+   outcome, and failure mode;
+3. open the primary evidence behind every potentially applicable item;
+4. record the selected stable knowledge and lesson IDs in the new intake
+   scorecard;
+5. translate each applicable item into a candidate-specific source check,
    baseline, diagnostic, acceptance threshold, or stop rule; and
-6. state which tags were searched when no prior lesson applies.
+6. state which classes and tags were searched when no prior item applies.
 
 The agent must not copy a past conclusion or threshold merely because two
 projects sound similar. A previous failure is a prompt for a cheaper or sharper

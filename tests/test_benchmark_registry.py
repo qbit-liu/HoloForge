@@ -93,6 +93,44 @@ class BenchmarkRegistryTests(unittest.TestCase):
         self.assertEqual(registry.identifiers, tuple(sorted(registry.identifiers)))
         self.assertEqual(registry.identifiers, BUILTIN_BENCHMARKS.identifiers)
 
+    def test_builtin_adapter_glue_is_isolated_by_benchmark(self) -> None:
+        expected_modules = {
+            "hard-wall-vector": (
+                "holoforge.benchmarks.adapters.hard_wall_vector"
+            ),
+            "holographic-superconductor": (
+                "holoforge.benchmarks.adapters.holographic_superconductor"
+            ),
+            "linear-axion-dc": (
+                "holoforge.benchmarks.adapters.linear_axion_dc"
+            ),
+            "soft-wall-vector": (
+                "holoforge.benchmarks.adapters.soft_wall_vector"
+            ),
+        }
+        self.assertEqual(
+            {
+                adapter.identifier: adapter.execute.__module__
+                for adapter in BUILTIN_BENCHMARKS
+            },
+            expected_modules,
+        )
+
+        composition_root = (
+            ROOT / "src" / "holoforge" / "benchmarks" / "registry.py"
+        ).read_text()
+        self.assertNotIn("def _configure_", composition_root)
+        self.assertNotIn("def _execute_", composition_root)
+        self.assertNotIn("def _render_", composition_root)
+
+    def test_architecture_guide_documents_the_adapter_boundary(self) -> None:
+        readme = (ROOT / "README.md").read_text()
+        architecture = (ROOT / "docs" / "architecture.md").read_text()
+        self.assertIn("docs/architecture.md", readme)
+        self.assertIn("src/holoforge/benchmarks/adapters/", architecture)
+        self.assertIn("composition root", architecture)
+        self.assertIn("does not standardize equations", architecture)
+
     def test_duplicate_identifier_fails_before_execution(self) -> None:
         duplicate = replace(SYNTHETIC_ADAPTER, description="duplicate")
         with self.assertRaisesRegex(

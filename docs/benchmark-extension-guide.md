@@ -38,9 +38,10 @@ contains no common numerical-solver state.
    approval for the scientific and numerical contract before implementation.
 2. Implement model physics in its own module using maintained numerical-library
    functions where they fit the problem.
-3. Add command-facing callbacks and a `BenchmarkAdapter` in
-   `holoforge.benchmarks.registry`.
-4. Add the adapter once to the explicit `BUILTIN_BENCHMARKS` tuple.
+3. Add command-facing callbacks and a `BenchmarkAdapter` in one dedicated
+   `holoforge.benchmarks.adapters.<benchmark>` module.
+4. Import the adapter into `holoforge.benchmarks.registry` and add it once to
+   the explicit `BUILTIN_BENCHMARKS` tuple.
 5. Do not add a benchmark-name condition to `holoforge.cli`, the evidence
    writer, or another central dispatcher.
 6. Add the model card, benchmark guide, analytic or literature target,

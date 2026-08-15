@@ -43,6 +43,18 @@ record its own environment, and preserve negative results. It may extend the
 public schemas locally, but those extensions are not automatically part of the
 HoloForge public contract.
 
+Use `RESEARCH_LESSONS.md` as the inspectable private knowledge base, following
+the generic [`research-knowledge-template.md`](templates/research-knowledge-template.md).
+Maintain two visibly separate states in that file: a working queue updated
+after durable research milestones, and reviewed knowledge whose evidence,
+scope, support level, review state, and non-inference boundary were checked by
+a named human. Reviewed knowledge can come from literature, dictionaries,
+derivations, methods, data, results, decisions, or reproducibility work;
+closure lessons remain a subtype admitted only after owner-reviewed closure.
+Working entries may be provisional, corroborated, challenged, ready for owner
+review, promoted, or retired. A live observation may sharpen the next check,
+but it must not silently become reviewed knowledge or rewrite the frozen gate.
+
 ## Research gates
 
 The concise gate sequence below is expanded in the reusable
@@ -64,29 +76,34 @@ calculation, or turn `no approval pending` into an approval. A separate
 portfolio choice must be identified as a separate gate rather than inserted as
 false pending state in the closed research project.
 
-1. **Intake:** read the current private lesson index and record which stable
-   lesson IDs and evidence apply to this candidate. Translate each into a
-   candidate-specific control; if none applies, record the failure-mode tags
-   searched. Then record the candidate dictionary, assumptions, falsification
-   test, AI involvement, and decision owner in a private hypothesis card and
-   complete the five-part Explore intake scorecard: source-complete inputs, an
-   invariant target beyond the generic baseline, a cheap kill test, a
-   positive-result endpoint, and a cost ceiling. A detailed gate opens only
-   after all five pass; a conditional item may open only one cheaper bounded
-   evidence task.
+1. **Intake:** read the current private reviewed-knowledge and closure-lesson
+   indexes and record which stable knowledge and lesson IDs and evidence apply
+   to this candidate. Translate each into a candidate-specific control; if none
+   applies, record the knowledge classes and tags searched. Then record the
+   candidate dictionary, assumptions, falsification test, AI involvement, and
+   decision owner in a private hypothesis card and complete the five-part
+   Explore intake scorecard: source-complete inputs, an invariant target beyond
+   the generic baseline, a cheap kill test, a positive-result endpoint, and a
+   cost ceiling. A detailed gate opens only after all five pass; a conditional
+   item may open only one cheaper bounded evidence task.
 2. **Screening:** search prior work and test dimensional, symmetry, boundary,
    and ensemble consistency before investing in a large calculation.
 3. **Discriminating calculation:** compare against a simpler baseline and use a
    preregistered keep/reject criterion where practical.
-4. **Internal decision and reflection:** retain, revise, or reject the
+4. **Live knowledge update:** after source review, contract freeze,
+   calculation, verification, criticism, and owner decisions, update the
+   evidence-linked working queue and preserve its non-inference boundary.
+   Distill decision-relevant paper knowledge with an exact source version and
+   locator; do not copy every paper note into the knowledge base.
+5. **Internal decision and reflection:** retain, revise, or reject the
    hypothesis, then complete the generic
    [closure retrospective](templates/research-retrospective-template.md). Record
    the outcome class, evidence, lesson, non-inference boundary, prospective
    workflow change, and reopening trigger. Keeping the work private does not
    change its scientific-support label.
-5. **Publication:** submit and revise the paper without copying confidential
+6. **Publication:** submit and revise the paper without copying confidential
    correspondence into the public project.
-6. **Release review:** after journal acceptance or another explicit disclosure
+7. **Release review:** after journal acceptance or another explicit disclosure
    decision, select the exact artifacts that may become public.
 
 ## Public export checklist

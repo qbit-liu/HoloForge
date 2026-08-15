@@ -190,11 +190,12 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("one named evidence task", combined)
         self.assertIn("any failed item defers or rejects", combined)
         self.assertIn("not a novelty", scorecard)
-        self.assertIn("prior-lessons review", scorecard)
+        self.assertIn("prior-knowledge review", scorecard)
+        self.assertIn("stable knowledge or lesson id", combined)
         self.assertIn("stable lesson id", combined)
         self.assertIn("primary evidence", combined)
         self.assertIn("candidate-specific control", combined)
-        self.assertIn("if no lesson applies", scorecard)
+        self.assertIn("if no item applies", scorecard)
         self.assertIn("previous gate's failure", scorecard)
         self.assertNotIn("/users/", scorecard)
         self.assertNotIn("holoforge-explore-private", scorecard)
@@ -240,6 +241,95 @@ class PublicContentPolicyTests(unittest.TestCase):
 
         self.assertIn("research-retrospective-template.md", workflow)
         self.assertIn("research-retrospective-template.md", skill)
+        self.assertNotIn("/users/", combined)
+        self.assertNotIn("holoforge-explore-private", combined)
+        for private_identifier in ("c01", "c02", "c03", "d001", "m001"):
+            self.assertNotIn(private_identifier, combined)
+
+    def test_source_stop_requires_a_version_of_record_audit(self):
+        workflow = (
+            ROOT / "docs/research-gate-workflow.md"
+        ).read_text(encoding="utf-8").lower()
+        skill = (
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md"
+        ).read_text(encoding="utf-8").lower()
+        combined = " ".join("\n".join((workflow, skill)).split())
+
+        for required_term in (
+            "source-normalization stop",
+            "version of record",
+            "accepted manuscript",
+            "correction",
+            "erratum",
+            "doi",
+            "version/date",
+            "exact locator",
+            "preprint evidence",
+            "author intent",
+            "private code",
+        ):
+            self.assertIn(required_term, combined)
+
+        self.assertNotIn("/users/", combined)
+        self.assertNotIn("holoforge-explore-private", combined)
+        for private_identifier in ("c01", "c02", "c03", "d001", "m001"):
+            self.assertNotIn(private_identifier, combined)
+
+    def test_research_knowledge_covers_more_than_failure_lessons(self):
+        workflow = (
+            ROOT / "docs/research-gate-workflow.md"
+        ).read_text(encoding="utf-8").lower()
+        lesson_guide = (
+            ROOT / "docs/learning-from-results.md"
+        ).read_text(encoding="utf-8").lower()
+        template = (
+            ROOT / "docs/templates/research-knowledge-template.md"
+        ).read_text(encoding="utf-8").lower()
+        skill = (
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md"
+        ).read_text(encoding="utf-8").lower()
+        instructions = (ROOT / "AGENTS.md").read_text(encoding="utf-8").lower()
+        combined = "\n".join(
+            (workflow, lesson_guide, template, skill, instructions)
+        )
+
+        for required_term in (
+            "working knowledge",
+            "reviewed knowledge",
+            "stable knowledge id",
+            "stable lesson id",
+            "knowledge class",
+            "durable milestone",
+            "provisional",
+            "corroborated",
+            "challenged",
+            "ready for owner review",
+            "promoted",
+            "retired",
+            "primary evidence",
+            "what must not be inferred",
+            "not background telemetry",
+            "research-knowledge-template.md",
+        ):
+            self.assertIn(required_term, combined)
+
+        for knowledge_class in (
+            "literature/source",
+            "model/dictionary",
+            "analytic/derivation",
+            "numerical/method",
+            "data/comparison",
+            "result",
+            "decision/workflow",
+            "tooling/reproducibility",
+        ):
+            self.assertIn(knowledge_class, combined)
+
+        self.assertIn("named human", combined)
+        self.assertIn("exact source version", combined)
+        self.assertIn("do not ingest every paper", combined)
+        self.assertIn("owner-reviewed closure", combined)
+        self.assertIn("must not retroactively change", combined)
         self.assertNotIn("/users/", combined)
         self.assertNotIn("holoforge-explore-private", combined)
         for private_identifier in ("c01", "c02", "c03", "d001", "m001"):
