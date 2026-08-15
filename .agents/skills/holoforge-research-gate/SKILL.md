@@ -66,6 +66,14 @@ the intake decision remains auditable.
    changes, or resolves the preprint evidence. Do not infer author intent, the
    convention used by private code, or a physical error from printed text
    alone.
+   If the owner proposes deriving a missing quantity from the exact model,
+   preserve the source-stop result and freeze a separate model-derived-repair
+   gate. Fix the exact equations and source caveats, retain every term at the
+   same order, map intermediate amplitudes to the physical observable, test
+   normalization, redefinition, and counterterm invariance, and run algebraic
+   kill tests on proposed invariants before numerical work. Preserve
+   cancellations and failed targets; do not silently rescue the old gate or
+   label the new result as reproduced from the source.
 3. Perform only the authorized calculation. Reuse appropriate maintained
    library functions before writing a numerical primitive.
 4. Verify the result with the checks appropriate to its claim: analytic limits,
