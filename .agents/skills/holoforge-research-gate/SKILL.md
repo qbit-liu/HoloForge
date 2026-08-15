@@ -57,7 +57,15 @@ the intake decision remains auditable.
    stop conditions, exclusions, decision owner, and disclosure class before
    calculation.
 2. Check primary literature and provenance needed for this gate. Distinguish a
-   missing source from evidence that no source exists.
+   missing source from evidence that no source exists. Before closing a source
+   or source-normalization stop from preprint text, determine whether each
+   decisive preprint has a journal version of record, accepted manuscript,
+   correction, or erratum. Inspect the decisive equation or claim in the
+   latest applicable record and preserve its DOI or equivalent identifier,
+   version/date, exact locator, access limitation, and whether it confirms,
+   changes, or resolves the preprint evidence. Do not infer author intent, the
+   convention used by private code, or a physical error from printed text
+   alone.
 3. Perform only the authorized calculation. Reuse appropriate maintained
    library functions before writing a numerical primitive.
 4. Verify the result with the checks appropriate to its claim: analytic limits,

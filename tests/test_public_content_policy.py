@@ -246,6 +246,35 @@ class PublicContentPolicyTests(unittest.TestCase):
         for private_identifier in ("c01", "c02", "c03", "d001", "m001"):
             self.assertNotIn(private_identifier, combined)
 
+    def test_source_stop_requires_a_version_of_record_audit(self):
+        workflow = (
+            ROOT / "docs/research-gate-workflow.md"
+        ).read_text(encoding="utf-8").lower()
+        skill = (
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md"
+        ).read_text(encoding="utf-8").lower()
+        combined = " ".join("\n".join((workflow, skill)).split())
+
+        for required_term in (
+            "source-normalization stop",
+            "version of record",
+            "accepted manuscript",
+            "correction",
+            "erratum",
+            "doi",
+            "version/date",
+            "exact locator",
+            "preprint evidence",
+            "author intent",
+            "private code",
+        ):
+            self.assertIn(required_term, combined)
+
+        self.assertNotIn("/users/", combined)
+        self.assertNotIn("holoforge-explore-private", combined)
+        for private_identifier in ("c01", "c02", "c03", "d001", "m001"):
+            self.assertNotIn(private_identifier, combined)
+
     def test_research_knowledge_covers_more_than_failure_lessons(self):
         workflow = (
             ROOT / "docs/research-gate-workflow.md"

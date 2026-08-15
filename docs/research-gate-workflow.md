@@ -93,6 +93,24 @@ If a stop condition fires, stop the gate, preserve the bounded stopped result
 under its correct outcome class, and return to owner review. Do not expand the
 scope to rescue the hypothesis.
 
+## Check the version of record before a source stop
+
+Do not close a source or source-normalization stop from preprint text alone
+when a later authoritative record may exist. Before closure:
+
+1. determine whether every decisive preprint has a journal version of record,
+   accepted manuscript, correction, or erratum;
+2. inspect the decisive equation or claim in the latest applicable record;
+3. record the DOI or equivalent persistent identifier, version and date,
+   exact locator, and access limitation; and
+4. state whether the later record confirms, changes, or resolves the preprint
+   evidence.
+
+If no later record exists or it cannot be inspected, preserve that limitation
+and keep any version-sensitive conclusion provisional. A printed mismatch may
+support a source stop, but it does not by itself establish author intent, the
+convention used by private code, or an error in the paper's physical result.
+
 ## Update research knowledge during the gate
 
 Use one private, human-readable research knowledge base with two states:
