@@ -6,6 +6,13 @@ All notable changes to HoloForge are recorded here.
 
 ### Added
 
+- A clean-room Chebyshev--Gauss--Lobatto numerical module plus opt-in spectral
+  routes for the soft-wall and hard-wall vector benchmarks, with three-level
+  polynomial-degree convergence evidence.
+- A clean-room zero-density Gubser--Nellore Einstein--dilaton benchmark with
+  coupled Chebyshev collocation, exact endpoints, independent DOP853 checks,
+  derived Figure 2/3 anchors, artifact generation, and an owner-approved model
+  record that retains its AI provenance.
 - A current architecture guide covering the Forge/Verify execution path,
   repository layers, dependency rules, extension point, and deliberate
   Version 0.5 non-goals.
@@ -25,8 +32,13 @@ All notable changes to HoloForge are recorded here.
 
 ### Scientific results
 
-- No model equation, solver, default, acceptance tolerance, command behavior,
-  schema contract, model card, evidence metadata, or scientific result changed.
+- The new spectral routes independently reproduce the existing analytic
+  soft-wall and hard-wall targets. The Einstein--dilaton implementation is
+  locally passing its preregistered coupled-equation, convergence, independent
+  DOP853, determinism, and source-curve gates. Its model card, derived anchors,
+  and reproduced claim were approved by Xin-Yi Liu on 2026-08-17; the new
+  soft-/hard-wall spectral-route claims remain unreviewed. No passing
+  calculation is presented as empirical validation of QCD.
 
 ## [0.5.2] - 2026-08-12
 

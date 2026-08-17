@@ -95,6 +95,9 @@ class BenchmarkRegistryTests(unittest.TestCase):
 
     def test_builtin_adapter_glue_is_isolated_by_benchmark(self) -> None:
         expected_modules = {
+            "gubser-nellore-ed": (
+                "holoforge.benchmarks.adapters.gubser_nellore_ed"
+            ),
             "hard-wall-vector": (
                 "holoforge.benchmarks.adapters.hard_wall_vector"
             ),

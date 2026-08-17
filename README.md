@@ -105,6 +105,7 @@ identify executable examples, not a restriction on future HoloForge domains.
 | Spectral eigenvalue verification with analytic and independent numerical checks | `holoforge verify soft-wall-vector` and `holoforge verify hard-wall-vector` | [soft-wall guide](docs/benchmarks/soft-wall-vector.md) and [hard-wall guide](docs/benchmarks/hard-wall-vector.md) |
 | Linear-instability and nonlinear-condensate verification | `holoforge verify holographic-superconductor` | [condensate benchmark guide](docs/benchmarks/holographic-superconductor.md) |
 | Coupled fluctuation, radial-flux, and DC-limit verification | `holoforge verify linear-axion-dc` | [transport benchmark guide](docs/benchmarks/linear-axion-dc.md) |
+| Coupled Einstein--dilaton thermodynamics with spectral, DOP853, and source-figure checks | `holoforge verify gubser-nellore-ed` | [Einstein--dilaton benchmark guide](docs/benchmarks/gubser-nellore-ed.md) |
 | Controlled model/reference comparison with uncertainty provenance | `holoforge compare vector-spectrum` | [comparison guide](docs/benchmarks/vector-spectrum-comparison.md) |
 | Portable provenance and scientific-state compatibility | Add `--bundle-dir PATH` to any command, then use `holoforge audit bundle` or `holoforge audit compatibility` | [evidence-bundle guide](docs/evidence-bundles.md) |
 
@@ -146,6 +147,9 @@ artifacts. Plot generation requires the optional dependency installed with
   public exports. Supported agents may discover these skills automatically;
   every agent can instead read the matching `SKILL.md` directly.
 - [`src/holoforge/`](src/holoforge/) contains reusable software.
+- [`docs/numerics/chebyshev-collocation.md`](docs/numerics/chebyshev-collocation.md)
+  documents the shared finite-interval pseudospectral primitive and its
+  benchmark-level evidence boundary.
 - [`tests/`](tests/) holds analytic, numerical, schema, and interface checks.
 
 ## Reusable agent skills

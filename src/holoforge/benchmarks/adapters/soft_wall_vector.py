@@ -8,6 +8,7 @@ from typing import Any, Mapping, Sequence
 from holoforge.benchmarks.soft_wall_vector import (
     DEFAULT_GRID_POINTS,
     DEFAULT_NUM_MODES,
+    DEFAULT_SPECTRAL_DEGREE,
     DEFAULT_TOLERANCE,
     SoftWallConfig,
     solve_spectrum,
@@ -24,7 +25,7 @@ SOFT_WALL_MODEL_CARD = ModelCardReference(
     identifier="qcd.soft-wall-vector.kkss",
     schema_version="0.1",
     repository_path="domains/qcd/soft_wall_vector/model-card.json",
-    sha256="6cb2a0f2824d279b68e20da5c8304d5ef68676649815ee6bd0816ec0f385d2fd",
+    sha256="75f35fca90157e2416737db8ceaf4428baf64646c24bf21e24c5cf4671e92df6",
 )
 
 
@@ -42,12 +43,27 @@ def _configure_soft_wall(parser: Any) -> None:
         help=f"Number of lowest modes (default: {DEFAULT_NUM_MODES}).",
     )
     parser.add_argument(
+        "--method",
+        choices=("finite-difference", "spectral"),
+        default="finite-difference",
+        help="Numerical formulation (default: finite-difference).",
+    )
+    parser.add_argument(
         "--grid-points",
         type=int,
         default=DEFAULT_GRID_POINTS,
         help=(
             "Number of interior finite-difference points "
             f"(default: {DEFAULT_GRID_POINTS})."
+        ),
+    )
+    parser.add_argument(
+        "--spectral-degree",
+        type=int,
+        default=DEFAULT_SPECTRAL_DEGREE,
+        help=(
+            "Chebyshev polynomial degree for --method spectral "
+            f"(default: {DEFAULT_SPECTRAL_DEGREE})."
         ),
     )
     parser.add_argument(
@@ -74,25 +90,36 @@ def _execute_soft_wall(args: Any) -> BenchmarkExecution:
             kappa_gev=args.kappa,
             grid_points=args.grid_points,
             z_max_gev_inverse=args.z_max,
+            spectral_degree=args.spectral_degree,
         )
-        result = solve_spectrum(config=config, num_modes=args.modes)
-    except ValueError as exc:
+        result = solve_spectrum(
+            config=config,
+            num_modes=args.modes,
+            method=args.method,
+        )
+    except (RuntimeError, ValueError) as exc:
         raise BenchmarkExecutionError(str(exc)) from exc
     payload = result.to_dict(args.tolerance)
     return BenchmarkExecution(
         payload=payload,
-        passed=result.max_relative_error <= args.tolerance,
+        passed=bool(payload["passed"]),
     )
 
 
 def _render_soft_wall(execution: BenchmarkExecution) -> Sequence[str]:
     payload = execution.payload
     configuration = payload["configuration"]
+    if payload["numerical_method"].get("route") == "spectral":
+        resolution = (
+            f"spectral degree = {configuration['spectral_degree']}"
+        )
+    else:
+        resolution = f"grid points = {configuration['grid_points']}"
     lines = [
         "Quadratic soft-wall vector benchmark",
         (
             f"kappa = {configuration['kappa_gev']:g} GeV, "
-            f"grid points = {configuration['grid_points']}, "
+            f"{resolution}, "
             f"z_max = {configuration['z_max_gev_inverse']:g} GeV^-1"
         ),
         " n    numerical m^2    analytic m^2    relative error",

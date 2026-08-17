@@ -19,6 +19,20 @@ DATA_PATH = (
     / "reference"
     / "pdg-2026-rho-masses.json"
 )
+GUBSER_NELLORE_PATHS = (
+    ROOT
+    / "src"
+    / "holoforge"
+    / "data"
+    / "reference"
+    / "gubser-nellore-figure-2-anchors.json",
+    ROOT
+    / "src"
+    / "holoforge"
+    / "data"
+    / "reference"
+    / "gubser-nellore-figure-3-anchors.json",
+)
 
 
 def load_json(path: Path) -> Dict[str, Any]:
@@ -41,6 +55,34 @@ class ReferenceDatasetTests(unittest.TestCase):
         self.assertEqual(self.dataset["provenance"]["review_status"], "approved")
         self.assertEqual(self.dataset["provenance"]["reviewed_by"], "Xin-Yi Liu")
         self.assertEqual(self.dataset["provenance"]["reviewed_on"], "2026-08-05")
+
+    def test_gubser_nellore_vector_anchor_records_are_valid_and_approved(self) -> None:
+        datasets = [load_json(path) for path in GUBSER_NELLORE_PATHS]
+        for dataset in datasets:
+            with self.subTest(dataset=dataset["id"]):
+                self.validator.validate(dataset)
+                self.assertEqual(
+                    dataset["provenance"]["review_status"], "approved"
+                )
+                self.assertEqual(
+                    dataset["provenance"]["reviewed_by"], "Xin-Yi Liu"
+                )
+                self.assertEqual(
+                    dataset["provenance"]["reviewed_on"], "2026-08-17"
+                )
+                self.assertTrue(all(entry["included"] for entry in dataset["entries"]))
+                self.assertTrue(
+                    all(
+                        entry["assignment_status"] == "anchor"
+                        for entry in dataset["entries"]
+                    )
+                )
+        self.assertEqual(len(datasets[0]["entries"]), 9)
+        self.assertEqual(len(datasets[1]["entries"]), 12)
+        self.assertEqual(
+            datasets[0]["edition"]["artifacts"][0]["sha256"],
+            datasets[1]["edition"]["artifacts"][0]["sha256"],
+        )
 
     def test_snapshot_has_one_anchor_and_visible_assignments(self) -> None:
         entries = self.dataset["entries"]

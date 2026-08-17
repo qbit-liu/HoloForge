@@ -33,6 +33,8 @@ class SoftWallEquationTests(unittest.TestCase):
             SoftWallConfig(grid_points=2)
         with self.assertRaisesRegex(ValueError, "z_max"):
             SoftWallConfig(z_max_gev_inverse=-1.0)
+        with self.assertRaisesRegex(ValueError, "spectral_degree"):
+            SoftWallConfig(spectral_degree=20)
         with self.assertRaisesRegex(ValueError, "num_modes"):
             analytic_mass_squared(num_modes=0, kappa_gev=1.0)
         with self.assertRaisesRegex(ValueError, "z_gev_inverse"):
@@ -71,6 +73,40 @@ class SoftWallNumericalTests(unittest.TestCase):
         )
         half_scale = solve_spectrum(
             SoftWallConfig(kappa_gev=0.5, grid_points=600), num_modes=3
+        )
+        np.testing.assert_allclose(
+            half_scale.numerical_mass_squared_gev2,
+            0.25 * unit_scale.numerical_mass_squared_gev2,
+            rtol=1.0e-11,
+            atol=1.0e-12,
+        )
+
+    def test_spectral_solver_reproduces_exact_modes_and_converges(self) -> None:
+        result = solve_spectrum(
+            SoftWallConfig(spectral_degree=40),
+            num_modes=4,
+            method="spectral",
+        )
+        record = result.to_dict(DEFAULT_TOLERANCE)
+
+        self.assertLess(result.max_relative_error, 1.0e-10)
+        self.assertEqual(result.spectral_refinement_degrees, (24, 32, 40))
+        self.assertTrue(record["passed"])
+        self.assertTrue(
+            record["spectral_convergence"]["improves_at_every_level"]
+        )
+        self.assertEqual(record["numerical_method"]["route"], "spectral")
+
+    def test_spectral_solution_is_scale_covariant(self) -> None:
+        unit_scale = solve_spectrum(
+            SoftWallConfig(kappa_gev=1.0, spectral_degree=40),
+            num_modes=3,
+            method="spectral",
+        )
+        half_scale = solve_spectrum(
+            SoftWallConfig(kappa_gev=0.5, spectral_degree=40),
+            num_modes=3,
+            method="spectral",
         )
         np.testing.assert_allclose(
             half_scale.numerical_mass_squared_gev2,

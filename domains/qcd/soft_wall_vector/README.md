@@ -11,4 +11,5 @@ Run it with:
 
 ```bash
 holoforge verify soft-wall-vector
+holoforge verify soft-wall-vector --method spectral --json
 ```

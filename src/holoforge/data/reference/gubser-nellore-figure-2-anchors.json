@@ -1,0 +1,181 @@
+{
+  "schema_version": "0.3",
+  "id": "gubser-nellore-figure-2-anchors",
+  "title": "Derived vector anchors for Gubser--Nellore Figure 2",
+  "domain": "holographic QCD thermodynamics",
+  "observable": {
+    "name": "speed of sound squared",
+    "symbol": "c_s^2",
+    "unit": "dimensionless"
+  },
+  "edition": {
+    "name": "Gubser--Nellore arXiv source archive v2",
+    "citation": "S. S. Gubser and A. Nellore, Phys. Rev. D 78, 086007 (2008)",
+    "published_year": 2008,
+    "doi": "10.1103/PhysRevD.78.086007",
+    "url": "https://arxiv.org/abs/0804.0434",
+    "accessed_on": "2026-08-16",
+    "license": "arXiv non-exclusive distribution license; derived numerical facts only",
+    "license_url": "https://info.arxiv.org/help/license/index.html",
+    "artifacts": [
+      {
+        "id": "arxiv-source-archive",
+        "url": "https://arxiv.org/src/0804.0434v2",
+        "sha256": "49057620542ad6839890f8328897615f0a5272e365ea06c806073d0147803360"
+      }
+    ]
+  },
+  "conventions": [
+    {
+      "name": "abscissa",
+      "value": "temperature T L in AdS-radius units",
+      "rationale": "Figure 2 uses an absolute dimensionless temperature rather than T/T_c_plot."
+    },
+    {
+      "name": "anchor extraction",
+      "value": "EPS tick locations define affine maps; ordinates are linearly interpolated between adjacent vector-path vertices",
+      "rationale": "This preserves an auditable derived-data route without redistributing the raw source figure."
+    },
+    {
+      "name": "uncertainty",
+      "value": "A conservative absolute c_s^2 uncertainty of 5e-4 is assigned to every anchor",
+      "rationale": "It covers the EPS integer coordinate grid and displayed line width."
+    }
+  ],
+  "entries": [
+    {
+      "id": "tl-0p001",
+      "label": "T L = 0.001",
+      "value": 0.250406,
+      "unit": "dimensionless",
+      "uncertainty": {"kind": "symmetric", "sigma": 0.0005, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."},
+      "source_artifact": "arxiv-source-archive",
+      "source_locator": "Figure 2 EPS path at T L = 0.001",
+      "assignment_status": "anchor",
+      "model_mode": 0,
+      "included": true,
+      "notes": "Pure-cosh source curve anchor; the coordinate is stored in the label and locator."
+    },
+    {
+      "id": "tl-0p050",
+      "label": "T L = 0.050",
+      "value": 0.283180,
+      "unit": "dimensionless",
+      "uncertainty": {"kind": "symmetric", "sigma": 0.0005, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."},
+      "source_artifact": "arxiv-source-archive",
+      "source_locator": "Figure 2 EPS path at T L = 0.050",
+      "assignment_status": "anchor",
+      "model_mode": 1,
+      "included": true,
+      "notes": "Pure-cosh source curve anchor; the coordinate is stored in the label and locator."
+    },
+    {
+      "id": "tl-0p100",
+      "label": "T L = 0.100",
+      "value": 0.300728,
+      "unit": "dimensionless",
+      "uncertainty": {"kind": "symmetric", "sigma": 0.0005, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."},
+      "source_artifact": "arxiv-source-archive",
+      "source_locator": "Figure 2 EPS path at T L = 0.100",
+      "assignment_status": "anchor",
+      "model_mode": 2,
+      "included": true,
+      "notes": "Pure-cosh source curve anchor; the coordinate is stored in the label and locator."
+    },
+    {
+      "id": "tl-0p200",
+      "label": "T L = 0.200",
+      "value": 0.315099,
+      "unit": "dimensionless",
+      "uncertainty": {"kind": "symmetric", "sigma": 0.0005, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."},
+      "source_artifact": "arxiv-source-archive",
+      "source_locator": "Figure 2 EPS path at T L = 0.200",
+      "assignment_status": "anchor",
+      "model_mode": 3,
+      "included": true,
+      "notes": "Pure-cosh source curve anchor; the coordinate is stored in the label and locator."
+    },
+    {
+      "id": "tl-0p400",
+      "label": "T L = 0.400",
+      "value": 0.324212,
+      "unit": "dimensionless",
+      "uncertainty": {"kind": "symmetric", "sigma": 0.0005, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."},
+      "source_artifact": "arxiv-source-archive",
+      "source_locator": "Figure 2 EPS path at T L = 0.400",
+      "assignment_status": "anchor",
+      "model_mode": 4,
+      "included": true,
+      "notes": "Pure-cosh source curve anchor; the coordinate is stored in the label and locator."
+    },
+    {
+      "id": "tl-0p600",
+      "label": "T L = 0.600",
+      "value": 0.327419,
+      "unit": "dimensionless",
+      "uncertainty": {"kind": "symmetric", "sigma": 0.0005, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."},
+      "source_artifact": "arxiv-source-archive",
+      "source_locator": "Figure 2 EPS path at T L = 0.600",
+      "assignment_status": "anchor",
+      "model_mode": 5,
+      "included": true,
+      "notes": "Pure-cosh source curve anchor; the coordinate is stored in the label and locator."
+    },
+    {
+      "id": "tl-0p800",
+      "label": "T L = 0.800",
+      "value": 0.329051,
+      "unit": "dimensionless",
+      "uncertainty": {"kind": "symmetric", "sigma": 0.0005, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."},
+      "source_artifact": "arxiv-source-archive",
+      "source_locator": "Figure 2 EPS path at T L = 0.800",
+      "assignment_status": "anchor",
+      "model_mode": 6,
+      "included": true,
+      "notes": "Pure-cosh source curve anchor; the coordinate is stored in the label and locator."
+    },
+    {
+      "id": "tl-1p000",
+      "label": "T L = 1.000",
+      "value": 0.329995,
+      "unit": "dimensionless",
+      "uncertainty": {"kind": "symmetric", "sigma": 0.0005, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."},
+      "source_artifact": "arxiv-source-archive",
+      "source_locator": "Figure 2 EPS path at T L = 1.000",
+      "assignment_status": "anchor",
+      "model_mode": 7,
+      "included": true,
+      "notes": "Pure-cosh source curve anchor; the coordinate is stored in the label and locator."
+    },
+    {
+      "id": "tl-1p200",
+      "label": "T L = 1.200",
+      "value": 0.330616,
+      "unit": "dimensionless",
+      "uncertainty": {"kind": "symmetric", "sigma": 0.0005, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."},
+      "source_artifact": "arxiv-source-archive",
+      "source_locator": "Figure 2 EPS path at T L = 1.200",
+      "assignment_status": "anchor",
+      "model_mode": 8,
+      "included": true,
+      "notes": "Pure-cosh source curve anchor; the coordinate is stored in the label and locator."
+    }
+  ],
+  "transformations": [
+    {
+      "id": "eps-affine-anchor-extraction",
+      "expression": "(T L, c_s^2) = affine_map(EPS_vertex); interpolate linearly between adjacent path vertices",
+      "description": "Convert public vector-path coordinates to the plotted physical axes.",
+      "uncertainty_propagation": "Assign an absolute 5e-4 ordinate uncertainty from the integer EPS grid and line width; no uncertainty is used to tune the calculation."
+    }
+  ],
+  "provenance": {
+    "created_on": "2026-08-16",
+    "created_by": "HoloForge development",
+    "ai_assistance": true,
+    "ai_roles": ["public vector-path extraction", "source transcription", "schema drafting"],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-17"
+  }
+}

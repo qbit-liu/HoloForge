@@ -31,6 +31,8 @@ class HardWallEquationTests(unittest.TestCase):
             HardWallConfig(epsilon_fraction=1.0)
         with self.assertRaisesRegex(ValueError, "mesh_points"):
             HardWallConfig(collocation_mesh_points=10)
+        with self.assertRaisesRegex(ValueError, "spectral_degree"):
+            HardWallConfig(spectral_degree=20)
         with self.assertRaisesRegex(ValueError, "num_modes"):
             analytic_dimensionless_masses(0)
         with self.assertRaisesRegex(ValueError, "method"):
@@ -53,6 +55,9 @@ class HardWallNumericalTests(unittest.TestCase):
         cls.collocation = solve_hard_wall_spectrum(
             cls.config, num_modes=4, method="collocation"
         )
+        cls.spectral = solve_hard_wall_spectrum(
+            cls.config, num_modes=4, method="spectral"
+        )
 
     def test_shooting_meets_analytic_ratio_tolerance(self) -> None:
         self.assertLessEqual(
@@ -68,6 +73,32 @@ class HardWallNumericalTests(unittest.TestCase):
         differences = np.abs(
             self.shooting.mass_ratios - self.collocation.mass_ratios
         ) / self.collocation.mass_ratios
+        self.assertLessEqual(
+            float(np.max(differences[1:])), DEFAULT_CROSS_SOLVER_TOLERANCE
+        )
+
+    def test_spectral_route_meets_analytic_tolerance_and_stabilizes(self) -> None:
+        record = self.spectral.to_dict()
+
+        self.assertLessEqual(
+            self.spectral.max_ratio_relative_error,
+            DEFAULT_RATIO_TOLERANCE,
+        )
+        self.assertEqual(
+            self.spectral.spectral_refinement_degrees,
+            (24, 32, 40),
+        )
+        self.assertTrue(record["passed"])
+        self.assertTrue(
+            record["spectral_convergence"][
+                "final_difference_below_tolerance"
+            ]
+        )
+
+    def test_spectral_and_shooting_routes_agree(self) -> None:
+        differences = np.abs(
+            self.spectral.mass_ratios - self.shooting.mass_ratios
+        ) / self.shooting.mass_ratios
         self.assertLessEqual(
             float(np.max(differences[1:])), DEFAULT_CROSS_SOLVER_TOLERANCE
         )
