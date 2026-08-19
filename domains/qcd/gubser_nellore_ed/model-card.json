@@ -1,0 +1,209 @@
+{
+  "schema_version": "0.1",
+  "id": "qcd.gubser-nellore-einstein-dilaton",
+  "title": "Gubser--Nellore zero-density Einstein--dilaton thermodynamics",
+  "mode": "forge-verify",
+  "domain": "holographic QCD thermodynamics",
+  "maturity": "reproduced",
+  "summary": "A clean-room Chebyshev reproduction of two zero-density black-hole thermodynamic curves in the five-dimensional bottom-up Einstein--dilaton model of Gubser and Nellore.",
+  "source": {
+    "title": "Mimicking the QCD equation of state with a dual black hole",
+    "authors": [
+      "Steven S. Gubser",
+      "Abhinav Nellore"
+    ],
+    "locator": "arXiv:0804.0434",
+    "version": "v2",
+    "url": "https://arxiv.org/abs/0804.0434",
+    "doi": "10.1103/PhysRevD.78.086007",
+    "equation_refs": [
+      "Eqs. (1)-(4)",
+      "Eqs. (24)-(29)",
+      "Eqs. (32)-(35)",
+      "Figures 2 and 3"
+    ]
+  },
+  "conventions": [
+    {
+      "name": "bulk theory and units",
+      "value": "Five bulk dimensions, metric signature (-,+,+,+,+), AdS radius L = 1, kappa_5^2 = 1",
+      "rationale": "Fixes the source action, thermodynamic normalization, and dimensionless reported quantities."
+    },
+    {
+      "name": "ensemble",
+      "value": "Zero chemical potential with no Maxwell field",
+      "rationale": "This benchmark is Einstein--dilaton, not Einstein--Maxwell--dilaton."
+    },
+    {
+      "name": "primary radial variables",
+      "value": "x = z^(4-Delta), u = x/x_H, phi = x_H u P(u), A_E = x_H^2 u^2 C(u)",
+      "rationale": "The factorization imposes the leading source-normalized UV behavior on a finite exact-endpoint collocation interval."
+    },
+    {
+      "name": "Figure 3 horizontal scale",
+      "value": "T_c_plot = T_minimum/0.9618971489",
+      "rationale": "This is a single plot registration used to reproduce the displayed source coordinate; it is not a predicted critical temperature."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "pure-cosh potential",
+      "symbol": "(gamma,b)",
+      "value": "(1/sqrt(6), 0)",
+      "unit": "dimensionless",
+      "role": "fixed",
+      "description": "Source calibration potential used for the Figure 2 curve."
+    },
+    {
+      "name": "QCD-like potential",
+      "symbol": "(gamma,b)",
+      "value": "(0.606, 2.06)",
+      "unit": "dimensionless",
+      "role": "fixed",
+      "description": "Source phenomenological potential used for the Figure 3 red black-hole curve."
+    },
+    {
+      "name": "pure-cosh spectral degrees",
+      "symbol": "N_cosh",
+      "value": "40, 60, 80",
+      "unit": "polynomial degree",
+      "role": "input",
+      "description": "Three aligned resolutions for the coupled collocation and convergence check."
+    },
+    {
+      "name": "QCD-like spectral degrees",
+      "symbol": "N_QCD",
+      "value": "80, 120, 150",
+      "unit": "polynomial degree",
+      "role": "input",
+      "description": "Three aligned resolutions for the infrared branch and convergence check."
+    }
+  ],
+  "equations": [
+    {
+      "id": "potential",
+      "expression": "V(phi) = -12 cosh(gamma phi) + b phi^2",
+      "description": "The two fixed source potentials differ only in gamma and b.",
+      "source_ref": "Source Eqs. (3), (32), and (34)."
+    },
+    {
+      "id": "blackening",
+      "expression": "f_xx + [3 A_E,x + (1-4/p)/x] f_x = 0",
+      "description": "Blackening equation in conformal gauge with p = 4-Delta.",
+      "source_ref": "Source Eqs. (24)-(29), transformed to conformal gauge."
+    },
+    {
+      "id": "warp-factor",
+      "expression": "A_E,xx + (1+1/p) A_E,x/x - A_E,x^2 + phi_x^2/6 = 0",
+      "description": "Einstein equation for the source-subtracted conformal warp factor.",
+      "source_ref": "Source Eqs. (24)-(29), transformed to conformal gauge."
+    },
+    {
+      "id": "scalar",
+      "expression": "phi_xx + [3 A_E,x + f_x/f + (1-4/p)/x] phi_x - exp(2 A_E) V'(phi)/(p^2 x^2 f) = 0",
+      "description": "Scalar equation retained at the exact horizon to impose regularity.",
+      "source_ref": "Source Eqs. (24)-(29), transformed to conformal gauge."
+    }
+  ],
+  "observables": [
+    {
+      "name": "temperature",
+      "symbol": "T L",
+      "unit": "dimensionless",
+      "extraction": "Use the exact-horizon derivative of f in conformal gauge."
+    },
+    {
+      "name": "entropy density",
+      "symbol": "s kappa_5^2",
+      "unit": "dimensionless",
+      "extraction": "Evaluate 2 pi exp(3 A_E(z_H))/z_H^3 at the exact horizon."
+    },
+    {
+      "name": "speed of sound squared",
+      "symbol": "c_s^2",
+      "unit": "dimensionless",
+      "extraction": "Differentiate log(T) with respect to log(s) along one declared black-hole branch."
+    }
+  ],
+  "validation": {
+    "acceptance_criteria": [
+      "Potential and UV algebra agree with analytic values within 1e-12.",
+      "Every final nonlinear solve succeeds with scaled collocation residual at most 1e-9.",
+      "All three physical equations pass an independently oversampled 1e-7 residual gate, including the horizon scalar equation and exact endpoints.",
+      "Successive spectral thermodynamic changes are at most 2e-4 with the declared ordering floor.",
+      "The five scalar-coordinate DOP853 comparisons agree within 5e-4 relative error.",
+      "Local barycentric and shape-preserving thermodynamic derivatives agree within 1e-3.",
+      "Figures 2 and 3 reproduce their frozen derived anchors within 1.5e-3 and 5e-3 absolute error, respectively.",
+      "Branch integrity, duplicate-run determinism, JSON, CLI, evidence, schema, and regression gates pass."
+    ],
+    "tests": [
+      {
+        "id": "coupled-equation-gates",
+        "kind": "analytic",
+        "command": "python3 -m unittest tests.test_gubser_nellore_ed -v",
+        "expected": "Potential identities, exact endpoints, coupled equations, and nonlinear residuals pass their frozen gates.",
+        "status": "pass"
+      },
+      {
+        "id": "spectral-and-independent-convergence",
+        "kind": "convergence",
+        "command": "python3 -m unittest tests.test_gubser_nellore_ed -v",
+        "expected": "Three-level spectral refinements and five DOP853 comparisons pass the declared thresholds.",
+        "status": "pass"
+      },
+      {
+        "id": "source-figure-reproduction",
+        "kind": "regression",
+        "command": "holoforge verify gubser-nellore-ed --profile figure",
+        "expected": "All Figure 2 and Figure 3 derived anchors and duplicate-run determinism pass the frozen contract.",
+        "status": "pass"
+      }
+    ],
+    "last_verified": "2026-08-17"
+  },
+  "claims": [
+    {
+      "statement": "The two fixed potentials and scalar-coordinate thermodynamic formulas are established in the cited Gubser--Nellore source model.",
+      "support_level": "established-source",
+      "evidence": "Gubser and Nellore, arXiv:0804.0434v2, Eqs. (24)-(35) and Figures 2-3.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-17"
+    },
+    {
+      "statement": "The HoloForge coupled Chebyshev implementation reproduces the selected source curves within the frozen numerical contract.",
+      "support_level": "reproduced",
+      "evidence": "Automated equation, endpoint, refinement, DOP853, derivative, figure-anchor, determinism, and interface checks in tests/test_gubser_nellore_ed.py.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-17"
+    }
+  ],
+  "limitations": [
+    "This is a classical two-derivative bottom-up model and no top-down string embedding is claimed.",
+    "The benchmark is zero-density Einstein--dilaton; it contains no Maxwell field, baryon chemical potential, or EMD finite-density physics.",
+    "The QCD-like potential is phenomenological, and agreement with its source curve is not empirical validation of QCD.",
+    "T_c_plot is only a Figure 3 registration and must not be interpreted as a predicted critical temperature.",
+    "The source curves are represented by derived vector-path anchors with recorded digitization uncertainty; raw source figures are not redistributed.",
+    "The implementation and model card are AI-assisted; human approval does not erase that provenance or broaden the reproduced claim."
+  ],
+  "provenance": {
+    "created_on": "2026-08-16",
+    "created_by": "HoloForge development",
+    "implementation_path": "src/holoforge/benchmarks/gubser_nellore_ed.py",
+    "ai_assistance": true,
+    "ai_roles": [
+      "public-source equation transcription",
+      "clean-room coupled-equation derivation",
+      "numerical implementation drafting",
+      "reference-anchor transcription",
+      "test drafting",
+      "documentation drafting"
+    ],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-17"
+  }
+}

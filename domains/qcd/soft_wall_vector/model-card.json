@@ -5,7 +5,7 @@
   "mode": "forge-verify",
   "domain": "holographic-qcd",
   "maturity": "reproduced",
-  "summary": "A finite-difference reproduction of the exactly solvable transverse-vector spectrum in the quadratic soft-wall AdS/QCD model.",
+  "summary": "Independent finite-difference and Chebyshev pseudospectral reproductions of the exactly solvable transverse-vector spectrum in the quadratic soft-wall AdS/QCD model.",
   "source": {
     "title": "Linear Confinement and AdS/QCD",
     "authors": [
@@ -78,7 +78,8 @@
   "validation": {
     "acceptance_criteria": [
       "The first four numerical eigenvalues have maximum relative error below 2e-4 at the documented default resolution.",
-      "Refining the uniform grid reduces the maximum error for the first four modes with observed order between 1.8 and 2.2."
+      "Refining the uniform grid reduces the maximum error for the first four modes with observed order between 1.8 and 2.2.",
+      "For the spectral route, the maximum analytic error decreases at polynomial degrees 24, 32, and 40 and finishes below 1e-8."
     ],
     "tests": [
       {
@@ -94,9 +95,16 @@
         "command": "python3 -m unittest tests.test_soft_wall_vector -v",
         "expected": "Maximum relative error decreases at the approximately second-order rate of the centered stencil.",
         "status": "pass"
+      },
+      {
+        "id": "spectral-degree-refinement",
+        "kind": "convergence",
+        "command": "python3 -m unittest tests.test_chebyshev tests.test_soft_wall_vector -v",
+        "expected": "The first four spectral eigenvalues converge across degrees 24, 32, and 40, with the final maximum relative error below 1e-8.",
+        "status": "pass"
       }
     ],
-    "last_verified": "2026-08-02"
+    "last_verified": "2026-08-16"
   },
   "claims": [
     {
@@ -116,12 +124,20 @@
       "review_status": "approved",
       "reviewed_by": "Xin-Yi Liu",
       "reviewed_on": "2026-08-02"
+    },
+    {
+      "statement": "The opt-in HoloForge Chebyshev pseudospectral route reproduces the first four exact eigenvalues and passes its three-degree convergence gate.",
+      "support_level": "reproduced",
+      "evidence": "Analytic polynomial tests and spectral eigenvalue/refinement tests in tests/test_chebyshev.py and tests/test_soft_wall_vector.py.",
+      "generated_by_ai": true,
+      "review_status": "unreviewed"
     }
   ],
   "limitations": [
     "This benchmark treats only transverse vector modes in a fixed quadratic soft-wall background.",
     "It does not fit experimental data or validate the soft-wall model as a complete description of QCD.",
-    "The finite UV and IR numerical boundaries introduce discretization and truncation errors."
+    "The finite UV and IR numerical boundaries introduce discretization and truncation errors.",
+    "The dense spectral operator is intended for smooth low-mode verification and is not a sparse large-spectrum solver."
   ],
   "provenance": {
     "created_on": "2026-08-02",

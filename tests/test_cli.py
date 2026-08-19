@@ -5,7 +5,8 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from contextlib import redirect_stderr, redirect_stdout
+from contextlib import nullcontext, redirect_stderr, redirect_stdout
+from unittest.mock import patch
 
 from jsonschema import Draft202012Validator
 
@@ -13,6 +14,58 @@ from holoforge.cli import main
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class FastGubserNelloreResult:
+    """Small interface fixture; the full scientific solve has focused tests."""
+
+    passed = True
+
+    def to_dict(self):
+        return {
+            "schema_version": "0.1",
+            "benchmark": "gubser-nellore-ed",
+            "support_level": "reproduced",
+            "configuration": {
+                "profile": "anchor",
+                "bulk_dimension": 5,
+                "ensemble": "zero chemical potential and zero Maxwell field",
+                "units": "L = 1, kappa_5^2 = 1",
+                "potentials": [],
+                "dop853_target_phi_h": [0.25, 0.5, 1.0, 2.0, 4.0],
+                "T_c_plot_registration": 0.9618971489,
+            },
+            "numerical_method": {"route": "test interface fixture"},
+            "results": {
+                "presets": {
+                    "cosh-calibration": {
+                        "horizon_count": 1,
+                        "maximum_equation_residual": 0.0,
+                        "figure": {"maximum_anchor_error": 0.0},
+                    },
+                    "qcd-like": {
+                        "horizon_count": 1,
+                        "maximum_equation_residual": 0.0,
+                        "figure": {"maximum_anchor_error": 0.0},
+                    },
+                }
+            },
+            "acceptance_checks": [
+                {
+                    "id": "interface-fixture",
+                    "description": "Generic CLI dispatch reaches the ED adapter.",
+                    "passed": True,
+                    "value": 0.0,
+                }
+            ],
+            "software_versions": {"holoforge": "test", "python": "test"},
+            "passed": True,
+            "scope": "Interface fixture; no scientific result.",
+            "primary_source": {
+                "pdf_sha256": "0" * 64,
+                "source_archive_sha256": "1" * 64,
+            },
+        }
 
 
 class CommandLineTests(unittest.TestCase):
@@ -65,6 +118,28 @@ class CommandLineTests(unittest.TestCase):
             )
         self.assertEqual(status, 1)
         self.assertIn("FAIL", output.getvalue())
+
+    def test_soft_wall_spectral_json_contains_refinement_evidence(self) -> None:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = main(
+                [
+                    "verify",
+                    "soft-wall-vector",
+                    "--method",
+                    "spectral",
+                    "--json",
+                ]
+            )
+        payload = json.loads(output.getvalue())
+
+        self.assertEqual(status, 0)
+        self.assertTrue(payload["passed"])
+        self.assertEqual(payload["numerical_method"]["route"], "spectral")
+        self.assertEqual(
+            [level["degree"] for level in payload["spectral_convergence"]["levels"]],
+            [24, 32, 40],
+        )
 
     def test_invalid_configuration_has_clear_error(self) -> None:
         error = io.StringIO()
@@ -149,6 +224,25 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(status, 2)
         self.assertIn("epsilon_fraction", error.getvalue())
 
+    def test_hard_wall_spectral_json_contains_refinement_evidence(self) -> None:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = main(
+                [
+                    "verify",
+                    "hard-wall-vector",
+                    "--method",
+                    "spectral",
+                    "--json",
+                ]
+            )
+        payload = json.loads(output.getvalue())
+
+        self.assertEqual(status, 0)
+        self.assertTrue(payload["passed"])
+        self.assertEqual(payload["numerical_method"]["route"], "spectral")
+        self.assertEqual(payload["spectral_convergence"]["degrees"], [24, 32, 40])
+
     def test_linear_axion_dc_json_contains_sources_and_dc_checks(self) -> None:
         output = io.StringIO()
         with redirect_stdout(output):
@@ -170,6 +264,18 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(status, 0)
         self.assertIn("PASS: all declared acceptance gates", output.getvalue())
         self.assertIn("not empirical validation", output.getvalue())
+
+    def test_gubser_nellore_json_uses_registered_adapter(self) -> None:
+        output = io.StringIO()
+        with patch(
+            "holoforge.benchmarks.adapters.gubser_nellore_ed.verify_gubser_nellore_ed",
+            return_value=FastGubserNelloreResult(),
+        ), redirect_stdout(output):
+            status = main(["verify", "gubser-nellore-ed", "--json"])
+        payload = json.loads(output.getvalue())
+        self.assertEqual(status, 0)
+        self.assertEqual(payload["benchmark"], "gubser-nellore-ed")
+        self.assertTrue(payload["passed"])
 
     def test_vector_comparison_json_and_artifacts(self) -> None:
         output = io.StringIO()
@@ -259,6 +365,7 @@ class CommandLineTests(unittest.TestCase):
                 ],
             ),
             ("linear-axion", ["verify", "linear-axion-dc"]),
+            ("gubser-nellore", ["verify", "gubser-nellore-ed"]),
             ("comparison", ["compare", "vector-spectrum"]),
         )
         with tempfile.TemporaryDirectory() as directory:
@@ -266,7 +373,15 @@ class CommandLineTests(unittest.TestCase):
                 with self.subTest(command=label):
                     bundle = Path(directory) / label
                     output = io.StringIO()
-                    with redirect_stdout(output):
+                    context = (
+                        patch(
+                            "holoforge.benchmarks.adapters.gubser_nellore_ed.verify_gubser_nellore_ed",
+                            return_value=FastGubserNelloreResult(),
+                        )
+                        if label == "gubser-nellore"
+                        else nullcontext()
+                    )
+                    with context, redirect_stdout(output):
                         status = main(command + ["--bundle-dir", str(bundle)])
                     self.assertEqual(status, 0, output.getvalue())
                     audit_output = io.StringIO()

@@ -5,7 +5,7 @@
   "mode": "forge-verify",
   "domain": "holographic-qcd",
   "maturity": "reproduced",
-  "summary": "A shooting and collocation reproduction of the transverse-vector spectrum on the standard hard-wall AdS/QCD slice.",
+  "summary": "Shooting, adaptive collocation, and Chebyshev pseudospectral reproductions of the transverse-vector spectrum on the standard hard-wall AdS/QCD slice.",
   "source": {
     "title": "QCD and a Holographic Model of Hadrons",
     "authors": [
@@ -79,6 +79,7 @@
     "acceptance_criteria": [
       "The first four shooting mass ratios agree with the analytic Bessel-zero ratios within 5e-4.",
       "Adaptive shooting and global collocation agree on their first four ratios within 1e-3.",
+      "The spectral route agrees with the analytic ratios within 5e-4 and its final degree-refinement change is below 1e-8.",
       "Three decreasing UV cutoffs monotonically reduce the maximum analytic-ratio error."
     ],
     "tests": [
@@ -97,6 +98,13 @@
         "status": "pass"
       },
       {
+        "id": "spectral-degree-refinement",
+        "kind": "convergence",
+        "command": "python3 -m unittest tests.test_chebyshev tests.test_hard_wall_vector -v",
+        "expected": "The spectral spectrum stabilizes across degrees 24, 32, and 40 and agrees with the shooting ratios within the declared cross-solver tolerance.",
+        "status": "pass"
+      },
+      {
         "id": "uv-cutoff-refinement",
         "kind": "convergence",
         "command": "python3 -m unittest tests.test_hard_wall_vector -v",
@@ -104,7 +112,7 @@
         "status": "pass"
       }
     ],
-    "last_verified": "2026-08-05"
+    "last_verified": "2026-08-16"
   },
   "claims": [
     {
@@ -124,12 +132,20 @@
       "review_status": "approved",
       "reviewed_by": "Xin-Yi Liu",
       "reviewed_on": "2026-08-05"
+    },
+    {
+      "statement": "The opt-in HoloForge Chebyshev pseudospectral route reproduces the finite-cutoff spectrum and passes its three-degree stabilization gate.",
+      "support_level": "reproduced",
+      "evidence": "Analytic polynomial, spectral eigenvalue, cross-solver, and degree-refinement tests in tests/test_chebyshev.py and tests/test_hard_wall_vector.py.",
+      "generated_by_ai": true,
+      "review_status": "unreviewed"
     }
   ],
   "limitations": [
     "The IR wall and its boundary condition are phenomenological inputs rather than consequences derived from QCD.",
     "The finite UV cutoff creates a separate approximation error even when the numerical solver converges.",
-    "The benchmark does not test decay constants, chiral observables, or the global phenomenological adequacy of the hard-wall model."
+    "The benchmark does not test decay constants, chiral observables, or the global phenomenological adequacy of the hard-wall model.",
+    "The dense generalized spectral eigenproblem is intended for the lowest smooth modes rather than large-spectrum production runs."
   ],
   "provenance": {
     "created_on": "2026-08-05",

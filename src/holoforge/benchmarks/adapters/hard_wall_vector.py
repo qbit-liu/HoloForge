@@ -8,6 +8,7 @@ from typing import Any, Mapping, Sequence
 from holoforge.benchmarks.hard_wall_vector import (
     DEFAULT_NUM_MODES,
     DEFAULT_RATIO_TOLERANCE,
+    DEFAULT_SPECTRAL_DEGREE,
     HardWallConfig,
     solve_hard_wall_spectrum,
 )
@@ -23,7 +24,7 @@ HARD_WALL_MODEL_CARD = ModelCardReference(
     identifier="qcd.hard-wall-vector.ekss",
     schema_version="0.1",
     repository_path="domains/qcd/hard_wall_vector/model-card.json",
-    sha256="96aeff5ed6d970dbb90d5c0dd458e579ee449a871edc494e43899a1003c13c61",
+    sha256="d2df67b80f203613655a5107625238229f6e99fce81395689f281eb6149b02c4",
 )
 
 
@@ -48,9 +49,18 @@ def _configure_hard_wall(parser: Any) -> None:
     )
     parser.add_argument(
         "--method",
-        choices=("shooting", "collocation"),
+        choices=("shooting", "collocation", "spectral"),
         default="shooting",
         help="Numerical formulation (default: shooting).",
+    )
+    parser.add_argument(
+        "--spectral-degree",
+        type=int,
+        default=DEFAULT_SPECTRAL_DEGREE,
+        help=(
+            "Chebyshev polynomial degree for --method spectral "
+            f"(default: {DEFAULT_SPECTRAL_DEGREE})."
+        ),
     )
     parser.add_argument(
         "--tolerance",
@@ -72,6 +82,7 @@ def _execute_hard_wall(args: Any) -> BenchmarkExecution:
         config = HardWallConfig(
             z_m_gev_inverse=args.z_m,
             epsilon_fraction=args.epsilon_fraction,
+            spectral_degree=args.spectral_degree,
         )
         result = solve_hard_wall_spectrum(
             config=config,
@@ -83,7 +94,7 @@ def _execute_hard_wall(args: Any) -> BenchmarkExecution:
     payload = result.to_dict(args.tolerance)
     return BenchmarkExecution(
         payload=payload,
-        passed=result.max_ratio_relative_error <= args.tolerance,
+        passed=bool(payload["passed"]),
     )
 
 

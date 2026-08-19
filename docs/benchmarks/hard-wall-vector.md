@@ -42,17 +42,26 @@ V''(x) - V'(x)/x + lambda^2 V(x) = 0,
 lambda = m z_m.
 ```
 
-HoloForge solves this problem in two genuinely different maintained-library
+HoloForge solves this problem in three genuinely different maintained-library
 formulations:
 
 1. adaptive `solve_ivp` shooting with a Brent `root_scalar` search for the IR
    Neumann residual; and
-2. global `solve_bvp` collocation with `lambda` as an unknown parameter.
+2. global `solve_bvp` collocation with `lambda` as an unknown parameter; and
+3. Chebyshev--Gauss--Lobatto pseudospectral collocation, expressed as a dense
+   generalized eigenproblem with explicit UV Dirichlet and IR Neumann rows and
+   solved by SciPy's `eigvals`.
 
 At the documented defaults, the first four normalized shooting and
 collocation spectra differ by about `4.2e-11` or less. The shooting ratios
 differ from the zero-cutoff Bessel ratios by about `7.4e-8` or less. These
 numbers are development evidence, not a claim of empirical precision.
+
+The spectral route records polynomial degrees 24, 32, and 40. At the documented
+defaults, the maximum relative change between the final two spectra is about
+`2.4e-12`. Its approximately `7.4e-8` disagreement with the zero-cutoff Bessel
+ratios remains because `epsilon/z_m = 1e-4` is finite; this is not spectral
+discretization error.
 
 The cutoff study uses three decreasing values:
 
@@ -68,6 +77,7 @@ reported separately from integration, root, and collocation tolerances.
 ```bash
 holoforge verify hard-wall-vector
 holoforge verify hard-wall-vector --method collocation --json
+holoforge verify hard-wall-vector --method spectral --json
 ```
 
 ## Interpretation limits

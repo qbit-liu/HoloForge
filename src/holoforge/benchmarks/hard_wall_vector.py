@@ -21,6 +21,7 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple
 import numpy as np
 from numpy.typing import NDArray
 from scipy.integrate import solve_bvp, solve_ivp
+from scipy.linalg import eigvals
 from scipy.optimize import root_scalar
 from scipy.special import j0, j1, jn_zeros
 
@@ -35,14 +36,18 @@ from holoforge.core import (
     VerificationRecord,
     runtime_versions,
 )
+from holoforge.numerics import chebyshev_lobatto_grid
 
 
 DEFAULT_NUM_MODES = 4
 DEFAULT_RATIO_TOLERANCE = 5.0e-4
 DEFAULT_CROSS_SOLVER_TOLERANCE = 1.0e-3
 DEFAULT_REFINEMENT_CUTOFFS = (1.0e-2, 3.0e-3, 1.0e-3)
+DEFAULT_SPECTRAL_DEGREE = 40
+DEFAULT_SPECTRAL_CONVERGENCE_TOLERANCE = 1.0e-8
 SHOOTING_SOLVER = "scipy.integrate.solve_ivp + scipy.optimize.root_scalar"
 COLLOCATION_SOLVER = "scipy.integrate.solve_bvp"
+SPECTRAL_SOLVER = "scipy.linalg.eigvals"
 
 
 HARD_WALL_DEFINITION = BenchmarkDefinition(
@@ -98,6 +103,15 @@ HARD_WALL_DEFINITION = BenchmarkDefinition(
                 "Global adaptive mesh with the eigenvalue as an unknown parameter."
             ),
         ),
+        SolverSpec(
+            problem_type="generalized collocation eigenproblem",
+            library_function=SPECTRAL_SOLVER,
+            method="Chebyshev--Gauss--Lobatto pseudospectral collocation",
+            description=(
+                "Dense generalized eigenproblem with explicit Dirichlet and "
+                "Neumann boundary rows."
+            ),
+        ),
     ),
     observables=(
         ObservableSpec(
@@ -122,6 +136,7 @@ class HardWallConfig:
     collocation_mesh_points: int = 160
     collocation_tolerance: float = 1.0e-7
     collocation_max_nodes: int = 10_000
+    spectral_degree: int = DEFAULT_SPECTRAL_DEGREE
 
     def __post_init__(self) -> None:
         _require_finite_positive(self.z_m_gev_inverse, "z_m_gev_inverse")
@@ -140,6 +155,9 @@ class HardWallConfig:
             self.collocation_mesh_points,
             "collocation_max_nodes",
         )
+        _require_integer_at_least(
+            self.spectral_degree, 24, "spectral_degree"
+        )
 
 
 @dataclass(frozen=True)
@@ -154,6 +172,8 @@ class HardWallSpectrumResult:
     mass_ratios: NDArray[np.float64]
     analytic_mass_ratios: NDArray[np.float64]
     ratio_relative_errors: NDArray[np.float64]
+    spectral_refinement_degrees: Tuple[int, ...] = ()
+    spectral_refinement_differences: Tuple[float, ...] = ()
 
     @property
     def max_ratio_relative_error(self) -> float:
@@ -193,7 +213,7 @@ class HardWallSpectrumResult:
                 }
             )
 
-        check = AcceptanceCheck(
+        checks = [AcceptanceCheck(
             identifier="analytic-ratio-relative-error",
             description=(
                 "Maximum relative error of excited-state ratios against the "
@@ -202,31 +222,94 @@ class HardWallSpectrumResult:
             value=self.max_ratio_relative_error,
             criterion=f"value <= {float(tolerance):.16g}",
             passed=self.max_ratio_relative_error <= tolerance,
-        )
+        )]
+        if self.method == "spectral":
+            refinement_improves = bool(
+                len(self.spectral_refinement_differences) >= 2
+                and self.spectral_refinement_differences[-1]
+                < self.spectral_refinement_differences[0]
+            )
+            refinement_passed = bool(
+                refinement_improves
+                and self.spectral_refinement_differences[-1]
+                <= DEFAULT_SPECTRAL_CONVERGENCE_TOLERANCE
+            )
+            checks.append(
+                AcceptanceCheck(
+                    identifier="spectral-degree-refinement",
+                    description=(
+                        "Successive spectral spectra stabilize as the "
+                        "polynomial degree increases."
+                    ),
+                    value=float(self.spectral_refinement_differences[-1]),
+                    criterion=(
+                        "final relative change is smaller than the preceding "
+                        "change and value <= "
+                        f"{DEFAULT_SPECTRAL_CONVERGENCE_TOLERANCE:.16g}"
+                    ),
+                    passed=refinement_passed,
+                )
+            )
+
+        configuration: Dict[str, Any] = {
+            "z_m_gev_inverse": float(self.config.z_m_gev_inverse),
+            "epsilon_fraction": float(self.config.epsilon_fraction),
+            "num_modes": len(self.dimensionless_masses),
+        }
+        if self.method == "spectral":
+            configuration["spectral_degree"] = self.config.spectral_degree
+
+        numerical_method: Dict[str, Any] = {
+            "route": self.method,
+            "uv_boundary_condition": "V(epsilon) = 0",
+            "ir_boundary_condition": "partial_z V(z_m) = 0",
+            "finite_cutoff_is_separate_from_solver_tolerance": True,
+        }
+        if self.method == "spectral":
+            numerical_method.update(
+                {
+                    "discretization": (
+                        "Chebyshev--Gauss--Lobatto pseudospectral collocation"
+                    ),
+                    "eigensolver": SPECTRAL_SOLVER,
+                    "operator_structure": "dense generalized eigenproblem",
+                    "spectral_convergence_tolerance": (
+                        DEFAULT_SPECTRAL_CONVERGENCE_TOLERANCE
+                    ),
+                }
+            )
+
+        extra: Dict[str, Any] = {
+            "tolerance": float(tolerance),
+            "max_ratio_relative_error": self.max_ratio_relative_error,
+        }
+        if self.method == "spectral":
+            extra["spectral_convergence"] = {
+                "degrees": [
+                    int(degree) for degree in self.spectral_refinement_degrees
+                ],
+                "successive_max_relative_differences": [
+                    float(value)
+                    for value in self.spectral_refinement_differences
+                ],
+                "final_difference_below_tolerance": bool(
+                    self.spectral_refinement_differences[-1]
+                    <= DEFAULT_SPECTRAL_CONVERGENCE_TOLERANCE
+                ),
+            }
+
         record = VerificationRecord(
             definition=HARD_WALL_DEFINITION,
-            configuration={
-                "z_m_gev_inverse": float(self.config.z_m_gev_inverse),
-                "epsilon_fraction": float(self.config.epsilon_fraction),
-                "num_modes": len(self.dimensionless_masses),
-            },
-            numerical_method={
-                "route": self.method,
-                "uv_boundary_condition": "V(epsilon) = 0",
-                "ir_boundary_condition": "partial_z V(z_m) = 0",
-                "finite_cutoff_is_separate_from_solver_tolerance": True,
-            },
+            configuration=configuration,
+            numerical_method=numerical_method,
             results=records,
-            acceptance_checks=(check,),
+            acceptance_checks=tuple(checks),
             software_versions=runtime_versions(),
             scope=(
                 "Numerical reproduction of the published hard-wall vector-mode "
                 "equation; not precision validation of the model."
             ),
-            extra={
-                "tolerance": float(tolerance),
-                "max_ratio_relative_error": self.max_ratio_relative_error,
-            },
+            extra=extra,
         )
         return record.to_dict()
 
@@ -290,7 +373,7 @@ def solve_hard_wall_spectrum(
     num_modes: int = DEFAULT_NUM_MODES,
     method: str = "shooting",
 ) -> HardWallSpectrumResult:
-    """Solve the finite-cutoff spectrum by shooting or collocation."""
+    """Solve by shooting, adaptive collocation, or spectral collocation."""
 
     if config is None:
         config = HardWallConfig()
@@ -298,10 +381,38 @@ def solve_hard_wall_spectrum(
 
     if method == "shooting":
         numerical = _shooting_dimensionless_masses(config, num_modes)
+        refinement_degrees: Tuple[int, ...] = ()
+        refinement_differences: Tuple[float, ...] = ()
     elif method == "collocation":
         numerical = _collocation_dimensionless_masses(config, num_modes)
+        refinement_degrees = ()
+        refinement_differences = ()
+    elif method == "spectral":
+        if num_modes > config.spectral_degree - 17:
+            raise ValueError(
+                "num_modes must not exceed spectral_degree - 17 so the "
+                "three-level refinement has enough finite modes"
+            )
+        refinement_degrees = (
+            config.spectral_degree - 16,
+            config.spectral_degree - 8,
+            config.spectral_degree,
+        )
+        refinement_values = tuple(
+            _spectral_dimensionless_masses(config, num_modes, degree)
+            for degree in refinement_degrees
+        )
+        refinement_differences = tuple(
+            float(np.max(np.abs(current - previous) / current))
+            for previous, current in zip(
+                refinement_values[:-1], refinement_values[1:]
+            )
+        )
+        numerical = refinement_values[-1]
     else:
-        raise ValueError("method must be 'shooting' or 'collocation'")
+        raise ValueError(
+            "method must be 'shooting', 'collocation', or 'spectral'"
+        )
 
     analytic = analytic_dimensionless_masses(num_modes)
     numerical_ratios = numerical / numerical[0]
@@ -316,6 +427,8 @@ def solve_hard_wall_spectrum(
         mass_ratios=numerical_ratios,
         analytic_mass_ratios=analytic_ratios,
         ratio_relative_errors=relative_errors,
+        spectral_refinement_degrees=refinement_degrees,
+        spectral_refinement_differences=refinement_differences,
     )
 
 
@@ -456,6 +569,50 @@ def _collocation_dimensionless_masses(
     if np.any(np.diff(roots) <= 0.0):
         raise RuntimeError("collocation modes are not strictly ordered")
     return roots
+
+
+def _spectral_dimensionless_masses(
+    config: HardWallConfig, num_modes: int, degree: int
+) -> NDArray[np.float64]:
+    """Solve the finite-cutoff equation as a generalized eigenproblem."""
+
+    grid = chebyshev_lobatto_grid(
+        degree, float(config.epsilon_fraction), 1.0
+    )
+    coordinate = grid.nodes
+    operator = (
+        -grid.second_derivative
+        + np.diag(1.0 / coordinate) @ grid.first_derivative
+    ).copy()
+    weight = np.eye(grid.size)
+
+    # UV Dirichlet row: V(epsilon) = 0.
+    operator[0, :] = 0.0
+    operator[0, 0] = 1.0
+    weight[0, :] = 0.0
+    # IR Neumann row: V'(1) = 0.
+    operator[-1, :] = grid.first_derivative[-1, :]
+    weight[-1, :] = 0.0
+
+    squared_masses = eigvals(
+        operator, weight, check_finite=True
+    )
+    real = squared_masses.real
+    admissible = (
+        np.isfinite(real)
+        & np.isfinite(squared_masses.imag)
+        & (real > 0.0)
+        & (np.abs(squared_masses.imag) <= 1.0e-8 * np.maximum(real, 1.0))
+    )
+    ordered = np.sort(real[admissible])
+    if len(ordered) < num_modes:
+        raise RuntimeError(
+            "spectral eigensolver returned too few finite positive real modes"
+        )
+    masses = np.sqrt(ordered[:num_modes])
+    if np.any(np.diff(masses) <= 0.0):
+        raise RuntimeError("spectral modes are not strictly ordered")
+    return np.asarray(masses, dtype=float)
 
 
 def _validate_num_modes(num_modes: int) -> None:

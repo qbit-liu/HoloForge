@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.3",
+  "id": "gubser-nellore-figure-3-anchors",
+  "title": "Derived vector anchors for the Gubser--Nellore Figure 3 red black-hole curve",
+  "domain": "holographic QCD thermodynamics",
+  "observable": {
+    "name": "speed of sound squared",
+    "symbol": "c_s^2",
+    "unit": "dimensionless"
+  },
+  "edition": {
+    "name": "Gubser--Nellore arXiv source archive v2",
+    "citation": "S. S. Gubser and A. Nellore, Phys. Rev. D 78, 086007 (2008)",
+    "published_year": 2008,
+    "doi": "10.1103/PhysRevD.78.086007",
+    "url": "https://arxiv.org/abs/0804.0434",
+    "accessed_on": "2026-08-16",
+    "license": "arXiv non-exclusive distribution license; derived numerical facts only",
+    "license_url": "https://info.arxiv.org/help/license/index.html",
+    "artifacts": [
+      {
+        "id": "arxiv-source-archive",
+        "url": "https://arxiv.org/src/0804.0434v2",
+        "sha256": "49057620542ad6839890f8328897615f0a5272e365ea06c806073d0147803360"
+      }
+    ]
+  },
+  "conventions": [
+    {
+      "name": "abscissa",
+      "value": "temperature ratio T/T_c_plot for the red black-hole curve",
+      "rationale": "T_c_plot is only the declared horizontal registration and is not a predicted critical temperature."
+    },
+    {
+      "name": "anchor extraction",
+      "value": "EPS tick locations define affine maps; ordinates are linearly interpolated between adjacent vector-path vertices",
+      "rationale": "This preserves an auditable derived-data route without redistributing the raw source figure."
+    },
+    {
+      "name": "uncertainty",
+      "value": "A conservative absolute c_s^2 uncertainty of 1.5e-3 is assigned to every anchor",
+      "rationale": "It covers the EPS integer coordinate grid and displayed line width."
+    }
+  ],
+  "entries": [
+    {"id": "tplot-0p100", "label": "T/T_c_plot = 0.100", "value": 0.148926, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 0.100", "assignment_status": "anchor", "model_mode": 0, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-0p250", "label": "T/T_c_plot = 0.250", "value": 0.143892, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 0.250", "assignment_status": "anchor", "model_mode": 1, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-0p500", "label": "T/T_c_plot = 0.500", "value": 0.127101, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 0.500", "assignment_status": "anchor", "model_mode": 2, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-0p750", "label": "T/T_c_plot = 0.750", "value": 0.094438, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 0.750", "assignment_status": "anchor", "model_mode": 3, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-0p900", "label": "T/T_c_plot = 0.900", "value": 0.058930, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 0.900", "assignment_status": "anchor", "model_mode": 4, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-1p000", "label": "T/T_c_plot = 1.000", "value": 0.057147, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 1.000", "assignment_status": "anchor", "model_mode": 5, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-1p250", "label": "T/T_c_plot = 1.250", "value": 0.217849, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 1.250", "assignment_status": "anchor", "model_mode": 6, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-1p500", "label": "T/T_c_plot = 1.500", "value": 0.271178, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 1.500", "assignment_status": "anchor", "model_mode": 7, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-2p000", "label": "T/T_c_plot = 2.000", "value": 0.303988, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 2.000", "assignment_status": "anchor", "model_mode": 8, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-3p000", "label": "T/T_c_plot = 3.000", "value": 0.319753, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 3.000", "assignment_status": "anchor", "model_mode": 9, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-4p000", "label": "T/T_c_plot = 4.000", "value": 0.324540, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 4.000", "assignment_status": "anchor", "model_mode": 10, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."},
+    {"id": "tplot-5p000", "label": "T/T_c_plot = 5.000", "value": 0.326687, "unit": "dimensionless", "uncertainty": {"kind": "symmetric", "sigma": 0.0015, "unit": "dimensionless", "source_text": "Conservative vector-path digitization uncertainty."}, "source_artifact": "arxiv-source-archive", "source_locator": "Figure 3 red EPS path at T/T_c_plot = 5.000", "assignment_status": "anchor", "model_mode": 11, "included": true, "notes": "QCD-like red black-hole curve anchor; no hadron-gas branch is included."}
+  ],
+  "transformations": [
+    {
+      "id": "eps-affine-anchor-extraction",
+      "expression": "(T/T_c_plot, c_s^2) = affine_map(EPS_vertex); interpolate linearly between adjacent path vertices",
+      "description": "Convert public vector-path coordinates to the plotted physical axes.",
+      "uncertainty_propagation": "Assign an absolute 1.5e-3 ordinate uncertainty from the integer EPS grid and line width; no uncertainty is used to tune the calculation."
+    },
+    {
+      "id": "figure-only-temperature-registration",
+      "expression": "T_c_plot = T_minimum/0.9618971489",
+      "description": "Register the computed black-hole minimum to the source plot abscissa without claiming a predicted critical temperature.",
+      "uncertainty_propagation": "The registration is fixed once and is not fitted anchor by anchor; the ordinate uncertainty remains 1.5e-3."
+    }
+  ],
+  "provenance": {
+    "created_on": "2026-08-16",
+    "created_by": "HoloForge development",
+    "ai_assistance": true,
+    "ai_roles": ["public vector-path extraction", "source transcription", "schema drafting"],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-17"
+  }
+}

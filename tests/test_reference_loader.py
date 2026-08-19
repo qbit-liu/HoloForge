@@ -36,6 +36,19 @@ class ReferenceLoaderTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unknown packaged"):
             load_reference_dataset("data/reference/not-present.json")
 
+    def test_gubser_nellore_anchors_load_from_package_resources(self) -> None:
+        figure_2 = load_reference_dataset(
+            "data/reference/gubser-nellore-figure-2-anchors.json"
+        )
+        figure_3 = load_reference_dataset(
+            "data/reference/gubser-nellore-figure-3-anchors.json"
+        )
+        self.assertEqual(len(figure_2["entries"]), 9)
+        self.assertEqual(len(figure_3["entries"]), 12)
+        self.assertEqual(figure_2["provenance"]["review_status"], "approved")
+        self.assertEqual(figure_2["provenance"]["reviewed_by"], "Xin-Yi Liu")
+        self.assertEqual(figure_2["provenance"]["reviewed_on"], "2026-08-17")
+
 
 if __name__ == "__main__":
     unittest.main()

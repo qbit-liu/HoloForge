@@ -105,6 +105,7 @@ Benchmark exports:
 - `holoforge.benchmarks.solve_linear_axion_frequency`;
 - `holoforge.benchmarks.solve_onset`;
 - `holoforge.benchmarks.solve_spectrum`;
+- `holoforge.benchmarks.verify_gubser_nellore_ed`;
 - `holoforge.benchmarks.verify_linear_axion_dc`; and
 - `holoforge.benchmarks.verify_superconductor`.
 

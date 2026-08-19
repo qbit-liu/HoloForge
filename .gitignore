@@ -21,3 +21,6 @@ htmlcov/
 # repository whenever possible. These names must never be committed here.
 /.private-research/
 /unpublished/
+
+# Owner-supplied private diagnostic programs; temporary and never public.
+/temporary_Mathematica_programs/

@@ -37,28 +37,45 @@ Natural units are used. In the implementation, `kappa` is measured in GeV,
 `z` in GeV^-1, and eigenvalues in GeV^2. The AdS radius cancels from this mode
 equation.
 
-## Numerical method
+## Numerical methods
 
-The implementation truncates the half-line to `0 < z < z_max`, imposes
-Dirichlet conditions on the Schrödinger wavefunction at both ends, and uses a
-second-order centered finite difference on a uniform interior grid. Only the
-lowest requested eigenvalues of the symmetric tridiagonal Hamiltonian are
-computed with SciPy's eigenvalue-only `eigvalsh_tridiagonal` routine. This
-retains linear storage and avoids constructing a dense matrix or computing
-unused eigenvectors.
+The implementation truncates the half-line to `0 < z < z_max` and imposes
+Dirichlet conditions on the Schrödinger wavefunction at both ends. It exposes
+two numerical formulations without changing the protected default:
+
+1. `finite-difference` uses a second-order centered stencil on a uniform
+   interior grid. Only the lowest requested eigenvalues of the symmetric
+   tridiagonal Hamiltonian are computed with SciPy's eigenvalue-only
+   `eigvalsh_tridiagonal` routine.
+2. `spectral` uses Chebyshev--Gauss--Lobatto nodes. Removing both endpoint rows
+   and columns enforces the Dirichlet conditions, and SciPy's dense `eigvals`
+   routine solves the resulting nonsymmetric collocation eigenproblem. Only
+   finite, positive eigenvalues with negligible imaginary parts are retained.
 
 The UV potential is never evaluated at `z = 0`; the first point is one grid
-spacing inside the domain. The default `z_max = 10 / kappa` suppresses the
-normalizable wavefunctions well before the artificial IR boundary for the first
-few modes.
+point inside the domain. The default `z_max = 10 / kappa` suppresses the
+normalizable wavefunctions well before the artificial IR boundary for the
+first few modes.
 
 ## Verification and limits
 
 The default verification requires the first four eigenvalues to agree with the
-analytic result within a maximum relative error of `2e-4`. Tests also require
-the error to decrease with the approximately second-order rate expected from
-the centered stencil. Machine-readable output records the complete numerical
-configuration, method, boundary conditions, and Python/NumPy/SciPy versions.
+analytic result within a maximum relative error of `2e-4`. Finite-difference
+tests require the expected approximately second-order convergence. The
+spectral route records degrees 24, 32, and 40 and requires the maximum analytic
+error to decrease at every level and finish below `1e-8`. At degree 40 the
+development result is about `2.7e-13`; this is numerical verification of the
+finite-domain eigenproblem, not phenomenological precision.
+
+Run either route with:
+
+```bash
+holoforge verify soft-wall-vector
+holoforge verify soft-wall-vector --method spectral --json
+```
+
+Machine-readable output records the complete numerical configuration, method,
+boundary conditions, convergence levels, and Python/NumPy/SciPy versions.
 
 This checks the equation, scale restoration, discretization, and eigenvalue
 ordering. It does **not** test decay constants, experimental fits, chiral

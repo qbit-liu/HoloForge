@@ -4,6 +4,10 @@ from holoforge.benchmarks.adapters.hard_wall_vector import (
     HARD_WALL_ADAPTER,
     HARD_WALL_MODEL_CARD,
 )
+from holoforge.benchmarks.adapters.gubser_nellore_ed import (
+    GUBSER_NELLORE_ADAPTER,
+    GUBSER_NELLORE_MODEL_CARD,
+)
 from holoforge.benchmarks.adapters.holographic_superconductor import (
     SUPERCONDUCTOR_ADAPTER,
     SUPERCONDUCTOR_MODEL_CARD,
@@ -23,6 +27,7 @@ BUILTIN_BENCHMARKS = BenchmarkRegistry(
     (
         SOFT_WALL_ADAPTER,
         HARD_WALL_ADAPTER,
+        GUBSER_NELLORE_ADAPTER,
         SUPERCONDUCTOR_ADAPTER,
         LINEAR_AXION_ADAPTER,
     )
@@ -31,6 +36,8 @@ BUILTIN_BENCHMARKS = BenchmarkRegistry(
 
 __all__ = [
     "BUILTIN_BENCHMARKS",
+    "GUBSER_NELLORE_ADAPTER",
+    "GUBSER_NELLORE_MODEL_CARD",
     "HARD_WALL_ADAPTER",
     "HARD_WALL_MODEL_CARD",
     "LINEAR_AXION_ADAPTER",

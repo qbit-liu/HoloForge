@@ -38,6 +38,7 @@ boundary conditions, solver signatures, or scientific acceptance gates.
 | Adapter modules | `src/holoforge/benchmarks/adapters/` | Keeps parser, execution, rendering, scientific-state, and model-card glue isolated per benchmark. |
 | Composition root | `src/holoforge/benchmarks/registry.py` | Imports reviewed adapters and declares the explicit immutable built-in suite. |
 | Numerical implementations | `src/holoforge/benchmarks/` | Implements benchmark-specific equations, solvers, results, and acceptance calculations. |
+| Shared numerics | `src/holoforge/numerics/` | Provides narrow equation-independent primitives after use by multiple heterogeneous benchmarks; it does not own physical boundary conditions or solver contracts. |
 | Comparison implementation | `src/holoforge/comparisons/` | Performs controlled comparisons without treating descriptive agreement as empirical validation. |
 | Provenance and audit | `src/holoforge/core/evidence.py`, `schemas/` | Writes, validates, relocates, and compares declared evidence records. |
 | Reference inputs | `src/holoforge/data/reference/` | Ships frozen public reference data with source and uncertainty provenance. |
@@ -61,6 +62,9 @@ boundary conditions, solver signatures, or scientific acceptance gates.
 6. Only public, literature-anchored Forge/Verify work may enter the built-in
    registry. Unpublished Explore work remains in a separate access-controlled
    repository.
+7. Shared numerical modules may provide grids or maintained-library assembly
+   helpers, but benchmark modules retain endpoint regularization, boundary
+   rows, gauge or constraint treatment, mode filtering, and acceptance gates.
 
 ## Extension point
 
