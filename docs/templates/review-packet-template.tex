@@ -6,6 +6,9 @@
 
 \definecolor{navy}{RGB}{30,60,105}
 \definecolor{soft}{RGB}{242,246,251}
+\definecolor{passgreen}{RGB}{38,108,62}
+\definecolor{failred}{RGB}{155,45,45}
+\definecolor{holdamber}{RGB}{145,94,20}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt}
 \setlist{nosep,leftmargin=1.5em}
@@ -18,6 +21,15 @@
 
 \newcommand{\supported}[1]{\textcolor{navy}{\textbf{Supported:}} #1}
 \newcommand{\notsupported}[1]{\textcolor{navy}{\textbf{Not supported:}} #1}
+% Keep the status word as well as its color so tables remain accessible in
+% grayscale and to readers who do not distinguish every color.
+\newcommand{\statuspass}{\textcolor{passgreen}{\textbf{pass}}}
+\newcommand{\statusfail}{\textcolor{failred}{\textbf{fail}}}
+\newcommand{\statusstop}{\textcolor{failred}{\textbf{stop}}}
+\newcommand{\statuspending}{\textcolor{holdamber}{\textbf{pending}}}
+\newcommand{\statusskipped}{\textcolor{holdamber}{\textbf{skipped}}}
+\newcommand{\statusclosed}{\textcolor{navy}{\textbf{closed}}}
+\newcommand{\statusretained}{\textcolor{navy}{\textbf{retained}}}
 
 % Uncomment \def\HoloForgeIncludeProgress{1} and replace the filename only
 % when the packet should contain the project-local research-progress view.
@@ -67,11 +79,11 @@ y=f(x).
 \section*{2. Result and numerical evidence}
 
 \begin{center}
-\begin{tabular}{lrr}
+\begin{tabular}{lrrr}
 \toprule
-Check & Measured & Acceptance\\
+Check & Measured & Acceptance & Status\\
 \midrule
-Example residual & $1.0\times10^{-9}$ & $<1.0\times10^{-8}$\\
+Example residual & $1.0\times10^{-9}$ & $<1.0\times10^{-8}$ & \statuspass\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -98,7 +110,12 @@ publication, or disclosure conclusions that remain outside the evidence.}
 \section*{5. Critic verdict and next gate}
 \thispagestyle{fancy}
 
-List the strongest objections and the cheapest discriminating next action.
+Lead each objection with one short bold challenge sentence, followed
+immediately by the bounded evidence-based response. For example:
+
+\textbf{``State the strongest alternative explanation.''} Explain what the
+current evidence can and cannot exclude, then name the cheapest discriminating
+next action.
 
 \section*{6. Owner decisions}
 

@@ -185,6 +185,10 @@ never retroactively enlarges the completed gate.
 
 When a PDF review packet is requested, use
 `docs/templates/review-packet-template.tex`, compile twice, render every page,
-and visually inspect equations, tables, figures, and page breaks. When a
-research-progress view is requested, generate its PDF from the same project
-state and enable the template's optional progress-snapshot page.
+and visually inspect equations, tables, figures, and page breaks. Use the
+template's semantic status commands so `pass`, `fail` or `stop`, workflow hold,
+and informational states remain legible by both color and written label. In
+the hostile critic section, begin each objection with one short bold challenge
+sentence, then give the bounded evidence-based response. When a research-
+progress view is requested, generate its PDF from the same project state and
+enable the template's optional progress-snapshot page.
