@@ -37,6 +37,18 @@ class AgentSkillTests(unittest.TestCase):
             self.assertNotIn("TODO", skill)
             self.assertIn(f"${name}", metadata)
 
+    def test_bottom_up_benchmark_skill_requires_source_figure_or_reason(self) -> None:
+        skill = " ".join(
+            (SKILLS / "holoforge-add-benchmark" / "SKILL.md")
+            .read_text(encoding="utf-8")
+            .lower()
+            .split()
+        )
+        self.assertIn("at least one scientifically central source figure", skill)
+        self.assertIn("owner-reviewed reason", skill)
+        self.assertIn("alternative quantitative literature check", skill)
+        self.assertIn("visual resemblance alone is not validation", skill)
+
     def run_audit(self, *arguments: str) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
             [sys.executable, str(AUDIT_SCRIPT), *arguments],

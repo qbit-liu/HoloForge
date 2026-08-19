@@ -80,6 +80,7 @@ jobs:
           holoforge verify holographic-superconductor
           holoforge verify linear-axion-dc
           holoforge verify gubser-nellore-ed
+          holoforge verify gubser-rocha-emd
 
   portability:
     name: Wheel portability (${{ matrix.os }})

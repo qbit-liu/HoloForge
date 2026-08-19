@@ -15,9 +15,15 @@ new numerical problem into an unsuitable common solver interface.
 2. Inspect both existing benchmark implementations, guides, model cards, CLI
    routes, and tests before choosing the closest pattern.
 3. Record the primary public source and exact equations or figures reproduced.
-4. State action, dimensions, signs, coordinates, units, normalization,
+4. For a classical bottom-up example, quantitatively reproduce at least one
+   scientifically central source figure or table when feasible. If no source
+   figure or table is suitable, record an owner-reviewed reason and an
+   alternative quantitative literature check in the frozen contract. Visual
+   resemblance alone is not validation; retain the underlying numerical
+   comparison, provenance, and tolerance.
+5. State action, dimensions, signs, coordinates, units, normalization,
    ensemble, sources, responses, UV conditions, and IR or horizon conditions.
-5. Define observables, numerical inputs, analytic or external reference values,
+6. Define observables, numerical inputs, analytic or external reference values,
    acceptance tolerances, limitations, and explicit failure conditions.
 
 Do not begin substantial implementation until the scientific contract is

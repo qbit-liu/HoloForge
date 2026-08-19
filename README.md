@@ -106,6 +106,7 @@ identify executable examples, not a restriction on future HoloForge domains.
 | Linear-instability and nonlinear-condensate verification | `holoforge verify holographic-superconductor` | [condensate benchmark guide](docs/benchmarks/holographic-superconductor.md) |
 | Coupled fluctuation, radial-flux, and DC-limit verification | `holoforge verify linear-axion-dc` | [transport benchmark guide](docs/benchmarks/linear-axion-dc.md) |
 | Coupled Einstein--dilaton thermodynamics with spectral, DOP853, and source-figure checks | `holoforge verify gubser-nellore-ed` | [Einstein--dilaton benchmark guide](docs/benchmarks/gubser-nellore-ed.md) |
+| Top-down-derived charged EMD control with exact-background, flux, thermodynamic, and low-temperature checks | `holoforge verify gubser-rocha-emd` | [Gubser--Rocha EMD control guide](docs/benchmarks/gubser-rocha-emd.md) |
 | Controlled model/reference comparison with uncertainty provenance | `holoforge compare vector-spectrum` | [comparison guide](docs/benchmarks/vector-spectrum-comparison.md) |
 | Portable provenance and scientific-state compatibility | Add `--bundle-dir PATH` to any command, then use `holoforge audit bundle` or `holoforge audit compatibility` | [evidence-bundle guide](docs/evidence-bundles.md) |
 
@@ -174,7 +175,7 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-The latest public release is `0.5.2`. HoloForge remains a pre-1.0 project, not
+The latest public release is `0.5.3`. HoloForge remains a pre-1.0 project, not
 a universal phenomenology or first-principles prediction package. Its current
 reference implementations reproduce published model calculations; they do not
 establish those models as complete descriptions of their target physical

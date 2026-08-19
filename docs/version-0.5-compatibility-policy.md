@@ -20,12 +20,14 @@ Exact older releases remain available for reproducibility.
 
 Patch releases in the `0.5.x` line preserve these commands and the option
 names, meanings, defaults, ordinary JSON semantics, and exit meanings exposed
-by their `v0.5.0` help:
+by the release in which each command first appears:
 
 - `holoforge verify soft-wall-vector`;
 - `holoforge verify hard-wall-vector`;
 - `holoforge verify holographic-superconductor`;
 - `holoforge verify linear-axion-dc`;
+- `holoforge verify gubser-nellore-ed`;
+- `holoforge verify gubser-rocha-emd`;
 - `holoforge compare vector-spectrum`;
 - `holoforge audit bundle`; and
 - `holoforge audit compatibility` with `same-state-family`.
@@ -33,8 +35,10 @@ by their `v0.5.0` help:
 Exit `0` means the calculation or audit completed and all declared gates
 passed. Exit `1` means a calculation completed but at least one scientific or
 audit gate failed. Exit `2` means invalid input, an unsupported setup, or a
-controlled execution failure. A patch may add an optional field or option only
-when existing invocations and meanings remain valid.
+controlled execution failure. A patch may add an opt-in command, optional
+field, or option only when existing invocations and meanings remain valid.
+Once released in the `0.5.x` line, that new public command receives the same
+compatibility protection.
 
 Checked-in JSON records use LF line endings on every supported platform so
 their reviewed raw SHA-256 digests do not change during a Windows checkout.
@@ -106,6 +110,7 @@ Benchmark exports:
 - `holoforge.benchmarks.solve_onset`;
 - `holoforge.benchmarks.solve_spectrum`;
 - `holoforge.benchmarks.verify_gubser_nellore_ed`;
+- `holoforge.benchmarks.verify_gubser_rocha_emd`;
 - `holoforge.benchmarks.verify_linear_axion_dc`; and
 - `holoforge.benchmarks.verify_superconductor`.
 

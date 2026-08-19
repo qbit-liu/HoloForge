@@ -1,0 +1,240 @@
+{
+  "schema_version": "0.1",
+  "id": "condensed-matter.gubser-rocha-emd",
+  "title": "Gubser--Rocha charged Einstein--Maxwell--dilaton background",
+  "mode": "forge-verify",
+  "domain": "charged holographic matter",
+  "maturity": "reproduced",
+  "summary": "An owner-approved Chebyshev reproduction of the bosonic background and thermodynamic relations for the top-down-derived homogeneous equal-charge five-dimensional charged dilatonic black brane of Gubser and Rocha.",
+  "source": {
+    "title": "Peculiar properties of a charged dilatonic black hole in AdS_5",
+    "authors": [
+      "Steven S. Gubser",
+      "Fabio D. Rocha"
+    ],
+    "locator": "arXiv:0911.2898",
+    "version": "v2",
+    "url": "https://arxiv.org/abs/0911.2898",
+    "doi": "10.1103/PhysRevD.81.046001",
+    "equation_refs": [
+      "Eqs. (1)-(6)"
+    ]
+  },
+  "conventions": [
+    {
+      "name": "model origin",
+      "value": "Top-down consistent truncation of five-dimensional maximal gauged supergravity with a type IIB lift",
+      "rationale": "Classifies this entry as a numerical control rather than a representative bottom-up model."
+    },
+    {
+      "name": "bulk theory and units",
+      "value": "Five bulk dimensions, metric signature (-,+,+,+,+), canonical phi = 2 sqrt(6) alpha, L = r_H = 1",
+      "rationale": "Fixes the source action, scalar normalization, and the dimensionless scale used by every extraction formula."
+    },
+    {
+      "name": "couplings",
+      "value": "Z(phi) = exp(sqrt(2/3) phi), V(phi) = -[8 exp(phi/sqrt(6)) + 4 exp(-2 phi/sqrt(6))]",
+      "rationale": "This is the canonical-scalar form of source Eq. (1); m^2 L^2 = -4."
+    },
+    {
+      "name": "ensemble and gauge",
+      "value": "Each xi fixes the boundary chemical potential Omega = sqrt(2) xi; Phi(1) = 0 and Phi(0) = -Omega",
+      "rationale": "Keeps the source gauge sign and distinguishes Omega from the source black-hole parameter mu_bh."
+    },
+    {
+      "name": "radial fields",
+      "value": "u = z/z_H, A = -log(z) + u^4 a, f = 1 - u^4 b, phi = u^2 p, Phi = -Omega + u^2 v",
+      "rationale": "The exact-endpoint factorization fixes the boundary metric, removes forbidden lower powers, and excludes the BF-bound logarithmic scalar source."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "reported charge ratios",
+      "symbol": "xi",
+      "value": "0, 0.5, 1, 2, 4, 8, 16",
+      "unit": "dimensionless",
+      "role": "input",
+      "allowed_range": [
+        0.0,
+        16.0
+      ],
+      "description": "Seven frozen source cases; xi greater than one is retained only as an analytic verification point."
+    },
+    {
+      "name": "spectral degrees",
+      "symbol": "N",
+      "value": "40, 60, 80",
+      "unit": "polynomial degree",
+      "role": "input",
+      "description": "Three aligned Chebyshev resolutions; degree 80 supplies the reported values."
+    },
+    {
+      "name": "TRF polish evaluation cap",
+      "symbol": "max_nfev_TRF",
+      "value": 32,
+      "unit": "function evaluations",
+      "role": "fixed",
+      "description": "Owner-approved prospective amendment after all five affected coarse states reached SciPy success in 13 to 18 diagnostic evaluations."
+    },
+    {
+      "name": "refinement ordering floor",
+      "symbol": "delta_order_floor",
+      "value": 5e-10,
+      "unit": "scaled relative change",
+      "role": "fixed",
+      "description": "Owner-approved prospective amendment covering the frozen N = 80 exact-thermodynamic error envelope while remaining far below the unchanged magnitude tolerance."
+    },
+    {
+      "name": "instability threshold",
+      "symbol": "xi_instability",
+      "value": 1.0,
+      "unit": "dimensionless",
+      "role": "fixed",
+      "description": "Source unequal-charge instability boundary; it limits interpretation rather than removing exact verification cases."
+    }
+  ],
+  "equations": [
+    {
+      "id": "warp-equation",
+      "expression": "A'' - A'^2 + phi'^2/6 = 0",
+      "description": "Conformal-gauge Einstein equation for the warp factor.",
+      "source_ref": "Derived from source Eq. (1) and checked against source Eq. (2)."
+    },
+    {
+      "id": "blackening-equation",
+      "expression": "f'' + 3 A' f' - exp(-2A) Z Phi'^2 = 0",
+      "description": "Conformal-gauge Einstein equation for the blackening function.",
+      "source_ref": "Derived from source Eq. (1) and checked against source Eq. (2)."
+    },
+    {
+      "id": "maxwell-equation",
+      "expression": "Phi'' + [A' + (Z_phi/Z) phi'] Phi' = 0",
+      "description": "Radial Maxwell equation whose first integral is the conserved charge flux.",
+      "source_ref": "Derived from source Eq. (1) and checked against source Eq. (2)."
+    },
+    {
+      "id": "scalar-equation",
+      "expression": "f phi'' + (3 A' f + f') phi' - exp(2A) V_phi + exp(-2A) Z_phi Phi'^2/2 = 0",
+      "description": "Canonical scalar equation retained at the exact horizon for regularity.",
+      "source_ref": "Derived from source Eq. (1) and checked against source Eq. (2)."
+    },
+    {
+      "id": "einstein-constraint",
+      "expression": "6 A' f' + f(24 A'^2 - phi'^2) + 2 exp(2A) V + exp(-2A) Z Phi'^2 = 0",
+      "description": "Independent radial constraint not used as a collocation equation.",
+      "source_ref": "Derived from source Eq. (1)."
+    }
+  ],
+  "observables": [
+    {
+      "name": "temperature",
+      "symbol": "T",
+      "unit": "L = r_H = 1",
+      "extraction": "Use abs(f'(z_H))/(4 pi) at the exact horizon."
+    },
+    {
+      "name": "chemical potential",
+      "symbol": "Omega",
+      "unit": "L = r_H = 1",
+      "extraction": "Use -Phi(0) after the fixed scale choice."
+    },
+    {
+      "name": "entropy density",
+      "symbol": "hat s",
+      "unit": "source hatted density",
+      "extraction": "Use exp(3 A(z_H))/(2 pi) after L = r_H = 1."
+    },
+    {
+      "name": "charge density",
+      "symbol": "hat rho",
+      "unit": "source hatted density",
+      "extraction": "Use abs(-exp(A) Z Phi')/(8 pi^2)."
+    },
+    {
+      "name": "energy density",
+      "symbol": "hat epsilon",
+      "unit": "source hatted density",
+      "extraction": "Extract mu_bh from the z^4 boundary coefficient of f and use 3 mu_bh/(8 pi^2)."
+    }
+  ],
+  "validation": {
+    "last_verified": "2026-08-19",
+    "acceptance_criteria": [
+      "Source algebra and coordinate identities agree within 1e-12.",
+      "Every continuation solve reports an accepted maintained-library state with final scaled residual at most 1e-9; the amended TRF polish cap is 32 evaluations.",
+      "Four independently oversampled equations and the Einstein constraint pass 1e-7 gates.",
+      "Boundary, no-log source, horizon, and Maxwell-flux checks pass 1e-8 gates.",
+      "Spectral fields agree with the exact source family within 2e-7.",
+      "N = 60 to 80 thermodynamic changes are at most 2e-6 and improve above the owner-approved 5e-10 ordering floor.",
+      "Source thermodynamics, equation of state, derivatives, and low-temperature relation pass their frozen gates.",
+      "The neutral limit, duplicate-run determinism, strict JSON, CLI, schema, artifact, bundle, packaging, and regression checks pass."
+    ],
+    "tests": [
+      {
+        "id": "coupled-scientific-preflight",
+        "kind": "analytic",
+        "command": "python3 -m unittest tests.test_gubser_rocha_emd -v",
+        "expected": "Equations, exact fields, thermodynamics, limitations, and every owner-approved amended gate are reported without further threshold revision.",
+        "status": "pass"
+      },
+      {
+        "id": "spectral-refinement",
+        "kind": "convergence",
+        "command": "holoforge verify gubser-rocha-emd --json",
+        "expected": "Three declared degrees report the amended final-change and ordering evidence.",
+        "status": "pass"
+      },
+      {
+        "id": "source-thermodynamics",
+        "kind": "regression",
+        "command": "holoforge verify gubser-rocha-emd --output-dir OUTPUT_DIR",
+        "expected": "Seven-case JSON/CSV data and a verification-only figure preserve the exact-source and instability boundaries.",
+        "status": "pass"
+      }
+    ]
+  },
+  "claims": [
+    {
+      "statement": "The action, analytic homogeneous equal-charge background, and thermodynamic relations in Eqs. (1)-(6) are established in the cited Gubser--Rocha source.",
+      "support_level": "established-source",
+      "evidence": "Gubser and Rocha, arXiv:0911.2898v2, Eqs. (1)-(6).",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-19"
+    },
+    {
+      "statement": "The HoloForge coupled Chebyshev implementation reproduces the selected bosonic background and source Eqs. (2)-(6) within all thirteen owner-approved numerical gates.",
+      "support_level": "reproduced",
+      "evidence": "Equation, endpoint, constraint, flux, exact-field, refinement, thermodynamic, low-temperature, neutral-limit, determinism, artifact, bundle, and package checks in tests/test_gubser_rocha_emd.py and the amended result record.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-19"
+    }
+  ],
+  "limitations": [
+    "This is a top-down-derived classical homogeneous equal-charge EMD background used as a numerical control; it is not a bottom-up example and does not establish empirical agreement with any material or with QCD.",
+    "The source unequal-charge mode is unstable for xi greater than one; those cases are analytic verification points, not stable phase selections.",
+    "The current program does not solve the charged-fermion Dirac system or reproduce the paper's only figure, source Figure 1; source Eq. (7) specific heats, the ten-dimensional lift, unequal-charge dynamics, and Section 6 scaling models are also outside scope.",
+    "This benchmark is not the owner's phenomenological finite-density EMD research model and uses no private Mathematica implementation or unpublished result.",
+    "The implementation and model card are AI-assisted; human approval does not erase that provenance or broaden the reproduced bosonic claim to the omitted fermion sector."
+  ],
+  "provenance": {
+    "created_on": "2026-08-19",
+    "created_by": "HoloForge development",
+    "implementation_path": "src/holoforge/benchmarks/gubser_rocha_emd.py",
+    "ai_assistance": true,
+    "ai_roles": [
+      "public-source equation transcription",
+      "canonical and conformal-gauge derivation",
+      "clean-room spectral implementation drafting",
+      "acceptance-gate implementation",
+      "test drafting",
+      "documentation drafting"
+    ],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-19"
+  }
+}

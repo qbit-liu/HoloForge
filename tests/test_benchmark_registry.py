@@ -98,6 +98,9 @@ class BenchmarkRegistryTests(unittest.TestCase):
             "gubser-nellore-ed": (
                 "holoforge.benchmarks.adapters.gubser_nellore_ed"
             ),
+            "gubser-rocha-emd": (
+                "holoforge.benchmarks.adapters.gubser_rocha_emd"
+            ),
             "hard-wall-vector": (
                 "holoforge.benchmarks.adapters.hard_wall_vector"
             ),
