@@ -38,6 +38,10 @@ All notable changes to HoloForge are recorded here.
 - Classical bottom-up benchmark contracts now require a quantitative central
   source figure or table when feasible, or an owner-reviewed reason and an
   alternative quantitative literature check.
+- The Gubser--Rocha final scaled-collocation ceiling is prospectively set to
+  `3e-9` for Linux/macOS numerical portability after the release-candidate
+  matrix measured `1.960378e-9` on Ubuntu and `9.579273e-10` on macOS. Its
+  `1e-9` TRF-polish trigger and every independent physics gate are unchanged.
 
 ### Scientific results
 

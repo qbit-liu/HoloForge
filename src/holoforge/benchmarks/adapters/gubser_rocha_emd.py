@@ -21,7 +21,7 @@ GUBSER_ROCHA_MODEL_CARD = ModelCardReference(
     identifier="condensed-matter.gubser-rocha-emd",
     schema_version="0.1",
     repository_path="domains/condensed_matter/gubser_rocha_emd/model-card.json",
-    sha256="d415e57befa79f9e1df28e1433259c1e98d38626d49681b8035f86d7425da3b9",
+    sha256="ed5bc394878ce2adc03a219f8381942ea8ea12241e352dcc0c2c4999766c93b1",
 )
 
 
@@ -115,12 +115,20 @@ def _gubser_rocha_state(result: Mapping[str, Any]) -> Mapping[str, Any]:
             "polish_maximum_evaluations": configuration[
                 "polish_maximum_evaluations"
             ],
+            "polish_trigger_tolerance": configuration[
+                "polish_trigger_tolerance"
+            ],
+            "collocation_tolerance": configuration[
+                "collocation_tolerance"
+            ],
             "refinement_order_floor": configuration[
                 "refinement_order_floor"
             ],
         },
         "declared_controls": [
             "polish_maximum_evaluations",
+            "polish_trigger_tolerance",
+            "collocation_tolerance",
             "refinement_order_floor",
         ],
         "boundary_source_conditions": {

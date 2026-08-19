@@ -63,7 +63,8 @@ DEFAULT_CONTINUATION_XI = (
 )
 DEFAULT_DEGREES = (40, 60, 80)
 DEFAULT_POLISH_MAXIMUM_EVALUATIONS = 32
-DEFAULT_COLLOCATION_TOLERANCE = 1.0e-9
+DEFAULT_POLISH_TRIGGER_TOLERANCE = 1.0e-9
+DEFAULT_COLLOCATION_TOLERANCE = 3.0e-9
 DEFAULT_EQUATION_TOLERANCE = 1.0e-7
 DEFAULT_CONSTRAINT_TOLERANCE = 1.0e-7
 DEFAULT_BOUNDARY_TOLERANCE = 1.0e-8
@@ -613,7 +614,8 @@ def solve_emd_profile(
     root_vector = np.asarray(root_result.x, dtype=float)
     root_residual = float(np.max(np.abs(residual(root_vector))))
     polish_applied = bool(
-        not root_result.success or root_residual > DEFAULT_COLLOCATION_TOLERANCE
+        not root_result.success
+        or root_residual > DEFAULT_POLISH_TRIGGER_TOLERANCE
     )
     if polish_applied:
         polish_result = least_squares(
@@ -908,7 +910,10 @@ def verify_gubser_rocha_emd(
             "every continuation and reported final solve reaches an accepted final state",
             bool(summary["solver_success"]),
             0.0 if summary["solver_success"] else 1.0,
-            "all final residual states accepted and <= 1e-9",
+            (
+                "all final residual states accepted and <= "
+                f"{DEFAULT_COLLOCATION_TOLERANCE:.1e}"
+            ),
         ),
         AcceptanceCheck(
             "collocation-residual",
@@ -1043,6 +1048,8 @@ def verify_gubser_rocha_emd(
             "continuation_xi": list(DEFAULT_CONTINUATION_XI),
             "degrees": list(DEFAULT_DEGREES),
             "polish_maximum_evaluations": DEFAULT_POLISH_MAXIMUM_EVALUATIONS,
+            "polish_trigger_tolerance": DEFAULT_POLISH_TRIGGER_TOLERANCE,
+            "collocation_tolerance": DEFAULT_COLLOCATION_TOLERANCE,
             "refinement_order_floor": DEFAULT_REFINEMENT_ORDER_FLOOR,
             "instability_threshold_xi": 1.0,
         },
@@ -1059,7 +1066,8 @@ def verify_gubser_rocha_emd(
             "nonlinear_solver": (
                 "scipy.optimize.root(method='hybr', xtol=1e-11), then at most "
                 "thirty-two scipy.optimize.least_squares(method='trf') evaluations "
-                "only after a failed or insufficient root state"
+                "only after a failed root or a scaled root residual above 1e-9; "
+                "the owner-approved final acceptance ceiling is 3e-9"
             ),
             "initialization": (
                 "neutral analytic solution, theta-secant charge continuation, "
@@ -1101,12 +1109,17 @@ def verify_gubser_rocha_emd(
                 "reviewed_by": "Xin-Yi Liu",
                 "reviewed_on": "2026-08-19",
                 "authorization": (
-                    "owner-approved prospective numerical-contract amendments "
-                    "and bounded clean preflight rerun only"
+                    "owner-approved prospective numerical-contract amendments, "
+                    "bounded bosonic reproduction, and scoped v0.5.3 release"
                 ),
                 "amendments": [
                     "TRF polish maximum evaluations increased from 12 to 32",
                     "refinement ordering floor increased from 1e-10 to 5e-10",
+                    (
+                        "final collocation acceptance ceiling increased from "
+                        "1e-9 to 3e-9 after cross-platform CI evidence; the "
+                        "1e-9 TRF polish trigger is unchanged"
+                    ),
                 ],
             },
             "result_review_state": "approved",
@@ -1812,9 +1825,11 @@ def _validate_integer(name: str, value: Integral, *, minimum: int) -> None:
 
 
 __all__ = [
+    "DEFAULT_COLLOCATION_TOLERANCE",
     "DEFAULT_CONTINUATION_XI",
     "DEFAULT_DEGREES",
     "DEFAULT_POLISH_MAXIMUM_EVALUATIONS",
+    "DEFAULT_POLISH_TRIGGER_TOLERANCE",
     "DEFAULT_REFINEMENT_ORDER_FLOOR",
     "DEFAULT_REPORTED_XI",
     "EMDContinuation",

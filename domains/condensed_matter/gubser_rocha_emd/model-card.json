@@ -77,6 +77,22 @@
       "description": "Owner-approved prospective amendment after all five affected coarse states reached SciPy success in 13 to 18 diagnostic evaluations."
     },
     {
+      "name": "TRF polish trigger",
+      "symbol": "epsilon_polish",
+      "value": 1e-9,
+      "unit": "maximum scaled collocation residual",
+      "role": "fixed",
+      "description": "Retained unchanged after the release-candidate portability amendment so roots above 1e-9 still receive the declared TRF polish."
+    },
+    {
+      "name": "final collocation acceptance ceiling",
+      "symbol": "epsilon_collocation",
+      "value": 3e-9,
+      "unit": "maximum scaled collocation residual",
+      "role": "fixed",
+      "description": "Owner-approved prospective portability amendment covering the 1.960378e-9 Ubuntu release-candidate residual while all independent physical gates passed."
+    },
+    {
       "name": "refinement ordering floor",
       "symbol": "delta_order_floor",
       "value": 5e-10,
@@ -161,7 +177,7 @@
     "last_verified": "2026-08-19",
     "acceptance_criteria": [
       "Source algebra and coordinate identities agree within 1e-12.",
-      "Every continuation solve reports an accepted maintained-library state with final scaled residual at most 1e-9; the amended TRF polish cap is 32 evaluations.",
+      "Every continuation solve reports an accepted maintained-library state with final scaled residual at most 3e-9; roots above the unchanged 1e-9 trigger receive the amended TRF polish capped at 32 evaluations.",
       "Four independently oversampled equations and the Einstein constraint pass 1e-7 gates.",
       "Boundary, no-log source, horizon, and Maxwell-flux checks pass 1e-8 gates.",
       "Spectral fields agree with the exact source family within 2e-7.",

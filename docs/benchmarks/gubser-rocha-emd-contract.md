@@ -316,15 +316,19 @@ scope.
 
 ## Current acceptance gates
 
-The original thresholds were preregistered before implementation. The two
+The original thresholds were preregistered before implementation. Two
 prospective amendments below were authorized only after the initial failed
-preflight and bounded diagnostics were preserved. No other gate changed.
+preflight and bounded diagnostics were preserved. A third prospective
+portability amendment was authorized after the release-candidate CI evidence
+was preserved. No other gate changed.
 
 1. **Source algebra:** canonical conversion, `V(0)`, `V'(0)`, `m^2L^2`,
    `Z(0)`, coordinate transformation, and exact solution identities agree
    symbolically or numerically within `1e-12`.
 2. **Nonlinear solve:** every final reported and continuation solve reports
-   success with scaled collocation residual at most `1e-9`.
+   success with scaled collocation residual at most `3e-9`. The root-first
+   route still invokes TRF polishing whenever the root fails or its scaled
+   residual exceeds the unchanged `1e-9` polish trigger.
 3. **Independent equations:** the four uncross-multiplied physical equations
    evaluated barycentrically on a grid at least twice as dense have individual
    scaled infinity norms at most `1e-7`, including both exact endpoints.
@@ -438,6 +442,40 @@ schemas, defaults, or scientific meanings.
 
 The charged-fermion extension, source Figure 1, stability claims, empirical
 interpretation, private-code transfer, and unpublished research remain closed.
+
+## Owner-approved release-candidate portability amendment, 2026-08-19
+
+PR #23 then exercised the installed verifier on Ubuntu 24.04. The Python 3.11
+wheel job used NumPy 2.4.6 and SciPy 1.17.1 and measured a maximum final scaled
+collocation residual of `1.960378e-9`, so the frozen `1e-9` final-acceptance
+ceiling stopped the release. The same dependency versions on macOS measured
+`9.579273e-10`. The Python 3.9, 3.11, and 3.14 Ubuntu test jobs all stopped at
+the same nonlinear-state and collocation gates, while all three wheel-
+relocation portability jobs passed.
+
+The Ubuntu wheel run retained passing independent evidence: the maximum
+twice-oversampled four-equation residual was `1.237393e-8`, the Einstein
+constraint residual was `6.881107e-12`, the boundary/source residual was
+`1.175903e-10`, the normalized Maxwell-flux drift was `1.342367e-11`, and the
+exact-field difference was `6.275377e-10`. The refinement, source
+thermodynamics, equation of state, low-temperature, and neutral/determinism
+gates also passed. Additional TRF iterations did not materially lower the
+high-degree double-precision residual floor in the matching macOS environment.
+
+After this failed CI evidence was reported, the owner selected Option A and
+prospectively approved only the following portability amendment:
+
+- increase the **final scaled collocation acceptance ceiling** from `1e-9` to
+  `3e-9`; and
+- retain the `1e-9` TRF-polish trigger, the 32-evaluation cap, solver route,
+  equations, continuation, spectral degrees, independent gates, physical
+  claim, and all non-inference boundaries unchanged.
+
+The `3e-9` ceiling covers the measured Ubuntu state without converting an
+unpolished root into an accepted route: roots above `1e-9` still receive TRF
+polishing and must report maintained-library success. This is a documented
+prospective amendment, not a retroactive claim that the original CI run
+passed. Merge, tag, and release remain conditional on a clean amended run.
 
 ## Evidence boundary and important limitations
 

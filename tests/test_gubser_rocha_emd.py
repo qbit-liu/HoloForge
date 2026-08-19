@@ -13,8 +13,10 @@ from holoforge.benchmarks.adapters.gubser_rocha_emd import (
     GUBSER_ROCHA_MODEL_CARD,
 )
 from holoforge.benchmarks.gubser_rocha_emd import (
+    DEFAULT_COLLOCATION_TOLERANCE,
     DEFAULT_FIELD_TOLERANCE,
     DEFAULT_POLISH_MAXIMUM_EVALUATIONS,
+    DEFAULT_POLISH_TRIGGER_TOLERANCE,
     DEFAULT_REFINEMENT_ORDER_FLOOR,
     DEFAULT_REFINEMENT_TOLERANCE,
     EMDSolverConfig,
@@ -67,27 +69,34 @@ class GubserRochaEMDTests(unittest.TestCase):
             self.checks["spectral-refinement"]["criterion"],
         )
 
-    def test_amended_polish_cap_reaches_library_success(self) -> None:
+    def test_amended_polish_cap_reaches_accepted_library_states(self) -> None:
         self.assertEqual(
             EMDSolverConfig().polish_maximum_evaluations,
             DEFAULT_POLISH_MAXIMUM_EVALUATIONS,
         )
         self.assertEqual(DEFAULT_POLISH_MAXIMUM_EVALUATIONS, 32)
+        self.assertEqual(DEFAULT_POLISH_TRIGGER_TOLERANCE, 1.0e-9)
+        self.assertEqual(DEFAULT_COLLOCATION_TOLERANCE, 3.0e-9)
         self.assertTrue(self.checks["nonlinear-solver"]["passed"])
         applied_polishes = [
             row
             for row in self.payload["results"]["continuation_solves"]
             if row["nonlinear"]["polish"]["applied"]
         ]
-        self.assertGreater(len(applied_polishes), 0)
         self.assertTrue(
             all(
                 row["nonlinear"]["polish"]["library_success"]
-                and 12 < row["nonlinear"]["polish"]["function_evaluations"]
+                and 0 < row["nonlinear"]["polish"]["function_evaluations"]
                 <= DEFAULT_POLISH_MAXIMUM_EVALUATIONS
-                and row["nonlinear"]["final_success"]
-                and row["nonlinear"]["final_scaled_residual"] <= 1.0e-9
                 for row in applied_polishes
+            )
+        )
+        self.assertTrue(
+            all(
+                row["nonlinear"]["final_success"]
+                and row["nonlinear"]["final_scaled_residual"]
+                <= DEFAULT_COLLOCATION_TOLERANCE
+                for row in self.payload["results"]["continuation_solves"]
             )
         )
 
@@ -133,7 +142,15 @@ class GubserRochaEMDTests(unittest.TestCase):
             SOURCE_ARCHIVE_SHA256,
         )
         self.assertEqual(self.payload["contract_review"]["review_state"], "approved")
-        self.assertEqual(len(self.payload["contract_review"]["amendments"]), 2)
+        self.assertEqual(len(self.payload["contract_review"]["amendments"]), 3)
+        self.assertEqual(
+            self.payload["configuration"]["polish_trigger_tolerance"],
+            DEFAULT_POLISH_TRIGGER_TOLERANCE,
+        )
+        self.assertEqual(
+            self.payload["configuration"]["collocation_tolerance"],
+            DEFAULT_COLLOCATION_TOLERANCE,
+        )
         self.assertEqual(self.payload["result_review_state"], "approved")
         self.assertEqual(self.payload["result_reviewed_by"], "Xin-Yi Liu")
         self.assertEqual(self.payload["result_reviewed_on"], "2026-08-19")

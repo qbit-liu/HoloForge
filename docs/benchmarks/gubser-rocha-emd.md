@@ -234,3 +234,22 @@ The owner accepted this passing implementation evidence on 2026-08-19. The
 model card and numerical result are `reproduced` and `approved`; the
 instability, fermion, Figure 1, and non-inference boundaries above remain
 unchanged.
+
+## Release-candidate portability amendment
+
+The first PR #23 run preserved an additional numerical-platform result. On
+Ubuntu 24.04 with Python 3.11, NumPy 2.4.6, and SciPy 1.17.1, the installed
+verifier measured a maximum final scaled collocation residual of
+`1.960378e-9`; the matching macOS dependency versions measured
+`9.579273e-10`. The original `1e-9` final ceiling therefore failed on Linux.
+Every independent equation, constraint, boundary/source, flux, exact-field,
+refinement, thermodynamic, equation-of-state, low-temperature, and neutral
+gate passed in the Ubuntu wheel run.
+
+The owner approved a prospective `3e-9` final collocation ceiling on
+2026-08-19. The root-first route is unchanged: any failed root or root residual
+above the separate, unchanged `1e-9` trigger still receives the declared TRF
+polish, capped at 32 evaluations, and the maintained library must report
+success. No independent tolerance or scientific claim changed. This amendment
+addresses the observed cross-platform double-precision residual floor; it does
+not turn the original failed CI run into a pass.
