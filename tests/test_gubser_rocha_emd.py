@@ -48,7 +48,10 @@ class GubserRochaEMDTests(unittest.TestCase):
         }
 
     def test_amended_preflight_passes_all_declared_gates(self) -> None:
-        self.assertTrue(self.record.passed)
+        self.assertTrue(
+            self.record.passed,
+            self.payload["results"]["summary"],
+        )
         self.assertEqual(len(self.record.acceptance_checks), 13)
         failed = [
             identifier
@@ -91,13 +94,21 @@ class GubserRochaEMDTests(unittest.TestCase):
                 for row in applied_polishes
             )
         )
-        self.assertTrue(
-            all(
-                row["nonlinear"]["final_success"]
-                and row["nonlinear"]["final_scaled_residual"]
-                <= DEFAULT_COLLOCATION_TOLERANCE
-                for row in self.payload["results"]["continuation_solves"]
-            )
+        rejected_states = [
+            {
+                "xi": row["xi"],
+                "degree": row["degree"],
+                "nonlinear": row["nonlinear"],
+            }
+            for row in self.payload["results"]["continuation_solves"]
+            if not row["nonlinear"]["final_success"]
+            or row["nonlinear"]["final_scaled_residual"]
+            > DEFAULT_COLLOCATION_TOLERANCE
+        ]
+        self.assertEqual(
+            rejected_states,
+            [],
+            "all final states must satisfy the maintained-library and residual gates",
         )
 
     def test_equations_constraint_flux_and_exact_fields_have_margin(self) -> None:
@@ -109,7 +120,10 @@ class GubserRochaEMDTests(unittest.TestCase):
             "maxwell-flux",
             "exact-fields",
         ):
-            self.assertTrue(self.checks[identifier]["passed"], identifier)
+            self.assertTrue(
+                self.checks[identifier]["passed"],
+                f"{identifier}: {self.checks[identifier]}",
+            )
         self.assertLessEqual(
             self.checks["exact-fields"]["value"], DEFAULT_FIELD_TOLERANCE
         )
