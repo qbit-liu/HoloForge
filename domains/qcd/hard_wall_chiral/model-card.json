@@ -1,0 +1,216 @@
+{
+  "schema_version": "0.1",
+  "id": "qcd.hard-wall-chiral.ekss-model-a",
+  "title": "Two-flavor hard-wall chiral Model A",
+  "mode": "forge-verify",
+  "domain": "holographic QCD",
+  "maturity": "reproduced",
+  "summary": "An exact-endpoint Chebyshev and independent adaptive-collocation reproduction of the seven rounded Model A entries and the GMOR limit in the two-flavor hard-wall chiral model of Erlich, Katz, Son, and Stephanov.",
+  "source": {
+    "title": "QCD and a Holographic Model of Hadrons",
+    "authors": [
+      "Joshua Erlich",
+      "Emanuel Katz",
+      "Dam T. Son",
+      "Mikhail A. Stephanov"
+    ],
+    "locator": "arXiv:hep-ph/0501128",
+    "version": "v2",
+    "url": "https://arxiv.org/abs/hep-ph/0501128",
+    "doi": "10.1103/PhysRevLett.95.261602",
+    "equation_refs": [
+      "Eqs. (1)-(3), (5), (11), (14), (16)-(20), and (22)",
+      "Table II, Model A"
+    ]
+  },
+  "conventions": [
+    {
+      "name": "bulk model",
+      "value": "Two flavors, SU(2)_L x SU(2)_R, fixed AdS5 slice, A_z = 0, and AdS radius one",
+      "rationale": "This is the source bottom-up effective model, not a top-down construction or a first-principles QCD calculation."
+    },
+    {
+      "name": "dimensionless coordinate and scalar background",
+      "value": "u = z/z_m and v(u) = (m_q z_m) u + (sigma z_m^3) u^3",
+      "rationale": "Fixes all powers and units in the spectral equations."
+    },
+    {
+      "name": "normalizable-mode endpoints",
+      "value": "V(0)=A(0)=phi(0)=pi(0)=0 and V'(1)=A'(1)=phi'(1)=0",
+      "rationale": "These are the source UV normalizability and phenomenological IR-wall conditions."
+    },
+    {
+      "name": "regulated axial zero mode",
+      "value": "A_0(epsilon)=1 at epsilon_z=1e-10 MeV^-1 and A_0'(1)=0, retaining the full v(u)^2",
+      "rationale": "At nonzero m_q the full source equation contains a u^2 log(u) UV term, so the public-source numerical regulator is explicit."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "IR-wall inverse position",
+      "symbol": "z_m^-1",
+      "value": 323.0,
+      "unit": "MeV",
+      "role": "fixed",
+      "description": "Printed Model A input; HoloForge performs no refit."
+    },
+    {
+      "name": "light-quark mass",
+      "symbol": "m_q",
+      "value": 2.29,
+      "unit": "MeV",
+      "role": "fixed",
+      "description": "Printed Model A input."
+    },
+    {
+      "name": "chiral condensate cube root",
+      "symbol": "sigma^(1/3)",
+      "value": 327.0,
+      "unit": "MeV",
+      "role": "fixed",
+      "description": "Printed Model A input in the source convention."
+    },
+    {
+      "name": "five-dimensional gauge coupling",
+      "symbol": "g5",
+      "value": "2 pi",
+      "unit": "dimensionless",
+      "role": "derived",
+      "description": "OPE matching g5^2=12 pi^2/N_c at N_c=3."
+    },
+    {
+      "name": "spectral degrees",
+      "symbol": "N",
+      "value": "64, 80, 96",
+      "unit": "polynomial degree",
+      "role": "input",
+      "description": "Frozen refinement sequence; N=96 is reported."
+    }
+  ],
+  "equations": [
+    {
+      "id": "transverse-vector",
+      "expression": "d_u[(1/u)V'] + (lambda/u)V = 0",
+      "description": "Normalizable rho-sector eigenproblem.",
+      "source_ref": "Source Eq. (5)."
+    },
+    {
+      "id": "transverse-axial",
+      "expression": "d_u[(1/u)A'] + (lambda/u)A - g5^2 v^2 A/u^3 = 0",
+      "description": "Normalizable a1-sector eigenproblem and zero-momentum axial equation.",
+      "source_ref": "Source Eqs. (16) and (20)."
+    },
+    {
+      "id": "pion-longitudinal-axial",
+      "expression": "u^2 phi''-u phi'+g5^2 v^2(pi-phi)=0; -lambda phi'+g5^2(v/u)^2 pi'=0",
+      "description": "Coupled generalized eigenproblem for the pion and longitudinal axial mode.",
+      "source_ref": "Source Eqs. (17)-(18)."
+    },
+    {
+      "id": "gmor",
+      "expression": "m_pi^2 f_pi^2 = 2 m_q sigma + O(m_q^2)",
+      "description": "Leading small-quark-mass relation tested under four mass halvings.",
+      "source_ref": "Source Eq. (19)."
+    }
+  ],
+  "observables": [
+    {
+      "name": "Model A masses",
+      "symbol": "m_pi, m_rho, m_a1",
+      "unit": "MeV",
+      "extraction": "Lowest source-blind admissible positive eigenvalue in each normalizable sector."
+    },
+    {
+      "name": "decay constants",
+      "symbol": "f_pi, sqrt(F_rho), sqrt(F_a1)",
+      "unit": "MeV",
+      "extraction": "Regulated axial zero-mode slope and exact factored UV endpoint limits."
+    },
+    {
+      "name": "rho-pion-pion coupling",
+      "symbol": "g_rho_pi_pi",
+      "unit": "dimensionless",
+      "extraction": "Canonical pion-density overlap with the normalized lowest vector mode."
+    },
+    {
+      "name": "GMOR ratio",
+      "symbol": "R_GMOR",
+      "unit": "dimensionless",
+      "extraction": "m_pi^2 f_pi^2/(2 m_q sigma) at four fixed quark-mass factors."
+    }
+  ],
+  "validation": {
+    "acceptance_criteria": [
+      "The protected vector benchmark passes and the lowest vector eigenvalue agrees with the first J_0 zero within 1e-6.",
+      "Operator-scaled twice-denser equation residuals are at most 1e-7; endpoint residuals are at most 1e-8; normalization residuals are at most 1e-8.",
+      "All seven final N=80 to N=96 changes are at most 2e-4 with the frozen ordering rule.",
+      "Finite-cutoff axial and pion quantities change by at most 2e-4 and agree with the N=96 route within 1e-3.",
+      "DOP853 and solve_bvp f_pi values agree within 1e-7 and the analytic m_q^2 log(2) slope within 1e-5.",
+      "All seven rounded Model A entries agree within 1%, and the final GMOR error is at most 1% with monotonic approach.",
+      "Duplicate physical outputs agree within 1e-11, and JSON, CLI, schema, artifact, privacy, and regression checks pass."
+    ],
+    "tests": [
+      {
+        "id": "scientific-and-numerical-gates",
+        "kind": "convergence",
+        "command": "python3 -m unittest tests.test_hard_wall_chiral -v",
+        "expected": "All source, spectral, independent-route, Table II, GMOR, determinism, and artifact gates pass.",
+        "status": "pass"
+      },
+      {
+        "id": "command-verifier",
+        "kind": "regression",
+        "command": "holoforge verify hard-wall-chiral --json",
+        "expected": "The registered verifier returns strict passing JSON with the owner-approved result review state and bounded scope.",
+        "status": "pass"
+      }
+    ],
+    "last_verified": "2026-08-20"
+  },
+  "claims": [
+    {
+      "statement": "The displayed hard-wall chiral equations, Model A inputs, Table II values, and GMOR relation are established in the cited public source.",
+      "support_level": "established-source",
+      "evidence": "Erlich et al., arXiv:hep-ph/0501128v2, the equations and table listed in this card.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-20"
+    },
+    {
+      "statement": "The HoloForge spectral and independent routes reproduce all seven rounded Model A entries and the declared GMOR limit within the frozen contract.",
+      "support_level": "reproduced",
+      "evidence": "Generated JSON, CSV, graphic, and automated gates in tests/test_hard_wall_chiral.py.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-20"
+    }
+  ],
+  "limitations": [
+    "The hard IR wall and Neumann conditions are phenomenological inputs, not derived QCD confinement.",
+    "m_pi, m_rho, and f_pi are source fit targets; only the other four Table II rows are source predictions.",
+    "The printed Model A parameters are rounded, so the one-percent source-table gate is separate from numerical convergence.",
+    "The public-source f_pi prescription is explicitly regulated because the full nonzero-m_q equation contains a UV logarithm; no renormalized epsilon-to-zero claim is made.",
+    "The truncated action omits higher operators such as F^3 that can affect the rho-pion-pion coupling.",
+    "The benchmark excludes Model B, strange quarks, baryons, glueballs, anomaly terms, finite temperature or density, and improved holographic QCD.",
+    "Passing reproduces the selected effective-model calculation and does not empirically validate QCD or establish phenomenological precision.",
+    "The implementation and record are AI-assisted; Xin-Yi Liu approved the numerical result and model-card provenance on 2026-08-20 without widening the stated support or publication scope."
+  ],
+  "provenance": {
+    "created_on": "2026-08-20",
+    "created_by": "HoloForge Phase 3 development",
+    "implementation_path": "src/holoforge/benchmarks/hard_wall_chiral.py",
+    "ai_assistance": true,
+    "ai_roles": [
+      "public-source transcription",
+      "dimensionless equation derivation",
+      "spectral and independent numerical implementation",
+      "acceptance-gate drafting",
+      "documentation and test drafting"
+    ],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-20"
+  }
+}

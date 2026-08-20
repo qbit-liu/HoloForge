@@ -24,6 +24,7 @@ by the release in which each command first appears:
 
 - `holoforge verify soft-wall-vector`;
 - `holoforge verify hard-wall-vector`;
+- `holoforge verify hard-wall-chiral`;
 - `holoforge verify holographic-superconductor`;
 - `holoforge verify linear-axion-dc`;
 - `holoforge verify gubser-nellore-ed`;
@@ -111,6 +112,7 @@ Benchmark exports:
 - `holoforge.benchmarks.solve_spectrum`;
 - `holoforge.benchmarks.verify_gubser_nellore_ed`;
 - `holoforge.benchmarks.verify_gubser_rocha_emd`;
+- `holoforge.benchmarks.verify_hard_wall_chiral`;
 - `holoforge.benchmarks.verify_linear_axion_dc`; and
 - `holoforge.benchmarks.verify_superconductor`.
 

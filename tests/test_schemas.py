@@ -45,6 +45,10 @@ class CardSchemaTests(unittest.TestCase):
         card = load_json("domains/qcd/hard_wall_vector/model-card.json")
         self.model_validator.validate(card)
 
+    def test_hard_wall_chiral_model_card_is_valid(self) -> None:
+        card = load_json("domains/qcd/hard_wall_chiral/model-card.json")
+        self.model_validator.validate(card)
+
     def test_linear_axion_dc_model_card_is_valid(self) -> None:
         card = load_json("domains/transport/linear_axion_dc/model-card.json")
         self.model_validator.validate(card)

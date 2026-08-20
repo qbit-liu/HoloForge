@@ -12,6 +12,9 @@ from holoforge.benchmarks.hard_wall_vector import (
     hard_wall_cutoff_refinement,
     solve_hard_wall_spectrum,
 )
+from holoforge.benchmarks.hard_wall_chiral import (
+    verify_hard_wall_chiral,
+)
 from holoforge.benchmarks.holographic_superconductor import (
     CondensateBranchResult,
     CondensateConfig,
@@ -74,4 +77,5 @@ __all__ = [
     "verify_linear_axion_dc",
     "verify_gubser_nellore_ed",
     "verify_gubser_rocha_emd",
+    "verify_hard_wall_chiral",
 ]

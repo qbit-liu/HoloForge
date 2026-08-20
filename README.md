@@ -103,6 +103,7 @@ identify executable examples, not a restriction on future HoloForge domains.
 | Capability demonstrated | Command | Documentation |
 | --- | --- | --- |
 | Spectral eigenvalue verification with analytic and independent numerical checks | `holoforge verify soft-wall-vector` and `holoforge verify hard-wall-vector` | [soft-wall guide](docs/benchmarks/soft-wall-vector.md) and [hard-wall guide](docs/benchmarks/hard-wall-vector.md) |
+| Coupled chiral spectroscopy, decay constants, overlap, and GMOR verification | `holoforge verify hard-wall-chiral` | [hard-wall chiral guide](docs/benchmarks/hard-wall-chiral.md) |
 | Linear-instability and nonlinear-condensate verification | `holoforge verify holographic-superconductor` | [condensate benchmark guide](docs/benchmarks/holographic-superconductor.md) |
 | Coupled fluctuation, radial-flux, and DC-limit verification | `holoforge verify linear-axion-dc` | [transport benchmark guide](docs/benchmarks/linear-axion-dc.md) |
 | Coupled Einstein--dilaton thermodynamics with spectral, DOP853, and source-figure checks | `holoforge verify gubser-nellore-ed` | [Einstein--dilaton benchmark guide](docs/benchmarks/gubser-nellore-ed.md) |
@@ -175,7 +176,7 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-The latest public release is `0.5.3`. HoloForge remains a pre-1.0 project, not
+The latest public release is `0.5.4`. HoloForge remains a pre-1.0 project, not
 a universal phenomenology or first-principles prediction package. Its current
 reference implementations reproduce published model calculations; they do not
 establish those models as complete descriptions of their target physical

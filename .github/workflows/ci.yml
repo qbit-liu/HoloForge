@@ -45,6 +45,7 @@ jobs:
       - name: Run verification benchmark
         run: |
           holoforge verify soft-wall-vector
+          holoforge verify hard-wall-chiral
           holoforge verify holographic-superconductor
           holoforge verify linear-axion-dc
 
@@ -77,6 +78,7 @@ jobs:
           python -m pip install --force-reinstall dist/*.whl
           python -c "from importlib.metadata import version; import holoforge; assert holoforge.__version__ == version('holoforge')"
           holoforge verify soft-wall-vector
+          holoforge verify hard-wall-chiral
           holoforge verify holographic-superconductor
           holoforge verify linear-axion-dc
           holoforge verify gubser-nellore-ed
@@ -121,8 +123,9 @@ jobs:
 
       - name: Run bounded contract and benchmark tests
         run: |
-          python -m unittest tests.test_core_contracts tests.test_benchmark_registry tests.test_cli tests.test_schemas tests.test_evidence tests.test_evidence_schemas tests.test_linear_axion_dc -v
+          python -m unittest tests.test_core_contracts tests.test_benchmark_registry tests.test_cli tests.test_schemas tests.test_evidence tests.test_evidence_schemas tests.test_linear_axion_dc tests.test_hard_wall_chiral -v
           holoforge verify linear-axion-dc
+          holoforge verify hard-wall-chiral
 
       - name: Relocate and audit an evidence bundle
         run: |
