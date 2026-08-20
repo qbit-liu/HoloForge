@@ -4,6 +4,8 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.5.3] - 2026-08-19
+
 ### Added
 
 - A clean-room Chebyshev--Gauss--Lobatto numerical module plus opt-in spectral
@@ -13,6 +15,10 @@ All notable changes to HoloForge are recorded here.
   coupled Chebyshev collocation, exact endpoints, independent DOP853 checks,
   derived Figure 2/3 anchors, artifact generation, and an owner-approved model
   record that retains its AI provenance.
+- A clean-room Gubser--Rocha Einstein--Maxwell--dilaton control benchmark with
+  coupled Chebyshev collocation, exact-background, equation, constraint, flux,
+  refinement, thermodynamic, low-temperature, neutral-limit, determinism,
+  artifact, and portable-bundle checks.
 - A current architecture guide covering the Forge/Verify execution path,
   repository layers, dependency rules, extension point, and deliberate
   Version 0.5 non-goals.
@@ -29,6 +35,16 @@ All notable changes to HoloForge are recorded here.
   dictionaries, derivations, numerical methods, data, bounded results,
   decisions, and reproducibility work. General items require named human review;
   closure lessons still require owner-reviewed closure.
+- Classical bottom-up benchmark contracts now require a quantitative central
+  source figure or table when feasible, or an owner-reviewed reason and an
+  alternative quantitative literature check.
+- The Gubser--Rocha final scaled-collocation ceiling is prospectively set to
+  the method-conditioned `2e-8` after successive release-candidate runs
+  measured `1.960378e-9` on Ubuntu and `3.6060792132977416e-9` on Python
+  3.11.16, while the degree-80 binary64 differentiation scale was
+  `epsilon ||D2||_inf = 1.2124701243009436e-8`. Its `1e-9` TRF-polish trigger
+  and every independent physics gate are unchanged; both earlier runs remain
+  recorded as failures of their then-active ceilings.
 
 ### Scientific results
 
@@ -39,6 +55,11 @@ All notable changes to HoloForge are recorded here.
   and reproduced claim were approved by Xin-Yi Liu on 2026-08-17; the new
   soft-/hard-wall spectral-route claims remain unreviewed. No passing
   calculation is presented as empirical validation of QCD.
+- The owner-approved Gubser--Rocha control reproduces only the bosonic
+  background and source Eqs. (2)--(6) within thirteen numerical gates. It is a
+  top-down-derived control, not a representative bottom-up example, and it
+  does not reproduce the paper's charged-fermion Figure 1 or establish
+  stability, a Fermi liquid, QCD, or empirical agreement with any material.
 
 ## [0.5.2] - 2026-08-12
 
@@ -304,6 +325,8 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.5.3]: https://github.com/qbit-liu/HoloForge/compare/v0.5.2...v0.5.3
+[0.5.2]: https://github.com/qbit-liu/HoloForge/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/qbit-liu/HoloForge/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/qbit-liu/HoloForge/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/qbit-liu/HoloForge/compare/v0.3.0...v0.4.0

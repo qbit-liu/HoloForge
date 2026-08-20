@@ -3,6 +3,7 @@
 from holoforge.benchmarks.gubser_nellore_ed import (
     verify_gubser_nellore_ed,
 )
+from holoforge.benchmarks.gubser_rocha_emd import verify_gubser_rocha_emd
 from holoforge.benchmarks.hard_wall_vector import (
     HardWallConfig,
     HardWallRefinementResult,
@@ -72,4 +73,5 @@ __all__ = [
     "verify_superconductor",
     "verify_linear_axion_dc",
     "verify_gubser_nellore_ed",
+    "verify_gubser_rocha_emd",
 ]
