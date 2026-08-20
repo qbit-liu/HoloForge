@@ -4,6 +4,10 @@ from holoforge.benchmarks.adapters.hard_wall_vector import (
     HARD_WALL_ADAPTER,
     HARD_WALL_MODEL_CARD,
 )
+from holoforge.benchmarks.adapters.hard_wall_chiral import (
+    HARD_WALL_CHIRAL_ADAPTER,
+    HARD_WALL_CHIRAL_MODEL_CARD,
+)
 from holoforge.benchmarks.adapters.gubser_nellore_ed import (
     GUBSER_NELLORE_ADAPTER,
     GUBSER_NELLORE_MODEL_CARD,
@@ -30,6 +34,7 @@ from holoforge.core.registry import BenchmarkRegistry
 BUILTIN_BENCHMARKS = BenchmarkRegistry(
     (
         SOFT_WALL_ADAPTER,
+        HARD_WALL_CHIRAL_ADAPTER,
         HARD_WALL_ADAPTER,
         GUBSER_NELLORE_ADAPTER,
         GUBSER_ROCHA_ADAPTER,
@@ -47,6 +52,8 @@ __all__ = [
     "GUBSER_ROCHA_MODEL_CARD",
     "HARD_WALL_ADAPTER",
     "HARD_WALL_MODEL_CARD",
+    "HARD_WALL_CHIRAL_ADAPTER",
+    "HARD_WALL_CHIRAL_MODEL_CARD",
     "LINEAR_AXION_ADAPTER",
     "LINEAR_AXION_MODEL_CARD",
     "SOFT_WALL_ADAPTER",

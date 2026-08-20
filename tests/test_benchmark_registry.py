@@ -104,6 +104,9 @@ class BenchmarkRegistryTests(unittest.TestCase):
             "hard-wall-vector": (
                 "holoforge.benchmarks.adapters.hard_wall_vector"
             ),
+            "hard-wall-chiral": (
+                "holoforge.benchmarks.adapters.hard_wall_chiral"
+            ),
             "holographic-superconductor": (
                 "holoforge.benchmarks.adapters.holographic_superconductor"
             ),

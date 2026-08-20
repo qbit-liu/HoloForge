@@ -68,6 +68,55 @@ class FastGubserNelloreResult:
         }
 
 
+class FastHardWallChiralResult:
+    """Small interface fixture; focused tests run the complete reproduction."""
+
+    passed = True
+
+    def to_dict(self):
+        return {
+            "schema_version": "0.1",
+            "benchmark": "hard-wall-chiral",
+            "support_level": "reproduced",
+            "configuration": {
+                "g5": 6.283185307179586,
+                "z_m_inverse_MeV": 323.0,
+                "m_q_MeV": 2.29,
+                "sigma_cube_root_MeV": 327.0,
+            },
+            "numerical_method": {"primary_route": "test interface fixture"},
+            "results": {
+                "table": [
+                    {
+                        "observable": "m_pi_MeV",
+                        "computed": 139.585,
+                        "target": 139.6,
+                        "relative_error": 1.1e-4,
+                        "source_role": "source fit target",
+                    }
+                ]
+            },
+            "acceptance_checks": [
+                {
+                    "id": "interface-fixture",
+                    "description": "Generic dispatch reaches the hard-wall chiral adapter.",
+                    "passed": True,
+                    "value": 0.0,
+                }
+            ],
+            "software_versions": {"holoforge": "test", "python": "test"},
+            "passed": True,
+            "scope": "Interface fixture; no scientific result.",
+            "primary_source": {
+                "pdf_sha256": "0" * 64,
+                "source_archive_sha256": "1" * 64,
+            },
+            "result_review_state": "approved",
+            "result_reviewed_by": "Xin-Yi Liu",
+            "result_reviewed_on": "2026-08-20",
+        }
+
+
 class CommandLineTests(unittest.TestCase):
     def test_json_output_contains_evidence_and_passes(self) -> None:
         output = io.StringIO()
@@ -243,6 +292,18 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(payload["numerical_method"]["route"], "spectral")
         self.assertEqual(payload["spectral_convergence"]["degrees"], [24, 32, 40])
 
+    def test_hard_wall_chiral_json_uses_registered_adapter(self) -> None:
+        output = io.StringIO()
+        with patch(
+            "holoforge.benchmarks.adapters.hard_wall_chiral.verify_hard_wall_chiral",
+            return_value=FastHardWallChiralResult(),
+        ), redirect_stdout(output):
+            status = main(["verify", "hard-wall-chiral", "--json"])
+        payload = json.loads(output.getvalue())
+        self.assertEqual(status, 0)
+        self.assertEqual(payload["benchmark"], "hard-wall-chiral")
+        self.assertEqual(payload["result_review_state"], "approved")
+
     def test_linear_axion_dc_json_contains_sources_and_dc_checks(self) -> None:
         output = io.StringIO()
         with redirect_stdout(output):
@@ -355,6 +416,7 @@ class CommandLineTests(unittest.TestCase):
         cases = (
             ("soft-wall", ["verify", "soft-wall-vector", "--grid-points", "600"]),
             ("hard-wall", ["verify", "hard-wall-vector", "--modes", "2"]),
+            ("hard-wall-chiral", ["verify", "hard-wall-chiral"]),
             (
                 "superconductor",
                 [
@@ -379,7 +441,14 @@ class CommandLineTests(unittest.TestCase):
                             return_value=FastGubserNelloreResult(),
                         )
                         if label == "gubser-nellore"
-                        else nullcontext()
+                        else (
+                            patch(
+                                "holoforge.benchmarks.adapters.hard_wall_chiral.verify_hard_wall_chiral",
+                                return_value=FastHardWallChiralResult(),
+                            )
+                            if label == "hard-wall-chiral"
+                            else nullcontext()
+                        )
                     )
                     with context, redirect_stdout(output):
                         status = main(command + ["--bundle-dir", str(bundle)])
