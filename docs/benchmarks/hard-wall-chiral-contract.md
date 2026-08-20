@@ -3,28 +3,30 @@
 ## Status and authorization boundary
 
 This document began as the pre-implementation owner-review contract for Phase
-3 of the classical benchmark sequence and now also records the first bounded
-preflight stop and its disposition. It is public-source Forge/Verify work. The
-owner approved Decisions C1--C6 through Option A on 2026-08-20, authorizing
-only the local implementation and preflight. The axial zero-mode UV analysis
-below triggered the contract's mandatory return before a production benchmark
-module, model card, generated result, or acceptance claim was created. The
-owner then selected Option A on 2026-08-20 and approved R1--R3.
+3 of the classical benchmark sequence and now records the bounded stops,
+amendments, accepted result, and release-preparation authorization. It is
+public-source Forge/Verify work. Xin-Yi Liu approved Decisions C1--C6, R1--R3,
+and the final result Decisions 1--5 through separate Option A decisions on
+2026-08-20. The accepted result retains material AI provenance and the
+scientific limitations below.
 
 - **Completed:** Phase 0 spectral infrastructure, Phase 1 Gubser--Nellore ED,
   and Phase 2 Gubser--Rocha EMD are released in Version 0.5.3. The Phase 3
   contract, UV stop, R1--R3 amendment, bounded implementation, complete
   amended preflight, generated evidence, full test suite, and independent
-  wheel check are complete.
-- **Current:** mandatory owner review of the passing Phase 3 result,
-  implementation realization, generated evidence, and provisional model card.
-- **Proposed next:** accept or revise the bounded result; only after explicit
-  approval, synchronize review fields and create the separately authorized
-  scoped local commit.
+  wheel check are complete. The owner-approved result, model-card provenance,
+  and one scoped scientific commit (`9c6c3b0`) are also complete. The local
+  Version 0.5.4 release metadata, explicit installed-wheel and cross-platform
+  hard-wall checks, version-stamped evidence, and release validation are
+  synchronized in the separately authorized release-preparation commit.
+- **Current:** owner-review stop before any remote or publication action.
+- **Proposed next:** accept or revise the release candidate; only after explicit
+  approval, push the branch and open a pull request for remote CI.
 
-The bounded R1--R3 implementation authority is now exhausted at its mandatory
-owner-review return. It does not authorize result or model-card acceptance, a
-commit, push, pull request, merge, tag, release, or Phase 4.
+The release-preparation authority is exhausted by its scoped local commit. It
+does not authorize a push, pull request,
+merge, tag, release, Phase 4, another model sector, or any change to the frozen
+scientific contract.
 
 ## Recommendation
 
@@ -756,3 +758,17 @@ This disposition authorizes exactly one scoped local Phase 3 commit. Push,
 pull request, merge, tag, release, Phase 4, additional model sectors, and any
 change to the frozen equations, inputs, regulator, thresholds, or reported
 values remain closed.
+
+## Version 0.5.4 release-preparation owner disposition
+
+After the scientific commit, the owner selected **Option A** on 2026-08-20 for
+a bounded local release-preparation pass. This authorizes synchronized Version
+0.5.4 metadata and changelog entries, explicit hard-wall-chiral coverage in the
+Python test matrix, installed-wheel smoke test, and Linux, macOS, and Windows
+wheel-portability job, regenerated version-stamped evidence, release
+validation, and exactly one scoped local release-preparation commit.
+
+This authorization stops before push, pull request, remote CI, merge, tag,
+release, Phase 4, or another model sector. It changes delivery preparation,
+not the accepted `reproduced` support level, equations, numerical method,
+thresholds, results, or non-inference boundaries.

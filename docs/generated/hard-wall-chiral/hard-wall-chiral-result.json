@@ -1438,7 +1438,7 @@
   },
   "scope": "AI-assisted, owner-approved numerical reproduction of the public two-flavor hard-wall chiral Model A calculation and Table II. The three source fit targets are labeled separately from four source predictions. Passing is not empirical validation of QCD, the hard wall, or omitted higher operators.",
   "software_versions": {
-    "holoforge": "0.5.3",
+    "holoforge": "0.5.4",
     "numpy": "2.0.2",
     "python": "3.9.6",
     "scipy": "1.13.1"

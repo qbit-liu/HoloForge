@@ -4,6 +4,27 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.5.4] - 2026-08-20
+
+### Added
+
+- An owner-approved two-flavor hard-wall chiral Model A benchmark with
+  source-blind Chebyshev generalized eigenproblems, independent adaptive
+  collocation, all seven source Table II entries, and the GMOR limit.
+
+### Changed
+
+- Installed-wheel and Linux, macOS, and Windows portability checks now run the
+  hard-wall chiral verifier and its focused scientific contract tests.
+
+### Scientific results
+
+- All eleven frozen gates pass. The benchmark labels `m_pi`, `m_rho`, and
+  `f_pi` as source fit targets and the other four Table II entries as source
+  predictions. Its generated comparison graphic is explicitly not a source
+  figure. Passing reproduces the bounded effective-model calculation; it does
+  not empirically validate QCD, a hard IR wall, or omitted higher operators.
+
 ## [0.5.3] - 2026-08-19
 
 ### Added
@@ -325,6 +346,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.5.4]: https://github.com/qbit-liu/HoloForge/compare/v0.5.3...v0.5.4
 [0.5.3]: https://github.com/qbit-liu/HoloForge/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/qbit-liu/HoloForge/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/qbit-liu/HoloForge/compare/v0.5.0...v0.5.1
