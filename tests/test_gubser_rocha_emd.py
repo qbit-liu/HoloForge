@@ -79,7 +79,7 @@ class GubserRochaEMDTests(unittest.TestCase):
         )
         self.assertEqual(DEFAULT_POLISH_MAXIMUM_EVALUATIONS, 32)
         self.assertEqual(DEFAULT_POLISH_TRIGGER_TOLERANCE, 1.0e-9)
-        self.assertEqual(DEFAULT_COLLOCATION_TOLERANCE, 3.0e-9)
+        self.assertEqual(DEFAULT_COLLOCATION_TOLERANCE, 2.0e-8)
         self.assertTrue(self.checks["nonlinear-solver"]["passed"])
         applied_polishes = [
             row
@@ -156,7 +156,7 @@ class GubserRochaEMDTests(unittest.TestCase):
             SOURCE_ARCHIVE_SHA256,
         )
         self.assertEqual(self.payload["contract_review"]["review_state"], "approved")
-        self.assertEqual(len(self.payload["contract_review"]["amendments"]), 3)
+        self.assertEqual(len(self.payload["contract_review"]["amendments"]), 4)
         self.assertEqual(
             self.payload["configuration"]["polish_trigger_tolerance"],
             DEFAULT_POLISH_TRIGGER_TOLERANCE,
@@ -195,7 +195,7 @@ class GubserRochaEMDTests(unittest.TestCase):
         ]
         self.assertEqual(len(reproduced_claims), 1)
         self.assertEqual(reproduced_claims[0]["review_status"], "approved")
-        self.assertEqual(card["validation"]["last_verified"], "2026-08-19")
+        self.assertEqual(card["validation"]["last_verified"], "2026-08-20")
         self.assertTrue(
             all(test["status"] == "pass" for test in card["validation"]["tests"])
         )

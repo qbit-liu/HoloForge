@@ -318,15 +318,16 @@ scope.
 
 The original thresholds were preregistered before implementation. Two
 prospective amendments below were authorized only after the initial failed
-preflight and bounded diagnostics were preserved. A third prospective
-portability amendment was authorized after the release-candidate CI evidence
-was preserved. No other gate changed.
+preflight and bounded diagnostics were preserved. Two successive prospective
+portability amendments were then authorized after their release-candidate CI
+evidence and the method-conditioning estimate were preserved. No other gate
+changed.
 
 1. **Source algebra:** canonical conversion, `V(0)`, `V'(0)`, `m^2L^2`,
    `Z(0)`, coordinate transformation, and exact solution identities agree
    symbolically or numerically within `1e-12`.
 2. **Nonlinear solve:** every final reported and continuation solve reports
-   success with scaled collocation residual at most `3e-9`. The root-first
+   success with scaled collocation residual at most `2e-8`. The root-first
    route still invokes TRF polishing whenever the root fails or its scaled
    residual exceeds the unchanged `1e-9` polish trigger.
 3. **Independent equations:** the four uncross-multiplied physical equations
@@ -471,11 +472,37 @@ prospectively approved only the following portability amendment:
   equations, continuation, spectral degrees, independent gates, physical
   claim, and all non-inference boundaries unchanged.
 
-The `3e-9` ceiling covers the measured Ubuntu state without converting an
-unpolished root into an accepted route: roots above `1e-9` still receive TRF
-polishing and must report maintained-library success. This is a documented
-prospective amendment, not a retroactive claim that the original CI run
-passed. Merge, tag, and release remain conditional on a clean amended run.
+The `3e-9` ceiling covered the first measured Ubuntu state without converting
+an unpolished root into an accepted route. This was a documented prospective
+amendment, not a retroactive claim that the original CI run passed. The first
+amended run is likewise preserved below rather than retroactively relabelled.
+
+## Owner-approved method-conditioned portability amendment, 2026-08-20
+
+The first amended PR #23 run passed Python 3.9 and Python 3.14 but failed on
+Python 3.11.16 and in the installed-wheel smoke job. Both failures measured the
+same maximum final scaled collocation residual,
+`3.6060792132977416e-9`, above the prospective `3e-9` ceiling. The independent
+gates again passed: their maximum equation, constraint, boundary/source,
+Maxwell-flux, exact-field, refinement, thermodynamic, equation-of-state,
+low-temperature, and neutral residuals remained within their frozen limits.
+The relocation checks passed on macOS, Ubuntu, and Windows.
+
+For the degree-80 Chebyshev operator, the measured infinity norm was
+`||D2||_inf = 5.46048e7`. With binary64 machine epsilon, the corresponding
+differentiation conditioning scale was
+`epsilon ||D2||_inf = 1.2124701243009436e-8`. The owner therefore selected
+Option A and prospectively approved a method-conditioned final collocation
+ceiling of `2e-8`. This ceiling is about `1.65` times that conditioning scale
+and remains five times tighter than the unchanged `1e-7` independent-equation
+gate.
+
+The `1e-9` TRF-polish trigger, 32-evaluation cap, solver route, equations,
+continuation, spectral degrees, all independent gates, physical claim, and all
+non-inference boundaries remain unchanged. Roots above `1e-9` still receive
+TRF polishing and must report maintained-library success. Neither failed CI
+run is retroactively labelled a pass. Merge, tag, and release remain
+conditional on a clean run using the final prospective ceiling.
 
 ## Evidence boundary and important limitations
 

@@ -21,7 +21,7 @@ GUBSER_ROCHA_MODEL_CARD = ModelCardReference(
     identifier="condensed-matter.gubser-rocha-emd",
     schema_version="0.1",
     repository_path="domains/condensed_matter/gubser_rocha_emd/model-card.json",
-    sha256="ed5bc394878ce2adc03a219f8381942ea8ea12241e352dcc0c2c4999766c93b1",
+    sha256="2b8fe071b7bd11a304f81b5ea5dd66cfa06ed24b439dc74ce6a9804a8e606a63",
 )
 
 

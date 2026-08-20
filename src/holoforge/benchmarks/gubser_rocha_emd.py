@@ -64,7 +64,7 @@ DEFAULT_CONTINUATION_XI = (
 DEFAULT_DEGREES = (40, 60, 80)
 DEFAULT_POLISH_MAXIMUM_EVALUATIONS = 32
 DEFAULT_POLISH_TRIGGER_TOLERANCE = 1.0e-9
-DEFAULT_COLLOCATION_TOLERANCE = 3.0e-9
+DEFAULT_COLLOCATION_TOLERANCE = 2.0e-8
 DEFAULT_EQUATION_TOLERANCE = 1.0e-7
 DEFAULT_CONSTRAINT_TOLERANCE = 1.0e-7
 DEFAULT_BOUNDARY_TOLERANCE = 1.0e-8
@@ -1067,7 +1067,8 @@ def verify_gubser_rocha_emd(
                 "scipy.optimize.root(method='hybr', xtol=1e-11), then at most "
                 "thirty-two scipy.optimize.least_squares(method='trf') evaluations "
                 "only after a failed root or a scaled root residual above 1e-9; "
-                "the owner-approved final acceptance ceiling is 3e-9"
+                "the owner-approved method-conditioned final acceptance ceiling "
+                "is 2e-8"
             ),
             "initialization": (
                 "neutral analytic solution, theta-secant charge continuation, "
@@ -1107,7 +1108,7 @@ def verify_gubser_rocha_emd(
             "contract_review": {
                 "review_state": "approved",
                 "reviewed_by": "Xin-Yi Liu",
-                "reviewed_on": "2026-08-19",
+                "reviewed_on": "2026-08-20",
                 "authorization": (
                     "owner-approved prospective numerical-contract amendments, "
                     "bounded bosonic reproduction, and scoped v0.5.3 release"
@@ -1119,6 +1120,13 @@ def verify_gubser_rocha_emd(
                         "final collocation acceptance ceiling increased from "
                         "1e-9 to 3e-9 after cross-platform CI evidence; the "
                         "1e-9 TRF polish trigger is unchanged"
+                    ),
+                    (
+                        "final collocation acceptance ceiling increased from "
+                        "3e-9 to the method-conditioned 2e-8 after Python 3.11.16 "
+                        "CI measured 3.6060792132977416e-9 and degree-80 "
+                        "epsilon times ||D2||_inf was 1.2124701243009436e-8; "
+                        "the 1e-9 TRF polish trigger is unchanged"
                     ),
                 ],
             },

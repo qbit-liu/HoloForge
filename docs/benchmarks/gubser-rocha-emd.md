@@ -247,9 +247,19 @@ refinement, thermodynamic, equation-of-state, low-temperature, and neutral
 gate passed in the Ubuntu wheel run.
 
 The owner approved a prospective `3e-9` final collocation ceiling on
-2026-08-19. The root-first route is unchanged: any failed root or root residual
-above the separate, unchanged `1e-9` trigger still receives the declared TRF
-polish, capped at 32 evaluations, and the maintained library must report
-success. No independent tolerance or scientific claim changed. This amendment
-addresses the observed cross-platform double-precision residual floor; it does
-not turn the original failed CI run into a pass.
+2026-08-19. The next amended run passed Python 3.9 and Python 3.14, but Python
+3.11.16 and its installed-wheel smoke job both measured
+`3.6060792132977416e-9`. That second run therefore also remained failed.
+
+For degree 80, the Chebyshev second-derivative operator has
+`||D2||_inf = 5.46048e7`, giving the binary64 conditioning scale
+`epsilon ||D2||_inf = 1.2124701243009436e-8`. On 2026-08-20, the owner approved
+the method-conditioned `2e-8` final ceiling. It is about `1.65` times this
+conditioning scale and remains five times tighter than the unchanged `1e-7`
+independent-equation gate.
+
+The root-first route is unchanged: any failed root or root residual above the
+separate `1e-9` trigger still receives the declared TRF polish, capped at 32
+evaluations, and the maintained library must report success. No independent
+tolerance or scientific claim changed. Neither failed CI run is retroactively
+counted as a pass.

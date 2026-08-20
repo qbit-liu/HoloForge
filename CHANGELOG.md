@@ -39,9 +39,12 @@ All notable changes to HoloForge are recorded here.
   source figure or table when feasible, or an owner-reviewed reason and an
   alternative quantitative literature check.
 - The Gubser--Rocha final scaled-collocation ceiling is prospectively set to
-  `3e-9` for Linux/macOS numerical portability after the release-candidate
-  matrix measured `1.960378e-9` on Ubuntu and `9.579273e-10` on macOS. Its
-  `1e-9` TRF-polish trigger and every independent physics gate are unchanged.
+  the method-conditioned `2e-8` after successive release-candidate runs
+  measured `1.960378e-9` on Ubuntu and `3.6060792132977416e-9` on Python
+  3.11.16, while the degree-80 binary64 differentiation scale was
+  `epsilon ||D2||_inf = 1.2124701243009436e-8`. Its `1e-9` TRF-polish trigger
+  and every independent physics gate are unchanged; both earlier runs remain
+  recorded as failures of their then-active ceilings.
 
 ### Scientific results
 
