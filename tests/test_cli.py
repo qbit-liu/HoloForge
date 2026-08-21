@@ -117,6 +117,74 @@ class FastHardWallChiralResult:
         }
 
 
+class FastSuperconductorOpticalResult:
+    """Small optical fixture; focused tests run the complete verifier."""
+
+    passed = True
+
+    def to_dict(self):
+        return {
+            "benchmark": "holographic-superconductor-optical",
+            "support_level": "reproduced",
+            "configuration": {
+                "quantization": "Delta = 2 with psi_- = 0",
+                "temperature_targets": {
+                    "low_temperature": 0.0026,
+                    "near_critical": [0.99, 0.995, 0.9975, 0.999],
+                },
+                "near_critical_frequencies": [0.2, 0.1, 0.05, 0.025],
+                "near_critical_spectral_degrees": [128, 160, 192],
+            },
+            "numerical_method": {"route": "test interface fixture"},
+            "results": {
+                "near_critical_pole": {
+                    "slope": 23.96884335,
+                    "literature_coefficient": 24.0,
+                    "literature_relative_error": 0.00129819,
+                    "finite_frequency_slope": 23.96883307,
+                    "maximum_static_pole_relative_difference": 4.24e-7,
+                    "points": [
+                        {
+                            "responses": [
+                                {
+                                    "equation_residual": 5.6e-8,
+                                    "resolution_audit": {
+                                        "equation_residual": 1.38e-7
+                                    },
+                                }
+                            ]
+                        }
+                    ],
+                },
+                "figure_2_provenance": {
+                    "status": "not_reproduced",
+                    "acceptance_role": "provenance-only",
+                },
+            },
+            "acceptance_checks": [
+                {
+                    "id": "interface-fixture",
+                    "description": "Generic dispatch reaches the optical adapter.",
+                    "passed": True,
+                    "value": 0.0,
+                }
+            ],
+            "software_versions": {"holoforge": "test", "python": "test"},
+            "passed": True,
+            "scope": (
+                "Interface fixture; not empirical validation and Figure 2 "
+                "is not reproduced."
+            ),
+            "source_provenance": {
+                "pdf_sha256": "0" * 64,
+                "archive_sha256": "1" * 64,
+            },
+            "result_review_state": "approved",
+            "result_reviewed_by": "Xin-Yi Liu",
+            "result_reviewed_on": "2026-08-21",
+        }
+
+
 class CommandLineTests(unittest.TestCase):
     def test_json_output_contains_evidence_and_passes(self) -> None:
         output = io.StringIO()
@@ -246,6 +314,39 @@ class CommandLineTests(unittest.TestCase):
             )
         self.assertEqual(status, 2)
         self.assertIn("radial_cutoff", error.getvalue())
+
+    def test_superconductor_optical_json_uses_registered_adapter(self) -> None:
+        output = io.StringIO()
+        with patch(
+            "holoforge.benchmarks.adapters.holographic_superconductor_optical."
+            "verify_holographic_superconductor_optical",
+            return_value=FastSuperconductorOpticalResult(),
+        ), redirect_stdout(output):
+            status = main(
+                ["verify", "holographic-superconductor-optical", "--json"]
+            )
+        payload = json.loads(output.getvalue())
+        self.assertEqual(status, 0)
+        self.assertTrue(payload["passed"])
+        self.assertEqual(payload["support_level"], "reproduced")
+        self.assertEqual(
+            payload["results"]["figure_2_provenance"]["status"],
+            "not_reproduced",
+        )
+
+    def test_superconductor_optical_human_output_states_boundary(self) -> None:
+        output = io.StringIO()
+        with patch(
+            "holoforge.benchmarks.adapters.holographic_superconductor_optical."
+            "verify_holographic_superconductor_optical",
+            return_value=FastSuperconductorOpticalResult(),
+        ), redirect_stdout(output):
+            status = main(["verify", "holographic-superconductor-optical"])
+        rendered = output.getvalue()
+        self.assertEqual(status, 0)
+        self.assertIn("static London C_2 = 23.96884335", rendered)
+        self.assertIn("not_reproduced (provenance-only)", rendered)
+        self.assertIn("not empirical validation", rendered)
 
     def test_hard_wall_json_contains_boundary_and_ratio_evidence(self) -> None:
         output = io.StringIO()
@@ -426,6 +527,10 @@ class CommandLineTests(unittest.TestCase):
                     "8",
                 ],
             ),
+            (
+                "superconductor-optical",
+                ["verify", "holographic-superconductor-optical"],
+            ),
             ("linear-axion", ["verify", "linear-axion-dc"]),
             ("gubser-nellore", ["verify", "gubser-nellore-ed"]),
             ("comparison", ["compare", "vector-spectrum"]),
@@ -447,7 +552,18 @@ class CommandLineTests(unittest.TestCase):
                                 return_value=FastHardWallChiralResult(),
                             )
                             if label == "hard-wall-chiral"
-                            else nullcontext()
+                            else (
+                                patch(
+                                    "holoforge.benchmarks.adapters."
+                                    "holographic_superconductor_optical."
+                                    "verify_holographic_superconductor_optical",
+                                    return_value=(
+                                        FastSuperconductorOpticalResult()
+                                    ),
+                                )
+                                if label == "superconductor-optical"
+                                else nullcontext()
+                            )
                         )
                     )
                     with context, redirect_stdout(output):
