@@ -41,6 +41,15 @@ class CardSchemaTests(unittest.TestCase):
         )
         self.model_validator.validate(card)
 
+    def test_holographic_superconductor_optical_model_card_is_valid(
+        self,
+    ) -> None:
+        card = load_json(
+            "domains/condensed_matter/holographic_superconductor_optical/"
+            "model-card.json"
+        )
+        self.model_validator.validate(card)
+
     def test_hard_wall_model_card_is_valid(self) -> None:
         card = load_json("domains/qcd/hard_wall_vector/model-card.json")
         self.model_validator.validate(card)

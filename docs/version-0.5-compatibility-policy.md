@@ -26,6 +26,7 @@ by the release in which each command first appears:
 - `holoforge verify hard-wall-vector`;
 - `holoforge verify hard-wall-chiral`;
 - `holoforge verify holographic-superconductor`;
+- `holoforge verify holographic-superconductor-optical`;
 - `holoforge verify linear-axion-dc`;
 - `holoforge verify gubser-nellore-ed`;
 - `holoforge verify gubser-rocha-emd`;
@@ -96,6 +97,7 @@ Benchmark exports:
 - `holoforge.benchmarks.LinearAxionVerificationResult`;
 - `holoforge.benchmarks.OnsetConfig`;
 - `holoforge.benchmarks.OnsetResult`;
+- `holoforge.benchmarks.OpticalVerificationResult`;
 - `holoforge.benchmarks.SoftWallConfig`;
 - `holoforge.benchmarks.SpectrumResult`;
 - `holoforge.benchmarks.SuperconductorVerificationResult`;
@@ -103,6 +105,7 @@ Benchmark exports:
 - `holoforge.benchmarks.analytic_mass_squared`;
 - `holoforge.benchmarks.hard_wall_cutoff_refinement`;
 - `holoforge.benchmarks.save_condensate_plot`;
+- `holoforge.benchmarks.save_optical_diagnostic_plot`;
 - `holoforge.benchmarks.schrodinger_potential`;
 - `holoforge.benchmarks.solve_condensate_branch`;
 - `holoforge.benchmarks.solve_hard_wall_spectrum`;
@@ -113,6 +116,7 @@ Benchmark exports:
 - `holoforge.benchmarks.verify_gubser_nellore_ed`;
 - `holoforge.benchmarks.verify_gubser_rocha_emd`;
 - `holoforge.benchmarks.verify_hard_wall_chiral`;
+- `holoforge.benchmarks.verify_holographic_superconductor_optical`;
 - `holoforge.benchmarks.verify_linear_axion_dc`; and
 - `holoforge.benchmarks.verify_superconductor`.
 

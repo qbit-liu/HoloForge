@@ -110,6 +110,10 @@ class BenchmarkRegistryTests(unittest.TestCase):
             "holographic-superconductor": (
                 "holoforge.benchmarks.adapters.holographic_superconductor"
             ),
+            "holographic-superconductor-optical": (
+                "holoforge.benchmarks.adapters."
+                "holographic_superconductor_optical"
+            ),
             "linear-axion-dc": (
                 "holoforge.benchmarks.adapters.linear_axion_dc"
             ),

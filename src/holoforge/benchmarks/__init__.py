@@ -26,6 +26,11 @@ from holoforge.benchmarks.holographic_superconductor import (
     solve_onset,
     verify_superconductor,
 )
+from holoforge.benchmarks.holographic_superconductor_optical import (
+    OpticalVerificationResult,
+    save_optical_diagnostic_plot,
+    verify_holographic_superconductor_optical,
+)
 from holoforge.benchmarks.linear_axion_dc import (
     LinearAxionCaseResult,
     LinearAxionFrequencyResult,
@@ -59,6 +64,7 @@ __all__ = [
     "LinearAxionVerificationResult",
     "OnsetConfig",
     "OnsetResult",
+    "OpticalVerificationResult",
     "SoftWallConfig",
     "SpectrumResult",
     "SuperconductorVerificationResult",
@@ -66,6 +72,7 @@ __all__ = [
     "analytic_dimensionless_masses",
     "hard_wall_cutoff_refinement",
     "save_condensate_plot",
+    "save_optical_diagnostic_plot",
     "schrodinger_potential",
     "solve_condensate_branch",
     "solve_hard_wall_spectrum",
@@ -74,6 +81,7 @@ __all__ = [
     "solve_onset",
     "solve_spectrum",
     "verify_superconductor",
+    "verify_holographic_superconductor_optical",
     "verify_linear_axion_dc",
     "verify_gubser_nellore_ed",
     "verify_gubser_rocha_emd",

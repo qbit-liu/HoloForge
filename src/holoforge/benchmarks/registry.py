@@ -20,6 +20,10 @@ from holoforge.benchmarks.adapters.holographic_superconductor import (
     SUPERCONDUCTOR_ADAPTER,
     SUPERCONDUCTOR_MODEL_CARD,
 )
+from holoforge.benchmarks.adapters.holographic_superconductor_optical import (
+    SUPERCONDUCTOR_OPTICAL_ADAPTER,
+    SUPERCONDUCTOR_OPTICAL_MODEL_CARD,
+)
 from holoforge.benchmarks.adapters.linear_axion_dc import (
     LINEAR_AXION_ADAPTER,
     LINEAR_AXION_MODEL_CARD,
@@ -39,6 +43,7 @@ BUILTIN_BENCHMARKS = BenchmarkRegistry(
         GUBSER_NELLORE_ADAPTER,
         GUBSER_ROCHA_ADAPTER,
         SUPERCONDUCTOR_ADAPTER,
+        SUPERCONDUCTOR_OPTICAL_ADAPTER,
         LINEAR_AXION_ADAPTER,
     )
 )
@@ -60,4 +65,6 @@ __all__ = [
     "SOFT_WALL_MODEL_CARD",
     "SUPERCONDUCTOR_ADAPTER",
     "SUPERCONDUCTOR_MODEL_CARD",
+    "SUPERCONDUCTOR_OPTICAL_ADAPTER",
+    "SUPERCONDUCTOR_OPTICAL_MODEL_CARD",
 ]

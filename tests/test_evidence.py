@@ -12,6 +12,7 @@ from holoforge.benchmarks.registry import (
     LINEAR_AXION_MODEL_CARD,
     SOFT_WALL_MODEL_CARD,
     SUPERCONDUCTOR_MODEL_CARD,
+    SUPERCONDUCTOR_OPTICAL_MODEL_CARD,
 )
 from holoforge.core.evidence import (
     EvidenceBundleError,
@@ -284,6 +285,7 @@ class EvidenceBundleTests(unittest.TestCase):
             SOFT_WALL_MODEL_CARD,
             HARD_WALL_MODEL_CARD,
             SUPERCONDUCTOR_MODEL_CARD,
+            SUPERCONDUCTOR_OPTICAL_MODEL_CARD,
             LINEAR_AXION_MODEL_CARD,
             GUBSER_ROCHA_MODEL_CARD,
         ):

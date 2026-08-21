@@ -1,0 +1,215 @@
+{
+  "schema_version": "0.1",
+  "id": "condensed-matter.holographic-superconductor.hhh-optical",
+  "title": "Probe-limit HHH optical conductivity and superfluid density",
+  "mode": "forge-verify",
+  "domain": "holographic-condensed-matter",
+  "maturity": "reproduced",
+  "summary": "An independently cross-checked spectral and Riccati reproduction of the exact normal optical conductivity and the dimension-two HHH near-critical superfluid-density coefficient.",
+  "source": {
+    "title": "Building an AdS/CFT superconductor",
+    "authors": [
+      "Sean A. Hartnoll",
+      "Christopher P. Herzog",
+      "Gary T. Horowitz"
+    ],
+    "locator": "arXiv:0803.3295",
+    "version": "v1",
+    "url": "https://arxiv.org/abs/0803.3295",
+    "doi": "10.1103/PhysRevLett.101.031601",
+    "equation_refs": [
+      "Eqs. (13)-(19)",
+      "near-critical C_2 = 24 statement",
+      "Figure 1 right-panel condensate reproduction inherited from the protected benchmark",
+      "Figure 2 right panel retained as a documented non-reproduction"
+    ]
+  },
+  "conventions": [
+    {
+      "name": "background and coordinate",
+      "value": "Planar AdS4-Schwarzschild probe limit; u = r_h/r in [0,1], F(u) = 1-u^3, L = r_h = 1 during the dimensionless solve",
+      "rationale": "Uses the protected dimension-two HHH background and finite radial interval."
+    },
+    {
+      "name": "quantization and sources",
+      "value": "m^2 L^2 = -2, q = 1, Delta = 2, psi_- = 0; A_x = A_0 + A_1 u + ... with unit optical source A_0",
+      "rationale": "Separates the vanishing scalar source from the applied transverse gauge-field source."
+    },
+    {
+      "name": "retarded response",
+      "value": "delta A_x proportional to exp(-i omega t), with A_x = (1-u)^(-i Omega/3) a(u) and regular a at the horizon",
+      "rationale": "Fixes the retarded sign and ingoing horizon branch."
+    },
+    {
+      "name": "frequency and conductivity",
+      "value": "omega/T = 4 pi Omega/3 and sigma(omega) = -i A_1/(Omega A_0)",
+      "rationale": "Matches the source radial coordinate and boundary current convention."
+    },
+    {
+      "name": "static London normalization",
+      "value": "n_s/T_c = -(4 pi/3)(T/T_c) A_x'(0)/A_x(0)",
+      "rationale": "Equals the zero-frequency limit of (omega/T)(T/T_c) Im sigma."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "scalar mass squared",
+      "symbol": "m^2 L^2",
+      "value": -2.0,
+      "unit": "dimensionless",
+      "role": "fixed",
+      "description": "Mass defining the two AdS4 scalar falloffs."
+    },
+    {
+      "name": "scalar charge",
+      "symbol": "q",
+      "value": 1.0,
+      "unit": "charge unit",
+      "role": "fixed",
+      "description": "Fixed by the source field-rescaling convention."
+    },
+    {
+      "name": "near-critical temperatures",
+      "symbol": "T/T_c",
+      "value": "0.990, 0.995, 0.9975, 0.999",
+      "unit": "dimensionless",
+      "role": "fixed",
+      "description": "Frozen asymptotic window used for the C_2 and C_4 fit."
+    },
+    {
+      "name": "near-critical spectral degrees",
+      "symbol": "N",
+      "value": "128, 160, 192",
+      "unit": "collocation degree",
+      "role": "fixed",
+      "description": "Refinement, primary, and audit degrees chosen before the corrected run."
+    }
+  ],
+  "equations": [
+    {
+      "id": "optical-maxwell-response",
+      "expression": "A_x'' + (F'/F) A_x' + [Omega^2/F^2 - 2 psi^2/(u^2 F)] A_x = 0",
+      "description": "Zero-momentum transverse Maxwell response on the protected HHH condensed background.",
+      "source_ref": "Hartnoll et al., arXiv:0803.3295v1, Eq. (13), transformed to u = r_h/r."
+    },
+    {
+      "id": "static-london-response",
+      "expression": "(F A_x')' - 2 psi^2 A_x/u^2 = 0",
+      "description": "Zero-frequency London equation with regular horizon condition A_x'(1) + 2 psi_h^2 A_x(1)/3 = 0.",
+      "source_ref": "Zero-frequency limit of source Eq. (13), cross-checked against Hartnoll et al., arXiv:0810.1563, Sec. IV."
+    },
+    {
+      "id": "near-critical-fit",
+      "expression": "n_s/T_c = C_2 delta + C_4 delta^2, delta = 1-T/T_c",
+      "description": "Asymptotic fit retaining the leading nonlinear correction rather than forcing a finite window onto one line.",
+      "source_ref": "Source statement n_s approximately C_2 (T_c-T) as T approaches T_c, with C_2 = 24 for Delta = 2."
+    }
+  ],
+  "observables": [
+    {
+      "name": "complex optical conductivity",
+      "symbol": "sigma(omega)",
+      "unit": "dimensionless",
+      "extraction": "UV source/current ratio -i A_1/(Omega A_0), independently computed by spectral series transfer and Riccati DOP853."
+    },
+    {
+      "name": "near-critical superfluid-density coefficient",
+      "symbol": "C_2",
+      "unit": "dimensionless",
+      "extraction": "Static London densities are fit to C_2 delta + C_4 delta^2; finite-frequency pole intercepts provide an independent coefficient."
+    }
+  ],
+  "validation": {
+    "acceptance_criteria": [
+      "The protected HHH condensate verifier passes unchanged.",
+      "The exact normal-state conductivity equals one within 1e-8.",
+      "Every near-critical N=160 and N=192 independent equation residual is below the unchanged 1e-6 ceiling.",
+      "Spectral and Riccati conductivities agree within 5e-4, and static London densities agree with finite-frequency pole intercepts within 5e-4.",
+      "The asymptotic static coefficient agrees with C_2 = 24 within 15 percent and remains stable within 10 percent after the frozen temperature omission.",
+      "The inherited Figure 1 low-temperature condensate scale stays within 8.2 to 8.7; Figure 2 has no acceptance role."
+    ],
+    "tests": [
+      {
+        "id": "optical-scientific-verifier",
+        "kind": "regression",
+        "command": "python3 -m unittest tests.test_holographic_superconductor_optical -v",
+        "expected": "The exact normal response, near-critical coefficient, independent routes, residuals, and preserved non-reproduction evidence pass their declared gates.",
+        "status": "pass"
+      },
+      {
+        "id": "protected-condensate-verifier",
+        "kind": "regression",
+        "command": "python3 -m unittest tests.test_holographic_superconductor -v",
+        "expected": "The previously released onset, Figure 1 condensate curve, and cutoff-refinement checks pass unchanged.",
+        "status": "pass"
+      },
+      {
+        "id": "near-critical-convergence",
+        "kind": "convergence",
+        "command": "python3 -m unittest tests.test_holographic_superconductor_optical.OpticalVerificationRecordTests -v",
+        "expected": "The N=128,160,192 ladder, UV-window refinement, and static/pole comparison satisfy unchanged gates.",
+        "status": "pass"
+      },
+      {
+        "id": "command-and-evidence",
+        "kind": "regression",
+        "command": "python3 -m unittest tests.test_cli tests.test_benchmark_registry tests.test_evidence tests.test_evidence_schemas -v",
+        "expected": "Human, JSON, registry, portable evidence-bundle, and compatibility interfaces pass.",
+        "status": "pass"
+      },
+      {
+        "id": "model-card-schema",
+        "kind": "analytic",
+        "command": "python3 -m unittest tests.test_schemas -v",
+        "expected": "This model card validates against schemas/model-card.schema.json.",
+        "status": "pass"
+      }
+    ],
+    "last_verified": "2026-08-21"
+  },
+  "claims": [
+    {
+      "statement": "For Delta = 2, the source gives an exact normal-state optical conductivity and a near-critical superfluid-density coefficient C_2 = 24.",
+      "support_level": "established-source",
+      "evidence": "Hartnoll, Herzog, and Horowitz, arXiv:0803.3295v1, Eqs. (13)-(19) and the near-critical discussion.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-21"
+    },
+    {
+      "statement": "HoloForge reproduces the exact normal response and obtains C_2 = 23.96884335 from the static London route, with an independent finite-frequency value 23.96883307 under the declared convergence gates.",
+      "support_level": "reproduced",
+      "evidence": "Owner-approved bounded verifier, focused tests, static/pole route agreement, and N=128,160,192 convergence record.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-21"
+    }
+  ],
+  "limitations": [
+    "The calculation neglects matter backreaction on the metric and is not a controlled zero-temperature solution.",
+    "The boundary U(1) is global unless an additional weak gauging prescription is supplied; charged superfluid is then the more precise interpretation.",
+    "The public rightmost Figure 2 curve is not reproduced and remains provenance-only; no source overlay or relabelled target is generated.",
+    "The benchmark is restricted to zero spatial momentum, positive frequencies, the Delta = 2 quantization, and the declared near-critical window.",
+    "The direct real-part delta distribution, sum rule, free energy, quasinormal modes, backreaction, and nonlinear transport are outside scope.",
+    "Agreement within the HHH model is not empirical validation of a material or a microscopic pairing mechanism."
+  ],
+  "provenance": {
+    "created_on": "2026-08-21",
+    "created_by": "HoloForge Phase 4 development",
+    "implementation_path": "src/holoforge/benchmarks/holographic_superconductor_optical.py",
+    "ai_assistance": true,
+    "ai_roles": [
+      "source audit",
+      "equation and convention checking",
+      "spectral and Riccati implementation drafting",
+      "numerical diagnosis",
+      "test drafting",
+      "documentation drafting"
+    ],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-21"
+  }
+}
