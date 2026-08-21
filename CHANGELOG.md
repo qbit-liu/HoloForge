@@ -4,6 +4,44 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.5.5] - 2026-08-21
+
+### Added
+
+- An owner-approved HHH optical-response benchmark with a source-free UV
+  series transfer, Chebyshev bulk solve, independent Riccati-form DOP853
+  response, static and finite-frequency superfluid-density checks, portable
+  evidence, and an original near-critical diagnostic.
+
+### Changed
+
+- The Python test matrix, installed-wheel smoke test, and Linux, macOS, and
+  Windows portability jobs now run the HHH optical verifier; portability also
+  runs its focused scientific contract tests.
+- Removed an undocumented test-only `3e-8` fence from the already rejected W2
+  tiny-element diagnostic after Python 3.9 exposed backend-sensitive roundoff.
+  The public `1e-8` exact-normal gate, equation and boundary residual gates,
+  resolution budget, and W2 negative status are unchanged.
+- Reclassified the superseded high-degree X exact-normal ladder as a portable
+  roundoff-plateau diagnostic after Windows measured a maximum independent
+  residual of `1.50452e-7` at `N=640`, while its exact conductivity, boundary,
+  conditioning, truncation, and resolution checks remained far inside their
+  frozen ceilings. The diagnostic now uses the already owner-reviewed `1e-6`
+  control residual ceiling; the historical X2 failure, accepted verifier
+  gates, exact-normal `1e-8` observable gate, and physical results are
+  unchanged.
+
+### Scientific results
+
+- The benchmark reproduces the exact normal conductivity and the HHH
+  near-critical dimension-two coefficient `C_2 = 24`: the independent static
+  and finite-frequency fits give `23.96884335` and `23.96883307`. It also
+  protects the existing Figure 1 right-panel condensate reproduction. Source
+  Figure 2 remains explicitly `not_reproduced` because its public caption,
+  vector path, and condensate-rescaled counterpart cannot be reconciled. A
+  passing result verifies this bounded probe-limit model calculation; it is
+  not empirical validation of a material or microscopic pairing mechanism.
+
 ## [0.5.4] - 2026-08-20
 
 ### Added
@@ -346,6 +384,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.5.5]: https://github.com/qbit-liu/HoloForge/compare/v0.5.4...v0.5.5
 [0.5.4]: https://github.com/qbit-liu/HoloForge/compare/v0.5.3...v0.5.4
 [0.5.3]: https://github.com/qbit-liu/HoloForge/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/qbit-liu/HoloForge/compare/v0.5.1...v0.5.2

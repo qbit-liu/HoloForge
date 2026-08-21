@@ -4,7 +4,8 @@
 
 This document began as the pre-implementation owner-review contract for Phase
 4 of the classical benchmark sequence and now records its successive
-mandatory preflight stops. It is public-source **Forge/Verify** work and extends the
+mandatory preflight stops, accepted result, public integration, and bounded
+release preparation. It is public-source **Forge/Verify** work and extends the
 already released dimension-two Hartnoll--Herzog--Horowitz (HHH)
 holographic-superconductor benchmark without changing its accepted behavior.
 
@@ -17,18 +18,23 @@ holographic-superconductor benchmark without changing its accepted behavior.
   moderate-temperature checks pass. The post-AB contract amendment, its
   historical bounded failure, near-critical physics amendment, corrected
   implementation run, owner-accepted result, bounded public-interface
-  promotion, scoped commit, and draft pull request below are complete.
-- **Current:** mandatory owner Git stop after a bounded Python 3.9 portability
-  correction passed the focused scientific tests, complete repository suite,
-  real commands, source and installed-wheel verifiers, evidence audits, and
-  diff checks. The prior finite-window coefficient miss, degree-320 residual
-  failure, and W2 endpoint-split failure remain preserved as superseded-
-  contract evidence. Figure 2 remains a documented public-source non-
-  reproduction, not an acceptance target or reproduced result.
-- **Proposed next:** one scoped follow-up commit containing only the reviewed
-  portability test and this synchronized contract, followed by a push to draft
-  pull request 25 and a fresh seven-job CI run. Merge, tag, release, and Phase
-  5 remain separate later decisions.
+  promotion, commits `0280147` and `28420ef`, pull request 25, both fresh
+  seven-job pull-request runs, merge commit `2238447`, and the exact
+  post-merge seven-job `main` run are complete. The bounded Version 0.5.5
+  release metadata, HHH optical CI coverage, release-policy checks,
+  source-checkout evidence, full suite, independently installed wheel,
+  relocated bundle, complete installed-wheel smoke matrix, and privacy audit
+  below are also complete. The separately authorized seven-file Version 0.5.5
+  release-preparation commit is complete.
+- **Current:** mandatory owner-review stop before any remote action. The prior
+  finite-window coefficient miss, degree-320 residual failure, and W2
+  endpoint-split failure remain preserved as superseded-contract evidence.
+  Figure 2 remains a documented public-source non-reproduction, not an
+  acceptance target or reproduced result.
+- **Proposed next:** accept or revise the committed release candidate; only
+  after explicit approval, push the branch and open a pull request for the
+  expanded seven-job remote CI matrix. Merge, tag, release, branch deletion,
+  and Phase 5 remain separate later decisions.
 
 Xin-Yi Liu first selected Option A on 2026-08-20 to authorize only this
 contract and review packet, then selected Option A again to approve C1--C6 and
@@ -68,8 +74,13 @@ implementation completion, machine-readable evidence, regression tests, and
 local amended-gate validation. That run has reached the mandatory stop
 recorded at the end of this contract; it does not accept the result or open an
 interface or Git action.
-Result or model-card acceptance, commit, push, pull request, merge, tag,
-release, and private-research transfer remain closed.
+Later owner decisions recorded below accepted the result and model card,
+authorized the bounded public promotion and Git integration, and approved the
+Python 3.9 portability correction. The latest two Option A decisions authorize
+only the Version 0.5.5 release-preparation pass and exactly one scoped local
+commit, as described at the end of this contract. Push, pull request, remote
+CI, merge, tag, release, branch deletion, Phase 5, and private-research
+transfer remain closed.
 
 ## Recommendation
 
@@ -2672,3 +2683,125 @@ Xin-Yi Liu selected Option A on 2026-08-21 to authorize this bounded Python
 approval does not authorize weakening the public exact-normal or near-critical
 gates, converting W2 into a pass, merging, tagging, releasing, or beginning
 Phase 5.
+
+## Version 0.5.5 release-preparation owner disposition
+
+After pull request 25 was merged as `2238447` and its exact post-merge
+seven-job `main` run passed, Xin-Yi Liu selected **Option A** on 2026-08-21 for
+a bounded local Version 0.5.5 release-preparation pass. This authorizes only:
+
+- synchronized Version 0.5.5 package, citation, README, and changelog metadata;
+- explicit HHH optical coverage in the Python test matrix, installed-wheel
+  smoke test, and Linux, macOS, and Windows wheel-portability job;
+- synchronized release-policy regression checks;
+- regenerated temporary version-stamped JSON and portable-bundle evidence;
+- complete source-checkout and independently installed-wheel validation; and
+- this delivery-state record.
+
+The work must use an isolated clean worktree so the owner's unrelated local
+contract edits remain untouched. This authorization stops before commit, push,
+pull request, remote CI, merge, tag, GitHub release, branch deletion, Phase 5,
+or another model sector. It changes delivery preparation only: the accepted
+`reproduced` support level, equations, boundary conditions, numerical methods,
+tolerances, results, preserved failures, Figure 2 `not_reproduced` status, and
+non-inference boundaries remain unchanged.
+
+## Version 0.5.5 release-preparation validation and mandatory return
+
+The authorized release-preparation pass changes seven existing files and no
+scientific implementation file. The candidate updates package, citation,
+README, and changelog metadata; adds the HHH optical verifier and focused tests
+to the established CI and wheel-portability paths; synchronizes release-policy
+regressions; and records this delivery state. No checked-in generated result
+was added because the benchmark had no pre-existing generated-result artifact;
+fresh version-stamped JSON and evidence bundles were instead generated and
+audited during validation.
+
+Validation completed on Python 3.9.6 with NumPy 2.0.2 and SciPy 1.13.1:
+
+| validation | result |
+| --- | --- |
+| release-policy synchronization | `6/6` pass |
+| expanded source portability group | `121/121` pass in `96.045 s` |
+| source human verifier, diagnostic, strict JSON, and bundle | pass; record version `0.5.5` |
+| source bundle relocation/integrity audit | pass; Figure 2 remains `not_reproduced` |
+| protected HHH condensate and required soft-wall verifiers | pass unchanged |
+| complete repository suite | `234/234` pass in `294.156 s` |
+| standard isolated package build | `holoforge-0.5.5.tar.gz` and `holoforge-0.5.5-py3-none-any.whl` built |
+| independently installed wheel identity | metadata, package, and imported version all `0.5.5`; import resolves to `site-packages` |
+| installed-wheel HHH optical verifier | all twelve declared gates pass |
+| installed-wheel relocated bundle audit | pass; version `0.5.5`, portable paths, integrity, and scientific identity |
+| expanded installed-wheel portability group | `121/121` pass in `96.628 s` |
+| remaining six installed-wheel verifier smoke checks | all pass |
+| generated diagnostic visual inspection | pass; labels, axes, markers, legend, and non-reproduction notice are unclipped |
+| deterministic public-export scan | seven text files scanned; zero findings |
+
+The source and installed-wheel optical records reproduce the unchanged static
+and finite-frequency coefficients `23.96884334975214` and
+`23.968833072939002`, pass all twelve acceptance checks, and retain the exact
+normal, residual, boundary, conditioning, refinement, protected-regression,
+and non-inference gates. The local plotting stack emits the already documented
+legacy PyParsing and font-cache warnings; they do not change an artifact or a
+pass/fail result.
+
+This release candidate reached its mandatory owner-review return before any
+Git action.
+
+## Version 0.5.5 local-commit owner disposition
+
+After reviewing the complete release-candidate scope and validation above,
+Xin-Yi Liu selected **Option A** on 2026-08-21 to accept the bounded candidate
+and authorize exactly one scoped local Version 0.5.5 release-preparation
+commit containing the seven reviewed files. This approval does not authorize
+any additional file, scientific change, push, pull request, remote CI, merge,
+tag, GitHub release, branch deletion, Phase 5, or another model sector.
+
+The scoped local commit exhausts this authorization and returns the project to
+mandatory owner review before any remote action. The commit changes delivery
+state only; it does not alter or broaden the accepted scientific result or any
+non-inference boundary.
+
+## Version 0.5.5 Windows portability audit
+
+After the release-preparation branch was pushed as commit `6e62210`, pull
+request 26 ran the expanded seven-job matrix. Python 3.9, 3.11, and 3.14, the
+wheel build/smoke test, and the Ubuntu and macOS portability jobs passed. The
+Windows portability job passed 120 of 121 focused tests and the complete HHH
+optical verifier, including all twelve accepted scientific gates, but failed
+the standalone superseded X exact-normal ladder at its independent equation-
+residual assertion.
+
+The original test asserted inside the degree loop and therefore did not report
+the complete ladder. Diagnostic commit `779d754` made all three frozen degrees
+run before the assertion and recorded every relevant metric. The Windows
+evidence is:
+
+| `N` | equation residual | `|sigma-1|` | boundary maximum | conditioning budget | truncation change |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 384 | `5.78191e-9` | `4.87008e-12` | `4.46966e-11` | `1.74836e-10` | `7.24351e-14` |
+| 512 | `1.82643e-8` | `2.24557e-11` | `5.01988e-11` | `3.10776e-10` | `7.26786e-14` |
+| 640 | `1.50452e-7` | `3.28318e-11` | `7.07528e-11` | `4.85550e-10` | `7.25677e-14` |
+
+The normalized conductivity changes between consecutive degrees are
+`9.73992e-12` and `2.63125e-11`. The only miss is the `N=640` independent
+second-derivative residual against the historical X `1e-7` ceiling. Its
+maximum is localized at `u=3.40953e-5`, close to the UV end of the bulk
+element. The accepted observable, analytic transfer, horizon boundary,
+conditioning, series-truncation, and resolution evidence all retain large
+margins.
+
+This is the same method-conditioned high-degree float64 differentiation
+plateau that motivated the already owner-approved revised Y control ladder and
+its `1e-6` local backward-error ceiling. The X ladder is superseded evidence;
+the current accepted near-critical calculation uses `N=(128,160,192)` and the
+reviewed `1e-6` ceiling, and the target-specific low-temperature calculation
+uses its separately reviewed `1e-5` ceiling. Neither accepted calculation
+depends on the superseded high-degree X pass classification.
+
+The portable correction therefore retains the full-ladder diagnostic but
+renames it as an over-resolved X preservation test and bounds only catastrophic
+drift by the existing `1e-6` control ceiling. It does not change the response
+equation, UV or horizon conditions, production verifier, historical X2
+failure, exact-normal `1e-8` observable gate, accepted residual ceilings,
+literature result, Figure 2 `not_reproduced` status, or any non-inference
+boundary. A fresh seven-job run is required before merge or release.
