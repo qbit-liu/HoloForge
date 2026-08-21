@@ -5,7 +5,7 @@
 This document began as the pre-implementation owner-review contract for Phase
 4 of the classical benchmark sequence and now records its successive
 mandatory preflight stops, accepted result, public integration, and bounded
-release preparation. It is public-source **Forge/Verify** work and extends the
+release closure. It is public-source **Forge/Verify** work and extends the
 already released dimension-two Hartnoll--Herzog--Horowitz (HHH)
 holographic-superconductor benchmark without changing its accepted behavior.
 
@@ -25,16 +25,19 @@ holographic-superconductor benchmark without changing its accepted behavior.
   source-checkout evidence, full suite, independently installed wheel,
   relocated bundle, complete installed-wheel smoke matrix, and privacy audit
   below are also complete. The separately authorized seven-file Version 0.5.5
-  release-preparation commit is complete.
-- **Current:** mandatory owner-review stop before any remote action. The prior
+  release-preparation commit, Windows portability audit and correction, pull
+  request 26, final pull-request and post-merge seven-job CI runs, merge commit
+  `0b20b04`, annotated tag `v0.5.5`, and public Version 0.5.5 GitHub release
+  are complete.
+- **Current:** Phase 4 is closed in Version 0.5.5. The prior
   finite-window coefficient miss, degree-320 residual failure, and W2
   endpoint-split failure remain preserved as superseded-contract evidence.
   Figure 2 remains a documented public-source non-reproduction, not an
   acceptance target or reproduced result.
-- **Proposed next:** accept or revise the committed release candidate; only
-  after explicit approval, push the branch and open a pull request for the
-  expanded seven-job remote CI matrix. Merge, tag, release, branch deletion,
-  and Phase 5 remain separate later decisions.
+- **Proposed next:** choose and freeze the Phase 5 scientific target and
+  contract at a separate owner gate. No Phase 5 model has been selected in
+  this repository, and no Phase 5 implementation is opened by the Version
+  0.5.5 release.
 
 Xin-Yi Liu first selected Option A on 2026-08-20 to authorize only this
 contract and review packet, then selected Option A again to approve C1--C6 and
@@ -81,6 +84,13 @@ only the Version 0.5.5 release-preparation pass and exactly one scoped local
 commit, as described at the end of this contract. Push, pull request, remote
 CI, merge, tag, release, branch deletion, Phase 5, and private-research
 transfer remain closed.
+
+The owner later selected Option A on 2026-08-21, authorized the bounded
+Windows portability diagnosis and correction, and explicitly authorized
+readiness conversion, merge, post-merge CI verification, Version 0.5.5 tag,
+and GitHub release after every required gate passed. That later delivery
+authorization is recorded in pull request 26 and the release-closure section
+below. Branch deletion and Phase 5 implementation remain closed.
 
 ## Recommendation
 
@@ -2804,4 +2814,33 @@ drift by the existing `1e-6` control ceiling. It does not change the response
 equation, UV or horizon conditions, production verifier, historical X2
 failure, exact-normal `1e-8` observable gate, accepted residual ceilings,
 literature result, Figure 2 `not_reproduced` status, or any non-inference
-boundary. A fresh seven-job run is required before merge or release.
+boundary. A fresh seven-job run was required before merge or release and is
+recorded below.
+
+## Version 0.5.5 release closure
+
+The portable correction was committed as `b386c49` after the complete local
+repository suite passed `234/234`, the real HHH optical verifier passed all
+twelve declared acceptance gates, and the final diff and public-safety scan
+passed. Pull-request CI run `32481642632` then passed all seven jobs, including
+Python 3.9, 3.11, and 3.14, package build and installed-wheel smoke tests, and
+Ubuntu, macOS, and Windows portability with relocated evidence-bundle audits.
+
+Pull request 26 was merged as `0b20b0492a56333e21b4f13db780e2c19cf73e72`.
+The exact post-merge `main` run `32482531185` passed the same seven-job matrix.
+Annotated tag `v0.5.5` points to that merge commit, and the public non-
+prerelease GitHub release is available at
+`https://github.com/qbit-liu/HoloForge/releases/tag/v0.5.5`.
+
+This closes Phase 4 delivery and release. It does not alter the accepted
+scientific result or any preserved failure: the exact normal response,
+near-critical `C_2` reproduction, Figure 1 right-panel condensate check, and
+non-inference boundaries are unchanged, while Figure 2 remains
+`not_reproduced` and provenance-only.
+
+Phase 5 has not been named or frozen in the public repository. Entering it
+requires a separate owner-reviewed Forge/Verify contract identifying the
+public primary source, central figure or table target, equations, boundary
+conditions, numerical method, tolerances, validation evidence, limitations,
+and explicit failure conditions. The Version 0.5.5 release does not authorize
+that later implementation.
