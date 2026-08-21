@@ -25,6 +25,7 @@ class Version05PolicyTests(unittest.TestCase):
             "holoforge verify hard-wall-vector",
             "holoforge verify hard-wall-chiral",
             "holoforge verify holographic-superconductor",
+            "holoforge verify holographic-superconductor-optical",
             "holoforge verify linear-axion-dc",
             "holoforge verify gubser-nellore-ed",
             "holoforge verify gubser-rocha-emd",
@@ -56,6 +57,12 @@ class Version05PolicyTests(unittest.TestCase):
         self.assertIn("holoforge verify linear-axion-dc", workflow)
         self.assertIn("holoforge verify hard-wall-chiral", workflow)
         self.assertIn("tests.test_hard_wall_chiral", workflow)
+        self.assertIn(
+            "holoforge verify holographic-superconductor-optical", workflow
+        )
+        self.assertIn(
+            "tests.test_holographic_superconductor_optical", workflow
+        )
         self.assertIn("holoforge verify gubser-nellore-ed", workflow)
         self.assertIn("holoforge verify gubser-rocha-emd", workflow)
         self.assertIn("holoforge audit bundle relocated/portability-bundle", workflow)
@@ -66,14 +73,14 @@ class Version05PolicyTests(unittest.TestCase):
         self.assertIn("*.json text eol=lf", attributes)
 
     def test_release_metadata_is_synchronized(self) -> None:
-        self.assertEqual(holoforge.__version__, "0.5.4")
+        self.assertEqual(holoforge.__version__, "0.5.5")
         citation = (ROOT / "CITATION.cff").read_text()
         changelog = (ROOT / "CHANGELOG.md").read_text()
         readme = (ROOT / "README.md").read_text()
-        self.assertIn("version: 0.5.4", citation)
-        self.assertIn("date-released: 2026-08-20", citation)
-        self.assertIn("## [0.5.4] - 2026-08-20", changelog)
-        self.assertIn("latest public release is `0.5.4`", readme)
+        self.assertIn("version: 0.5.5", citation)
+        self.assertIn("date-released: 2026-08-21", citation)
+        self.assertIn("## [0.5.5] - 2026-08-21", changelog)
+        self.assertIn("latest public release is `0.5.5`", readme)
 
 
 if __name__ == "__main__":
