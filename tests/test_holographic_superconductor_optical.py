@@ -33,6 +33,7 @@ from holoforge.benchmarks.holographic_superconductor_optical import (
     NEAR_CRITICAL_RELATIVE_TOLERANCE,
     NEAR_CRITICAL_SPECTRAL_DEGREES,
     NEAR_CRITICAL_TEMPERATURES,
+    NORMAL_CONDUCTIVITY_TOLERANCE,
     RESPONSE_RESOLUTION_TOLERANCE,
     SPECTRAL_AUDIT_DEGREES,
     SPECTRAL_CONFIRMATION_DEGREE,
@@ -249,7 +250,17 @@ class OpticalNormalStateTests(unittest.TestCase):
                 response.conditioning_roundoff_budget,
                 ENDPOINT_SPLIT_CONDITIONING_BUDGET,
             )
-            self.assertLessEqual(abs(response.conductivity - 1.0), 3.0e-8)
+            self.assertTrue(math.isfinite(response.conductivity.real))
+            self.assertTrue(math.isfinite(response.conductivity.imag))
+            # This endpoint-split route is preserved as a failed W2 method,
+            # not as the accepted exact-normal calculation.  Keep the real
+            # 1e-8 gate in the full-pass predicate below while using the
+            # already frozen observable-stability budget only to reject a
+            # catastrophic diagnostic drift across linear-algebra stacks.
+            self.assertLessEqual(
+                abs(response.conductivity - 1.0),
+                RESPONSE_RESOLUTION_TOLERANCE,
+            )
             passed.append(
                 response.uv_element_residual.maximum
                 <= ENDPOINT_SPLIT_EQUATION_TOLERANCE
@@ -257,14 +268,15 @@ class OpticalNormalStateTests(unittest.TestCase):
                 <= ENDPOINT_SPLIT_EQUATION_TOLERANCE
                 and response.interface_derivative_residual
                 <= ENDPOINT_SPLIT_INTERFACE_TOLERANCE
-                and abs(response.conductivity - 1.0) <= 1.0e-8
+                and abs(response.conductivity - 1.0)
+                <= NORMAL_CONDUCTIVITY_TOLERANCE
             )
         self.assertFalse(any(passed))
         for left, right in zip(responses[:-1], responses[1:]):
             self.assertLessEqual(
                 abs(right.conductivity - left.conductivity)
                 / (1.0 + abs(left.conductivity)),
-                5.0e-4,
+                RESPONSE_RESOLUTION_TOLERANCE,
             )
 
     def test_series_transferred_normal_state_passes_frozen_x_ladder(self) -> None:

@@ -16,18 +16,19 @@ holographic-superconductor benchmark without changing its accepted behavior.
   exact-normal, conditioned-background, overlap-equivalence, and
   moderate-temperature checks pass. The post-AB contract amendment, its
   historical bounded failure, near-critical physics amendment, corrected
-  implementation run, owner-accepted result, and bounded public-interface
-  promotion below are complete.
-- **Current:** mandatory owner Git/release stop after the accepted result and
-  promoted interface passed every local scientific, interface, schema,
-  evidence, wheel, and repository regression gate. The prior finite-window
-  coefficient miss and degree-320 residual failure remain preserved as
-  superseded-contract evidence. Figure 2 remains a documented public-source
-  non-reproduction, not an acceptance target or reproduced result.
-- **Proposed next:** one scoped local Phase 4 commit containing only the
-  accepted optical benchmark artifacts and their required shared-interface
-  documentation. Push, pull request, merge, tag, release, and Phase 5 remain
-  separate later decisions.
+  implementation run, owner-accepted result, bounded public-interface
+  promotion, scoped commit, and draft pull request below are complete.
+- **Current:** mandatory owner Git stop after a bounded Python 3.9 portability
+  correction passed the focused scientific tests, complete repository suite,
+  real commands, source and installed-wheel verifiers, evidence audits, and
+  diff checks. The prior finite-window coefficient miss, degree-320 residual
+  failure, and W2 endpoint-split failure remain preserved as superseded-
+  contract evidence. Figure 2 remains a documented public-source non-
+  reproduction, not an acceptance target or reproduced result.
+- **Proposed next:** one scoped follow-up commit containing only the reviewed
+  portability test and this synchronized contract, followed by a push to draft
+  pull request 25 and a fresh seven-job CI run. Merge, tag, release, and Phase
+  5 remain separate later decisions.
 
 Xin-Yi Liu first selected Option A on 2026-08-20 to authorize only this
 contract and review packet, then selected Option A again to approve C1--C6 and
@@ -2624,3 +2625,50 @@ claim follows.
 This promotion has reached its mandatory Git/release stop. Commit, push, pull
 request, merge, tag, release, Phase 5, and any private-program transfer remain
 closed pending a new explicit owner decision.
+
+## Python 3.9 CI portability audit and bounded correction
+
+Draft pull request 25 ran the complete seven-job portability matrix on commit
+`0280147`. Six jobs passed: Python 3.11, Python 3.14, the built-wheel smoke
+test, and wheel relocation on Ubuntu, macOS, and Windows. Python 3.9 completed
+233 passing tests and one Graphviz-dependent skip, but failed the preserved
+W2 endpoint-split diagnostic because
+
+```text
+abs(sigma - 1) = 3.3449638801672674e-8 > 3.0e-8.
+```
+
+The failed `3e-8` assertion was not one of the frozen W1 scientific or
+numerical gates. It was an additional test-only fence outside the W2 full-pass
+predicate. The actual exact-normal gate remains
+`NORMAL_CONDUCTIVITY_TOLERANCE = 1e-8` inside that predicate, and the W2 stop
+continues to require the independently evaluated UV-element equation residual
+to exceed its `1e-7` ceiling. The accepted series-transferred exact-normal
+route separately passes its public `1e-8` gate; this audit does not change it.
+
+The portability diagnosis reproduced the owner-recorded SciPy result on local
+Python 3.9 with NumPy 2.0.2 and SciPy 1.13.1. Across the three W2 degree pairs,
+the local exact-normal errors were `4.63744e-9`, `1.86793e-9`, and
+`2.18158e-8`. Repeating the same assembled equations with the maintained NumPy
+dense-solve entry point changed those errors to `3.36579e-9`, `8.65797e-10`,
+and `7.49549e-9`. The UV residual remained far above `1e-7` in every case.
+This isolates the variation to the already rejected tiny-element float64
+route and its linear-algebra/differentiation stack; it does not indicate a
+change in the model, boundary conditions, accepted observable, or near-
+critical result.
+
+The bounded correction therefore:
+
+- keeps the `1e-8` exact-normal gate unchanged in the W2 full-pass predicate;
+- keeps every equation, boundary, interface, conditioning, and resolution
+  check unchanged;
+- keeps the W2 negative result and its non-inference boundary unchanged; and
+- replaces only the undocumented `3e-8` test fence with finite-value checks
+  plus the existing frozen `5e-4` response-resolution budget, whose role here
+  is to catch catastrophic diagnostic drift rather than confer acceptance.
+
+Xin-Yi Liu selected Option A on 2026-08-21 to authorize this bounded Python
+3.9 portability diagnosis and an evidence-justified local correction. That
+approval does not authorize weakening the public exact-normal or near-critical
+gates, converting W2 into a pass, merging, tagging, releasing, or beginning
+Phase 5.
