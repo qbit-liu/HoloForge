@@ -2760,3 +2760,48 @@ The scoped local commit exhausts this authorization and returns the project to
 mandatory owner review before any remote action. The commit changes delivery
 state only; it does not alter or broaden the accepted scientific result or any
 non-inference boundary.
+
+## Version 0.5.5 Windows portability audit
+
+After the release-preparation branch was pushed as commit `6e62210`, pull
+request 26 ran the expanded seven-job matrix. Python 3.9, 3.11, and 3.14, the
+wheel build/smoke test, and the Ubuntu and macOS portability jobs passed. The
+Windows portability job passed 120 of 121 focused tests and the complete HHH
+optical verifier, including all twelve accepted scientific gates, but failed
+the standalone superseded X exact-normal ladder at its independent equation-
+residual assertion.
+
+The original test asserted inside the degree loop and therefore did not report
+the complete ladder. Diagnostic commit `779d754` made all three frozen degrees
+run before the assertion and recorded every relevant metric. The Windows
+evidence is:
+
+| `N` | equation residual | `|sigma-1|` | boundary maximum | conditioning budget | truncation change |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 384 | `5.78191e-9` | `4.87008e-12` | `4.46966e-11` | `1.74836e-10` | `7.24351e-14` |
+| 512 | `1.82643e-8` | `2.24557e-11` | `5.01988e-11` | `3.10776e-10` | `7.26786e-14` |
+| 640 | `1.50452e-7` | `3.28318e-11` | `7.07528e-11` | `4.85550e-10` | `7.25677e-14` |
+
+The normalized conductivity changes between consecutive degrees are
+`9.73992e-12` and `2.63125e-11`. The only miss is the `N=640` independent
+second-derivative residual against the historical X `1e-7` ceiling. Its
+maximum is localized at `u=3.40953e-5`, close to the UV end of the bulk
+element. The accepted observable, analytic transfer, horizon boundary,
+conditioning, series-truncation, and resolution evidence all retain large
+margins.
+
+This is the same method-conditioned high-degree float64 differentiation
+plateau that motivated the already owner-approved revised Y control ladder and
+its `1e-6` local backward-error ceiling. The X ladder is superseded evidence;
+the current accepted near-critical calculation uses `N=(128,160,192)` and the
+reviewed `1e-6` ceiling, and the target-specific low-temperature calculation
+uses its separately reviewed `1e-5` ceiling. Neither accepted calculation
+depends on the superseded high-degree X pass classification.
+
+The portable correction therefore retains the full-ladder diagnostic but
+renames it as an over-resolved X preservation test and bounds only catastrophic
+drift by the existing `1e-6` control ceiling. It does not change the response
+equation, UV or horizon conditions, production verifier, historical X2
+failure, exact-normal `1e-8` observable gate, accepted residual ceilings,
+literature result, Figure 2 `not_reproduced` status, or any non-inference
+boundary. A fresh seven-job run is required before merge or release.

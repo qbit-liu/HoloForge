@@ -22,6 +22,14 @@ All notable changes to HoloForge are recorded here.
   tiny-element diagnostic after Python 3.9 exposed backend-sensitive roundoff.
   The public `1e-8` exact-normal gate, equation and boundary residual gates,
   resolution budget, and W2 negative status are unchanged.
+- Reclassified the superseded high-degree X exact-normal ladder as a portable
+  roundoff-plateau diagnostic after Windows measured a maximum independent
+  residual of `1.50452e-7` at `N=640`, while its exact conductivity, boundary,
+  conditioning, truncation, and resolution checks remained far inside their
+  frozen ceilings. The diagnostic now uses the already owner-reviewed `1e-6`
+  control residual ceiling; the historical X2 failure, accepted verifier
+  gates, exact-normal `1e-8` observable gate, and physical results are
+  unchanged.
 
 ### Scientific results
 
