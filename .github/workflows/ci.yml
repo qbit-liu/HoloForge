@@ -49,6 +49,7 @@ jobs:
           holoforge verify holographic-superconductor
           holoforge verify holographic-superconductor-optical
           holoforge verify linear-axion-dc
+          holoforge verify dewolfe-gubser-rosen-emd
 
   package:
     name: Build and smoke-test wheel
@@ -83,6 +84,7 @@ jobs:
           holoforge verify holographic-superconductor
           holoforge verify holographic-superconductor-optical
           holoforge verify linear-axion-dc
+          holoforge verify dewolfe-gubser-rosen-emd
           holoforge verify gubser-nellore-ed
           holoforge verify gubser-rocha-emd
 
@@ -125,10 +127,11 @@ jobs:
 
       - name: Run bounded contract and benchmark tests
         run: |
-          python -m unittest tests.test_core_contracts tests.test_benchmark_registry tests.test_cli tests.test_schemas tests.test_evidence tests.test_evidence_schemas tests.test_linear_axion_dc tests.test_hard_wall_chiral tests.test_holographic_superconductor_optical -v
+          python -m unittest tests.test_core_contracts tests.test_benchmark_registry tests.test_cli tests.test_schemas tests.test_reference_loader tests.test_evidence tests.test_evidence_schemas tests.test_linear_axion_dc tests.test_hard_wall_chiral tests.test_holographic_superconductor_optical tests.test_dewolfe_gubser_rosen_emd -v
           holoforge verify linear-axion-dc
           holoforge verify hard-wall-chiral
           holoforge verify holographic-superconductor-optical
+          holoforge verify dewolfe-gubser-rosen-emd
 
       - name: Relocate and audit an evidence bundle
         run: |

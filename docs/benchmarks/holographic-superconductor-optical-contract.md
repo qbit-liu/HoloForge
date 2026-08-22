@@ -34,10 +34,14 @@ holographic-superconductor benchmark without changing its accepted behavior.
   endpoint-split failure remain preserved as superseded-contract evidence.
   Figure 2 remains a documented public-source non-reproduction, not an
   acceptance target or reproduced result.
-- **Proposed next:** choose and freeze the Phase 5 scientific target and
-  contract at a separate owner gate. No Phase 5 model has been selected in
-  this repository, and no Phase 5 implementation is opened by the Version
-  0.5.5 release.
+- **Proposed next:** integrate and release the separately owner-approved Phase
+  5A DeWolfe--Gubser--Rosen EMD reproduction. The owner-selected first
+  target is source Figure 3 at zero chemical potential; finite-density Figure
+  5 and critical scaling remain separate later phases. Figure 4 may later be
+  used as a charged-scan diagnostic but is not a required reproduction target.
+  The Version 0.5.5 release and this Phase 4 closure record did not open Phase
+  5; the later 2026-08-22 DGR owner dispositions authorized its bounded local
+  Phase 5A implementation, accepted result, and scoped integration.
 
 Xin-Yi Liu first selected Option A on 2026-08-20 to authorize only this
 contract and review packet, then selected Option A again to approve C1--C6 and
@@ -2838,9 +2842,10 @@ near-critical `C_2` reproduction, Figure 1 right-panel condensate check, and
 non-inference boundaries are unchanged, while Figure 2 remains
 `not_reproduced` and provenance-only.
 
-Phase 5 has not been named or frozen in the public repository. Entering it
-requires a separate owner-reviewed Forge/Verify contract identifying the
-public primary source, central figure or table target, equations, boundary
-conditions, numerical method, tolerances, validation evidence, limitations,
-and explicit failure conditions. The Version 0.5.5 release does not authorize
-that later implementation.
+Phase 5 has since been named as the DeWolfe--Gubser--Rosen bottom-up EMD
+sequence. Its separate prospective Phase 5A contract identifies the public
+source, Figure 3 target, equations, boundary conditions, spectral method,
+tolerances, validation evidence, limitations, and failure conditions. The
+owner separately approved bounded local implementation and then the passing
+result, model card, and scoped integration on 2026-08-22. Version 0.5.5 itself
+did not authorize that work or any later Phase 5 stage.

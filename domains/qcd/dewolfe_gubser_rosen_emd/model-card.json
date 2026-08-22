@@ -1,0 +1,109 @@
+{
+  "schema_version": "0.1",
+  "id": "qcd.dewolfe-gubser-rosen-emd",
+  "title": "DeWolfe--Gubser--Rosen zero-density EMD thermodynamics",
+  "mode": "forge-verify",
+  "domain": "holographic QCD thermodynamics",
+  "maturity": "reproduced",
+  "summary": "An owner-approved Chebyshev and independent-DOP853 reproduction of the two zero-density black-hole curves in Figure 3 of the bottom-up DeWolfe--Gubser--Rosen EMD model.",
+  "source": {
+    "title": "A holographic critical point",
+    "authors": ["Oliver DeWolfe", "Steven S. Gubser", "Christopher Rosen"],
+    "locator": "arXiv:1012.1864",
+    "version": "v2",
+    "url": "https://arxiv.org/abs/1012.1864",
+    "doi": "10.1103/PhysRevD.83.086005",
+    "equation_refs": ["Eqs. (1)-(5)", "Eqs. (27)-(29)", "Eqs. (49)-(64)", "Figure 3"]
+  },
+  "conventions": [
+    {
+      "name": "bulk theory and units",
+      "value": "Five bulk dimensions, mostly-plus signature, L = 1 and kappa_5^2 = 1 before source rescalings",
+      "rationale": "Fixes the canonical EMD action and dimensionless black-hole observables."
+    },
+    {
+      "name": "ensemble",
+      "value": "Zero chemical potential with a neutral background and infinitesimal Maxwell linear response",
+      "rationale": "Phase 5A does not solve charged black-hole backgrounds."
+    },
+    {
+      "name": "primary radial variables",
+      "value": "x = z^(4-Delta_phi), u = x/x_H, phi = x_H u P(u), A = -log z + x_H^2 u^2 C(u)",
+      "rationale": "The factorization fixes the unit scalar source and includes both physical endpoints."
+    },
+    {
+      "name": "Phase 5 boundary",
+      "value": "Phase 5A targets both Figure 3 black-hole curves; Phase 5B later requires Figure 5 and the critical point, with Figure 4 diagnostic only",
+      "rationale": "Records the owner's 2026-08-22 custom amendment without opening finite-density work."
+    }
+  ],
+  "parameters": [
+    {"name":"scalar potential","symbol":"(gamma,b)","value":"(0.606, 2.057)","unit":"dimensionless","role":"fixed","description":"V(phi) = -12 cosh(gamma phi) + b phi^2."},
+    {"name":"gauge kinetic function","symbol":"f_EMD(phi)","value":"sech[(6/5)(phi-2)]/sech(12/5)","unit":"dimensionless","role":"fixed","description":"The source function entering the zero-density susceptibility integral."},
+    {"name":"spectral degrees","symbol":"N","value":"80, 120, 150","unit":"polynomial degree","role":"input","description":"Aligned physical-horizon resolutions for the primary and refinement routes."},
+    {"name":"physical horizon targets","symbol":"phi_0","value":"20 values uniformly spaced in log(phi_0) from 1.5 to 7.5","unit":"dimensionless","role":"input","description":"The same neutral black-hole family used for source Figure 3."},
+    {"name":"source scale dictionary","symbol":"(lambda_s,lambda_T,lambda_mu,lambda_rho)","value":"((121 MeV)^3,252 MeV,972 MeV,(77 MeV)^3)","unit":"mixed MeV powers","role":"fixed","description":"Displayed source calibration values; their recorded rounding mismatch is not refitted."}
+  ],
+  "equations": [
+    {"id":"potential","expression":"V(phi) = -12 cosh(0.606 phi) + 2.057 phi^2","description":"Frozen phenomenological DGR scalar potential.","source_ref":"Source Eqs. (3) and (31)."},
+    {"id":"gauge-coupling","expression":"f_EMD(phi) = sech[(6/5)(phi-2)]/sech(12/5)","description":"Frozen gauge kinetic function used in linear response.","source_ref":"Source Eq. (5)."},
+    {"id":"neutral-background","expression":"A''-A'^2+phi'^2/6=0; h''+3A'h'=0; h phi''+(3A'h+h')phi'-exp(2A)V_phi=0","description":"Neutral conformal-gauge background equations.","source_ref":"Source Eqs. (27)-(29), transformed to conformal gauge."},
+    {"id":"einstein-constraint","expression":"6A'h' + h(24A'^2-phi'^2) + 2exp(2A)V = 0","description":"Independent radial constraint.","source_ref":"Source Eq. (29), transformed to conformal gauge."},
+    {"id":"susceptibility","expression":"I = integral dz exp(-A)/f_EMD; chi_2/T^2 = 1/(2 I T^2)","description":"Zero-density Maxwell linear-response susceptibility in the source-normalized conformal gauge.","source_ref":"Source Eqs. (49)-(57)."}
+  ],
+  "observables": [
+    {"name":"temperature","symbol":"T","unit":"MeV in Figure 3","extraction":"Use the exact-horizon h derivative and multiply the dimensionless result by lambda_T."},
+    {"name":"normalized entropy density","symbol":"s/T^3","unit":"dimensionless","extraction":"Evaluate the horizon area and apply lambda_s/lambda_T^3."},
+    {"name":"normalized baryon susceptibility","symbol":"chi_2/T^2","unit":"dimensionless","extraction":"Evaluate the Maxwell integral and apply lambda_s/(lambda_T lambda_mu^2)."}
+  ],
+  "validation": {
+    "acceptance_criteria": [
+      "All fourteen owner-approved algebra, solver, equation, constraint, endpoint, target, refinement, Maxwell, independent-route, source-figure, determinism, and privacy gates pass.",
+      "The eleven Figure 3 entropy and susceptibility anchors agree within absolute errors 0.15 and 0.005, respectively.",
+      "The complete result and model card were approved by the owner on 2026-08-22 without widening the zero-density Figure 3 claim."
+    ],
+    "tests": [
+      {"id":"phase-5a-scientific-gates","kind":"convergence","command":"python3 -m unittest tests.test_dewolfe_gubser_rosen_emd -v","expected":"The spectral, DOP853, Maxwell, refinement, source-figure, and failure gates pass.","status":"pass"},
+      {"id":"figure-3-reproduction","kind":"regression","command":"holoforge verify dewolfe-gubser-rosen-emd --output-dir OUTPUT_DIR","expected":"The generated two-panel comparison and underlying numerical anchors satisfy the frozen Phase 5A contract.","status":"pass"}
+    ],
+    "last_verified": "2026-08-22"
+  },
+  "claims": [
+    {
+      "statement": "The displayed DGR action, source functions, zero-density susceptibility formula, scale dictionary, and Figure 3 curves are established in the cited public source.",
+      "support_level": "established-source",
+      "evidence": "DeWolfe, Gubser, and Rosen, arXiv:1012.1864v2, Eqs. (1)-(5), (27)-(29), (49)-(64), and Figure 3.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-22"
+    },
+    {
+      "statement": "The HoloForge Chebyshev background and independent DOP853/Maxwell routes reproduce both selected DGR Figure 3 black-hole curves within the frozen Phase 5A contract.",
+      "support_level": "reproduced",
+      "evidence": "Fourteen passing algebra, equation, constraint, endpoint, target, refinement, Maxwell, independent-route, Figure 3, determinism, and privacy gates in tests/test_dewolfe_gubser_rosen_emd.py.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-22"
+    }
+  ],
+  "limitations": [
+    "This is a phenomenological bottom-up model and no top-down embedding is claimed.",
+    "Phase 5A is restricted to zero chemical potential and does not calculate charged backgrounds, Figure 5, the critical point, or critical exponents.",
+    "Figure 4 is not a required future reproduction target; it may only diagnose charged-scan coverage or branch topology.",
+    "The source functions and scale constants were selected to approximate lattice curves, so reproducing the model is not empirical validation of QCD or the lattice analysis.",
+    "The Figure 3 reference records contain derived public vector-path anchors and exclude third-party lattice markers and raw source artwork.",
+    "The implementation and model card are AI-assisted; owner approval does not erase that provenance or broaden the reproduced claim."
+  ],
+  "provenance": {
+    "created_on": "2026-08-22",
+    "created_by": "HoloForge development",
+    "implementation_path": "src/holoforge/benchmarks/dewolfe_gubser_rosen_emd.py",
+    "ai_assistance": true,
+    "ai_roles": ["public-source transcription", "clean-room derivation", "spectral implementation drafting", "independent-route drafting", "test and documentation drafting"],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-22"
+  }
+}

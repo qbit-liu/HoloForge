@@ -185,6 +185,67 @@ class FastSuperconductorOpticalResult:
         }
 
 
+class FastDGRResult:
+    """Small DGR fixture; focused tests run the complete Figure 3 solve."""
+
+    passed = True
+
+    def to_dict(self):
+        return {
+            "benchmark": "dewolfe-gubser-rosen-emd",
+            "support_level": "reproduced",
+            "configuration": {
+                "bulk_dimension": 5,
+                "ensemble": (
+                    "zero chemical potential; neutral background with "
+                    "linear Maxwell response"
+                ),
+                "units": "L = 1 and kappa_5^2 = 1 before source rescalings",
+                "potential": {"id": "dewolfe-gubser-rosen"},
+                "gauge_coupling": "sech[(6/5)(phi-2)]/sech(12/5)",
+                "scale_dictionary": {"lambda_T_MeV": 252.0},
+                "degrees": [80, 120, 150],
+                "physical_phi_h_targets": [1.5, 7.5],
+                "independent_target_phi_h": [1.5, 3.0, 7.5],
+                "quadrature_orders": [128, 256, 512],
+            },
+            "numerical_method": {"route": "test interface fixture"},
+            "results": {
+                "summary": {
+                    "maximum_entropy_anchor_error": 0.08398744,
+                    "maximum_susceptibility_anchor_error": 0.002607142,
+                }
+            },
+            "acceptance_checks": [
+                {
+                    "id": "interface-fixture",
+                    "description": "Generic dispatch reaches the DGR adapter.",
+                    "passed": True,
+                    "value": 0.0,
+                }
+            ],
+            "software_versions": {"holoforge": "test", "python": "test"},
+            "passed": True,
+            "scope": (
+                "Interface fixture; not QCD validation and no finite-density "
+                "phase structure."
+            ),
+            "primary_source": {
+                "pdf_sha256": "0" * 64,
+                "source_archive_sha256": "1" * 64,
+                "figure_3_sha256": "2" * 64,
+            },
+            "contract_review": {
+                "phase_5b_amendment": (
+                    "Figure 5 is mandatory; Figure 4 is diagnostic only."
+                )
+            },
+            "result_review_state": "approved",
+            "result_reviewed_by": "Xin-Yi Liu",
+            "result_reviewed_on": "2026-08-22",
+        }
+
+
 class CommandLineTests(unittest.TestCase):
     def test_json_output_contains_evidence_and_passes(self) -> None:
         output = io.StringIO()
@@ -439,6 +500,34 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(payload["benchmark"], "gubser-nellore-ed")
         self.assertTrue(payload["passed"])
 
+    def test_dgr_json_uses_registered_adapter(self) -> None:
+        output = io.StringIO()
+        with patch(
+            "holoforge.benchmarks.adapters.dewolfe_gubser_rosen_emd."
+            "verify_dewolfe_gubser_rosen_emd",
+            return_value=FastDGRResult(),
+        ), redirect_stdout(output):
+            status = main(["verify", "dewolfe-gubser-rosen-emd", "--json"])
+        payload = json.loads(output.getvalue())
+        self.assertEqual(status, 0)
+        self.assertEqual(payload["benchmark"], "dewolfe-gubser-rosen-emd")
+        self.assertEqual(payload["support_level"], "reproduced")
+        self.assertEqual(payload["result_review_state"], "approved")
+
+    def test_dgr_human_output_states_approval_and_scope(self) -> None:
+        output = io.StringIO()
+        with patch(
+            "holoforge.benchmarks.adapters.dewolfe_gubser_rosen_emd."
+            "verify_dewolfe_gubser_rosen_emd",
+            return_value=FastDGRResult(),
+        ), redirect_stdout(output):
+            status = main(["verify", "dewolfe-gubser-rosen-emd"])
+        rendered = output.getvalue()
+        self.assertEqual(status, 0)
+        self.assertIn("owner-approved by Xin-Yi Liu", rendered)
+        self.assertIn("Support level: reproduced", rendered)
+        self.assertIn("not QCD validation", rendered)
+
     def test_vector_comparison_json_and_artifacts(self) -> None:
         output = io.StringIO()
         with tempfile.TemporaryDirectory() as directory:
@@ -533,6 +622,7 @@ class CommandLineTests(unittest.TestCase):
             ),
             ("linear-axion", ["verify", "linear-axion-dc"]),
             ("gubser-nellore", ["verify", "gubser-nellore-ed"]),
+            ("dgr", ["verify", "dewolfe-gubser-rosen-emd"]),
             ("comparison", ["compare", "vector-spectrum"]),
         )
         with tempfile.TemporaryDirectory() as directory:
@@ -540,32 +630,33 @@ class CommandLineTests(unittest.TestCase):
                 with self.subTest(command=label):
                     bundle = Path(directory) / label
                     output = io.StringIO()
-                    context = (
-                        patch(
+                    if label == "gubser-nellore":
+                        context = patch(
                             "holoforge.benchmarks.adapters.gubser_nellore_ed.verify_gubser_nellore_ed",
                             return_value=FastGubserNelloreResult(),
                         )
-                        if label == "gubser-nellore"
-                        else (
-                            patch(
-                                "holoforge.benchmarks.adapters.hard_wall_chiral.verify_hard_wall_chiral",
-                                return_value=FastHardWallChiralResult(),
-                            )
-                            if label == "hard-wall-chiral"
-                            else (
-                                patch(
-                                    "holoforge.benchmarks.adapters."
-                                    "holographic_superconductor_optical."
-                                    "verify_holographic_superconductor_optical",
-                                    return_value=(
-                                        FastSuperconductorOpticalResult()
-                                    ),
-                                )
-                                if label == "superconductor-optical"
-                                else nullcontext()
-                            )
+                    elif label == "dgr":
+                        context = patch(
+                            "holoforge.benchmarks.adapters."
+                            "dewolfe_gubser_rosen_emd."
+                            "verify_dewolfe_gubser_rosen_emd",
+                            return_value=FastDGRResult(),
                         )
-                    )
+                    elif label == "hard-wall-chiral":
+                        context = patch(
+                            "holoforge.benchmarks.adapters."
+                            "hard_wall_chiral.verify_hard_wall_chiral",
+                            return_value=FastHardWallChiralResult(),
+                        )
+                    elif label == "superconductor-optical":
+                        context = patch(
+                            "holoforge.benchmarks.adapters."
+                            "holographic_superconductor_optical."
+                            "verify_holographic_superconductor_optical",
+                            return_value=FastSuperconductorOpticalResult(),
+                        )
+                    else:
+                        context = nullcontext()
                     with context, redirect_stdout(output):
                         status = main(command + ["--bundle-dir", str(bundle)])
                     self.assertEqual(status, 0, output.getvalue())

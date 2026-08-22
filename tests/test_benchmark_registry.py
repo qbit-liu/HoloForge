@@ -95,6 +95,9 @@ class BenchmarkRegistryTests(unittest.TestCase):
 
     def test_builtin_adapter_glue_is_isolated_by_benchmark(self) -> None:
         expected_modules = {
+            "dewolfe-gubser-rosen-emd": (
+                "holoforge.benchmarks.adapters.dewolfe_gubser_rosen_emd"
+            ),
             "gubser-nellore-ed": (
                 "holoforge.benchmarks.adapters.gubser_nellore_ed"
             ),

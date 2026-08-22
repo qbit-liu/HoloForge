@@ -33,6 +33,20 @@ GUBSER_NELLORE_PATHS = (
     / "reference"
     / "gubser-nellore-figure-3-anchors.json",
 )
+DGR_FIGURE_3_PATHS = (
+    ROOT
+    / "src"
+    / "holoforge"
+    / "data"
+    / "reference"
+    / "dewolfe-gubser-rosen-figure-3-entropy.json",
+    ROOT
+    / "src"
+    / "holoforge"
+    / "data"
+    / "reference"
+    / "dewolfe-gubser-rosen-figure-3-susceptibility.json",
+)
 
 
 def load_json(path: Path) -> Dict[str, Any]:
@@ -79,6 +93,31 @@ class ReferenceDatasetTests(unittest.TestCase):
                 )
         self.assertEqual(len(datasets[0]["entries"]), 9)
         self.assertEqual(len(datasets[1]["entries"]), 12)
+        self.assertEqual(
+            datasets[0]["edition"]["artifacts"][0]["sha256"],
+            datasets[1]["edition"]["artifacts"][0]["sha256"],
+        )
+
+    def test_dgr_figure_3_vector_anchor_records_are_valid_and_approved(self) -> None:
+        datasets = [load_json(path) for path in DGR_FIGURE_3_PATHS]
+        for dataset in datasets:
+            with self.subTest(dataset=dataset["id"]):
+                self.validator.validate(dataset)
+                self.assertEqual(dataset["provenance"]["review_status"], "approved")
+                self.assertEqual(dataset["provenance"]["reviewed_by"], "Xin-Yi Liu")
+                self.assertEqual(dataset["provenance"]["reviewed_on"], "2026-08-22")
+                self.assertTrue(all(entry["included"] for entry in dataset["entries"]))
+                self.assertTrue(
+                    all(
+                        entry["assignment_status"] == "anchor"
+                        for entry in dataset["entries"]
+                    )
+                )
+                self.assertIn(
+                    "third-party lattice markers are excluded",
+                    dataset["conventions"][2]["value"],
+                )
+        self.assertEqual([len(item["entries"]) for item in datasets], [11, 11])
         self.assertEqual(
             datasets[0]["edition"]["artifacts"][0]["sha256"],
             datasets[1]["edition"]["artifacts"][0]["sha256"],

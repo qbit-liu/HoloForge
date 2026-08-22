@@ -1,0 +1,2258 @@
+{
+  "acceptance_checks": [
+    {
+      "criterion": "maximum absolute analytic error <= 1e-12",
+      "description": "source potential, gauge function, UV dimension, and scale dictionary",
+      "id": "source-algebra",
+      "passed": true,
+      "value": 2.7755575615628914e-16
+    },
+    {
+      "criterion": "library success and scaled residual <= 1.0e-08",
+      "description": "every reported and continuation solve succeeds within the collocation ceiling",
+      "id": "nonlinear-solver",
+      "passed": true,
+      "value": 9.313322059931289e-10
+    },
+    {
+      "criterion": "<= 1.0e-06",
+      "description": "maximum twice-oversampled uncross-multiplied neutral equation residual",
+      "id": "independent-equations",
+      "passed": true,
+      "value": 5.847085530428436e-10
+    },
+    {
+      "criterion": "<= 1.0e-06",
+      "description": "maximum independently evaluated Einstein-constraint residual",
+      "id": "einstein-constraint",
+      "passed": true,
+      "value": 1.5056117663110641e-12
+    },
+    {
+      "criterion": "<= 1.0e-08",
+      "description": "maximum UV, exact-endpoint, and retained horizon-scalar residual",
+      "id": "exact-endpoints-and-regularity",
+      "passed": true,
+      "value": 1.5324460388358982e-12
+    },
+    {
+      "criterion": "relative target error <= 1.0e-09; monotone branch",
+      "description": "twenty physical phi_H targets and one-to-one x_H branch",
+      "id": "physical-horizon-targets",
+      "passed": true,
+      "value": 2.635049068776685e-12
+    },
+    {
+      "criterion": "<= 2.0e-04; zero ordered-change failures above floor",
+      "description": "N=120 to N=150 T, s, I, and susceptibility refinement",
+      "id": "spectral-refinement",
+      "passed": true,
+      "value": 5.551312169753692e-11
+    },
+    {
+      "criterion": "<= 2.0e-05; zero failures above floor",
+      "description": "successive susceptibility-integral quadrature refinements",
+      "id": "quadrature-refinement",
+      "passed": true,
+      "value": 8.036524748364477e-13
+    },
+    {
+      "criterion": "response <= 1.0e-06; flux <= 1.0e-08",
+      "description": "integral versus explicit Maxwell response and normalized flux drift",
+      "id": "explicit-maxwell-response",
+      "passed": true,
+      "value": 1.6252963419560729e-09
+    },
+    {
+      "criterion": "<= 5.0e-04",
+      "description": "Chebyshev versus scalar-coordinate DOP853 T, s, I, and susceptibility",
+      "id": "dop853-background-comparison",
+      "passed": true,
+      "value": 1.1639574823899237e-06
+    },
+    {
+      "criterion": "<= 0.15",
+      "description": "maximum absolute s/T^3 error at the eleven source Figure 3 anchors",
+      "id": "figure-3-entropy",
+      "passed": true,
+      "value": 0.08398744084809096
+    },
+    {
+      "criterion": "<= 5.0e-03",
+      "description": "maximum absolute chi_2/T^2 error at the eleven source Figure 3 anchors",
+      "id": "figure-3-susceptibility",
+      "passed": true,
+      "value": 0.002607141563342963
+    },
+    {
+      "criterion": "maximum scaled difference <= 1.0e-12",
+      "description": "two complete runs agree in reported physical observables",
+      "id": "determinism",
+      "passed": true,
+      "value": 0.0
+    },
+    {
+      "criterion": "finite public-source Phase 5A record; external regression/privacy suite required",
+      "description": "strict finite record, public-source-only artifacts, and Phase 5A scope",
+      "id": "record-and-privacy-boundary",
+      "passed": true,
+      "value": 0.0
+    }
+  ],
+  "background": {
+    "coordinate": "u = x/x_H in [0,1], x = z^(4-Delta_phi)",
+    "description": "Phenomenological bottom-up DGR EMD model restricted to the neutral black-hole branch; the Maxwell sector is linear response only.",
+    "dimension": 5,
+    "id": "five-dimensional-dgr-zero-density-black-brane"
+  },
+  "benchmark": "dewolfe-gubser-rosen-emd",
+  "boundary_conditions": [
+    {
+      "expression": "h(0) = 1, h(1) = 0",
+      "field": "h",
+      "interpretation": "Both physical endpoints are Chebyshev nodes.",
+      "location": "u = 0 and u = 1",
+      "role": "normalized boundary and regular simple horizon"
+    },
+    {
+      "expression": "phi = x_H u P(u), P(0) = 1",
+      "field": "phi",
+      "interpretation": "The physical horizon value is phi_0 = x_H P(1).",
+      "location": "u = 0",
+      "role": "unit scalar deformation scale"
+    },
+    {
+      "expression": "A = -log(z) + x_H^2 u^2 C(u)",
+      "field": "A",
+      "interpretation": "The leading scalar backreaction power is explicit.",
+      "location": "u = 0",
+      "role": "asymptotically AdS boundary metric"
+    },
+    {
+      "expression": "retain the undivided scalar equation at u = 1",
+      "field": "phi",
+      "interpretation": "No fitted horizon boundary value is introduced.",
+      "location": "u = 1",
+      "role": "regular scalar horizon"
+    }
+  ],
+  "configuration": {
+    "bulk_dimension": 5,
+    "degrees": [
+      80,
+      120,
+      150
+    ],
+    "ensemble": "zero chemical potential; neutral background with linear Maxwell response",
+    "gauge_coupling": "sech[(6/5)(phi-2)]/sech(12/5)",
+    "independent_target_phi_h": [
+      1.5,
+      2.0,
+      3.0,
+      5.0,
+      7.5
+    ],
+    "physical_phi_h_targets": [
+      1.5,
+      1.632597601095581,
+      1.7769166180686968,
+      1.933993205337218,
+      2.1049551117124636,
+      2.2910297771970987,
+      2.493553145527018,
+      2.713979255727833,
+      2.9538906815496198,
+      3.215009893730999,
+      3.4992116266691924,
+      3.808536338283926,
+      4.145204859711789,
+      4.511634340010142,
+      4.910455600347333,
+      5.344532022275611,
+      5.816980105697118,
+      6.331191844121222,
+      6.890859077858809,
+      7.499999999999999
+    ],
+    "potential": {
+      "b": 2.057,
+      "delta": 3.925400737508948,
+      "digitization_uncertainty": 0.15,
+      "figure_tolerance": 0.15,
+      "gamma": 0.606,
+      "id": "dewolfe-gubser-rosen",
+      "ir_sound_speed_squared": 0.1497153333333333,
+      "mass_squared_L2": -0.29283199999999976,
+      "source_figure": 3,
+      "uv_power": 0.07459926249105209
+    },
+    "quadrature_orders": [
+      128,
+      256,
+      512
+    ],
+    "scale_dictionary": {
+      "lambda_T_MeV": 252.0,
+      "lambda_mu_MeV": 972.0,
+      "lambda_rho_MeV3": 456533.0,
+      "lambda_s_MeV3": 1771561.0,
+      "printed_value_relative_mismatch": 0.006046863189720333
+    },
+    "units": "L = 1 and kappa_5^2 = 1 before source rescalings"
+  },
+  "contract_review": {
+    "phase_5b_amendment": "Figure 5 is mandatory; Figure 4 is diagnostic only and not a required reproduction target.",
+    "review_state": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-22"
+  },
+  "equations": [
+    {
+      "dependent_fields": [
+        "A",
+        "phi"
+      ],
+      "expression": "A'' - A'^2 + phi'^2/6 = 0",
+      "id": "neutral-warp-equation",
+      "kind": "coupled nonlinear boundary-value equation",
+      "source_reference": "DeWolfe, Gubser, Rosen, arXiv:1012.1864v2, Eqs. (27)-(29)"
+    },
+    {
+      "dependent_fields": [
+        "h",
+        "A"
+      ],
+      "expression": "h'' + 3 A' h' = 0",
+      "id": "neutral-blackening-equation",
+      "kind": "coupled nonlinear boundary-value equation",
+      "source_reference": "DeWolfe, Gubser, Rosen, arXiv:1012.1864v2, Eqs. (27)-(29)"
+    },
+    {
+      "dependent_fields": [
+        "phi",
+        "A",
+        "h"
+      ],
+      "expression": "h phi'' + (3 A' h + h') phi' - exp(2A) V_phi = 0",
+      "id": "neutral-scalar-equation",
+      "kind": "coupled nonlinear boundary-value equation",
+      "source_reference": "DeWolfe, Gubser, Rosen, arXiv:1012.1864v2, Eqs. (27)-(29)"
+    },
+    {
+      "dependent_fields": [
+        "A",
+        "h",
+        "phi"
+      ],
+      "expression": "6 A' h' + h(24 A'^2 - phi'^2) + 2 exp(2A) V = 0",
+      "id": "einstein-constraint",
+      "kind": "independent radial constraint",
+      "source_reference": "DeWolfe, Gubser, Rosen, arXiv:1012.1864v2, Eq. (29)"
+    },
+    {
+      "dependent_fields": [
+        "Phi",
+        "A",
+        "phi"
+      ],
+      "expression": "d/dz[exp(A) f_EMD(phi) Phi'] = 0",
+      "id": "linear-maxwell-equation",
+      "kind": "linear response on a neutral background",
+      "source_reference": "DeWolfe, Gubser, Rosen, arXiv:1012.1864v2, Eqs. (53)-(57)"
+    }
+  ],
+  "generated_by_ai": true,
+  "numerical_method": {
+    "coordinate": "u = x/x_H, x = z^(4-Delta_phi)",
+    "independent_background": "scalar-coordinate DOP853 master equation",
+    "independent_response": "explicit logarithmic-flux Maxwell DOP853 solve",
+    "nonlinear_solver": "hybr then accepted bounded TRF polish when triggered",
+    "physical_targeting": "deterministic bracketed x_H to phi_H inversion",
+    "primary_route": "UV-factorized neutral Chebyshev--Gauss--Lobatto BVP",
+    "quadrature": "Gauss--Legendre on the analytic spectral representation",
+    "unknowns": [
+      "h(u)",
+      "C(u)",
+      "P(u)"
+    ]
+  },
+  "observables": [
+    {
+      "extraction": "absolute exact-horizon blackening derivative divided by 4 pi",
+      "id": "temperature",
+      "normalization": "lambda_T = 252 MeV for the Figure 3 plot",
+      "symbol": "T"
+    },
+    {
+      "extraction": "2 pi exp(3 A_H)/T^3 with the source scale dictionary",
+      "id": "entropy-ratio",
+      "normalization": "lambda_s = (121 MeV)^3",
+      "symbol": "s/T^3"
+    },
+    {
+      "extraction": "1/[2 I T^2], I = integral dz exp(-A)/f_EMD",
+      "id": "susceptibility-ratio",
+      "normalization": "lambda_mu = 972 MeV and the source scale dictionary",
+      "symbol": "chi_2/T^2"
+    }
+  ],
+  "passed": true,
+  "primary_source": {
+    "doi": "10.1103/PhysRevD.83.086005",
+    "figure_3_sha256": "bf1dfec799335ca3b8db124a188a4c7d17e1a3f73ddf31f2606f58fa7492f65b",
+    "id": "arXiv:1012.1864v2",
+    "lattice_points_included": false,
+    "pdf_sha256": "ed6f00b759dbf3347521b6321d2c69c8c2e629f45ff7ab3dd6a9e6a6afc7040c",
+    "raw_source_artwork_redistributed": false,
+    "source_archive_sha256": "3f921d2212cb5f7956c1da7cbb0904c02ff32e302d514ab2e80b4bfc64b6778e"
+  },
+  "reference_data": {
+    "kind": "derived public Figure 3 vector-path anchors",
+    "lattice_points_included": false,
+    "raw_source_artwork_redistributed": false,
+    "review_state": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-22"
+  },
+  "result_review_state": "approved",
+  "result_reviewed_by": "Xin-Yi Liu",
+  "result_reviewed_on": "2026-08-22",
+  "results": {
+    "constraint_diagnostics": [
+      {
+        "phi_h": 1.4999999999999976,
+        "scaled_infinity_norm": 1.398840116997493e-13
+      },
+      {
+        "phi_h": 1.6325976010956005,
+        "scaled_infinity_norm": 1.1734628531114765e-13
+      },
+      {
+        "phi_h": 1.776916618068712,
+        "scaled_infinity_norm": 1.3592171921714512e-13
+      },
+      {
+        "phi_h": 1.9339932053372118,
+        "scaled_infinity_norm": 1.3285710387725142e-13
+      },
+      {
+        "phi_h": 2.104955111712392,
+        "scaled_infinity_norm": 1.2957221460474644e-13
+      },
+      {
+        "phi_h": 2.2910297771970405,
+        "scaled_infinity_norm": 1.8546032404224015e-13
+      },
+      {
+        "phi_h": 2.4935531455267808,
+        "scaled_infinity_norm": 1.7375729747974164e-13
+      },
+      {
+        "phi_h": 2.7139792557278484,
+        "scaled_infinity_norm": 1.295496648821295e-13
+      },
+      {
+        "phi_h": 2.953890681549856,
+        "scaled_infinity_norm": 1.9991610727309978e-13
+      },
+      {
+        "phi_h": 3.215009893731326,
+        "scaled_infinity_norm": 8.375012545541014e-14
+      },
+      {
+        "phi_h": 3.4992116266690365,
+        "scaled_infinity_norm": 3.4351569230592457e-14
+      },
+      {
+        "phi_h": 3.8085363382836492,
+        "scaled_infinity_norm": 1.0736746391499947e-13
+      },
+      {
+        "phi_h": 4.145204859700867,
+        "scaled_infinity_norm": 1.3622628977070284e-12
+      },
+      {
+        "phi_h": 4.511634340011069,
+        "scaled_infinity_norm": 1.935281663961067e-13
+      },
+      {
+        "phi_h": 4.910455600347333,
+        "scaled_infinity_norm": 1.0589173822010113e-12
+      },
+      {
+        "phi_h": 5.344532022275608,
+        "scaled_infinity_norm": 1.5056117663110641e-12
+      },
+      {
+        "phi_h": 5.816980105696849,
+        "scaled_infinity_norm": 6.602001012372805e-14
+      },
+      {
+        "phi_h": 6.331191844121139,
+        "scaled_infinity_norm": 3.4481370450592703e-13
+      },
+      {
+        "phi_h": 6.890859077859104,
+        "scaled_infinity_norm": 4.014849500437983e-13
+      },
+      {
+        "phi_h": 7.500000000000699,
+        "scaled_infinity_norm": 1.3721193033326205e-13
+      }
+    ],
+    "curve": [
+      {
+        "chi_2_over_T2_BH": 40.19570943070878,
+        "chi_2_over_T2_plot": 0.2990905824026086,
+        "degree": 150,
+        "entropy_BH": 9190.100512026356,
+        "phi_h": 1.4999999999999976,
+        "s_over_T3_plot": 19.971364914526287,
+        "susceptibility_integral": 0.0009052022769608574,
+        "temperature_BH": 3.7069978509387105,
+        "temperature_MeV": 934.1634584365551,
+        "x_h": 0.8330807295185159
+      },
+      {
+        "chi_2_over_T2_BH": 42.862262049069535,
+        "chi_2_over_T2_plot": 0.3189320228679786,
+        "degree": 150,
+        "entropy_BH": 3579.4056832035035,
+        "phi_h": 1.6325976010956005,
+        "s_over_T3_plot": 19.548302913000054,
+        "susceptibility_integral": 0.0015691243043895098,
+        "temperature_BH": 2.726583385183817,
+        "temperature_MeV": 687.0990130663218,
+        "x_h": 0.8525567574379808
+      },
+      {
+        "chi_2_over_T2_BH": 45.179918374677385,
+        "chi_2_over_T2_plot": 0.336177375420596,
+        "degree": 150,
+        "entropy_BH": 1569.7961772490112,
+        "phi_h": 1.776916618068712,
+        "s_over_T3_plot": 19.00999539820612,
+        "susceptibility_integral": 0.0025313220352307375,
+        "temperature_BH": 2.090925607024716,
+        "temperature_MeV": 526.9132529702284,
+        "x_h": 0.8698419520255496
+      },
+      {
+        "chi_2_over_T2_BH": 46.82964054829258,
+        "chi_2_over_T2_plot": 0.3484527245237046,
+        "degree": 150,
+        "entropy_BH": 766.399796590582,
+        "phi_h": 1.9339932053372118,
+        "s_over_T3_plot": 18.329690529223043,
+        "susceptibility_integral": 0.0038442594342700423,
+        "temperature_BH": 1.666549607327974,
+        "temperature_MeV": 419.9705010466494,
+        "x_h": 0.8850177845014694
+      },
+      {
+        "chi_2_over_T2_BH": 47.44074749896968,
+        "chi_2_over_T2_plot": 0.35299988481461514,
+        "degree": 150,
+        "entropy_BH": 411.3658200950202,
+        "phi_h": 2.104955111712392,
+        "s_over_T3_plot": 17.47898047991672,
+        "susceptibility_integral": 0.005566395806867998,
+        "temperature_BH": 1.3760119272121139,
+        "temperature_MeV": 346.75500565745267,
+        "x_h": 0.8982165368650186
+      },
+      {
+        "chi_2_over_T2_BH": 46.65586966567768,
+        "chi_2_over_T2_plot": 0.3471597199910816,
+        "degree": 150,
+        "entropy_BH": 239.54106270313574,
+        "phi_h": 2.2910297771970405,
+        "s_over_T3_plot": 16.431192007245677,
+        "susceptibility_integral": 0.007789091195711867,
+        "temperature_BH": 1.1729742095766402,
+        "temperature_MeV": 295.58950081331335,
+        "x_h": 0.9096126523478185
+      },
+      {
+        "chi_2_over_T2_BH": 44.230528180475076,
+        "chi_2_over_T2_plot": 0.32911309741349215,
+        "degree": 150,
+        "entropy_BH": 149.22236748473836,
+        "phi_h": 2.4935531455267808,
+        "s_over_T3_plot": 15.167026537919666,
+        "susceptibility_integral": 0.010678802803351126,
+        "temperature_BH": 1.0288750978091947,
+        "temperature_MeV": 259.2765246479171,
+        "x_h": 0.9194143737761303
+      },
+      {
+        "chi_2_over_T2_BH": 40.13874853102569,
+        "chi_2_over_T2_plot": 0.29866674441338836,
+        "degree": 150,
+        "entropy_BH": 98.00778675042211,
+        "phi_h": 2.7139792557278484,
+        "s_over_T3_plot": 13.6824797024248,
+        "susceptibility_integral": 0.014540276705755847,
+        "temperature_BH": 0.9255859480022562,
+        "temperature_MeV": 233.24765889656857,
+        "x_h": 0.9278562285201428
+      },
+      {
+        "chi_2_over_T2_BH": 34.63661505411477,
+        "chi_2_over_T2_plot": 0.2577261482807837,
+        "degree": 150,
+        "entropy_BH": 66.85040919768014,
+        "phi_h": 2.953890681549856,
+        "s_over_T3_plot": 11.997947717335324,
+        "susceptibility_integral": 0.01992202584037384,
+        "temperature_BH": 0.8512370758151154,
+        "temperature_MeV": 214.5117431054091,
+        "x_h": 0.93519239596621
+      },
+      {
+        "chi_2_over_T2_BH": 28.242847229732607,
+        "chi_2_over_T2_plot": 0.21015102721871964,
+        "degree": 150,
+        "entropy_BH": 46.624139272173814,
+        "phi_h": 3.215009893731326,
+        "s_over_T3_plot": 10.165710935610926,
+        "susceptibility_integral": 0.027816969927094662,
+        "temperature_BH": 0.7977666063169786,
+        "temperature_MeV": 201.03718479187862,
+        "x_h": 0.9416904265810389
+      },
+      {
+        "chi_2_over_T2_BH": 21.631678259232242,
+        "chi_2_over_T2_plot": 0.160958255011088,
+        "degree": 150,
+        "entropy_BH": 32.725490228449,
+        "phi_h": 3.4992116266690365,
+        "s_over_T3_plot": 8.271389236875168,
+        "susceptibility_integral": 0.040077903516988554,
+        "temperature_BH": 0.7594293842089561,
+        "temperature_MeV": 191.37620482065694,
+        "x_h": 0.9476242890134138
+      },
+      {
+        "chi_2_over_T2_BH": 15.47425312231001,
+        "chi_2_over_T2_plot": 0.11514172642170668,
+        "degree": 150,
+        "entropy_BH": 22.75126164385063,
+        "phi_h": 3.8085363382836492,
+        "s_over_T3_plot": 6.425056362012734,
+        "susceptibility_integral": 0.060326058816121984,
+        "temperature_BH": 0.7318594370479724,
+        "temperature_MeV": 184.42857813608904,
+        "x_h": 0.9532655245177039
+      },
+      {
+        "chi_2_over_T2_BH": 10.28490717188071,
+        "chi_2_over_T2_plot": 0.0765285379848146,
+        "degree": 150,
+        "entropy_BH": 15.423964499159872,
+        "phi_h": 4.145204859700867,
+        "s_over_T3_plot": 4.741083899985276,
+        "susceptibility_integral": 0.0960404939267476,
+        "temperature_BH": 0.7114716862707712,
+        "temperature_MeV": 179.29086494023434,
+        "x_h": 0.9588717173983443
+      },
+      {
+        "chi_2_over_T2_BH": 6.324041032739414,
+        "chi_2_over_T2_plot": 0.04705629387834574,
+        "degree": 150,
+        "entropy_BH": 10.047933572701325,
+        "phi_h": 4.511634340011069,
+        "s_over_T3_plot": 3.31206678290525,
+        "susceptibility_integral": 0.1636391516604262,
+        "temperature_BH": 0.6950948213735842,
+        "temperature_MeV": 175.16389498614322,
+        "x_h": 0.9646728326259184
+      },
+      {
+        "chi_2_over_T2_BH": 3.587187352840266,
+        "chi_2_over_T2_plot": 0.026691753168277106,
+        "degree": 150,
+        "entropy_BH": 6.207322195577315,
+        "phi_h": 4.910455600347333,
+        "s_over_T3_plot": 2.187497050845801,
+        "susceptibility_integral": 0.3016303773452178,
+        "temperature_BH": 0.6797832097952028,
+        "temperature_MeV": 171.3053688683911,
+        "x_h": 0.9708580873187995
+      },
+      {
+        "chi_2_over_T2_BH": 1.8750045699124849,
+        "chi_2_over_T2_plot": 0.013951643515321062,
+        "degree": 150,
+        "entropy_BH": 3.5953369073558537,
+        "phi_h": 5.344532022275608,
+        "s_over_T3_plot": 1.367059354196711,
+        "susceptibility_integral": 0.6070575526083082,
+        "temperature_BH": 0.6627792504329458,
+        "temperature_MeV": 167.02037110910234,
+        "x_h": 0.9775679484358765
+      },
+      {
+        "chi_2_over_T2_BH": 0.9035539050444655,
+        "chi_2_over_T2_plot": 0.006723216669623916,
+        "degree": 150,
+        "entropy_BH": 1.933997226642173,
+        "phi_h": 5.816980105696849,
+        "s_over_T3_plot": 0.8106137468492587,
+        "susceptibility_integral": 1.344265407992226,
+        "temperature_BH": 0.6416016276663229,
+        "temperature_MeV": 161.68361017191336,
+        "x_h": 0.9848959741169824
+      },
+      {
+        "chi_2_over_T2_BH": 0.40199588696620053,
+        "chi_2_over_T2_plot": 0.002991194474709736,
+        "degree": 150,
+        "entropy_BH": 0.958437714689686,
+        "phi_h": 6.331191844121139,
+        "s_over_T3_plot": 0.45785356920961146,
+        "susceptibility_integral": 3.2967590603874286,
+        "temperature_BH": 0.6142293902509228,
+        "temperature_MeV": 154.78580634323257,
+        "x_h": 0.9929024474890036
+      },
+      {
+        "chi_2_over_T2_BH": 0.16534225137193143,
+        "chi_2_over_T2_plot": 0.0012302882809877421,
+        "degree": 150,
+        "entropy_BH": 0.43442601182406587,
+        "phi_h": 6.890859077859104,
+        "s_over_T3_plot": 0.24732740972565775,
+        "susceptibility_integral": 9.009916862224111,
+        "temperature_BH": 0.5793388953715775,
+        "temperature_MeV": 145.99340163363752,
+        "x_h": 1.0016369621070866
+      },
+      {
+        "chi_2_over_T2_BH": 0.06288554983655525,
+        "chi_2_over_T2_plot": 0.00046792247211724174,
+        "degree": 150,
+        "entropy_BH": 0.1788147288657276,
+        "phi_h": 7.500000000000699,
+        "s_over_T3_plot": 0.12816766674832422,
+        "susceptibility_integral": 27.620589446530282,
+        "temperature_BH": 0.5365288747274302,
+        "temperature_MeV": 135.2052764313124,
+        "x_h": 1.0111631467425997
+      }
+    ],
+    "degree_branches": {
+      "120": {
+        "continuation_solve_count": 172,
+        "degree": 120,
+        "maximum_collocation_residual": 9.02207498487799e-10,
+        "maximum_target_relative_error": 9.560569966564945e-13,
+        "points": [
+          {
+            "chi_2_over_T2_BH": 40.195709430708995,
+            "chi_2_over_T2_plot": 0.2990905824026102,
+            "degree": 120,
+            "entropy_BH": 9190.10051203192,
+            "phi_h": 1.4999999999999418,
+            "s_over_T3_plot": 19.971364914527527,
+            "susceptibility_integral": 0.0009052022769605247,
+            "temperature_BH": 3.706997850939382,
+            "temperature_MeV": 934.1634584367242,
+            "x_h": 0.8330807295185034
+          },
+          {
+            "chi_2_over_T2_BH": 42.86226204906873,
+            "chi_2_over_T2_plot": 0.3189320228679726,
+            "degree": 120,
+            "entropy_BH": 3579.4056832096016,
+            "phi_h": 1.6325976010956154,
+            "s_over_T3_plot": 19.548302912999496,
+            "susceptibility_integral": 0.0015691243043877271,
+            "temperature_BH": 2.7265833851853913,
+            "temperature_MeV": 687.0990130667186,
+            "x_h": 0.8525567574379446
+          },
+          {
+            "chi_2_over_T2_BH": 45.17991837467925,
+            "chi_2_over_T2_plot": 0.3361773754206099,
+            "degree": 120,
+            "entropy_BH": 1569.7961772507672,
+            "phi_h": 1.7769166180686744,
+            "s_over_T3_plot": 19.009995398207764,
+            "susceptibility_integral": 0.0025313220352288918,
+            "temperature_BH": 2.0909256070254356,
+            "temperature_MeV": 526.9132529704098,
+            "x_h": 0.8698419520255255
+          },
+          {
+            "chi_2_over_T2_BH": 46.829640548293554,
+            "chi_2_over_T2_plot": 0.3484527245237119,
+            "degree": 120,
+            "entropy_BH": 766.3997965917623,
+            "phi_h": 1.9339932053371895,
+            "s_over_T3_plot": 18.32969052922397,
+            "susceptibility_integral": 0.003844259434266146,
+            "temperature_BH": 1.6665496073288013,
+            "temperature_MeV": 419.9705010468579,
+            "x_h": 0.8850177845014355
+          },
+          {
+            "chi_2_over_T2_BH": 47.44074749896947,
+            "chi_2_over_T2_plot": 0.3529998848146136,
+            "degree": 120,
+            "entropy_BH": 411.3658200954405,
+            "phi_h": 2.104955111712454,
+            "s_over_T3_plot": 17.478980479916395,
+            "susceptibility_integral": 0.0055663958068641614,
+            "temperature_BH": 1.376011927212591,
+            "temperature_MeV": 346.75500565757295,
+            "x_h": 0.8982165368649955
+          },
+          {
+            "chi_2_over_T2_BH": 46.65586966561674,
+            "chi_2_over_T2_plot": 0.34715971999062817,
+            "degree": 120,
+            "entropy_BH": 239.54106270435284,
+            "phi_h": 2.291029777197121,
+            "s_over_T3_plot": 16.431192007213642,
+            "susceptibility_integral": 0.007789091195685533,
+            "temperature_BH": 1.1729742095793891,
+            "temperature_MeV": 295.58950081400604,
+            "x_h": 0.9096126523477027
+          },
+          {
+            "chi_2_over_T2_BH": 44.23052818041549,
+            "chi_2_over_T2_plot": 0.3291130974130487,
+            "degree": 120,
+            "entropy_BH": 149.2223674849515,
+            "phi_h": 2.493553145527001,
+            "s_over_T3_plot": 15.167026537889432,
+            "susceptibility_integral": 0.01067880280334115,
+            "temperature_BH": 1.0288750978103682,
+            "temperature_MeV": 259.2765246482128,
+            "x_h": 0.9194143737760964
+          },
+          {
+            "chi_2_over_T2_BH": 40.138748531027694,
+            "chi_2_over_T2_plot": 0.2986667444134033,
+            "degree": 120,
+            "entropy_BH": 98.00778675042753,
+            "phi_h": 2.713979255727833,
+            "s_over_T3_plot": 13.682479702425725,
+            "susceptibility_integral": 0.01454027670575524,
+            "temperature_BH": 0.9255859480022525,
+            "temperature_MeV": 233.24765889656763,
+            "x_h": 0.9278562285201416
+          },
+          {
+            "chi_2_over_T2_BH": 34.636615054078845,
+            "chi_2_over_T2_plot": 0.2577261482805164,
+            "degree": 120,
+            "entropy_BH": 66.85040919727366,
+            "phi_h": 2.9538906815496193,
+            "s_over_T3_plot": 11.99794771731604,
+            "susceptibility_integral": 0.019922025840453907,
+            "temperature_BH": 0.8512370758138462,
+            "temperature_MeV": 214.51174310508924,
+            "x_h": 0.9351923959663536
+          },
+          {
+            "chi_2_over_T2_BH": 28.242847229752964,
+            "chi_2_over_T2_plot": 0.2101510272188711,
+            "degree": 120,
+            "entropy_BH": 46.62413927220223,
+            "phi_h": 3.215009893731269,
+            "s_over_T3_plot": 10.165710935621915,
+            "susceptibility_integral": 0.027816969927083362,
+            "temperature_BH": 0.7977666063168531,
+            "temperature_MeV": 201.03718479184698,
+            "x_h": 0.9416904265810253
+          },
+          {
+            "chi_2_over_T2_BH": 21.63167825923297,
+            "chi_2_over_T2_plot": 0.1609582550110934,
+            "degree": 120,
+            "entropy_BH": 32.72549022839894,
+            "phi_h": 3.4992116266697257,
+            "s_over_T3_plot": 8.271389236880221,
+            "susceptibility_integral": 0.040077903517044405,
+            "temperature_BH": 0.7594293842084142,
+            "temperature_MeV": 191.37620482052037,
+            "x_h": 0.9476242890134443
+          },
+          {
+            "chi_2_over_T2_BH": 15.47425312230459,
+            "chi_2_over_T2_plot": 0.11514172642166635,
+            "degree": 120,
+            "entropy_BH": 22.751261643814278,
+            "phi_h": 3.808536338284543,
+            "s_over_T3_plot": 6.425056362014846,
+            "susceptibility_integral": 0.06032605881622059,
+            "temperature_BH": 0.7318594370475024,
+            "temperature_MeV": 184.4285781359706,
+            "x_h": 0.9532655245177329
+          },
+          {
+            "chi_2_over_T2_BH": 10.284907171803791,
+            "chi_2_over_T2_plot": 0.07652853798424226,
+            "degree": 120,
+            "entropy_BH": 15.42396449830364,
+            "phi_h": 4.145204859707826,
+            "s_over_T3_plot": 4.741083899968286,
+            "susceptibility_integral": 0.09604049393079077,
+            "temperature_BH": 0.7114716862584557,
+            "temperature_MeV": 179.29086493713083,
+            "x_h": 0.9588717173996009
+          },
+          {
+            "chi_2_over_T2_BH": 6.324041032739925,
+            "chi_2_over_T2_plot": 0.04705629387834954,
+            "degree": 120,
+            "entropy_BH": 10.047933572900222,
+            "phi_h": 4.511634340010139,
+            "s_over_T3_plot": 3.312066782901479,
+            "susceptibility_integral": 0.16363915165812928,
+            "temperature_BH": 0.6950948213784345,
+            "temperature_MeV": 175.1638949873655,
+            "x_h": 0.9646728326254507
+          },
+          {
+            "chi_2_over_T2_BH": 3.5871873528376006,
+            "chi_2_over_T2_plot": 0.02669175316825727,
+            "degree": 120,
+            "entropy_BH": 6.20732219568782,
+            "phi_h": 4.910455600347331,
+            "s_over_T3_plot": 2.187497050842838,
+            "susceptibility_integral": 0.30163037734158976,
+            "temperature_BH": 0.6797832097995437,
+            "temperature_MeV": 171.305368869485,
+            "x_h": 0.9708580873183638
+          },
+          {
+            "chi_2_over_T2_BH": 1.875004569912117,
+            "chi_2_over_T2_plot": 0.013951643515318322,
+            "degree": 120,
+            "entropy_BH": 3.5953369073731043,
+            "phi_h": 5.34453202227562,
+            "s_over_T3_plot": 1.3670593541962466,
+            "susceptibility_integral": 0.6070575526063481,
+            "temperature_BH": 0.6627792504340809,
+            "temperature_MeV": 167.0203711093884,
+            "x_h": 0.977567948435758
+          },
+          {
+            "chi_2_over_T2_BH": 0.9035539050443528,
+            "chi_2_over_T2_plot": 0.006723216669623077,
+            "degree": 120,
+            "entropy_BH": 1.9339972266409802,
+            "phi_h": 5.81698010569743,
+            "s_over_T3_plot": 0.8106137468496799,
+            "susceptibility_integral": 1.3442654079934122,
+            "temperature_BH": 0.6416016276660799,
+            "temperature_MeV": 161.68361017185214,
+            "x_h": 0.9848959741169886
+          },
+          {
+            "chi_2_over_T2_BH": 0.40199588696660665,
+            "chi_2_over_T2_plot": 0.002991194474712758,
+            "degree": 120,
+            "entropy_BH": 0.9584377146896662,
+            "phi_h": 6.331191844121002,
+            "s_over_T3_plot": 0.4578535692102209,
+            "susceptibility_integral": 3.2967590603870693,
+            "temperature_BH": 0.614229390250646,
+            "temperature_MeV": 154.7858063431628,
+            "x_h": 0.9929024474890076
+          },
+          {
+            "chi_2_over_T2_BH": 0.16534225137203765,
+            "chi_2_over_T2_plot": 0.0012302882809885325,
+            "degree": 120,
+            "entropy_BH": 0.43442601182360885,
+            "phi_h": 6.890859077859169,
+            "s_over_T3_plot": 0.24732740972592127,
+            "susceptibility_integral": 9.00991686223104,
+            "temperature_BH": 0.5793388953711686,
+            "temperature_MeV": 145.9934016335345,
+            "x_h": 1.001636962107112
+          },
+          {
+            "chi_2_over_T2_BH": 0.06288554983672394,
+            "chi_2_over_T2_plot": 0.00046792247211849687,
+            "degree": 120,
+            "entropy_BH": 0.178814728865992,
+            "phi_h": 7.499999999999447,
+            "s_over_T3_plot": 0.12816766674863492,
+            "susceptibility_integral": 27.62058944647361,
+            "temperature_BH": 0.5365288747272611,
+            "temperature_MeV": 135.2052764312698,
+            "x_h": 1.0111631467425906
+          }
+        ],
+        "target_count": 20
+      },
+      "150": {
+        "continuation_solve_count": 155,
+        "degree": 150,
+        "maximum_collocation_residual": 5.505705642366626e-10,
+        "maximum_target_relative_error": 2.635049068776685e-12,
+        "points": [
+          {
+            "chi_2_over_T2_BH": 40.19570943070878,
+            "chi_2_over_T2_plot": 0.2990905824026086,
+            "degree": 150,
+            "entropy_BH": 9190.100512026356,
+            "phi_h": 1.4999999999999976,
+            "s_over_T3_plot": 19.971364914526287,
+            "susceptibility_integral": 0.0009052022769608574,
+            "temperature_BH": 3.7069978509387105,
+            "temperature_MeV": 934.1634584365551,
+            "x_h": 0.8330807295185159
+          },
+          {
+            "chi_2_over_T2_BH": 42.862262049069535,
+            "chi_2_over_T2_plot": 0.3189320228679786,
+            "degree": 150,
+            "entropy_BH": 3579.4056832035035,
+            "phi_h": 1.6325976010956005,
+            "s_over_T3_plot": 19.548302913000054,
+            "susceptibility_integral": 0.0015691243043895098,
+            "temperature_BH": 2.726583385183817,
+            "temperature_MeV": 687.0990130663218,
+            "x_h": 0.8525567574379808
+          },
+          {
+            "chi_2_over_T2_BH": 45.179918374677385,
+            "chi_2_over_T2_plot": 0.336177375420596,
+            "degree": 150,
+            "entropy_BH": 1569.7961772490112,
+            "phi_h": 1.776916618068712,
+            "s_over_T3_plot": 19.00999539820612,
+            "susceptibility_integral": 0.0025313220352307375,
+            "temperature_BH": 2.090925607024716,
+            "temperature_MeV": 526.9132529702284,
+            "x_h": 0.8698419520255496
+          },
+          {
+            "chi_2_over_T2_BH": 46.82964054829258,
+            "chi_2_over_T2_plot": 0.3484527245237046,
+            "degree": 150,
+            "entropy_BH": 766.399796590582,
+            "phi_h": 1.9339932053372118,
+            "s_over_T3_plot": 18.329690529223043,
+            "susceptibility_integral": 0.0038442594342700423,
+            "temperature_BH": 1.666549607327974,
+            "temperature_MeV": 419.9705010466494,
+            "x_h": 0.8850177845014694
+          },
+          {
+            "chi_2_over_T2_BH": 47.44074749896968,
+            "chi_2_over_T2_plot": 0.35299988481461514,
+            "degree": 150,
+            "entropy_BH": 411.3658200950202,
+            "phi_h": 2.104955111712392,
+            "s_over_T3_plot": 17.47898047991672,
+            "susceptibility_integral": 0.005566395806867998,
+            "temperature_BH": 1.3760119272121139,
+            "temperature_MeV": 346.75500565745267,
+            "x_h": 0.8982165368650186
+          },
+          {
+            "chi_2_over_T2_BH": 46.65586966567768,
+            "chi_2_over_T2_plot": 0.3471597199910816,
+            "degree": 150,
+            "entropy_BH": 239.54106270313574,
+            "phi_h": 2.2910297771970405,
+            "s_over_T3_plot": 16.431192007245677,
+            "susceptibility_integral": 0.007789091195711867,
+            "temperature_BH": 1.1729742095766402,
+            "temperature_MeV": 295.58950081331335,
+            "x_h": 0.9096126523478185
+          },
+          {
+            "chi_2_over_T2_BH": 44.230528180475076,
+            "chi_2_over_T2_plot": 0.32911309741349215,
+            "degree": 150,
+            "entropy_BH": 149.22236748473836,
+            "phi_h": 2.4935531455267808,
+            "s_over_T3_plot": 15.167026537919666,
+            "susceptibility_integral": 0.010678802803351126,
+            "temperature_BH": 1.0288750978091947,
+            "temperature_MeV": 259.2765246479171,
+            "x_h": 0.9194143737761303
+          },
+          {
+            "chi_2_over_T2_BH": 40.13874853102569,
+            "chi_2_over_T2_plot": 0.29866674441338836,
+            "degree": 150,
+            "entropy_BH": 98.00778675042211,
+            "phi_h": 2.7139792557278484,
+            "s_over_T3_plot": 13.6824797024248,
+            "susceptibility_integral": 0.014540276705755847,
+            "temperature_BH": 0.9255859480022562,
+            "temperature_MeV": 233.24765889656857,
+            "x_h": 0.9278562285201428
+          },
+          {
+            "chi_2_over_T2_BH": 34.63661505411477,
+            "chi_2_over_T2_plot": 0.2577261482807837,
+            "degree": 150,
+            "entropy_BH": 66.85040919768014,
+            "phi_h": 2.953890681549856,
+            "s_over_T3_plot": 11.997947717335324,
+            "susceptibility_integral": 0.01992202584037384,
+            "temperature_BH": 0.8512370758151154,
+            "temperature_MeV": 214.5117431054091,
+            "x_h": 0.93519239596621
+          },
+          {
+            "chi_2_over_T2_BH": 28.242847229732607,
+            "chi_2_over_T2_plot": 0.21015102721871964,
+            "degree": 150,
+            "entropy_BH": 46.624139272173814,
+            "phi_h": 3.215009893731326,
+            "s_over_T3_plot": 10.165710935610926,
+            "susceptibility_integral": 0.027816969927094662,
+            "temperature_BH": 0.7977666063169786,
+            "temperature_MeV": 201.03718479187862,
+            "x_h": 0.9416904265810389
+          },
+          {
+            "chi_2_over_T2_BH": 21.631678259232242,
+            "chi_2_over_T2_plot": 0.160958255011088,
+            "degree": 150,
+            "entropy_BH": 32.725490228449,
+            "phi_h": 3.4992116266690365,
+            "s_over_T3_plot": 8.271389236875168,
+            "susceptibility_integral": 0.040077903516988554,
+            "temperature_BH": 0.7594293842089561,
+            "temperature_MeV": 191.37620482065694,
+            "x_h": 0.9476242890134138
+          },
+          {
+            "chi_2_over_T2_BH": 15.47425312231001,
+            "chi_2_over_T2_plot": 0.11514172642170668,
+            "degree": 150,
+            "entropy_BH": 22.75126164385063,
+            "phi_h": 3.8085363382836492,
+            "s_over_T3_plot": 6.425056362012734,
+            "susceptibility_integral": 0.060326058816121984,
+            "temperature_BH": 0.7318594370479724,
+            "temperature_MeV": 184.42857813608904,
+            "x_h": 0.9532655245177039
+          },
+          {
+            "chi_2_over_T2_BH": 10.28490717188071,
+            "chi_2_over_T2_plot": 0.0765285379848146,
+            "degree": 150,
+            "entropy_BH": 15.423964499159872,
+            "phi_h": 4.145204859700867,
+            "s_over_T3_plot": 4.741083899985276,
+            "susceptibility_integral": 0.0960404939267476,
+            "temperature_BH": 0.7114716862707712,
+            "temperature_MeV": 179.29086494023434,
+            "x_h": 0.9588717173983443
+          },
+          {
+            "chi_2_over_T2_BH": 6.324041032739414,
+            "chi_2_over_T2_plot": 0.04705629387834574,
+            "degree": 150,
+            "entropy_BH": 10.047933572701325,
+            "phi_h": 4.511634340011069,
+            "s_over_T3_plot": 3.31206678290525,
+            "susceptibility_integral": 0.1636391516604262,
+            "temperature_BH": 0.6950948213735842,
+            "temperature_MeV": 175.16389498614322,
+            "x_h": 0.9646728326259184
+          },
+          {
+            "chi_2_over_T2_BH": 3.587187352840266,
+            "chi_2_over_T2_plot": 0.026691753168277106,
+            "degree": 150,
+            "entropy_BH": 6.207322195577315,
+            "phi_h": 4.910455600347333,
+            "s_over_T3_plot": 2.187497050845801,
+            "susceptibility_integral": 0.3016303773452178,
+            "temperature_BH": 0.6797832097952028,
+            "temperature_MeV": 171.3053688683911,
+            "x_h": 0.9708580873187995
+          },
+          {
+            "chi_2_over_T2_BH": 1.8750045699124849,
+            "chi_2_over_T2_plot": 0.013951643515321062,
+            "degree": 150,
+            "entropy_BH": 3.5953369073558537,
+            "phi_h": 5.344532022275608,
+            "s_over_T3_plot": 1.367059354196711,
+            "susceptibility_integral": 0.6070575526083082,
+            "temperature_BH": 0.6627792504329458,
+            "temperature_MeV": 167.02037110910234,
+            "x_h": 0.9775679484358765
+          },
+          {
+            "chi_2_over_T2_BH": 0.9035539050444655,
+            "chi_2_over_T2_plot": 0.006723216669623916,
+            "degree": 150,
+            "entropy_BH": 1.933997226642173,
+            "phi_h": 5.816980105696849,
+            "s_over_T3_plot": 0.8106137468492587,
+            "susceptibility_integral": 1.344265407992226,
+            "temperature_BH": 0.6416016276663229,
+            "temperature_MeV": 161.68361017191336,
+            "x_h": 0.9848959741169824
+          },
+          {
+            "chi_2_over_T2_BH": 0.40199588696620053,
+            "chi_2_over_T2_plot": 0.002991194474709736,
+            "degree": 150,
+            "entropy_BH": 0.958437714689686,
+            "phi_h": 6.331191844121139,
+            "s_over_T3_plot": 0.45785356920961146,
+            "susceptibility_integral": 3.2967590603874286,
+            "temperature_BH": 0.6142293902509228,
+            "temperature_MeV": 154.78580634323257,
+            "x_h": 0.9929024474890036
+          },
+          {
+            "chi_2_over_T2_BH": 0.16534225137193143,
+            "chi_2_over_T2_plot": 0.0012302882809877421,
+            "degree": 150,
+            "entropy_BH": 0.43442601182406587,
+            "phi_h": 6.890859077859104,
+            "s_over_T3_plot": 0.24732740972565775,
+            "susceptibility_integral": 9.009916862224111,
+            "temperature_BH": 0.5793388953715775,
+            "temperature_MeV": 145.99340163363752,
+            "x_h": 1.0016369621070866
+          },
+          {
+            "chi_2_over_T2_BH": 0.06288554983655525,
+            "chi_2_over_T2_plot": 0.00046792247211724174,
+            "degree": 150,
+            "entropy_BH": 0.1788147288657276,
+            "phi_h": 7.500000000000699,
+            "s_over_T3_plot": 0.12816766674832422,
+            "susceptibility_integral": 27.620589446530282,
+            "temperature_BH": 0.5365288747274302,
+            "temperature_MeV": 135.2052764313124,
+            "x_h": 1.0111631467425997
+          }
+        ],
+        "target_count": 20
+      },
+      "80": {
+        "continuation_solve_count": 161,
+        "degree": 80,
+        "maximum_collocation_residual": 9.313322059931289e-10,
+        "maximum_target_relative_error": 7.523463333806527e-12,
+        "points": [
+          {
+            "chi_2_over_T2_BH": 40.19570943047171,
+            "chi_2_over_T2_plot": 0.2990905824008446,
+            "degree": 80,
+            "entropy_BH": 9190.100511820441,
+            "phi_h": 1.4999999999887148,
+            "s_over_T3_plot": 19.971364914550815,
+            "susceptibility_integral": 0.0009052022769804589,
+            "temperature_BH": 3.7069978509095063,
+            "temperature_MeV": 934.1634584291955,
+            "x_h": 0.8330807295190048
+          },
+          {
+            "chi_2_over_T2_BH": 42.86226204906942,
+            "chi_2_over_T2_plot": 0.3189320228679777,
+            "degree": 80,
+            "entropy_BH": 3579.405683204426,
+            "phi_h": 1.6325976010955936,
+            "s_over_T3_plot": 19.54830291300008,
+            "susceptibility_integral": 0.0015691243043892454,
+            "temperature_BH": 2.72658338518405,
+            "temperature_MeV": 687.0990130663806,
+            "x_h": 0.8525567574379753
+          },
+          {
+            "chi_2_over_T2_BH": 45.17991837467893,
+            "chi_2_over_T2_plot": 0.3361773754206075,
+            "degree": 80,
+            "entropy_BH": 1569.7961772505125,
+            "phi_h": 1.7769166180686953,
+            "s_over_T3_plot": 19.009995398207465,
+            "susceptibility_integral": 0.002531322035229157,
+            "temperature_BH": 2.0909256070253335,
+            "temperature_MeV": 526.9132529703841,
+            "x_h": 0.8698419520255289
+          },
+          {
+            "chi_2_over_T2_BH": 46.829640548293625,
+            "chi_2_over_T2_plot": 0.3484527245237124,
+            "degree": 80,
+            "entropy_BH": 766.3997965906768,
+            "phi_h": 1.9339932053372177,
+            "s_over_T3_plot": 18.329690529223683,
+            "susceptibility_integral": 0.0038442594342697296,
+            "temperature_BH": 1.6665496073280233,
+            "temperature_MeV": 419.97050104666187,
+            "x_h": 0.8850177845014666
+          },
+          {
+            "chi_2_over_T2_BH": 47.44074749897216,
+            "chi_2_over_T2_plot": 0.35299988481463357,
+            "degree": 80,
+            "entropy_BH": 411.3658200929613,
+            "phi_h": 2.1049551117124636,
+            "s_over_T3_plot": 17.478980479917375,
+            "susceptibility_integral": 0.005566395806886419,
+            "temperature_BH": 1.376011927209801,
+            "temperature_MeV": 346.75500565686986,
+            "x_h": 0.8982165368651304
+          },
+          {
+            "chi_2_over_T2_BH": 46.655869665618326,
+            "chi_2_over_T2_plot": 0.34715971999063994,
+            "degree": 80,
+            "entropy_BH": 239.54106270340898,
+            "phi_h": 2.2910297771971306,
+            "s_over_T3_plot": 16.43119200721432,
+            "susceptibility_integral": 0.007789091195705942,
+            "temperature_BH": 1.1729742095778324,
+            "temperature_MeV": 295.58950081361377,
+            "x_h": 0.9096126523477921
+          },
+          {
+            "chi_2_over_T2_BH": 44.23052818041473,
+            "chi_2_over_T2_plot": 0.3291130974130431,
+            "degree": 80,
+            "entropy_BH": 149.22236748500399,
+            "phi_h": 2.493553145527018,
+            "s_over_T3_plot": 15.167026537889043,
+            "susceptibility_integral": 0.010678802803338648,
+            "temperature_BH": 1.0288750978104977,
+            "temperature_MeV": 259.2765246482454,
+            "x_h": 0.9194143737760881
+          },
+          {
+            "chi_2_over_T2_BH": 40.138748531023346,
+            "chi_2_over_T2_plot": 0.29866674441337093,
+            "degree": 80,
+            "entropy_BH": 98.00778675142713,
+            "phi_h": 2.713979255727832,
+            "s_over_T3_plot": 13.682479702422842,
+            "susceptibility_integral": 0.01454027670565591,
+            "temperature_BH": 0.9255859480054642,
+            "temperature_MeV": 233.247658897377,
+            "x_h": 0.9278562285199051
+          },
+          {
+            "chi_2_over_T2_BH": 34.63661505407645,
+            "chi_2_over_T2_plot": 0.25772614828049856,
+            "degree": 80,
+            "entropy_BH": 66.85040919769794,
+            "phi_h": 2.9538906815495856,
+            "s_over_T3_plot": 11.997947717313956,
+            "susceptibility_integral": 0.01992202584036868,
+            "temperature_BH": 0.8512370758156964,
+            "temperature_MeV": 214.5117431055555,
+            "x_h": 0.9351923959662055
+          },
+          {
+            "chi_2_over_T2_BH": 28.242847229723907,
+            "chi_2_over_T2_plot": 0.2101510272186549,
+            "degree": 80,
+            "entropy_BH": 46.62413927210008,
+            "phi_h": 3.215009893731024,
+            "s_over_T3_plot": 10.16571093560495,
+            "susceptibility_integral": 0.02781696992712166,
+            "temperature_BH": 0.7977666063167144,
+            "temperature_MeV": 201.03718479181202,
+            "x_h": 0.9416904265810785
+          },
+          {
+            "chi_2_over_T2_BH": 21.63167825921756,
+            "chi_2_over_T2_plot": 0.1609582550109787,
+            "degree": 80,
+            "entropy_BH": 32.72549022851076,
+            "phi_h": 3.49921162666915,
+            "s_over_T3_plot": 8.271389236867465,
+            "susceptibility_integral": 0.04007790351694047,
+            "temperature_BH": 0.7594293842096695,
+            "temperature_MeV": 191.37620482083673,
+            "x_h": 0.947624289013368
+          },
+          {
+            "chi_2_over_T2_BH": 15.474253122295014,
+            "chi_2_over_T2_plot": 0.11514172642159509,
+            "degree": 80,
+            "entropy_BH": 22.75126164391428,
+            "phi_h": 3.8085363382839263,
+            "s_over_T3_plot": 6.425056362004823,
+            "susceptibility_integral": 0.06032605881601841,
+            "temperature_BH": 0.7318594370489553,
+            "temperature_MeV": 184.42857813633674,
+            "x_h": 0.9532655245176341
+          },
+          {
+            "chi_2_over_T2_BH": 10.284907171762882,
+            "chi_2_over_T2_plot": 0.07652853798393787,
+            "degree": 80,
+            "entropy_BH": 15.423964497661055,
+            "phi_h": 4.145204859711796,
+            "s_over_T3_plot": 4.7410838999615015,
+            "susceptibility_integral": 0.09604049393374858,
+            "temperature_BH": 0.7114716862489148,
+            "temperature_MeV": 179.29086493472653,
+            "x_h": 0.9588717174005583
+          },
+          {
+            "chi_2_over_T2_BH": 6.324041032742658,
+            "chi_2_over_T2_plot": 0.047056293878369876,
+            "degree": 80,
+            "entropy_BH": 10.047933572773442,
+            "phi_h": 4.511634340010141,
+            "s_over_T3_plot": 3.3120667829043144,
+            "susceptibility_integral": 0.16363915165952847,
+            "temperature_BH": 0.6950948213753126,
+            "temperature_MeV": 175.16389498657878,
+            "x_h": 0.9646728326257566
+          },
+          {
+            "chi_2_over_T2_BH": 3.5871873528381166,
+            "chi_2_over_T2_plot": 0.026691753168261112,
+            "degree": 80,
+            "entropy_BH": 6.207322195668532,
+            "phi_h": 4.910455600347325,
+            "s_over_T3_plot": 2.187497050843407,
+            "susceptibility_integral": 0.30163037734222353,
+            "temperature_BH": 0.6797832097987806,
+            "temperature_MeV": 171.30536886929272,
+            "x_h": 0.97085808731844
+          },
+          {
+            "chi_2_over_T2_BH": 1.8750045699130518,
+            "chi_2_over_T2_plot": 0.013951643515325279,
+            "degree": 80,
+            "entropy_BH": 3.595336907337471,
+            "phi_h": 5.344532022275605,
+            "s_over_T3_plot": 1.3670593541973648,
+            "susceptibility_integral": 0.6070575526103875,
+            "temperature_BH": 0.6627792504317106,
+            "temperature_MeV": 167.02037110879107,
+            "x_h": 0.9775679484360028
+          },
+          {
+            "chi_2_over_T2_BH": 0.9035539050416664,
+            "chi_2_over_T2_plot": 0.006723216669603088,
+            "degree": 80,
+            "entropy_BH": 1.9339972267170606,
+            "phi_h": 5.816980105697119,
+            "s_over_T3_plot": 0.8106137468457767,
+            "susceptibility_integral": 1.3442654079578396,
+            "temperature_BH": 0.6416016276755229,
+            "temperature_MeV": 161.68361017423177,
+            "x_h": 0.984895974116016
+          },
+          {
+            "chi_2_over_T2_BH": 0.40199588696527266,
+            "chi_2_over_T2_plot": 0.002991194474702832,
+            "degree": 80,
+            "entropy_BH": 0.9584377147179299,
+            "phi_h": 6.331191844121224,
+            "s_over_T3_plot": 0.4578535692081767,
+            "susceptibility_integral": 3.2967590603233834,
+            "temperature_BH": 0.6142293902575979,
+            "temperature_MeV": 154.78580634491468,
+            "x_h": 0.9929024474882646
+          },
+          {
+            "chi_2_over_T2_BH": 0.16534225137193356,
+            "chi_2_over_T2_plot": 0.001230288280987758,
+            "degree": 80,
+            "entropy_BH": 0.43442601182440743,
+            "phi_h": 6.890859077858744,
+            "s_over_T3_plot": 0.24732740972555303,
+            "susceptibility_integral": 9.009916862216729,
+            "temperature_BH": 0.579338895371811,
+            "temperature_MeV": 145.99340163369638,
+            "x_h": 1.001636962107074
+          },
+          {
+            "chi_2_over_T2_BH": 0.06288554983740992,
+            "chi_2_over_T2_plot": 0.0004679224721236012,
+            "degree": 80,
+            "entropy_BH": 0.1788147288198461,
+            "phi_h": 7.499999999999998,
+            "s_over_T3_plot": 0.1281676667499919,
+            "susceptibility_integral": 27.62058945111921,
+            "temperature_BH": 0.5365288746792144,
+            "temperature_MeV": 135.20527641916203,
+            "x_h": 1.0111631467491007
+          }
+        ],
+        "target_count": 20
+      }
+    },
+    "determinism": {
+      "maximum_scaled_difference": 0.0,
+      "repeat_enabled": true
+    },
+    "equation_diagnostics": [
+      {
+        "blackening_equation": 1.8032265581876412e-10,
+        "f_horizon": 3.976132773301323e-163,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 9.109274727179573e-13,
+        "maximum_boundary_residual": 2.886579864025407e-15,
+        "maximum_equation_residual": 1.8032265581876412e-10,
+        "scalar_equation": 3.260025056832105e-12,
+        "scalar_uv": 2.886579864025407e-15,
+        "warp_equation": 1.5021272362393165e-10,
+        "warp_uv": 5.724587470723463e-17
+      },
+      {
+        "blackening_equation": 5.847085530428436e-10,
+        "f_horizon": 2.5389959442521514e-173,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.094841957091353e-12,
+        "maximum_boundary_residual": 2.5389959442521514e-173,
+        "maximum_equation_residual": 5.847085530428436e-10,
+        "scalar_equation": 1.094841957091353e-12,
+        "scalar_uv": 0.0,
+        "warp_equation": 1.1192233933917605e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 4.031040556593476e-10,
+        "f_horizon": 4.878883005670275e-158,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 7.655469130718879e-13,
+        "maximum_boundary_residual": 4.878883005670275e-158,
+        "maximum_equation_residual": 4.031040556593476e-10,
+        "scalar_equation": 8.161786221033182e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 1.9229969792705812e-10,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 2.343879672639491e-10,
+        "f_horizon": 1.8578509038053684e-176,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.200962826673242e-13,
+        "maximum_boundary_residual": 1.8578509038053684e-176,
+        "maximum_equation_residual": 2.343879672639491e-10,
+        "scalar_equation": 7.3616624851355e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 6.07548360272202e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 1.1950856545158018e-10,
+        "f_horizon": 1.1161419002827411e-181,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.5324460388358982e-12,
+        "maximum_boundary_residual": 1.1161419002827411e-181,
+        "maximum_equation_residual": 1.1950856545158018e-10,
+        "scalar_equation": 1.5324460388358982e-12,
+        "scalar_uv": 0.0,
+        "warp_equation": 7.254050780747513e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 2.6075480992928725e-10,
+        "f_horizon": 4.863964044273529e-135,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.751179512437376e-13,
+        "maximum_boundary_residual": 4.863964044273529e-135,
+        "maximum_equation_residual": 2.6075480992928725e-10,
+        "scalar_equation": 8.831872535470273e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 4.912115700356254e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 1.408328098875121e-10,
+        "f_horizon": 1.5106900684786523e-140,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.262238112591525e-13,
+        "maximum_boundary_residual": 1.5106900684786523e-140,
+        "maximum_equation_residual": 1.408328098875121e-10,
+        "scalar_equation": 5.835349984025793e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 9.55951577757878e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 2.391899481097668e-10,
+        "f_horizon": 7.34141035539879e-165,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 2.645293259272375e-13,
+        "maximum_boundary_residual": 7.34141035539879e-165,
+        "maximum_equation_residual": 2.391899481097668e-10,
+        "scalar_equation": 2.645293259272375e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 7.497494947824503e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 1.502090426239343e-10,
+        "f_horizon": 6.145278488049104e-208,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 4.91882495709003e-14,
+        "maximum_boundary_residual": 6.145278488049104e-208,
+        "maximum_equation_residual": 1.502090426239343e-10,
+        "scalar_equation": 5.530483273571803e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 8.625398168315849e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 1.3040678876504177e-10,
+        "f_horizon": 1.8325143176558908e-150,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 3.410696803937944e-13,
+        "maximum_boundary_residual": 1.8325143176558908e-150,
+        "maximum_equation_residual": 2.1958360164884563e-10,
+        "scalar_equation": 3.6751304759612303e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 2.1958360164884563e-10,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 7.807662162976942e-11,
+        "f_horizon": 1.0515733529773737e-175,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.4210462204741527e-13,
+        "maximum_boundary_residual": 1.0515733529773737e-175,
+        "maximum_equation_residual": 7.807662162976942e-11,
+        "scalar_equation": 2.546927011823076e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 4.407886463442404e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 1.619701050023844e-10,
+        "f_horizon": 1.484624967053449e-151,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 6.256851026657007e-14,
+        "maximum_boundary_residual": 1.484624967053449e-151,
+        "maximum_equation_residual": 1.7755474113065195e-10,
+        "scalar_equation": 2.7677003381067507e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 1.7755474113065195e-10,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 1.1361422427217012e-10,
+        "f_horizon": 2.272696498902199e-168,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.4673755305412486e-12,
+        "maximum_boundary_residual": 2.272696498902199e-168,
+        "maximum_equation_residual": 1.1361422427217012e-10,
+        "scalar_equation": 1.8197454116833e-12,
+        "scalar_uv": 0.0,
+        "warp_equation": 2.7326699078779478e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 8.324358924336445e-11,
+        "f_horizon": 2.3283590714516265e-189,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.4474438400990124e-13,
+        "maximum_boundary_residual": 2.3283590714516265e-189,
+        "maximum_equation_residual": 2.569302799040747e-10,
+        "scalar_equation": 2.478147528460255e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 2.569302799040747e-10,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 1.5486489490795422e-10,
+        "f_horizon": 7.144936489883782e-144,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 8.411465418872224e-13,
+        "maximum_boundary_residual": 7.144936489883782e-144,
+        "maximum_equation_residual": 1.5486489490795422e-10,
+        "scalar_equation": 1.2509613638140563e-12,
+        "scalar_uv": 0.0,
+        "warp_equation": 4.581705875911934e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 2.945699076484319e-10,
+        "f_horizon": 1.5609195986157284e-156,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.3014006009150696e-12,
+        "maximum_boundary_residual": 1.5609195986157284e-156,
+        "maximum_equation_residual": 2.945699076484319e-10,
+        "scalar_equation": 1.8476319150456893e-12,
+        "scalar_uv": 0.0,
+        "warp_equation": 6.14016410510819e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 1.1040490324745176e-10,
+        "f_horizon": 1.9762974281705845e-260,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.5826053885410103e-13,
+        "maximum_boundary_residual": 1.9762974281705845e-260,
+        "maximum_equation_residual": 1.1040490324745176e-10,
+        "scalar_equation": 2.2817086428975845e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 6.176486275178958e-11,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 4.660342548221768e-10,
+        "f_horizon": 3.951098538750486e-268,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 2.153174337801234e-14,
+        "maximum_boundary_residual": 3.951098538750486e-268,
+        "maximum_equation_residual": 4.660342548221768e-10,
+        "scalar_equation": 2.866194474294488e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 2.4996207801201124e-10,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 2.2682925409706114e-10,
+        "f_horizon": 2.3240508406746917e-115,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.7271062173244774e-13,
+        "maximum_boundary_residual": 2.3240508406746917e-115,
+        "maximum_equation_residual": 4.0397159394024683e-10,
+        "scalar_equation": 3.4315100492859046e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 4.0397159394024683e-10,
+        "warp_uv": 0.0
+      },
+      {
+        "blackening_equation": 7.940245903280385e-11,
+        "f_horizon": 1.3053108311756862e-29,
+        "f_uv": 0.0,
+        "horizon_scalar_equation": 1.1256339065578766e-14,
+        "maximum_boundary_residual": 1.3053108311756862e-29,
+        "maximum_equation_residual": 1.144925707942781e-10,
+        "scalar_equation": 3.084231840651986e-13,
+        "scalar_uv": 0.0,
+        "warp_equation": 1.144925707942781e-10,
+        "warp_uv": 0.0
+      }
+    ],
+    "figure_3": {
+      "entropy": {
+        "anchors": [
+          {
+            "absolute_error": 0.0026017050912023887,
+            "computed_s_over_T3": 1.8968052949087977,
+            "source_s_over_T3": 1.899407,
+            "temperature_MeV": 170.0
+          },
+          {
+            "absolute_error": 0.019542785788380534,
+            "computed_s_over_T3": 4.981190785788381,
+            "source_s_over_T3": 4.961648,
+            "temperature_MeV": 180.0
+          },
+          {
+            "absolute_error": 0.062046005001306526,
+            "computed_s_over_T3": 7.945895005001306,
+            "source_s_over_T3": 7.883849,
+            "temperature_MeV": 190.0
+          },
+          {
+            "absolute_error": 0.08398744084809096,
+            "computed_s_over_T3": 9.99346344084809,
+            "source_s_over_T3": 9.909476,
+            "temperature_MeV": 200.0
+          },
+          {
+            "absolute_error": 0.057861001735801665,
+            "computed_s_over_T3": 13.030446001735802,
+            "source_s_over_T3": 12.972585,
+            "temperature_MeV": 225.0
+          },
+          {
+            "absolute_error": 0.07523450278292287,
+            "computed_s_over_T3": 14.717704502782922,
+            "source_s_over_T3": 14.64247,
+            "temperature_MeV": 250.0
+          },
+          {
+            "absolute_error": 0.03920957919540058,
+            "computed_s_over_T3": 16.5443575791954,
+            "source_s_over_T3": 16.505148,
+            "temperature_MeV": 300.0
+          },
+          {
+            "absolute_error": 0.05790192538674077,
+            "computed_s_over_T3": 18.145597925386742,
+            "source_s_over_T3": 18.087696,
+            "temperature_MeV": 400.0
+          },
+          {
+            "absolute_error": 0.01085785039876086,
+            "computed_s_over_T3": 19.10963485039876,
+            "source_s_over_T3": 19.098777,
+            "temperature_MeV": 550.0
+          },
+          {
+            "absolute_error": 0.035006073425165596,
+            "computed_s_over_T3": 19.453828073425164,
+            "source_s_over_T3": 19.418822,
+            "temperature_MeV": 650.0
+          },
+          {
+            "absolute_error": 0.00362352299837454,
+            "computed_s_over_T3": 19.578101522998374,
+            "source_s_over_T3": 19.574478,
+            "temperature_MeV": 700.0
+          }
+        ],
+        "maximum_anchor_error": 0.08398744084809096,
+        "observable": "s_over_T3",
+        "tolerance": 0.15
+      },
+      "lattice_points_included": false,
+      "raw_source_artwork_redistributed": false,
+      "source_figure": 3,
+      "source_figure_sha256": "bf1dfec799335ca3b8db124a188a4c7d17e1a3f73ddf31f2606f58fa7492f65b",
+      "susceptibility": {
+        "anchors": [
+          {
+            "absolute_error": 0.00017692967436484124,
+            "computed_chi_2_over_T2": 0.001824070325635159,
+            "source_chi_2_over_T2": 0.002001,
+            "temperature_MeV": 150.0
+          },
+          {
+            "absolute_error": 5.1695889586551164e-05,
+            "computed_chi_2_over_T2": 0.02197430411041345,
+            "source_chi_2_over_T2": 0.022026,
+            "temperature_MeV": 170.0
+          },
+          {
+            "absolute_error": 9.989944368248016e-05,
+            "computed_chi_2_over_T2": 0.08179289944368248,
+            "source_chi_2_over_T2": 0.081693,
+            "temperature_MeV": 180.0
+          },
+          {
+            "absolute_error": 0.0014954748266166884,
+            "computed_chi_2_over_T2": 0.1526964748266167,
+            "source_chi_2_over_T2": 0.151201,
+            "temperature_MeV": 190.0
+          },
+          {
+            "absolute_error": 0.0023451620059740663,
+            "computed_chi_2_over_T2": 0.20566616200597407,
+            "source_chi_2_over_T2": 0.203321,
+            "temperature_MeV": 200.0
+          },
+          {
+            "absolute_error": 0.0019957754616842793,
+            "computed_chi_2_over_T2": 0.2834047754616843,
+            "source_chi_2_over_T2": 0.281409,
+            "temperature_MeV": 225.0
+          },
+          {
+            "absolute_error": 0.002607141563342963,
+            "computed_chi_2_over_T2": 0.32082314156334296,
+            "source_chi_2_over_T2": 0.318216,
+            "temperature_MeV": 250.0
+          },
+          {
+            "absolute_error": 0.0010792746413628151,
+            "computed_chi_2_over_T2": 0.3479912746413628,
+            "source_chi_2_over_T2": 0.346912,
+            "temperature_MeV": 300.0
+          },
+          {
+            "absolute_error": 0.0010147561504771918,
+            "computed_chi_2_over_T2": 0.3529847561504772,
+            "source_chi_2_over_T2": 0.35197,
+            "temperature_MeV": 350.0
+          },
+          {
+            "absolute_error": 0.0007678652744074199,
+            "computed_chi_2_over_T2": 0.35011886527440744,
+            "source_chi_2_over_T2": 0.349351,
+            "temperature_MeV": 400.0
+          },
+          {
+            "absolute_error": 0.000723736936134034,
+            "computed_chi_2_over_T2": 0.345538736936134,
+            "source_chi_2_over_T2": 0.344815,
+            "temperature_MeV": 450.0
+          }
+        ],
+        "maximum_anchor_error": 0.002607141563342963,
+        "observable": "chi_2_over_T2",
+        "tolerance": 0.005
+      },
+      "temperature_range_MeV": [
+        135.2052764313124,
+        934.1634584365551
+      ]
+    },
+    "independent_comparisons": [
+      {
+        "actual_phi_h": 1.4999999999999976,
+        "dop853_function_evaluations": 45308,
+        "entropy_relative_error": 9.800465205998801e-11,
+        "integral_relative_error": 6.499339694915746e-11,
+        "maximum_relative_error": 9.800465205998801e-11,
+        "susceptibility_relative_error": 6.909970226733364e-13,
+        "target_phi_h": 1.5,
+        "temperature_relative_error": 3.2842254998110444e-11
+      },
+      {
+        "actual_phi_h": 1.9339932053372118,
+        "dop853_function_evaluations": 44462,
+        "entropy_relative_error": 2.3290677359360723e-12,
+        "integral_relative_error": 1.4479496112856551e-12,
+        "maximum_relative_error": 2.3290677359360723e-12,
+        "susceptibility_relative_error": 6.24214232842709e-13,
+        "target_phi_h": 2.0,
+        "temperature_relative_error": 1.0360440759188561e-12
+      },
+      {
+        "actual_phi_h": 2.953890681549856,
+        "dop853_function_evaluations": 42725,
+        "entropy_relative_error": 3.243711365446546e-12,
+        "integral_relative_error": 2.0011727343523556e-12,
+        "maximum_relative_error": 3.243711365446546e-12,
+        "susceptibility_relative_error": 5.805520946719069e-13,
+        "target_phi_h": 3.0,
+        "temperature_relative_error": 7.102926744959854e-13
+      },
+      {
+        "actual_phi_h": 4.910455600347333,
+        "dop853_function_evaluations": 40778,
+        "entropy_relative_error": 5.1931630685663444e-11,
+        "integral_relative_error": 3.566011429003186e-11,
+        "maximum_relative_error": 5.1931630685663444e-11,
+        "susceptibility_relative_error": 2.7477126347521005e-12,
+        "target_phi_h": 5.0,
+        "temperature_relative_error": 1.920400099134124e-11
+      },
+      {
+        "actual_phi_h": 7.500000000000699,
+        "dop853_function_evaluations": 39998,
+        "entropy_relative_error": 1.1639574823899237e-06,
+        "integral_relative_error": 7.763310134868268e-07,
+        "maximum_relative_error": 1.1639574823899237e-06,
+        "susceptibility_relative_error": 2.9820192883022344e-07,
+        "target_phi_h": 7.5,
+        "temperature_relative_error": 2.3906464215646533e-07
+      }
+    ],
+    "maxwell_comparisons": [
+      {
+        "function_evaluations": 1883,
+        "integral_maxwell": 0.0009052022770580759,
+        "integral_quadrature": 0.0009052022769608574,
+        "normalized_flux_drift": 1.2504222102194262e-09,
+        "phi_h": 1.4999999999999976,
+        "relative_error": 1.0739982446690709e-10
+      },
+      {
+        "function_evaluations": 1901,
+        "integral_maxwell": 0.003844259434411033,
+        "integral_quadrature": 0.0038442594342700423,
+        "normalized_flux_drift": 1.6252963419560729e-09,
+        "phi_h": 1.9339932053372118,
+        "relative_error": 3.6675599104916735e-11
+      },
+      {
+        "function_evaluations": 1991,
+        "integral_maxwell": 0.019922025840691585,
+        "integral_quadrature": 0.01992202584037384,
+        "normalized_flux_drift": 1.3816874311345373e-09,
+        "phi_h": 2.953890681549856,
+        "relative_error": 1.5949473823024085e-11
+      },
+      {
+        "function_evaluations": 2147,
+        "integral_maxwell": 0.3016303773485635,
+        "integral_quadrature": 0.3016303773452178,
+        "normalized_flux_drift": 1.056257081799572e-09,
+        "phi_h": 4.910455600347333,
+        "relative_error": 1.1092094321762695e-11
+      },
+      {
+        "function_evaluations": 2303,
+        "integral_maxwell": 27.620589446665903,
+        "integral_quadrature": 27.620589446530282,
+        "normalized_flux_drift": 4.748184068148475e-10,
+        "phi_h": 7.500000000000699,
+        "relative_error": 4.910151980514712e-12
+      }
+    ],
+    "quadrature_refinement": {
+      "coarse_to_middle_maximum": 4.4465854761693296e-13,
+      "maximum_final_change": 8.036524748364477e-13,
+      "ordering_failures": 0,
+      "ordering_floor": 1e-10,
+      "orders": [
+        128,
+        256,
+        512
+      ],
+      "records": [
+        {
+          "coarse_to_middle_change": 9.737672878929977e-14,
+          "integrals": [
+            0.0009052022769608316,
+            0.0009052022769607434,
+            0.0009052022769608574
+          ],
+          "middle_to_fine_change": 1.258830774385623e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 1.4999999999999976
+        },
+        {
+          "coarse_to_middle_change": 9.673440384764826e-14,
+          "integrals": [
+            0.0015691243043894645,
+            0.0015691243043893127,
+            0.0015691243043895098
+          ],
+          "middle_to_fine_change": 1.256165329964425e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 1.6325976010956005
+        },
+        {
+          "coarse_to_middle_change": 9.731307599756268e-14,
+          "integrals": [
+            0.002531322035230664,
+            0.0025313220352304175,
+            0.0025313220352307375
+          ],
+          "middle_to_fine_change": 1.2643846846161824e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 1.776916618068712
+        },
+        {
+          "coarse_to_middle_change": 9.927508047785436e-14,
+          "integrals": [
+            0.003844259434269924,
+            0.0038442594342695422,
+            0.0038442594342700423
+          ],
+          "middle_to_fine_change": 1.3007291794427564e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 1.9339932053372118
+        },
+        {
+          "coarse_to_middle_change": 1.0330936789956661e-13,
+          "integrals": [
+            0.0055663958068678104,
+            0.005566395806867235,
+            0.005566395806867998
+          ],
+          "middle_to_fine_change": 1.369667185274751e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 2.104955111712392
+        },
+        {
+          "coarse_to_middle_change": 1.0990833383307781e-13,
+          "integrals": [
+            0.007789091195711569,
+            0.007789091195710713,
+            0.007789091195711867
+          ],
+          "middle_to_fine_change": 1.4810342856938997e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 2.2910297771970405
+        },
+        {
+          "coarse_to_middle_change": 1.2020967105226979e-13,
+          "integrals": [
+            0.010678802803350644,
+            0.01067880280334936,
+            0.010678802803351126
+          ],
+          "middle_to_fine_change": 1.6536952044757448e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 2.4935531455267808
+        },
+        {
+          "coarse_to_middle_change": 1.3433710193264546e-13,
+          "integrals": [
+            0.014540276705755039,
+            0.014540276705753086,
+            0.014540276705755847
+          ],
+          "middle_to_fine_change": 1.8993309616053257e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 2.7139792557278484
+        },
+        {
+          "coarse_to_middle_change": 1.5290485255983004e-13,
+          "integrals": [
+            0.019922025840372448,
+            0.019922025840369402,
+            0.01992202584037384
+          ],
+          "middle_to_fine_change": 2.2273952895673003e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 2.953890681549856
+        },
+        {
+          "coarse_to_middle_change": 1.7735769131608493e-13,
+          "integrals": [
+            0.02781696992709222,
+            0.027816969927087286,
+            0.027816969927094662
+          ],
+          "middle_to_fine_change": 2.6516346817015713e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 3.215009893731326
+        },
+        {
+          "coarse_to_middle_change": 2.0533828987702606e-13,
+          "integrals": [
+            0.04007790351698415,
+            0.04007790351697592,
+            0.040077903516988554
+          ],
+          "middle_to_fine_change": 3.1527911118551715e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 3.4992116266690365
+        },
+        {
+          "coarse_to_middle_change": 2.355674312906735e-13,
+          "integrals": [
+            0.06032605881611375,
+            0.06032605881609954,
+            0.060326058816121984
+          ],
+          "middle_to_fine_change": 3.72099921984973e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 3.8085363382836492
+        },
+        {
+          "coarse_to_middle_change": 2.681907716025862e-13,
+          "integrals": [
+            0.09604049392673156,
+            0.0960404939267058,
+            0.0960404939267476
+          ],
+          "middle_to_fine_change": 4.3523200650153813e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 4.145204859700867
+        },
+        {
+          "coarse_to_middle_change": 3.024226832058567e-13,
+          "integrals": [
+            0.16363915166039358,
+            0.1636391516603441,
+            0.1636391516604262
+          ],
+          "middle_to_fine_change": 5.017197402819663e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 4.511634340011069
+        },
+        {
+          "coarse_to_middle_change": 3.3476331189983303e-13,
+          "integrals": [
+            0.30163037734514764,
+            0.30163037734504666,
+            0.3016303773452178
+          ],
+          "middle_to_fine_change": 5.67386086084082e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 4.910455600347333
+        },
+        {
+          "coarse_to_middle_change": 3.64674601541701e-13,
+          "integrals": [
+            0.607057552608147,
+            0.6070575526079256,
+            0.6070575526083082
+          ],
+          "middle_to_fine_change": 6.302250134966741e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 5.344532022275608
+        },
+        {
+          "coarse_to_middle_change": 3.9246563823286385e-13,
+          "integrals": [
+            1.3442654079918293,
+            1.3442654079913017,
+            1.344265407992226
+          ],
+          "middle_to_fine_change": 6.876407626106608e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 5.816980105696849
+        },
+        {
+          "coarse_to_middle_change": 4.15025432701075e-13,
+          "integrals": [
+            3.2967590603863703,
+            3.296759060385002,
+            3.2967590603874286
+          ],
+          "middle_to_fine_change": 7.360269277111152e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 6.331191844121139
+        },
+        {
+          "coarse_to_middle_change": 4.3315116397204044e-13,
+          "integrals": [
+            9.009916862221022,
+            9.00991686221712,
+            9.009916862224111
+          ],
+          "middle_to_fine_change": 7.760049983583827e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 6.890859077859104
+        },
+        {
+          "coarse_to_middle_change": 4.4465854761693296e-13,
+          "integrals": [
+            27.620589446520366,
+            27.620589446508085,
+            27.620589446530282
+          ],
+          "middle_to_fine_change": 8.036524748364477e-13,
+          "orders": [
+            128,
+            256,
+            512
+          ],
+          "phi_h": 7.500000000000699
+        }
+      ]
+    },
+    "refinement": {
+      "coarse_to_middle_maximum": 2.580653895529532e-10,
+      "degrees": [
+        80,
+        120,
+        150
+      ],
+      "maximum_final_change": 5.551312169753692e-11,
+      "ordering_failures": 0,
+      "ordering_floor": 1e-08
+    },
+    "summary": {
+      "branch_integrity": true,
+      "maximum_boundary_residual": 1.5324460388358982e-12,
+      "maximum_collocation_residual": 9.313322059931289e-10,
+      "maximum_constraint_residual": 1.5056117663110641e-12,
+      "maximum_entropy_anchor_error": 0.08398744084809096,
+      "maximum_equation_residual": 5.847085530428436e-10,
+      "maximum_final_quadrature_change": 8.036524748364477e-13,
+      "maximum_final_refinement_change": 5.551312169753692e-11,
+      "maximum_independent_relative_error": 1.1639574823899237e-06,
+      "maximum_maxwell_flux_drift": 1.6252963419560729e-09,
+      "maximum_maxwell_relative_error": 1.0739982446690709e-10,
+      "maximum_susceptibility_anchor_error": 0.002607141563342963,
+      "maximum_target_relative_error": 2.635049068776685e-12,
+      "phase_boundary_intact": true,
+      "quadrature_ordering_failures": 0,
+      "refinement_ordering_failures": 0,
+      "solver_success": true,
+      "source_algebra_error": 2.7755575615628914e-16,
+      "strict_finite_record": true
+    }
+  },
+  "scope": "AI-assisted, owner-approved numerical reproduction of the two DGR black-hole curves in source Figure 3 at zero chemical potential. Passing verifies the selected public source-model calculation; it does not validate QCD or lattice data and does not calculate Figure 5, a critical point, finite-density phase structure, or critical exponents.",
+  "software_versions": {
+    "holoforge": "0.5.5",
+    "numpy": "2.0.2",
+    "python": "3.9.6",
+    "scipy": "1.13.1"
+  },
+  "solvers": [
+    {
+      "description": "Deterministic continuation and bracketing target the twenty physical source horizon values.",
+      "library_function": "scipy.optimize.root and scipy.optimize.least_squares",
+      "method": "Chebyshev--Gauss--Lobatto, hybr, bounded TRF polish",
+      "problem_type": "neutral coupled Einstein--scalar BVP"
+    },
+    {
+      "description": "Reconstructs T, s, the Maxwell integral, and chi_2/T^2.",
+      "library_function": "scipy.integrate.solve_ivp",
+      "method": "DOP853 with analytic horizon master-field series",
+      "problem_type": "independent scalar-coordinate background IVP"
+    }
+  ],
+  "support_level": "reproduced"
+}

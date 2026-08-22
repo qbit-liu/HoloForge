@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.3",
+  "id": "dewolfe-gubser-rosen-figure-3-susceptibility",
+  "title": "Derived vector anchors for the DGR Figure 3 black-hole susceptibility curve",
+  "domain": "holographic QCD thermodynamics",
+  "observable": {"name":"normalized baryon susceptibility","symbol":"chi_2/T^2","unit":"dimensionless"},
+  "edition": {
+    "name":"DeWolfe--Gubser--Rosen arXiv source archive v2",
+    "citation":"O. DeWolfe, S. S. Gubser, and C. Rosen, Phys. Rev. D 83, 086005 (2011)",
+    "published_year":2011,
+    "doi":"10.1103/PhysRevD.83.086005",
+    "url":"https://arxiv.org/abs/1012.1864",
+    "accessed_on":"2026-08-21",
+    "license":"arXiv non-exclusive distribution license; derived numerical facts only",
+    "license_url":"https://info.arxiv.org/help/license/index.html",
+    "artifacts":[{"id":"arxiv-source-archive","url":"https://arxiv.org/src/1012.1864v2","sha256":"3f921d2212cb5f7956c1da7cbb0904c02ff32e302d514ab2e80b4bfc64b6778e"}]
+  },
+  "conventions": [
+    {"name":"abscissa","value":"temperature in MeV after the frozen source scale lambda_T = 252 MeV","rationale":"The source scale is not refitted by HoloForge."},
+    {"name":"anchor extraction","value":"PDF ticks define affine maps; ordinates are linearly interpolated between adjacent blue vector-path vertices in ZeroMuComparison.pdf","rationale":"The extracted Figure 3 file has SHA-256 bf1dfec799335ca3b8db124a188a4c7d17e1a3f73ddf31f2606f58fa7492f65b; raw artwork is not redistributed."},
+    {"name":"data boundary","value":"Only the DGR blue black-hole path is included; third-party lattice markers are excluded","rationale":"The benchmark reproduces the source model curve rather than reusing lattice data."}
+  ],
+  "entries": [
+    {"id":"t-150","label":"T = 150 MeV","value":0.002001,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 150 MeV","assignment_status":"anchor","model_mode":0,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-170","label":"T = 170 MeV","value":0.022026,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 170 MeV","assignment_status":"anchor","model_mode":1,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-180","label":"T = 180 MeV","value":0.081693,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 180 MeV","assignment_status":"anchor","model_mode":2,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-190","label":"T = 190 MeV","value":0.151201,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 190 MeV","assignment_status":"anchor","model_mode":3,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-200","label":"T = 200 MeV","value":0.203321,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 200 MeV","assignment_status":"anchor","model_mode":4,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-225","label":"T = 225 MeV","value":0.281409,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 225 MeV","assignment_status":"anchor","model_mode":5,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-250","label":"T = 250 MeV","value":0.318216,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 250 MeV","assignment_status":"anchor","model_mode":6,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-300","label":"T = 300 MeV","value":0.346912,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 300 MeV","assignment_status":"anchor","model_mode":7,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-350","label":"T = 350 MeV","value":0.351970,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 350 MeV","assignment_status":"anchor","model_mode":8,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-400","label":"T = 400 MeV","value":0.349351,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 400 MeV","assignment_status":"anchor","model_mode":9,"included":true,"notes":"DGR black-hole curve only."},
+    {"id":"t-450","label":"T = 450 MeV","value":0.344815,"unit":"dimensionless","uncertainty":{"kind":"symmetric","sigma":0.002,"unit":"dimensionless","source_text":"Conservative vector center-line and displayed line-width uncertainty."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 3 right blue path at T = 450 MeV","assignment_status":"anchor","model_mode":10,"included":true,"notes":"DGR black-hole curve only."}
+  ],
+  "transformations": [
+    {"id":"pdf-affine-anchor-extraction","expression":"T = 150 + 50 (x-531.110)/(595.268-531.110); chi_2/T^2 = 0.1 (278.893-y)/(278.893-219.415)","description":"Map public vector coordinates to the Figure 3 right-panel axes and interpolate the path center line.","uncertainty_propagation":"Assign a conservative absolute 0.002 ordinate uncertainty; the separate 0.005 acceptance ceiling also covers numerical interpolation."}
+  ],
+  "provenance": {
+    "created_on":"2026-08-21",
+    "created_by":"HoloForge development",
+    "ai_assistance":true,
+    "ai_roles":["public vector-path extraction","source transcription","schema drafting"],
+    "review_status":"approved",
+    "reviewed_by":"Xin-Yi Liu",
+    "reviewed_on":"2026-08-22"
+  }
+}

@@ -4,11 +4,50 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- An owner-approved DeWolfe--Gubser--Rosen bottom-up EMD benchmark reproducing
+  both zero-density black-hole curves in source Figure 3 with a UV-factorized
+  Chebyshev background, independent scalar-coordinate DOP853 reconstruction,
+  explicit Maxwell response, convergence, residual, determinism, and
+  source-anchor checks.
+- Approved model-card, derived public Figure 3 anchor records, strict JSON/CSV
+  evidence, HoloForge-generated reproduction plot, benchmark guide, frozen
+  scientific contract, CLI adapter, and focused tests for Phase 5A.
+
+### Changed
+
+- Protect the new `holoforge verify dewolfe-gubser-rosen-emd` command and
+  `holoforge.benchmarks.verify_dewolfe_gubser_rosen_emd` export in the Version
+  0.5 compatibility policy.
+- Extend installed-wheel and cross-platform portability CI with the DGR
+  verifier and focused scientific contract tests.
+
 ### Documentation
 
 - Record the completed Version 0.5.5 integration, post-merge CI, tag, and
-  release as the Phase 4 closure point. Phase 5 remains a separate,
-  not-yet-selected scientific contract.
+  release as the Phase 4 closure point.
+- Record the owner-selected DeWolfe--Gubser--Rosen bottom-up EMD sequence as
+  Phase 5: Figure 3 at zero chemical potential in Phase 5A, finite-density
+  Figure 5 and the critical point in Phase 5B, and selected critical exponents
+  in Phase 5C. Figure 4 is an optional charged-scan diagnostic rather than a
+  required reproduction target.
+- Add the owner-approved prospective Phase 5A Forge/Verify contract, bounded
+  implementation, Figure 3 preflight, and result-review packet. The numerical
+  gates pass, and Xin-Yi Liu approved the bounded result and model card as a
+  `reproduced` source-model calculation on 2026-08-22. This does not validate
+  QCD or open finite-density Phase 5B.
+
+### Scientific results
+
+- All fourteen Phase 5A gates pass. Maximum Figure 3 anchor errors are
+  `0.08398744` for `s/T^3` against `0.15` and `0.002607142` for `chi_2/T^2`
+  against `0.005`; the Chebyshev--DOP853 maximum relative difference is
+  `1.163957e-6` against `5e-4`, and duplicate-run observable difference is
+  exactly zero.
+- The result reproduces the selected public source-model curves only. It does
+  not empirically validate QCD or lattice data and does not calculate Figure
+  5, the critical point, finite-density phase structure, or critical exponents.
 
 ## [0.5.5] - 2026-08-21
 

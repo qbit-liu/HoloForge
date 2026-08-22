@@ -27,6 +27,7 @@ class Version05PolicyTests(unittest.TestCase):
             "holoforge verify holographic-superconductor",
             "holoforge verify holographic-superconductor-optical",
             "holoforge verify linear-axion-dc",
+            "holoforge verify dewolfe-gubser-rosen-emd",
             "holoforge verify gubser-nellore-ed",
             "holoforge verify gubser-rocha-emd",
             "holoforge compare vector-spectrum",
@@ -55,6 +56,8 @@ class Version05PolicyTests(unittest.TestCase):
         self.assertIn("python -m build --wheel", workflow)
         self.assertIn("--force-reinstall dist/*.whl", workflow)
         self.assertIn("holoforge verify linear-axion-dc", workflow)
+        self.assertIn("holoforge verify dewolfe-gubser-rosen-emd", workflow)
+        self.assertIn("tests.test_dewolfe_gubser_rosen_emd", workflow)
         self.assertIn("holoforge verify hard-wall-chiral", workflow)
         self.assertIn("tests.test_hard_wall_chiral", workflow)
         self.assertIn(
