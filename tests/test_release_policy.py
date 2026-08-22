@@ -56,8 +56,14 @@ class Version05PolicyTests(unittest.TestCase):
         self.assertIn("python -m build --wheel", workflow)
         self.assertIn("--force-reinstall dist/*.whl", workflow)
         self.assertIn("holoforge verify linear-axion-dc", workflow)
-        self.assertIn("holoforge verify dewolfe-gubser-rosen-emd", workflow)
-        self.assertIn("tests.test_dewolfe_gubser_rosen_emd", workflow)
+        self.assertIn("python -m unittest discover -s tests -v", workflow)
+        dgr_tests = (ROOT / "tests/test_dewolfe_gubser_rosen_emd.py").read_text()
+        self.assertIn("verify_dewolfe_gubser_rosen_emd()", dgr_tests)
+        self.assertEqual(
+            workflow.count("holoforge verify dewolfe-gubser-rosen-emd"),
+            2,
+        )
+        self.assertNotIn("tests.test_dewolfe_gubser_rosen_emd", workflow)
         self.assertIn("holoforge verify hard-wall-chiral", workflow)
         self.assertIn("tests.test_hard_wall_chiral", workflow)
         self.assertIn(
