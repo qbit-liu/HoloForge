@@ -117,8 +117,8 @@ mean that the model is empirically validated.
 | 2 | Gubser--Rocha EMD control | Exact charged background, thermodynamics, and low-temperature linear entropy | Coupled Chebyshev BVP against exact solution | complete |
 | 3 | Hard-wall chiral QCD | GMOR relation and source Table II | Chebyshev eigenvalue/BVP | complete |
 | 4 | HHH optical conductivity | Near-critical coefficient and protected Figure 1 condensate result | Chebyshev fluctuation BVP with Riccati DOP853 check | complete in Version 0.5.5 |
-| 5A | DeWolfe--Gubser--Rosen EMD at `mu = 0` | Both black-hole curves in source Figure 3 | One-parameter neutral Chebyshev background scan | owner-approved; integration and release in progress |
-| 5B | DeWolfe--Gubser--Rosen finite-density EMD | Source Figure 5 and the reported critical point; Figure 4 only as an optional diagnostic | Two-parameter spectral background scan | closed pending Phase 5A |
+| 5A | DeWolfe--Gubser--Rosen EMD at `mu = 0` | Both black-hole curves in source Figure 3 | One-parameter neutral Chebyshev background scan | complete in Version 0.5.6 |
+| 5B | DeWolfe--Gubser--Rosen finite-density EMD | Source Figure 5 and the reported critical point; Figure 4 only as an optional diagnostic | Two-parameter spectral background scan | closed pending a separate owner-reviewed Phase 5B contract |
 | 5C | DeWolfe--Gubser--Rosen critical scaling | Selected source critical exponents | Preregistered near-critical regressions | closed pending Phase 5B |
 
 The Gubser--Rocha Phase 2 benchmark is retained as a top-down-derived exact

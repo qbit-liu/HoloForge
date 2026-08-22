@@ -4,6 +4,13 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+### Documentation
+
+- Record the completed Phase 5A implementation and Version 0.5.6 integration,
+  pull-request and post-merge CI, annotated tag, tag CI, and GitHub release as
+  the Phase 5A closure point. Phase 5B and Phase 5C remain closed pending
+  separate owner-reviewed contracts.
+
 ## [0.5.6] - 2026-08-22
 
 ### Added
