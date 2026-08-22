@@ -4,26 +4,29 @@
 
 This document began as the prospective owner-review contract for **Phase 5A**
 of the classical benchmark sequence and now records its implementation,
-accepted result, and integration decisions. It is public-source
+accepted result, public integration, and release closure. It is public-source
 **Forge/Verify** work based
 on the phenomenological bottom-up Einstein--Maxwell--dilaton (EMD) model of
 DeWolfe, Gubser, and Rosen (DGR).
 
-- **Completed:** Phases 0--4 are released; Phase 4 closed in Version 0.5.5.
+- **Completed:** Phases 0--4 and Phase 5A are released; Phase 5A closed in
+  Version 0.5.6.
 - **Completed:** the owner approved Decisions C1--C6 on 2026-08-22 with the
   amended Phase 5B boundary recorded below; the bounded local implementation
   and all fourteen preflight gates are complete.
 - **Completed:** the owner selected Option A and approved R1--R3 on 2026-08-22,
   accepting the bounded numerical result, model card, review artifacts, and
   scoped Git integration.
-- **Current:** integration and release validation. Phase 5B remains closed.
-- **Proposed next:** close Phase 5A after green remote CI and release, then
-  return before freezing any Phase 5B contract.
+- **Current:** Phase 5A is closed in Version 0.5.6. Phase 5B and Phase 5C
+  remain closed.
+- **Proposed next:** return to a separate owner gate before freezing any Phase
+  5B contract. Figure 5 and the reported model critical point remain mandatory;
+  Figure 4 remains optional diagnostic evidence only.
 
 The passing DGR numerical result and model card are owner-approved as
-`reproduced` on 2026-08-22. This opens only the scoped Phase 5A Git integration
-and release workflow. It does not authorize private-research transfer, Phase
-5B, Phase 5C, or any empirical-QCD claim.
+`reproduced` on 2026-08-22 and were released in Version 0.5.6. That completed
+delivery does not authorize private-research transfer, Phase 5B, Phase 5C, or
+any empirical-QCD claim.
 
 ## Recommendation
 
@@ -722,3 +725,35 @@ merge, and release workflow for Phase 5A. It does not open finite-density Phase
 5B or critical-scaling Phase 5C. Figure 5 and the reported model critical point
 remain mandatory targets of a future separately reviewed Phase 5B contract;
 Figure 4 remains optional diagnostic evidence only.
+
+## Version 0.5.6 release closure
+
+The owner-approved scientific implementation was committed as `764cf33` and
+delivered through pull request 28. Its seven-job pull-request CI run
+`32557972692` passed, the pull request was merged as `881f744`, and the exact
+post-merge `main` run `32558758631` passed the same seven-job matrix.
+
+Release preparation was committed separately as `567fff7` and delivered
+through pull request 29. Pull-request CI run `32559594012` passed all seven
+jobs, the release pull request was merged as
+`4a69f5b02c4657746fd51eb6819e51dd8b465e99`, and post-merge `main` run
+`32560309807` passed all seven jobs. Annotated tag `v0.5.6` points exactly to
+that merge commit. Tag CI run `32561039255` passed all seven jobs, and the
+public non-prerelease GitHub release is available at
+`https://github.com/qbit-liu/HoloForge/releases/tag/v0.5.6` with no attached
+assets.
+
+The final local repository suite passed `252/252`. The independently installed
+Python 3.11 wheel reproduced the source-checkout Figure 3 curves to a maximum
+relative difference of `9.4548e-11`; Python 3.9, 3.11, and 3.14, package,
+Ubuntu, macOS, Windows, relocated evidence-bundle, and public-safety checks all
+passed. No private path, unpublished artifact, secret, source artwork, or
+third-party lattice point was published.
+
+This closure changes no equation, boundary condition, source target, solver,
+tolerance, generated result, support label, or scientific boundary. It closes
+only the Phase 5A delivery and release record. Phase 5B and Phase 5C remain
+closed pending separate owner-reviewed contracts; Figure 5 and the reported
+model critical point remain mandatory Phase 5B targets, while Figure 4 remains
+optional diagnostic evidence only. Branch deletion was neither authorized nor
+performed.
