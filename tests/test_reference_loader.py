@@ -49,6 +49,20 @@ class ReferenceLoaderTests(unittest.TestCase):
         self.assertEqual(figure_2["provenance"]["reviewed_by"], "Xin-Yi Liu")
         self.assertEqual(figure_2["provenance"]["reviewed_on"], "2026-08-17")
 
+    def test_dgr_figure_3_anchors_load_from_package_resources(self) -> None:
+        entropy = load_reference_dataset(
+            "data/reference/dewolfe-gubser-rosen-figure-3-entropy.json"
+        )
+        susceptibility = load_reference_dataset(
+            "data/reference/dewolfe-gubser-rosen-figure-3-susceptibility.json"
+        )
+        self.assertEqual(len(entropy["entries"]), 11)
+        self.assertEqual(len(susceptibility["entries"]), 11)
+        for dataset in (entropy, susceptibility):
+            self.assertEqual(dataset["provenance"]["review_status"], "approved")
+            self.assertEqual(dataset["provenance"]["reviewed_by"], "Xin-Yi Liu")
+            self.assertEqual(dataset["provenance"]["reviewed_on"], "2026-08-22")
+
 
 if __name__ == "__main__":
     unittest.main()

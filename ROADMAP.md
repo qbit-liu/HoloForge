@@ -104,6 +104,32 @@
   [compatibility policy](docs/version-0.5-compatibility-policy.md), and
   [public benchmark shortlist](docs/version-0.5-benchmark-shortlist.md).
 
+## Classical benchmark sequence
+
+This sequence records the owner-selected Forge/Verify progression. A completed
+phase means that its bounded benchmark and release gate are closed; it does not
+mean that the model is empirically validated.
+
+| Phase | Benchmark | Central literature target | Primary method | State |
+| ---: | --- | --- | --- | --- |
+| 0 | Spectral numerical foundation | Soft-wall analytic spectrum and hard-wall Bessel spectrum | Chebyshev pseudospectral | complete |
+| 1 | Gubser--Nellore ED | Source Figures 2 and 3 | Coupled Chebyshev BVP with DOP853 check | complete |
+| 2 | Gubser--Rocha EMD control | Exact charged background, thermodynamics, and low-temperature linear entropy | Coupled Chebyshev BVP against exact solution | complete |
+| 3 | Hard-wall chiral QCD | GMOR relation and source Table II | Chebyshev eigenvalue/BVP | complete |
+| 4 | HHH optical conductivity | Near-critical coefficient and protected Figure 1 condensate result | Chebyshev fluctuation BVP with Riccati DOP853 check | complete in Version 0.5.5 |
+| 5A | DeWolfe--Gubser--Rosen EMD at `mu = 0` | Both black-hole curves in source Figure 3 | One-parameter neutral Chebyshev background scan | owner-approved; integration and release in progress |
+| 5B | DeWolfe--Gubser--Rosen finite-density EMD | Source Figure 5 and the reported critical point; Figure 4 only as an optional diagnostic | Two-parameter spectral background scan | closed pending Phase 5A |
+| 5C | DeWolfe--Gubser--Rosen critical scaling | Selected source critical exponents | Preregistered near-critical regressions | closed pending Phase 5B |
+
+The Gubser--Rocha Phase 2 benchmark is retained as a top-down-derived exact
+control for the numerical infrastructure, not as a representative bottom-up
+model. DeWolfe--Gubser--Rosen is the selected phenomenological bottom-up EMD
+sequence. Phase 5A is deliberately limited to the zero-density calibration;
+finite-density branch structure, Figure 5, the critical point, and critical
+exponents require their own later owner gates. Reproducing the full Figure 4
+panel is not a Phase 5B requirement; its grid may be used only when needed to
+diagnose charged-scan coverage or branch topology.
+
 ## Explore-mode milestone
 
 - Publicly demonstrate the screening gates with synthetic or already-published

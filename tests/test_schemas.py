@@ -72,6 +72,16 @@ class CardSchemaTests(unittest.TestCase):
         )
         self.model_validator.validate(card)
 
+    def test_dewolfe_gubser_rosen_emd_model_card_is_valid(self) -> None:
+        card = load_json("domains/qcd/dewolfe_gubser_rosen_emd/model-card.json")
+        self.model_validator.validate(card)
+        self.assertEqual(card["maturity"], "reproduced")
+        self.assertEqual(card["provenance"]["review_status"], "approved")
+        self.assertEqual(
+            {claim["support_level"] for claim in card["claims"]},
+            {"established-source", "reproduced"},
+        )
+
     def test_incubator_hypothesis_example_is_valid(self) -> None:
         card = load_json("incubator/examples/hypothesis-card.example.json")
         self.hypothesis_validator.validate(card)
