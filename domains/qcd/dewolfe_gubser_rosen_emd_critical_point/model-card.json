@@ -1,0 +1,258 @@
+{
+  "schema_version": "0.1",
+  "id": "qcd.dewolfe-gubser-rosen-emd-critical-point",
+  "title": "DeWolfe--Gubser--Rosen finite-density EMD classical benchmark",
+  "mode": "forge-verify",
+  "domain": "holographic QCD thermodynamics",
+  "maturity": "reproduced",
+  "summary": "An owner-approved reduced Phase 5B contract for representative neutral and charged DeWolfe--Gubser--Rosen EMD backgrounds, a direct reproduction of the reported critical-coordinate neighborhood, N=80/120/150 spectral refinement at the located state, and an independent simultaneous-Maxwell formulation. The absolute density ordinate and global topology of source Figure 5 are explicitly outside this classical-example benchmark and remain available only as a separately reviewed extension.",
+  "source": {
+    "title": "A holographic critical point",
+    "authors": ["Oliver DeWolfe", "Steven S. Gubser", "Christopher Rosen"],
+    "locator": "arXiv:1012.1864",
+    "version": "v2",
+    "url": "https://arxiv.org/abs/1012.1864",
+    "doi": "10.1103/PhysRevD.83.086005",
+    "equation_refs": [
+      "Eqs. (1)-(5)",
+      "Eqs. (27)-(29)",
+      "Eqs. (38)-(45)",
+      "reported critical coordinates",
+      "Figure 5 provenance only"
+    ]
+  },
+  "conventions": [
+    {
+      "name": "bulk theory and units",
+      "value": "Five bulk dimensions, mostly-plus signature, L = 1 and kappa_5^2 = 1 before source rescalings",
+      "rationale": "Fixes the EMD action and the dimensionless black-hole thermodynamics."
+    },
+    {
+      "name": "ensemble",
+      "value": "Grand canonical at each selected boundary chemical potential",
+      "rationale": "The boundary value of the regular electric potential is the chemical potential."
+    },
+    {
+      "name": "canonical density",
+      "value": "rho_canonical_BH = q/2 with q = -f_EMD exp(A) Phi' > 0 in the inward conformal coordinate",
+      "rationale": "This follows from the source Gauss law and UV holographic dictionary."
+    },
+    {
+      "name": "Figure 5 axes",
+      "value": "mu_BH is the horizontal abscissa and rho_source_figure5 is the digitized vertical ordinate",
+      "rationale": "No verified public map identifies the artwork ordinate with rho_canonical_BH, so absolute ordinate agreement cannot enter acceptance."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "scalar potential",
+      "symbol": "(gamma,b)",
+      "value": "(0.606, 2.057)",
+      "unit": "dimensionless",
+      "role": "fixed",
+      "description": "V(phi) = -12 cosh(gamma phi) + b phi^2."
+    },
+    {
+      "name": "gauge kinetic function",
+      "symbol": "f_EMD(phi)",
+      "value": "sech[(6/5)(phi-2)]/sech(12/5)",
+      "unit": "dimensionless",
+      "role": "fixed",
+      "description": "The source Maxwell coupling normalized by f_EMD(0) = 1."
+    },
+    {
+      "name": "critical initial coordinate",
+      "symbol": "(phi_H,eta)",
+      "value": "(4.800667, 0.401127)",
+      "unit": "dimensionless",
+      "role": "input",
+      "description": "Frozen initial coordinate for the direct local critical locator."
+    },
+    {
+      "name": "critical derivative steps",
+      "symbol": "Delta phi_H",
+      "value": "(0.25, 0.125, 0.0625), with 0.03125 validation",
+      "unit": "dimensionless",
+      "role": "input",
+      "description": "Five-point constant-temperature derivative steps and an unused-in-fit validation step."
+    },
+    {
+      "name": "spectral degrees",
+      "symbol": "N",
+      "value": "(80, 120, 150)",
+      "unit": "polynomial degree",
+      "role": "input",
+      "description": "Fixed located-state Chebyshev refinement sequence."
+    },
+    {
+      "name": "selected controls",
+      "symbol": "(phi_H,eta,N)",
+      "value": "(4.84,0,80), (4.84,0.40,80), (7.0,0.50,80)",
+      "unit": "dimensionless and polynomial degree",
+      "role": "input",
+      "description": "Neutral, representative charged, and high-charge background controls."
+    },
+    {
+      "name": "source scales",
+      "symbol": "(lambda_T,lambda_mu)",
+      "value": "(252 MeV, 972 MeV)",
+      "unit": "MeV",
+      "role": "fixed",
+      "description": "Published calibration values used only to report the critical coordinates."
+    }
+  ],
+  "equations": [
+    {
+      "id": "charged-background",
+      "expression": "A''-A'^2+phi'^2/6=0; h''+3A'h'-exp(-2A)f_EMD Phi'^2=0; h phi''+(3A'h+h')phi'-exp(2A)V_phi+exp(-2A)f_EMD,phi Phi'^2/2=0",
+      "description": "Fully backreacted charged conformal-gauge background equations after analytic Maxwell-flux reduction.",
+      "source_ref": "Source Eqs. (27)-(29), transformed to inward conformal gauge."
+    },
+    {
+      "id": "maxwell-flux",
+      "expression": "q = -f_EMD exp(A) Phi'; Phi' = -q exp(-A)/f_EMD",
+      "description": "Orientation-fixed conserved Maxwell flux used by the primary formulation.",
+      "source_ref": "Source Eqs. (28), (33), and (38), transformed to inward conformal gauge."
+    },
+    {
+      "id": "explicit-maxwell-secondary",
+      "expression": "Phi=mu-u^(2/nu)e; K=2e+nu u e_u; nu u K_u+[alpha+1+(partial_phi ln f) beta]K=0",
+      "description": "UV-factorized Maxwell equation collocated simultaneously with geometry and scalar fields as an independent route.",
+      "source_ref": "Source Maxwell equation transformed to the approved coordinates."
+    },
+    {
+      "id": "canonical-density",
+      "expression": "rho_canonical_BH = q/(2 kappa_5^2) = q/2",
+      "description": "Canonical physical density in the frozen source normalization.",
+      "source_ref": "Source Eqs. (38), (42), and (45), with L = kappa_5 = 1."
+    },
+    {
+      "id": "critical-conditions",
+      "expression": "(partial mu/partial rho)_T = 0 and (partial^2 mu/partial rho^2)_T = 0",
+      "description": "Local critical conditions evaluated with five-point constant-temperature stencils.",
+      "source_ref": "Thermodynamic critical-point condition applied to the source EMD family."
+    }
+  ],
+  "observables": [
+    {
+      "name": "temperature",
+      "symbol": "T",
+      "unit": "dimensionless BH units and MeV",
+      "extraction": "Use the exact horizon derivative of h and the published lambda_T scale."
+    },
+    {
+      "name": "chemical potential",
+      "symbol": "mu_BH",
+      "unit": "dimensionless BH units and MeV",
+      "extraction": "Integrate q exp(-A)/f_EMD from boundary to horizon and apply lambda_mu only for source-coordinate reporting."
+    },
+    {
+      "name": "entropy density",
+      "symbol": "s_BH",
+      "unit": "dimensionless",
+      "extraction": "Evaluate the horizon-area density in the frozen L = kappa_5 = 1 normalization."
+    },
+    {
+      "name": "canonical charge density",
+      "symbol": "rho_canonical_BH",
+      "unit": "dimensionless",
+      "extraction": "Evaluate q/2 from the conserved Maxwell flux."
+    },
+    {
+      "name": "source Figure 5 ordinate",
+      "symbol": "rho_source_figure5",
+      "unit": "dimensionless source-artwork coordinate",
+      "extraction": "Retain only in approved digitized reference records; no absolute comparison to rho_canonical_BH is made."
+    }
+  ],
+  "validation": {
+    "acceptance_criteria": [
+      "All three fixed controls and all three located-state resolutions pass nonlinear, oversampled equation, Einstein constraint, boundary, target, Gauss-flux, and Noether-charge gates.",
+      "The simultaneous explicit-Maxwell formulation agrees with the flux-reduced formulation for the reported thermodynamic observables within 5e-6.",
+      "The direct critical candidate agrees with (T_c,mu_c)=(143,783) MeV within (5,10) MeV and with (phi_H,eta)=(4.84,0.40) within (0.20,0.04).",
+      "Normalized local critical diagnostics and step-to-step coordinate changes do not exceed 2e-3.",
+      "The fixed critical state refines through N=80,120,150 with the final scaled change at most 2e-3 and no worsening above the 1e-8 ordering floor.",
+      "Duplicate complete verifier runs agree within 1e-10.",
+      "Figure 5 anchor records remain provenance-only and the unresolved absolute density ordinate cannot affect acceptance."
+    ],
+    "tests": [
+      {
+        "id": "reduced-finite-density-classical-verifier",
+        "kind": "convergence",
+        "command": "holoforge verify dewolfe-gubser-rosen-emd-finite-density",
+        "expected": "All seven bounded scientific and determinism gates pass without asserting global topology or absolute Figure 5 density agreement.",
+        "status": "pass"
+      },
+      {
+        "id": "finite-density-focused-tests",
+        "kind": "regression",
+        "command": "python -m unittest tests.test_dewolfe_gubser_rosen_emd_critical_point -v",
+        "expected": "Equations, selected controls, two formulations, direct critical coordinates, refinement, strict JSON, and artifact safeguards pass.",
+        "status": "pass"
+      },
+      {
+        "id": "phase-5b-reference-records",
+        "kind": "external-data",
+        "command": "python -m unittest tests.test_reference_data tests.test_reference_loader -v",
+        "expected": "Three approved Figure 5 records preserve mu_BH as abscissa, rho_source_figure5 as ordinate, and the blocked absolute-comparison state.",
+        "status": "pass"
+      },
+      {
+        "id": "c3h-optional-topology-extension",
+        "kind": "convergence",
+        "command": "historical owner-authorized C3h local-map audit",
+        "expected": "The optional topology campaign preserves its primary-temperature overlap hard stop and cannot affect reduced-core acceptance.",
+        "status": "fail"
+      }
+    ],
+    "last_verified": "2026-08-23"
+  },
+  "claims": [
+    {
+      "statement": "The DGR source action and UV dictionary define the canonical density as rho_canonical_BH = q/2 in the source-normalized L = kappa_5 = 1 convention.",
+      "support_level": "established-source",
+      "evidence": "DGR arXiv:1012.1864v2 Eqs. (38), (42), and (45), with same-author restatements in arXiv:1108.2029 and arXiv:1304.7794.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-22"
+    },
+    {
+      "statement": "The reduced HoloForge verifier reproduces representative finite-density DGR EMD backgrounds and the reported critical-coordinate neighborhood, with spectral refinement and an independent simultaneous-Maxwell formulation.",
+      "support_level": "reproduced",
+      "evidence": "Owner-approved 2026-08-23 verification record: all seven reduced-core gates pass; (T_c,mu_c)=(142.973974 MeV,781.693762 MeV); N=120 to 150 maximum scaled change 2.1982e-13; maximum cross-route observable difference 9.9333e-10.",
+      "generated_by_ai": true,
+      "review_status": "approved",
+      "reviewed_by": "Xin-Yi Liu",
+      "reviewed_on": "2026-08-23"
+    }
+  ],
+  "limitations": [
+    "This is a phenomenological bottom-up model; no top-down embedding or empirical validation of QCD is claimed.",
+    "Owner approval applies only to the reduced selected-state and critical-coordinate contract; it does not approve the optional topology extension.",
+    "The source provides no verified public map from rho_source_figure5 to rho_canonical_BH; absolute Figure 5 ordinate agreement is blocked.",
+    "The verifier reproduces a local critical-coordinate neighborhood, not a global phase diagram, an equal-free-energy coexistence line, or critical exponents.",
+    "The selected-state contract is not evidence that all finite-density branches have been found or classified.",
+    "The primary reconstructed-Phi Maxwell residual uses the owner-approved 1e-6 conditioning ceiling; the independent explicit Gauss-flux gate remains 1e-7.",
+    "The historical C3h topology extension remains stopped by its frozen primary-temperature overlap gate and is not repaired or waived by this re-scope.",
+    "The optional topology campaign, DOP853 route, Figure 5 absolute density comparison, and all Phase 5C scaling work require separate owner authorization."
+  ],
+  "provenance": {
+    "created_on": "2026-08-22",
+    "created_by": "HoloForge development",
+    "implementation_path": "src/holoforge/benchmarks/dewolfe_gubser_rosen_emd_critical_point.py",
+    "ai_assistance": true,
+    "ai_roles": [
+      "public-source transcription",
+      "clean-room derivation",
+      "charged-background solver drafting",
+      "independent simultaneous-Maxwell formulation",
+      "direct critical locator drafting",
+      "spectral verification",
+      "test and documentation drafting"
+    ],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-23"
+  }
+}

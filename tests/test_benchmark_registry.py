@@ -98,6 +98,10 @@ class BenchmarkRegistryTests(unittest.TestCase):
             "dewolfe-gubser-rosen-emd": (
                 "holoforge.benchmarks.adapters.dewolfe_gubser_rosen_emd"
             ),
+            "dewolfe-gubser-rosen-emd-finite-density": (
+                "holoforge.benchmarks.adapters."
+                "dewolfe_gubser_rosen_emd_finite_density"
+            ),
             "gubser-nellore-ed": (
                 "holoforge.benchmarks.adapters.gubser_nellore_ed"
             ),

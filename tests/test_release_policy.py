@@ -28,6 +28,7 @@ class Version05PolicyTests(unittest.TestCase):
             "holoforge verify holographic-superconductor-optical",
             "holoforge verify linear-axion-dc",
             "holoforge verify dewolfe-gubser-rosen-emd",
+            "holoforge verify dewolfe-gubser-rosen-emd-finite-density",
             "holoforge verify gubser-nellore-ed",
             "holoforge verify gubser-rocha-emd",
             "holoforge compare vector-spectrum",
@@ -60,8 +61,14 @@ class Version05PolicyTests(unittest.TestCase):
         dgr_tests = (ROOT / "tests/test_dewolfe_gubser_rosen_emd.py").read_text()
         self.assertIn("verify_dewolfe_gubser_rosen_emd()", dgr_tests)
         self.assertEqual(
-            workflow.count("holoforge verify dewolfe-gubser-rosen-emd"),
+            workflow.splitlines().count(
+                "          holoforge verify dewolfe-gubser-rosen-emd"
+            ),
             2,
+        )
+        self.assertIn(
+            "holoforge verify dewolfe-gubser-rosen-emd-finite-density",
+            workflow,
         )
         self.assertNotIn("tests.test_dewolfe_gubser_rosen_emd", workflow)
         self.assertIn("holoforge verify hard-wall-chiral", workflow)

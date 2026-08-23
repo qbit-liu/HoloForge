@@ -29,6 +29,7 @@ by the release in which each command first appears:
 - `holoforge verify holographic-superconductor-optical`;
 - `holoforge verify linear-axion-dc`;
 - `holoforge verify dewolfe-gubser-rosen-emd`;
+- `holoforge verify dewolfe-gubser-rosen-emd-finite-density`;
 - `holoforge verify gubser-nellore-ed`;
 - `holoforge verify gubser-rocha-emd`;
 - `holoforge compare vector-spectrum`;
@@ -116,6 +117,7 @@ Benchmark exports:
 - `holoforge.benchmarks.solve_spectrum`;
 - `holoforge.benchmarks.verify_gubser_nellore_ed`;
 - `holoforge.benchmarks.verify_dewolfe_gubser_rosen_emd`;
+- `holoforge.benchmarks.verify_dewolfe_gubser_rosen_emd_finite_density`;
 - `holoforge.benchmarks.verify_gubser_rocha_emd`;
 - `holoforge.benchmarks.verify_hard_wall_chiral`;
 - `holoforge.benchmarks.verify_holographic_superconductor_optical`;

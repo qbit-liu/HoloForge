@@ -3,6 +3,9 @@
 from holoforge.benchmarks.dewolfe_gubser_rosen_emd import (
     verify_dewolfe_gubser_rosen_emd,
 )
+from holoforge.benchmarks.dewolfe_gubser_rosen_emd_critical_point import (
+    verify_dewolfe_gubser_rosen_emd_finite_density,
+)
 from holoforge.benchmarks.gubser_nellore_ed import (
     verify_gubser_nellore_ed,
 )
@@ -88,6 +91,7 @@ __all__ = [
     "verify_linear_axion_dc",
     "verify_gubser_nellore_ed",
     "verify_dewolfe_gubser_rosen_emd",
+    "verify_dewolfe_gubser_rosen_emd_finite_density",
     "verify_gubser_rocha_emd",
     "verify_hard_wall_chiral",
 ]

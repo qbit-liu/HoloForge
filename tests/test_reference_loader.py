@@ -63,6 +63,34 @@ class ReferenceLoaderTests(unittest.TestCase):
             self.assertEqual(dataset["provenance"]["reviewed_by"], "Xin-Yi Liu")
             self.assertEqual(dataset["provenance"]["reviewed_on"], "2026-08-22")
 
+    def test_dgr_figure_5_anchors_load_from_package_resources(self) -> None:
+        names = ("above-tc", "at-tc", "below-tc")
+        datasets = [
+            load_reference_dataset(
+                f"data/reference/dewolfe-gubser-rosen-figure-5-{name}.json"
+            )
+            for name in names
+        ]
+        self.assertEqual(
+            [len(dataset["entries"]) for dataset in datasets], [12] * 3
+        )
+        for dataset in datasets:
+            self.assertEqual(dataset["provenance"]["review_status"], "approved")
+            self.assertEqual(dataset["provenance"]["reviewed_by"], "Xin-Yi Liu")
+            self.assertEqual(dataset["provenance"]["reviewed_on"], "2026-08-22")
+            self.assertEqual(
+                dataset["conventions"][0]["value"],
+                "mu_BH is the dimensionless abscissa and "
+                "rho_source_figure5 is the dimensionless ordinate in "
+                "the source black-hole variables",
+            )
+            self.assertTrue(
+                all(
+                    entry["label"].startswith("rho_source_figure5 = ")
+                    for entry in dataset["entries"]
+                )
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
