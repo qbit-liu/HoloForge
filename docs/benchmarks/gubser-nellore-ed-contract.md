@@ -5,8 +5,10 @@ owner on 2026-08-16. After the classified continuation stops documented below,
 the approved coupled-equation production route passed all fourteen frozen
 gates. Xin-Yi Liu accepted the implementation, derived anchors, reproduced
 claim, model card, and evidence boundary on 2026-08-17 and authorized one
-scoped local commit. Push, pull request, merge, tag, release, EMD, and iHQCD
-remain unauthorized.
+scoped local commit. Under later, separate owner approvals and repository
+gates, the Phase 1 benchmark was included in merged Pull Request 23 and
+released in Version 0.5.3 on 2026-08-20. This closure does not reinterpret the
+earlier bounded approval or authorize any new ED, EMD, or iHQCD work.
 
 ## Recommendation
 
@@ -977,14 +979,29 @@ QCD validation. The same decision authorizes one scoped local commit containing
 the spectral foundation and this ED benchmark. It does not authorize a push,
 pull request, merge, tag, release, EMD, or iHQCD stage.
 
+## Phase 1 release closure, 2026-08-20
+
+Later owner gates authorized the public integration and release actions that
+were still closed at the final benchmark gate above. Pull Request 23 merged at
+commit `9d0816885b19b731f9819a96928ffe583f780983`; the same commit is tagged
+`v0.5.3`. Its Python 3.9, 3.11, and 3.14 tests, wheel build and smoke test, and
+Linux, macOS, and Windows wheel-portability checks all passed before merge.
+
+The release changes the delivery state, not the scientific claim. Phase 1
+remains a reproduced public-source ED benchmark with the evidence boundary,
+limitations, and AI provenance recorded above. The historical stops and
+amendments remain part of the audit record.
+
 ## Current handoff
 
 - **Completed:** spectral foundation; source contract and anchors; all
   classified stops; clean-room coupled implementation; full verification;
   owner acceptance of the ED implementation, model card, derived anchors,
-  reproduced claim, and evidence boundary.
-- **Current:** final staged audit and the authorized scoped local commit.
-- **Proposed next:** stop after the local commit. Any push, pull request, merge,
-  release, EMD, or iHQCD work requires a separate owner gate.
+  reproduced claim, and evidence boundary; public integration and Version
+  0.5.3 release under later approvals.
+- **Current:** closed historical Phase 1 record; no active ED action.
+- **Proposed next:** review the separate Phase 3 hard-wall chiral contract.
+  Any new scientific implementation or Git/public action requires its own
+  owner gate.
 
 No owner approval is currently pending inside this closed benchmark gate.

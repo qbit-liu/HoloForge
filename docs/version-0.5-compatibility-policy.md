@@ -6,12 +6,20 @@ calculation into empirical validation.
 
 ## Supported runtime and platforms
 
-HoloForge supports Python 3.9 or newer. The full unit-test matrix exercises
-Python 3.9, 3.11, and 3.14 on Ubuntu. A built-wheel portability job exercises
-Python 3.11 on Ubuntu, macOS, and Windows, including focused contract tests, the
-selected Version 0.5 benchmark, evidence-bundle relocation, and integrity
-audit. A newer Python or operating-system release is not claimed tested until
-CI includes it.
+HoloForge supports Python 3.9 or newer. The default unit-test matrix exercises
+Python 3.9, 3.11, and 3.14 on Ubuntu and runs every current scientific verifier,
+including the accepted Phase 4 and Phase 5 calculations, once per Python
+version. Superseded numerical routes and development-era ladders remain in an
+explicit extended audit that runs once on Python 3.11; they are preserved but
+do not multiply the current verifier inside every matrix job.
+
+A built-wheel job checks installed-package identity, registry composition,
+packaged reference data, and a fast verifier. The Python 3.11 wheel-portability
+matrix on Ubuntu, macOS, and Windows exercises focused contracts, selected
+fast benchmarks, evidence-bundle relocation, and integrity audit. It does not
+repeat the long Phase 4 or Phase 5 scientific calculations already required in
+the three-version test matrix. A newer Python or operating-system release is
+not claimed tested until CI includes it.
 
 Only the latest `0.5.x` patch receives new compatibility and security fixes.
 Exact older releases remain available for reproducibility.

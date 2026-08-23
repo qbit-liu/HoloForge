@@ -118,19 +118,21 @@ mean that the model is empirically validated.
 | 3 | Hard-wall chiral QCD | GMOR relation and source Table II | Chebyshev eigenvalue/BVP | complete |
 | 4 | HHH optical conductivity | Near-critical coefficient and protected Figure 1 condensate result | Chebyshev fluctuation BVP with Riccati DOP853 check | complete in Version 0.5.5 |
 | 5A | DeWolfe--Gubser--Rosen EMD at `mu = 0` | Both black-hole curves in source Figure 3 | One-parameter neutral Chebyshev background scan | complete in Version 0.5.6 |
-| 5B | DeWolfe--Gubser--Rosen finite-density EMD | Representative charged backgrounds and the reported critical coordinates; Figures 4 and 5 are optional diagnostics | Selected-state Chebyshev verification through flux-reduced and simultaneous-Maxwell formulations | reduced core owner-approved; pending Git integration |
+| 5B | DeWolfe--Gubser--Rosen finite-density EMD | Representative charged backgrounds and the reported critical coordinates; Figure 5 remains provenance-only | Selected-state Chebyshev verification through flux-reduced and simultaneous-Maxwell formulations | reduced core complete on `main`; seven gates pass |
 | 5C | DeWolfe--Gubser--Rosen critical scaling | Selected source critical exponents | Preregistered near-critical regressions | optional future extension, not required by the Phase 5B classical example |
 
-The Gubser--Rocha Phase 2 benchmark is retained as a top-down-derived exact
+The [classical benchmark sequence](docs/benchmarks/classical-sequence.md) is
+closed through the reduced Phase 5B core. The Gubser--Rocha Phase 2 benchmark
+is retained as a top-down-derived exact
 control for the numerical infrastructure, not as a representative bottom-up
 model. DeWolfe--Gubser--Rosen is the selected phenomenological bottom-up EMD
 sequence. Phase 5A is deliberately limited to the zero-density calibration.
 The re-scoped Phase 5B core verifies representative charged backgrounds and
 the reported critical-coordinate neighborhood without requiring a global
-phase diagram. Reproducing the full Figure 4 or Figure 5 panel is not a Phase
-5B requirement; their grids may be used only as optional coverage or topology
-diagnostics. The preserved C3h topology hard stop and any Phase 5C critical-
-scaling work remain separate extensions.
+phase diagram. The Figure 5 absolute ordinate and topology are not Phase 5B
+acceptance targets. The preserved C3h topology hard stop and any Phase 5C
+critical-scaling work remain separate optional extensions rather than
+unfinished classical-example work.
 
 ## Explore-mode milestone
 

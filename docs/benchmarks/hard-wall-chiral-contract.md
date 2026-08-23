@@ -4,29 +4,27 @@
 
 This document began as the pre-implementation owner-review contract for Phase
 3 of the classical benchmark sequence and now records the bounded stops,
-amendments, accepted result, and release-preparation authorization. It is
-public-source Forge/Verify work. Xin-Yi Liu approved Decisions C1--C6, R1--R3,
-and the final result Decisions 1--5 through separate Option A decisions on
-2026-08-20. The accepted result retains material AI provenance and the
-scientific limitations below.
+amendments, accepted result, release preparation, and public release closure.
+It is public-source Forge/Verify work. Xin-Yi Liu approved Decisions C1--C6,
+R1--R3, and the final result Decisions 1--5 through separate Option A
+decisions on 2026-08-20. The accepted result retains material AI provenance
+and the scientific limitations below.
 
 - **Completed:** Phase 0 spectral infrastructure, Phase 1 Gubser--Nellore ED,
-  and Phase 2 Gubser--Rocha EMD are released in Version 0.5.3. The Phase 3
-  contract, UV stop, R1--R3 amendment, bounded implementation, complete
-  amended preflight, generated evidence, full test suite, and independent
-  wheel check are complete. The owner-approved result, model-card provenance,
-  and one scoped scientific commit (`9c6c3b0`) are also complete. The local
-  Version 0.5.4 release metadata, explicit installed-wheel and cross-platform
-  hard-wall checks, version-stamped evidence, and release validation are
-  synchronized in the separately authorized release-preparation commit.
-- **Current:** owner-review stop before any remote or publication action.
-- **Proposed next:** accept or revise the release candidate; only after explicit
-  approval, push the branch and open a pull request for remote CI.
+  and Phase 2 Gubser--Rocha EMD are released in Version 0.5.3. Phase 3 is
+  released in Version 0.5.4 after the frozen contract, UV stop, R1--R3
+  amendment, bounded implementation, owner-accepted result, scientific commit
+  (`9c6c3b0`), release-preparation commit (`2d1abd2`), pull request 24, green
+  remote CI, merge commit (`a79f944`), annotated tag, and public release.
+- **Current:** Phase 3 scientific and delivery work is closed.
+- **Proposed next:** prepare the separate Phase 4 optical-conductivity
+  scientific contract and owner-review packet only; implementation remains a
+  later owner decision.
 
-The release-preparation authority is exhausted by its scoped local commit. It
-does not authorize a push, pull request,
-merge, tag, release, Phase 4, another model sector, or any change to the frozen
-scientific contract.
+Each historical authorization below remained bounded at the time it was
+given. Later owner decisions opened the recorded remote and release actions;
+they did not retrospectively broaden an earlier authorization or change the
+frozen scientific contract.
 
 ## Recommendation
 
@@ -772,3 +770,27 @@ This authorization stops before push, pull request, remote CI, merge, tag,
 release, Phase 4, or another model sector. It changes delivery preparation,
 not the accepted `reproduced` support level, equations, numerical method,
 thresholds, results, or non-inference boundaries.
+
+## Version 0.5.4 public release closure
+
+Through later, separate Option A decisions on 2026-08-20, the owner authorized
+the bounded remote delivery sequence. Branch `codex/hard-wall-chiral-contract`
+was pushed, pull request 24 passed its required remote checks, and the pull
+request was merged into `main` as `a79f944`. Annotated tag `v0.5.4` and the
+corresponding public GitHub release were then created and verified. Phase 3 is
+therefore closed as a released Forge/Verify benchmark.
+
+This closure records delivery state only. It does not alter the accepted
+equations, methods, numerical values, thresholds, `reproduced` support level,
+AI provenance, limitations, or non-inference boundaries. It also does not
+authorize a post-release scientific change.
+
+## Phase 4 contract-preparation owner disposition
+
+Xin-Yi Liu selected **Option A** on 2026-08-20 to record the Phase 3 release
+closure and prepare only the Phase 4 HHH optical-conductivity scientific
+contract and standard PDF owner-review packet. This opens public-source
+contract research and documentation only. Solver implementation, numerical
+production, result or model-card acceptance, commit, push, pull request,
+merge, tag, release, and any private-research transfer remain closed pending
+the Phase 4 contract owner gate.

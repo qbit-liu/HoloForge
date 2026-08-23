@@ -58,31 +58,46 @@ class Version05PolicyTests(unittest.TestCase):
         self.assertIn("--force-reinstall dist/*.whl", workflow)
         self.assertIn("holoforge verify linear-axion-dc", workflow)
         self.assertIn("python -m unittest discover -s tests -v", workflow)
+        self.assertIn("historical-audit:", workflow)
+        self.assertIn(
+            "tests.extended.historical_holographic_superconductor_optical",
+            workflow,
+        )
+        self.assertIn(
+            "tests.extended.historical_dewolfe_gubser_rosen_emd_finite_density",
+            workflow,
+        )
         dgr_tests = (ROOT / "tests/test_dewolfe_gubser_rosen_emd.py").read_text()
         self.assertIn("verify_dewolfe_gubser_rosen_emd()", dgr_tests)
         self.assertEqual(
             workflow.splitlines().count(
                 "          holoforge verify dewolfe-gubser-rosen-emd"
             ),
-            2,
+            0,
         )
         self.assertIn(
-            "holoforge verify dewolfe-gubser-rosen-emd-finite-density",
+            "'dewolfe-gubser-rosen-emd-finite-density'",
             workflow,
         )
         self.assertNotIn("tests.test_dewolfe_gubser_rosen_emd", workflow)
         self.assertIn("holoforge verify hard-wall-chiral", workflow)
         self.assertIn("tests.test_hard_wall_chiral", workflow)
         self.assertIn(
-            "holoforge verify holographic-superconductor-optical", workflow
+            "'holographic-superconductor-optical'", workflow
         )
-        self.assertIn(
-            "tests.test_holographic_superconductor_optical", workflow
+        self.assertNotIn(
+            "          holoforge verify holographic-superconductor-optical",
+            workflow,
         )
-        self.assertIn("holoforge verify gubser-nellore-ed", workflow)
-        self.assertIn("holoforge verify gubser-rocha-emd", workflow)
+        self.assertIn("load_reference_dataset", workflow)
         self.assertIn("holoforge audit bundle relocated/portability-bundle", workflow)
         self.assertNotIn("continue-on-error", workflow)
+
+    def test_policy_documents_current_and_historical_ci_tiers(self) -> None:
+        policy = (ROOT / "docs/version-0.5-compatibility-policy.md").read_text()
+        self.assertIn("runs every current scientific verifier", policy)
+        self.assertIn("explicit extended audit", policy)
+        self.assertIn("repeat the long Phase 4 or Phase 5", policy)
 
     def test_scientific_json_hashes_are_checkout_portable(self) -> None:
         attributes = (ROOT / ".gitattributes").read_text()

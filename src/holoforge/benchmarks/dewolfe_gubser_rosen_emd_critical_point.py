@@ -14,7 +14,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import csv
-import inspect
 import json
 import math
 from numbers import Integral, Real
@@ -56,6 +55,9 @@ from holoforge.core import (
     runtime_versions,
 )
 from holoforge.numerics import chebyshev_lobatto_grid
+from holoforge.numerics.interpolation import (
+    deterministic_barycentric_interpolator as _barycentric_interpolator,
+)
 from holoforge.reference_data import load_reference_dataset
 
 
@@ -248,26 +250,6 @@ DEWOLFE_GUBSER_ROSEN_FINITE_DENSITY_DEFINITION = BenchmarkDefinition(
         ),
     ),
 )
-
-
-_BARYCENTRIC_RANDOM_KEYWORD = (
-    "rng"
-    if "rng" in inspect.signature(BarycentricInterpolator).parameters
-    else "random_state"
-)
-
-
-def _barycentric_interpolator(
-    nodes: NDArray[np.float64],
-    values: NDArray[np.float64],
-) -> BarycentricInterpolator:
-    """Construct a deterministic interpolator across supported SciPy APIs."""
-
-    return BarycentricInterpolator(
-        nodes,
-        values,
-        **{_BARYCENTRIC_RANDOM_KEYWORD: 0},
-    )
 
 
 @dataclass(frozen=True)

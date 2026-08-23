@@ -45,8 +45,10 @@ coexistence, critical exponents, DOP853 cross-validation, and empirical QCD
 claims are outside this example.
 
 Xin-Yi Liu approved the reduced numerical result, model card, and evidence
-boundary on 2026-08-23. This approval does not open the optional topology
-campaign, Phase 5C, or a release.
+boundary on 2026-08-23. The implementation was subsequently merged to `main`;
+the optional topology campaign and Phase 5C remain closed.
 See the [benchmark guide](../../../docs/benchmarks/dewolfe-gubser-rosen-emd-critical-point.md)
 and [Phase 5B contract](../../../docs/benchmarks/dewolfe-gubser-rosen-emd-phase-5b-contract.md)
-for equations, tolerances, provenance, and the optional-extension history.
+for equations, tolerances, and current scope. The
+[development history](../../../docs/benchmarks/history/dewolfe-gubser-rosen-emd-phase-5b-development-history.md)
+preserves the optional-extension record and its failed frozen gate.

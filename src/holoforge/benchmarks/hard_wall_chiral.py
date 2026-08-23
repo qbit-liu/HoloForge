@@ -14,7 +14,6 @@ boundary condition in nature.
 from __future__ import annotations
 
 from dataclasses import dataclass
-import inspect
 import json
 import math
 from numbers import Integral, Real
@@ -25,7 +24,6 @@ import numpy as np
 from numpy.polynomial.legendre import leggauss
 from numpy.typing import NDArray
 from scipy.integrate import quad, solve_bvp, solve_ivp
-from scipy.interpolate import BarycentricInterpolator
 from scipy.linalg import eig, solve
 from scipy.optimize import root_scalar
 from scipy.special import j0, j1, jn_zeros
@@ -46,6 +44,9 @@ from holoforge.core import (
     runtime_versions,
 )
 from holoforge.numerics import ChebyshevGrid, chebyshev_lobatto_grid
+from holoforge.numerics.interpolation import (
+    deterministic_barycentric_interpolator as _interpolator,
+)
 
 
 SOURCE_ID = "arXiv:hep-ph/0501128v2"
@@ -93,13 +94,6 @@ TABLE_TARGETS: Mapping[str, float] = {
     "g_rho_pi_pi": 4.48,
 }
 SOURCE_FIT_TARGETS = frozenset(("m_pi_MeV", "m_rho_MeV", "f_pi_MeV"))
-
-
-_BARYCENTRIC_RANDOM_KEYWORD = (
-    "rng"
-    if "rng" in inspect.signature(BarycentricInterpolator).parameters
-    else "random_state"
-)
 
 
 HARD_WALL_CHIRAL_DEFINITION = BenchmarkDefinition(
@@ -268,14 +262,6 @@ class SpectralMode:
                 ),
             }
         return payload
-
-
-def _interpolator(
-    nodes: NDArray[np.float64], values: NDArray[np.float64]
-) -> BarycentricInterpolator:
-    return BarycentricInterpolator(
-        nodes, values, **{_BARYCENTRIC_RANDOM_KEYWORD: 0}
-    )
 
 
 def _relative_error(value: float, reference: float) -> float:

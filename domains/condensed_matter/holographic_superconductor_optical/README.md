@@ -28,9 +28,11 @@ reproduction.
 
 See
 [`docs/benchmarks/holographic-superconductor-optical.md`](../../../docs/benchmarks/holographic-superconductor-optical.md)
-for equations, methods, numerical evidence, and limitations. The scientific
-contract and preserved mandatory stops are recorded separately in
-[`holographic-superconductor-optical-contract.md`](../../../docs/benchmarks/holographic-superconductor-optical-contract.md).
+for equations, methods, numerical evidence, and limitations. The
+[current contract](../../../docs/benchmarks/holographic-superconductor-optical-contract.md)
+records the frozen accepted scope, while the
+[development history](../../../docs/benchmarks/history/holographic-superconductor-optical-development-history.md)
+preserves every mandatory stop and superseded route.
 
 Xin-Yi Liu approved the corrected scientific result and bounded promotion on
 2026-08-21. Material AI involvement remains recorded in the model card and

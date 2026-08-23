@@ -11,7 +11,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import hashlib
-import inspect
 import json
 import math
 from numbers import Integral, Real
@@ -36,6 +35,9 @@ from holoforge.core import (
     runtime_versions,
 )
 from holoforge.numerics import chebyshev_lobatto_grid
+from holoforge.numerics.interpolation import (
+    deterministic_barycentric_interpolator as _barycentric_interpolator,
+)
 
 
 SOURCE_ID = "arXiv:0804.0434"
@@ -56,25 +58,6 @@ DEFAULT_DETERMINISM_TOLERANCE = 1.0e-12
 DEFAULT_DOP853_HORIZONS = (0.25, 0.5, 1.0, 2.0, 4.0)
 DEFAULT_T_C_PLOT_MINIMUM = 0.9618971489
 
-
-_BARYCENTRIC_RANDOM_KEYWORD = (
-    "rng"
-    if "rng" in inspect.signature(BarycentricInterpolator).parameters
-    else "random_state"
-)
-
-
-def _barycentric_interpolator(
-    nodes: NDArray[np.float64],
-    values: NDArray[np.float64],
-) -> BarycentricInterpolator:
-    """Construct a cross-SciPy deterministic barycentric interpolator."""
-
-    return BarycentricInterpolator(
-        nodes,
-        values,
-        **{_BARYCENTRIC_RANDOM_KEYWORD: 0},
-    )
 
 FIGURE_2_ANCHORS: Mapping[float, float] = {
     0.001: 0.250406,

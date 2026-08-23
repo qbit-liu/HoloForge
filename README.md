@@ -99,6 +99,8 @@ private research.
 
 The following are the reference calculations implemented today. Their names
 identify executable examples, not a restriction on future HoloForge domains.
+The owner-selected six-phase progression and its exact scope boundaries are
+summarized in the [classical benchmark sequence](docs/benchmarks/classical-sequence.md).
 
 | Capability demonstrated | Command | Documentation |
 | --- | --- | --- |
