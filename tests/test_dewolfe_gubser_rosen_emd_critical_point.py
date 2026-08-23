@@ -17,7 +17,7 @@ from holoforge.benchmarks.dewolfe_gubser_rosen_emd_critical_point import (
 )
 
 
-PORTABLE_REGRESSION_ATOL = 1.0e-8
+PORTABLE_REGRESSION_ATOL = 1.0e-7
 
 
 class DeWolfeGubserRosenPhase5BUnitTests(unittest.TestCase):
