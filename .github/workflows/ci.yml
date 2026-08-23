@@ -84,6 +84,7 @@ jobs:
           holoforge verify holographic-superconductor-optical
           holoforge verify linear-axion-dc
           holoforge verify dewolfe-gubser-rosen-emd
+          holoforge verify dewolfe-gubser-rosen-emd-finite-density
           holoforge verify gubser-nellore-ed
           holoforge verify gubser-rocha-emd
 

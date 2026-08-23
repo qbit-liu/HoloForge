@@ -1,0 +1,86 @@
+{
+  "schema_version": "0.3",
+  "id": "dewolfe-gubser-rosen-figure-5-below-tc",
+  "title": "Derived vector anchors for the DGR Figure 5 isotherm below the critical temperature",
+  "domain": "holographic QCD thermodynamics",
+  "observable": {
+    "name": "dimensionless black-hole chemical potential",
+    "symbol": "mu_BH",
+    "unit": "dimensionless"
+  },
+  "edition": {
+    "name": "DeWolfe--Gubser--Rosen arXiv source archive v2",
+    "citation": "O. DeWolfe, S. S. Gubser, and C. Rosen, Phys. Rev. D 83, 086005 (2011)",
+    "published_year": 2011,
+    "doi": "10.1103/PhysRevD.83.086005",
+    "url": "https://arxiv.org/abs/1012.1864",
+    "accessed_on": "2026-08-22",
+    "license": "arXiv non-exclusive distribution license; derived numerical facts only",
+    "license_url": "https://info.arxiv.org/help/license/index.html",
+    "artifacts": [
+      {
+        "id": "arxiv-source-archive",
+        "url": "https://arxiv.org/src/1012.1864v2",
+        "sha256": "3f921d2212cb5f7956c1da7cbb0904c02ff32e302d514ab2e80b4bfc64b6778e"
+      }
+    ]
+  },
+  "conventions": [
+    {
+      "name": "coordinates",
+      "value": "mu_BH is the dimensionless abscissa and rho_source_figure5 is the dimensionless ordinate in the source black-hole variables",
+      "rationale": "This source-artwork coordinate is intentionally distinct from the canonical holographic density rho_canonical_BH = q/2; no physical-unit conversion or axis rescaling is applied."
+    },
+    {
+      "name": "absolute ordinate comparison",
+      "value": "blocked because no public source resolves the map from rho_source_figure5 to rho_canonical_BH",
+      "rationale": "The approved reference anchors remain usable as a source record, but they cannot enter an absolute-density acceptance gate until the source ordinate dictionary is resolved."
+    },
+    {
+      "name": "temperature label",
+      "value": "the source labels this panel only as T < T_c",
+      "rationale": "The exact outer-panel temperature is not published; the current canonical-topology map does not fit it to the blocked source-ordinate anchors."
+    },
+    {
+      "name": "anchor extraction",
+      "value": "PDF tick coordinates define affine axis maps; filled blue vector points are isolated, sorted in rho_source_figure5, and linearly interpolated at the twelve frozen rho_source_figure5 anchors",
+      "rationale": "The extracted public-source panel belowTcRhoMu.pdf has SHA-256 5519dfc2f0abfa1f721f28432a7b748e73c15d532104e21c14d32b5395814064; raw artwork is not redistributed."
+    },
+    {
+      "name": "data boundary",
+      "value": "only derived numerical anchors from the source model path are included",
+      "rationale": "The record contains no source artwork, third-party data, local paths, claim that a HoloForge calculation has passed, or claim that rho_source_figure5 equals rho_canonical_BH."
+    }
+  ],
+  "entries": [
+    {"id":"rho-5","label":"rho_source_figure5 = 5","value":0.804842255,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 5","assignment_status":"anchor","model_mode":0,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-6","label":"rho_source_figure5 = 6","value":0.808652241,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 6","assignment_status":"anchor","model_mode":1,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-7","label":"rho_source_figure5 = 7","value":0.810375950,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 7","assignment_status":"anchor","model_mode":2,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-8","label":"rho_source_figure5 = 8","value":0.810812705,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 8","assignment_status":"anchor","model_mode":3,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-9","label":"rho_source_figure5 = 9","value":0.810850854,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 9","assignment_status":"anchor","model_mode":4,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-10","label":"rho_source_figure5 = 10","value":0.810712157,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 10","assignment_status":"anchor","model_mode":5,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-11","label":"rho_source_figure5 = 11","value":0.810562202,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 11","assignment_status":"anchor","model_mode":6,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-12","label":"rho_source_figure5 = 12","value":0.810497383,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 12","assignment_status":"anchor","model_mode":7,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-13","label":"rho_source_figure5 = 13","value":0.810678207,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 13","assignment_status":"anchor","model_mode":8,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-14","label":"rho_source_figure5 = 14","value":0.811037943,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 14","assignment_status":"anchor","model_mode":9,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-16","label":"rho_source_figure5 = 16","value":0.812599677,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 16","assignment_status":"anchor","model_mode":10,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."},
+    {"id":"rho-18","label":"rho_source_figure5 = 18","value":0.815169234,"unit":"dimensionless","uncertainty":{"kind":"none","reason":"The source publishes no numerical uncertainty for this vector path; the separately frozen max/RMS comparison gates are not measurement errors."},"source_artifact":"arxiv-source-archive","source_locator":"Figure 5 below-T_c blue path at rho_source_figure5 = 18","assignment_status":"anchor","model_mode":11,"included":true,"notes":"Derived source-model abscissa mu_BH; outer-panel temperature is unpublished."}
+  ],
+  "transformations": [
+    {
+      "id": "pdf-affine-anchor-extraction",
+      "expression": "mu_BH = 0.802 + 0.002 (x - 50.611)/(85.309 - 50.611); rho_source_figure5 = 18 - 2 (y - 23.9144)/(46.3744 - 23.9144); mu_BH(rho_source_anchor) is piecewise-linear interpolation of the sorted filled-blue path",
+      "description": "Map public PDF user-space coordinates to the Figure 5 below-T_c axes and interpolate the path center line at the frozen rho_source_figure5 values.",
+      "uncertainty_propagation": "No statistical uncertainty is inferred. The anchors remain frozen, while their max-absolute and RMS comparison to canonical density is explicitly blocked by the unresolved source-ordinate dictionary."
+    }
+  ],
+  "provenance": {
+    "created_on": "2026-08-22",
+    "created_by": "HoloForge development",
+    "ai_assistance": true,
+    "ai_roles": ["public vector-path extraction", "source transcription", "schema drafting"],
+    "review_status": "approved",
+    "reviewed_by": "Xin-Yi Liu",
+    "reviewed_on": "2026-08-22"
+  }
+}

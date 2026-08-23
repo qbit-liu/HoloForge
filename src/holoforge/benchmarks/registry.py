@@ -4,6 +4,10 @@ from holoforge.benchmarks.adapters.dewolfe_gubser_rosen_emd import (
     DEWOLFE_GUBSER_ROSEN_ADAPTER,
     DEWOLFE_GUBSER_ROSEN_MODEL_CARD,
 )
+from holoforge.benchmarks.adapters.dewolfe_gubser_rosen_emd_finite_density import (
+    DEWOLFE_GUBSER_ROSEN_FINITE_DENSITY_ADAPTER,
+    DEWOLFE_GUBSER_ROSEN_FINITE_DENSITY_MODEL_CARD,
+)
 from holoforge.benchmarks.adapters.hard_wall_vector import (
     HARD_WALL_ADAPTER,
     HARD_WALL_MODEL_CARD,
@@ -42,6 +46,7 @@ from holoforge.core.registry import BenchmarkRegistry
 BUILTIN_BENCHMARKS = BenchmarkRegistry(
     (
         DEWOLFE_GUBSER_ROSEN_ADAPTER,
+        DEWOLFE_GUBSER_ROSEN_FINITE_DENSITY_ADAPTER,
         SOFT_WALL_ADAPTER,
         HARD_WALL_CHIRAL_ADAPTER,
         HARD_WALL_ADAPTER,
@@ -58,6 +63,8 @@ __all__ = [
     "BUILTIN_BENCHMARKS",
     "DEWOLFE_GUBSER_ROSEN_ADAPTER",
     "DEWOLFE_GUBSER_ROSEN_MODEL_CARD",
+    "DEWOLFE_GUBSER_ROSEN_FINITE_DENSITY_ADAPTER",
+    "DEWOLFE_GUBSER_ROSEN_FINITE_DENSITY_MODEL_CARD",
     "GUBSER_NELLORE_ADAPTER",
     "GUBSER_NELLORE_MODEL_CARD",
     "GUBSER_ROCHA_ADAPTER",

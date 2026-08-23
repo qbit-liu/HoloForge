@@ -99,7 +99,9 @@ class FastHardWallChiralResult:
             "acceptance_checks": [
                 {
                     "id": "interface-fixture",
-                    "description": "Generic dispatch reaches the hard-wall chiral adapter.",
+                    "description": (
+                        "Generic dispatch reaches the hard-wall chiral adapter."
+                    ),
                     "passed": True,
                     "value": 0.0,
                 }
@@ -243,6 +245,77 @@ class FastDGRResult:
             "result_review_state": "approved",
             "result_reviewed_by": "Xin-Yi Liu",
             "result_reviewed_on": "2026-08-22",
+        }
+
+
+class FastDGRFiniteDensityResult:
+    """Small finite-density fixture; focused tests run the complete solve."""
+
+    passed = True
+
+    def to_dict(self):
+        return {
+            "schema_version": "0.1",
+            "benchmark": "dewolfe-gubser-rosen-emd-finite-density",
+            "support_level": "reproduced",
+            "configuration": {
+                "bulk_dimension": 5,
+                "ensemble": "grand canonical at selected chemical potentials",
+                "units": "L = kappa_5 = 1 with published DGR scales",
+                "degrees": [80, 120, 150],
+                "critical_initial": [4.800667, 0.401127],
+                "critical_phi_steps": [0.25, 0.125, 0.0625],
+                "critical_validation_step": 0.03125,
+                "control_states": [
+                    {"label": "neutral", "phi_H": 4.84, "eta": 0.0},
+                    {"label": "charged", "phi_H": 4.84, "eta": 0.4},
+                    {"label": "high-charge", "phi_H": 7.0, "eta": 0.5},
+                ],
+                "canonical_density": "rho_canonical_BH = q/2",
+                "source_figure_5_ordinate": (
+                    "rho_source_figure5 (mapping blocked)"
+                ),
+            },
+            "numerical_method": {"primary_route": "test interface fixture"},
+            "results": {
+                "critical": {
+                    "final_source_coordinates": {
+                        "T_MeV": 142.973974,
+                        "mu_MeV": 781.693762,
+                    }
+                },
+                "summary": {
+                    "maximum_final_refinement": 2.2e-13,
+                    "maximum_route_observable_difference": 9.94e-10,
+                },
+                "figure_5_absolute_ordinate_comparison": {
+                    "status": "blocked",
+                    "affects_acceptance": False,
+                },
+            },
+            "acceptance_checks": [
+                {
+                    "id": "interface-fixture",
+                    "description": (
+                        "Generic dispatch reaches the finite-density adapter."
+                    ),
+                    "passed": True,
+                    "value": 0.0,
+                }
+            ],
+            "software_versions": {"holoforge": "test", "python": "test"},
+            "passed": True,
+            "scope": (
+                "Interface fixture; global topology and Figure 5 absolute "
+                "density are not reproduced."
+            ),
+            "primary_source": {
+                "pdf_sha256": "0" * 64,
+                "source_archive_sha256": "1" * 64,
+            },
+            "result_review_state": "approved",
+            "result_reviewed_by": "Xin-Yi Liu",
+            "result_reviewed_on": "2026-08-23",
         }
 
 
@@ -528,6 +601,51 @@ class CommandLineTests(unittest.TestCase):
         self.assertIn("Support level: reproduced", rendered)
         self.assertIn("not QCD validation", rendered)
 
+    def test_dgr_finite_density_json_uses_registered_adapter(self) -> None:
+        output = io.StringIO()
+        with patch(
+            "holoforge.benchmarks.adapters."
+            "dewolfe_gubser_rosen_emd_finite_density."
+            "verify_dewolfe_gubser_rosen_emd_finite_density",
+            return_value=FastDGRFiniteDensityResult(),
+        ), redirect_stdout(output):
+            status = main(
+                [
+                    "verify",
+                    "dewolfe-gubser-rosen-emd-finite-density",
+                    "--json",
+                ]
+            )
+        payload = json.loads(output.getvalue())
+        self.assertEqual(status, 0)
+        self.assertEqual(
+            payload["benchmark"],
+            "dewolfe-gubser-rosen-emd-finite-density",
+        )
+        self.assertEqual(
+            payload["results"]["figure_5_absolute_ordinate_comparison"][
+                "status"
+            ],
+            "blocked",
+        )
+
+    def test_dgr_finite_density_human_output_states_boundary(self) -> None:
+        output = io.StringIO()
+        with patch(
+            "holoforge.benchmarks.adapters."
+            "dewolfe_gubser_rosen_emd_finite_density."
+            "verify_dewolfe_gubser_rosen_emd_finite_density",
+            return_value=FastDGRFiniteDensityResult(),
+        ), redirect_stdout(output):
+            status = main(
+                ["verify", "dewolfe-gubser-rosen-emd-finite-density"]
+            )
+        rendered = output.getvalue()
+        self.assertEqual(status, 0)
+        self.assertIn("T_c = 142.973974 MeV", rendered)
+        self.assertIn("absolute density ordinate: BLOCKED", rendered)
+        self.assertIn("global topology", rendered)
+
     def test_vector_comparison_json_and_artifacts(self) -> None:
         output = io.StringIO()
         with tempfile.TemporaryDirectory() as directory:
@@ -623,6 +741,10 @@ class CommandLineTests(unittest.TestCase):
             ("linear-axion", ["verify", "linear-axion-dc"]),
             ("gubser-nellore", ["verify", "gubser-nellore-ed"]),
             ("dgr", ["verify", "dewolfe-gubser-rosen-emd"]),
+            (
+                "dgr-finite-density",
+                ["verify", "dewolfe-gubser-rosen-emd-finite-density"],
+            ),
             ("comparison", ["compare", "vector-spectrum"]),
         )
         with tempfile.TemporaryDirectory() as directory:
@@ -632,7 +754,8 @@ class CommandLineTests(unittest.TestCase):
                     output = io.StringIO()
                     if label == "gubser-nellore":
                         context = patch(
-                            "holoforge.benchmarks.adapters.gubser_nellore_ed.verify_gubser_nellore_ed",
+                            "holoforge.benchmarks.adapters.gubser_nellore_ed."
+                            "verify_gubser_nellore_ed",
                             return_value=FastGubserNelloreResult(),
                         )
                     elif label == "dgr":
@@ -641,6 +764,13 @@ class CommandLineTests(unittest.TestCase):
                             "dewolfe_gubser_rosen_emd."
                             "verify_dewolfe_gubser_rosen_emd",
                             return_value=FastDGRResult(),
+                        )
+                    elif label == "dgr-finite-density":
+                        context = patch(
+                            "holoforge.benchmarks.adapters."
+                            "dewolfe_gubser_rosen_emd_finite_density."
+                            "verify_dewolfe_gubser_rosen_emd_finite_density",
+                            return_value=FastDGRFiniteDensityResult(),
                         )
                     elif label == "hard-wall-chiral":
                         context = patch(

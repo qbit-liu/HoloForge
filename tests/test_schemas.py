@@ -82,6 +82,56 @@ class CardSchemaTests(unittest.TestCase):
             {"established-source", "reproduced"},
         )
 
+    def test_dewolfe_gubser_rosen_critical_point_model_card_is_valid(
+        self,
+    ) -> None:
+        card = load_json(
+            "domains/qcd/dewolfe_gubser_rosen_emd_critical_point/"
+            "model-card.json"
+        )
+        self.model_validator.validate(card)
+        self.assertEqual(card["maturity"], "reproduced")
+        self.assertEqual(card["provenance"]["review_status"], "approved")
+        self.assertEqual(
+            {claim["support_level"] for claim in card["claims"]},
+            {"established-source", "reproduced"},
+        )
+        axis_convention = next(
+            item for item in card["conventions"] if item["name"] == "Figure 5 axes"
+        )
+        self.assertIn("mu_BH is the horizontal abscissa", axis_convention["value"])
+        self.assertIn(
+            "rho_source_figure5 is the digitized vertical ordinate",
+            axis_convention["value"],
+        )
+        validation_by_id = {
+            item["id"]: item for item in card["validation"]["tests"]
+        }
+        self.assertEqual(
+            validation_by_id[
+                "reduced-finite-density-classical-verifier"
+            ]["status"],
+            "pass",
+        )
+        self.assertTrue(
+            any(
+                "local critical-coordinate neighborhood" in limitation
+                for limitation in card["limitations"]
+            )
+        )
+        self.assertTrue(
+            any(
+                "C3h topology extension remains stopped" in limitation
+                for limitation in card["limitations"]
+            )
+        )
+        self.assertTrue(
+            any(
+                "absolute Figure 5 ordinate agreement is blocked" in limitation
+                for limitation in card["limitations"]
+            )
+        )
+
     def test_incubator_hypothesis_example_is_valid(self) -> None:
         card = load_json("incubator/examples/hypothesis-card.example.json")
         self.hypothesis_validator.validate(card)
