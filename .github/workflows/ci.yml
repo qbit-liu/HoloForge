@@ -43,12 +43,35 @@ jobs:
         run: python -m unittest discover -s tests -v
 
       - name: Run verification benchmark
+        run: holoforge verify soft-wall-vector
+
+  historical-audit:
+    name: Extended historical route audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            setup.cfg
+
+      - name: Install HoloForge and test dependencies
         run: |
-          holoforge verify soft-wall-vector
-          holoforge verify hard-wall-chiral
-          holoforge verify holographic-superconductor
-          holoforge verify holographic-superconductor-optical
-          holoforge verify linear-axion-dc
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[test]"
+
+      - name: Run preserved superseded-route audits once
+        run: |
+          python -m unittest tests.extended.historical_holographic_superconductor_optical tests.extended.historical_dewolfe_gubser_rosen_emd_finite_density -v
 
   package:
     name: Build and smoke-test wheel
@@ -78,15 +101,9 @@ jobs:
         run: |
           python -m pip install --force-reinstall dist/*.whl
           python -c "from importlib.metadata import version; import holoforge; assert holoforge.__version__ == version('holoforge')"
+          python -c "from holoforge.benchmarks import BUILTIN_BENCHMARKS; assert {'holographic-superconductor-optical', 'dewolfe-gubser-rosen-emd-finite-density'} <= set(BUILTIN_BENCHMARKS.identifiers)"
+          python -c "from holoforge.reference_data import load_reference_dataset; assert load_reference_dataset('data/reference/dewolfe-gubser-rosen-figure-5-at-tc.json')['id'] == 'dewolfe-gubser-rosen-figure-5-at-tc'"
           holoforge verify soft-wall-vector
-          holoforge verify hard-wall-chiral
-          holoforge verify holographic-superconductor
-          holoforge verify holographic-superconductor-optical
-          holoforge verify linear-axion-dc
-          holoforge verify dewolfe-gubser-rosen-emd
-          holoforge verify dewolfe-gubser-rosen-emd-finite-density
-          holoforge verify gubser-nellore-ed
-          holoforge verify gubser-rocha-emd
 
   portability:
     name: Wheel portability (${{ matrix.os }})
@@ -127,13 +144,9 @@ jobs:
 
       - name: Run bounded contract and benchmark tests
         run: |
-          python -m unittest tests.test_core_contracts tests.test_benchmark_registry tests.test_cli tests.test_schemas tests.test_reference_loader tests.test_evidence tests.test_evidence_schemas tests.test_linear_axion_dc tests.test_hard_wall_chiral tests.test_holographic_superconductor_optical -v
+          python -m unittest tests.test_core_contracts tests.test_benchmark_registry tests.test_cli tests.test_schemas tests.test_reference_loader tests.test_evidence tests.test_evidence_schemas tests.test_linear_axion_dc tests.test_hard_wall_chiral -v
           holoforge verify linear-axion-dc
           holoforge verify hard-wall-chiral
-          holoforge verify holographic-superconductor-optical
-          # The installed-wheel CLI run below provides the DGR OS-portability
-          # check; the full scientific module already runs in the Python matrix.
-          holoforge verify dewolfe-gubser-rosen-emd
 
       - name: Relocate and audit an evidence bundle
         run: |

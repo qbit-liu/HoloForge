@@ -5,6 +5,9 @@ import unittest
 import numpy as np
 
 from holoforge.numerics import chebyshev_lobatto_grid
+from holoforge.numerics.interpolation import (
+    deterministic_barycentric_interpolator,
+)
 
 
 class ChebyshevGridTests(unittest.TestCase):
@@ -60,6 +63,14 @@ class ChebyshevGridTests(unittest.TestCase):
             chebyshev_lobatto_grid(8, 0.0, float("inf"))
         with self.assertRaisesRegex(ValueError, "less than"):
             chebyshev_lobatto_grid(8, 1.0, 1.0)
+
+    def test_shared_barycentric_interpolator_is_deterministic(self) -> None:
+        nodes = np.linspace(-1.0, 1.0, 9)
+        values = nodes**4 - 0.5 * nodes
+        first = deterministic_barycentric_interpolator(nodes, values)
+        second = deterministic_barycentric_interpolator(nodes, values)
+        targets = np.linspace(-0.9, 0.9, 17)
+        np.testing.assert_array_equal(first(targets), second(targets))
 
 
 if __name__ == "__main__":

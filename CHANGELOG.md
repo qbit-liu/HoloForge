@@ -4,12 +4,32 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- The owner-approved reduced Phase 5B DeWolfe--Gubser--Rosen finite-density
+  classical benchmark, including representative charged backgrounds, direct
+  critical-coordinate reproduction, fixed-state spectral refinement, and an
+  independent simultaneous-Maxwell formulation. The unresolved Figure 5
+  ordinate and global topology remain outside the accepted result.
+
+### Changed
+
+- Separate concise current Phase 4 and Phase 5B contracts and tests from
+  preserved development histories and superseded-route audits. The default
+  Python matrix still runs every accepted verifier, while one explicit CI job
+  retains the historical audits without duplicating them across all jobs.
+- Centralize the deterministic SciPy barycentric-interpolator compatibility
+  shim used by five spectral benchmarks without changing their equations,
+  gates, tolerances, or numerical records.
+
 ### Documentation
 
-- Record the completed Phase 5A implementation and Version 0.5.6 integration,
-  pull-request and post-merge CI, annotated tag, tag CI, and GitHub release as
-  the Phase 5A closure point. Phase 5B and Phase 5C remain closed pending
-  separate owner-reviewed contracts.
+- Add a single six-phase classical-benchmark index and record the sequence as
+  complete through the reduced Phase 5B core. Phase 5C and the stopped dense
+  Figure 5 topology campaign remain optional, separately reviewed extensions.
+- Preserve the complete Phase 4 and Phase 5B amendment, failure, decision, CI,
+  and release histories under `docs/benchmarks/history/` while keeping active
+  contracts concise.
 
 ## [0.5.6] - 2026-08-22
 

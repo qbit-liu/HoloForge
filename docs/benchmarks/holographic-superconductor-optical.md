@@ -174,6 +174,7 @@ or digitized source curve and is labelled as not being a Figure 2 reproduction.
 - Reproduction of this model calculation is not empirical validation of a
   material or a microscopic pairing mechanism.
 
-The complete historical contract, including every mandatory stop and the
-preserved degree-320 roundoff evidence, is in
-[`holographic-superconductor-optical-contract.md`](holographic-superconductor-optical-contract.md).
+The [current contract](holographic-superconductor-optical-contract.md) freezes
+the accepted scope. Every mandatory stop, superseded route, and the preserved
+degree-320 roundoff evidence remain in the
+[development history](history/holographic-superconductor-optical-development-history.md).

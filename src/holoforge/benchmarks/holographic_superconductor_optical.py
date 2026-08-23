@@ -24,7 +24,6 @@ from typing import Any, Callable, Dict, Optional, Sequence, Tuple
 import numpy as np
 from numpy.typing import NDArray
 from scipy.integrate import solve_bvp, solve_ivp
-from scipy.interpolate import BarycentricInterpolator
 from scipy.linalg import solve
 from scipy.optimize import root_scalar
 
@@ -40,6 +39,9 @@ from holoforge.core import (
     runtime_versions,
 )
 from holoforge.numerics import chebyshev_lobatto_grid
+from holoforge.numerics.interpolation import (
+    deterministic_barycentric_interpolator,
+)
 
 
 SOURCE_ID = "arXiv:0803.3295v1"
@@ -3062,8 +3064,8 @@ def _independent_element_equation_residual(
     coordinate = check_grid.nodes
     local_nodes = (np.asarray(nodes, dtype=float) - lower_bound) / width
     local_coordinate = (coordinate - lower_bound) / width
-    interpolator = BarycentricInterpolator(
-        local_nodes, regular, random_state=0
+    interpolator = deterministic_barycentric_interpolator(
+        local_nodes, regular
     )
     regular_check = np.asarray(interpolator(local_coordinate), dtype=complex)
     regular_first = np.asarray(
@@ -3135,7 +3137,7 @@ def _independent_equation_residual_localization(
 ) -> EquationResidualLocalization:
     check_grid = chebyshev_lobatto_grid(2 * int(degree), 0.0, 1.0)
     coordinate = check_grid.nodes
-    interpolator = BarycentricInterpolator(nodes, regular, random_state=0)
+    interpolator = deterministic_barycentric_interpolator(nodes, regular)
     regular_check = np.asarray(interpolator(coordinate), dtype=complex)
     regular_first = np.asarray(
         interpolator.derivative(coordinate, der=1), dtype=complex

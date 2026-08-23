@@ -12,7 +12,6 @@ the paper's separate charged-fermion result.
 from __future__ import annotations
 
 from dataclasses import dataclass
-import inspect
 import json
 import math
 from numbers import Integral, Real
@@ -36,6 +35,9 @@ from holoforge.core import (
     runtime_versions,
 )
 from holoforge.numerics import chebyshev_lobatto_grid
+from holoforge.numerics.interpolation import (
+    deterministic_barycentric_interpolator as _barycentric_interpolator,
+)
 
 
 SOURCE_ID = "arXiv:0911.2898v2"
@@ -79,26 +81,6 @@ DEFAULT_LOW_TEMPERATURE_FIT_TOLERANCE = 2.0e-5
 DEFAULT_NEUTRAL_TOLERANCE = 1.0e-10
 DEFAULT_DETERMINISM_TOLERANCE = 1.0e-12
 _MAXWELL_EXPONENT = math.sqrt(2.0 / 3.0)
-
-
-_BARYCENTRIC_RANDOM_KEYWORD = (
-    "rng"
-    if "rng" in inspect.signature(BarycentricInterpolator).parameters
-    else "random_state"
-)
-
-
-def _barycentric_interpolator(
-    nodes: NDArray[np.float64],
-    values: NDArray[np.float64],
-) -> BarycentricInterpolator:
-    """Construct a deterministic interpolator across supported SciPy versions."""
-
-    return BarycentricInterpolator(
-        nodes,
-        values,
-        **{_BARYCENTRIC_RANDOM_KEYWORD: 0},
-    )
 
 
 GUBSER_ROCHA_DEFINITION = BenchmarkDefinition(

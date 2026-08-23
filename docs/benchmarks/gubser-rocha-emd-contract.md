@@ -13,13 +13,27 @@ reproduction, approved its model-card state, and authorized scoped Git and
 Version 0.5.3 release actions. This approval does not open the charged-fermion
 sector or source Figure 1.
 
-- **Completed:** Phase 0 and Phase 1 are merged; the initial failed Phase 2
-  preflight, bounded diagnostics, prospective amendments, corrected clean run,
-  origin clarification, and result review are preserved.
-- **Current:** synchronize the approved `reproduced` state and prepare the
-  scoped Version 0.5.3 public release.
-- **Proposed next:** merge the reviewed implementation and publish the release,
-  subject to repository checks and authenticated GitHub access.
+- **Completed:** Phases 0, 1, and 2 are merged and released in Version 0.5.3;
+  the initial failed Phase 2 preflight, bounded diagnostics, prospective
+  amendments, corrected clean run, origin clarification, result review, and
+  portability evidence are preserved.
+- **Current:** closed historical Phase 2 record; no active Gubser--Rocha
+  action.
+- **Proposed next:** review the separate Phase 3 hard-wall chiral contract.
+  Source Figure 1 and the charged-fermion sector remain closed.
+
+## Phase 2 release closure, 2026-08-20
+
+Pull Request 23 merged at commit
+`9d0816885b19b731f9819a96928ffe583f780983`; the same commit is tagged
+`v0.5.3`. The pull request's Python 3.9, 3.11, and 3.14 tests, wheel build and
+smoke test, and Linux, macOS, and Windows wheel-portability checks all passed.
+
+The release does not broaden the approved scientific scope. The benchmark
+remains a top-down-derived bosonic EMD control with support level `reproduced`.
+The charged-fermion equations, source Figure 1, stability claims, and any
+connection to private or phenomenological EMD research remain outside its
+evidence boundary.
 
 The intended implementation identifier is `gubser-rocha-emd`. The target is
 the homogeneous five-dimensional charged dilatonic black brane of Gubser and
