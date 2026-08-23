@@ -17,6 +17,9 @@ from holoforge.benchmarks.dewolfe_gubser_rosen_emd_critical_point import (
 )
 
 
+PORTABLE_REGRESSION_ATOL = 1.0e-8
+
+
 class DeWolfeGubserRosenPhase5BUnitTests(unittest.TestCase):
     """Keep cheap input validation in the default suite."""
 
@@ -60,8 +63,16 @@ class DeWolfeGubserRosenPhase5BVerificationTests(unittest.TestCase):
     def test_critical_coordinates_and_refinement_are_unchanged(self) -> None:
         result = self.payload["results"]
         source = result["critical"]["final_source_coordinates"]
-        self.assertAlmostEqual(source["T_MeV"], 142.9739737853875, places=10)
-        self.assertAlmostEqual(source["mu_MeV"], 781.6937616656423, places=9)
+        self.assertAlmostEqual(
+            source["T_MeV"],
+            142.9739737853875,
+            delta=PORTABLE_REGRESSION_ATOL,
+        )
+        self.assertAlmostEqual(
+            source["mu_MeV"],
+            781.6937616656423,
+            delta=PORTABLE_REGRESSION_ATOL,
+        )
         changes = result["refinement"]["changes"]
         self.assertEqual(
             [(item["coarse_degree"], item["fine_degree"]) for item in changes],

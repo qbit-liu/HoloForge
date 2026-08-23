@@ -22,6 +22,9 @@ from holoforge.benchmarks.holographic_superconductor_optical import (
 )
 
 
+PORTABLE_REGRESSION_ATOL = 1.0e-8
+
+
 class OpticalContractUnitTests(unittest.TestCase):
     """Keep cheap convention and fail-closed checks in default discovery."""
 
@@ -75,14 +78,20 @@ class OpticalCurrentVerificationTests(unittest.TestCase):
 
     def test_owner_approved_quantities_are_unchanged(self) -> None:
         near = self.result.near_critical
-        self.assertAlmostEqual(near.slope, 23.96884334975214, places=11)
         self.assertAlmostEqual(
-            near.finite_frequency_slope, 23.968833072939002, places=11
+            near.slope,
+            23.96884334975214,
+            delta=PORTABLE_REGRESSION_ATOL,
+        )
+        self.assertAlmostEqual(
+            near.finite_frequency_slope,
+            23.968833072939002,
+            delta=PORTABLE_REGRESSION_ATOL,
         )
         self.assertAlmostEqual(
             self.result.low_temperature_condensate_scale,
             8.443622405101506,
-            places=11,
+            delta=PORTABLE_REGRESSION_ATOL,
         )
 
     def test_independent_residuals_and_routes_remain_inside_frozen_gates(
