@@ -80,12 +80,15 @@ false pending state in the closed research project.
    indexes and record which stable knowledge and lesson IDs and evidence apply
    to this candidate. Translate each into a candidate-specific control; if none
    applies, record the knowledge classes and tags searched. Then record the
-   candidate dictionary, assumptions, falsification test, AI involvement, and
-   decision owner in a private hypothesis card and complete the five-part
-   Explore intake scorecard: source-complete inputs, an invariant target beyond
-   the generic baseline, a cheap kill test, a positive-result endpoint, and a
-   cost ceiling. A detailed gate opens only after all five pass; a conditional
-   item may open only one cheaper bounded evidence task.
+   portfolio intent, search shape, domains considered or deliberately excluded,
+   and candidate-pool coverage. For publication-targeted work, complete the
+   separate publication-pathway assessment before prioritizing a lead. Then
+   record the candidate dictionary, assumptions, falsification test, AI
+   involvement, and decision owner in a private hypothesis card and complete
+   the five-part Explore intake scorecard: source-complete inputs, an invariant
+   target beyond the generic baseline, a cheap kill test, a positive-result
+   endpoint, and a cost ceiling. A detailed gate opens only after all five
+   pass; a conditional item may open only one cheaper bounded evidence task.
 2. **Screening:** search prior work and test dimensional, symmetry, boundary,
    and ensemble consistency before investing in a large calculation.
 3. **Discriminating calculation:** compare against a simpler baseline and use a
@@ -105,6 +108,17 @@ false pending state in the closed research project.
    correspondence into the public project.
 7. **Release review:** after journal acceptance or another explicit disclosure
    decision, select the exact artifacts that may become public.
+
+### When a gate becomes stuck
+
+Use the bounded impasse protocol in the research-gate workflow when a blocker
+recurs or the approved repair budget is nearly exhausted. Classify the blocker,
+search targeted primary and authoritative external evidence, audit the physics
+independently, inspect the matching numerical or implementation layer, and
+freeze at most one scoped repair before returning to the owner. Internet search
+is an evidence-locating step, not a substitute for physical reasoning. Preserve
+an unresolved source or technical stop if the bounded repair fails; do not
+silently loosen thresholds or expand the hypothesis.
 
 ## Public export checklist
 

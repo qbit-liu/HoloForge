@@ -20,6 +20,35 @@ Classify the intended contribution before screening it:
 All three can be scientifically valuable. The class must be stated explicitly,
 and any priority or novelty claim requires a targeted literature search.
 
+## Declare portfolio intent and search scope
+
+An intake is a bounded candidate search, not an automatic survey of every
+gauge/gravity domain. Before generating or ranking seeds, record:
+
+- the **portfolio intent**: open discovery, publication-targeted research, or
+  method/infrastructure learning;
+- the **search shape**: domain-focused, cross-domain, or method-focused;
+- the scientific domains and source classes considered;
+- any domains intentionally excluded and the reason; and
+- a compact coverage table showing how many seeds were inspected in each
+  included area.
+
+Holographic QCD, condensed matter, transport, gravitation, thermal physics,
+and cross-domain applications are all eligible when they fit HoloForge's
+bottom-up scope. Coverage is an audit against an accidental blind spot, not a
+quota: an intake may deliberately focus on one area, and no candidate should
+advance merely to balance the table.
+
+When the portfolio intent is publication-targeted, complete a separate
+**publication-pathway assessment** before choosing the lead. It should ask
+whether the candidate has a paper-shaped question, a targeted prior-work gap,
+a physical discriminator or mechanism beyond generic model flexibility,
+source and artifact readiness, a plausible short gate sequence to a
+substantive result, and a bounded repair or pivot budget. This assessment
+prioritizes research investment; it does not establish novelty, promise a
+publication, replace the five scientific readiness tests, or weaken any
+acceptance or stop condition.
+
 ## Qualify candidates with an Explore intake scorecard
 
 Before writing a detailed frozen contract, complete the generic
@@ -110,6 +139,42 @@ If no later record exists or it cannot be inspected, preserve that limitation
 and keep any version-sensitive conclusion provisional. A printed mismatch may
 support a source stop, but it does not by itself establish author intent, the
 convention used by private code, or an error in the paper's physical result.
+
+## Use a bounded impasse protocol
+
+Do not let a repeated blocker consume an open-ended sequence of retries. Use
+this protocol when the same blocker recurs, the approved repair budget is
+nearly exhausted, or hostile criticism identifies a tractable alternative
+explanation that the current contract cannot distinguish:
+
+1. **Classify the blocker:** source/provenance, physical dictionary or
+   consistency, analytic derivation, numerical representation, or software
+   implementation.
+2. **Search targeted external evidence:** inspect primary literature, the
+   latest version of record, corrections, citations, public author code or
+   data, and official documentation for maintained libraries as appropriate.
+   An internet result is a locator for evidence, not authority by itself.
+3. **Run an independent physics audit:** check dimensions, symmetries,
+   variational ensemble, boundary and regularity conditions, constraints,
+   Ward identities, exact limits, signs, and physical branch support before
+   treating the problem as merely numerical.
+4. **Audit the method at the matching layer:** for numerical or implementation
+   blockers, inspect conditioning, coordinates, discretization, convergence,
+   maintained library functions, and one genuinely independent formulation
+   where proportionate to the claim.
+5. **Freeze one bounded repair:** state its input, evidence requirement,
+   acceptance and stop conditions, cost ceiling, and what remains closed.
+   Obtain a new owner decision when the repair changes the scientific question,
+   representation, threshold, or authorized cost.
+6. **Stop honestly if it does not resolve the blocker:** preserve the source,
+   technical, conditional, or inconclusive outcome and name the evidence that
+   could reopen it. Do not loosen a threshold or enlarge the hypothesis after
+   seeing the result.
+
+A model-derived correction is allowed when the exact action and conventions
+support it, but it must be labelled as an internal derivation rather than a
+sourced author correction and must receive analytic, numerical, and owner
+review appropriate to the claim.
 
 ## Update research knowledge during the gate
 
