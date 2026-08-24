@@ -119,6 +119,17 @@ Before the detailed gate, ask the agent to copy and complete
 inside the private repository. The agent should admit the candidate only when
 all five readiness tests pass; a conditional item may open only one named
 cheaper evidence task, and a failed item must defer or reject the candidate.
+The scorecard also records portfolio intent and the actual domain coverage of
+the search. Publication-targeted work receives a separate pathway assessment;
+this prioritization does not replace scientific readiness or establish
+novelty.
+
+If the same blocker recurs, ask the agent to use the bounded impasse protocol:
+classify the problem, inspect targeted authoritative external evidence, audit
+the physics independently, inspect the corresponding numerical or software
+layer, and propose at most one costed repair before returning for approval.
+Internet search locates evidence; it does not validate a fix or authorize a
+post-hoc threshold change.
 
 At each owner gate, and again after an approved gate is recorded and closed,
 the agent should state what is completed, the current stage, the proposed next

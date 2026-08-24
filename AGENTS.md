@@ -55,7 +55,15 @@ These workflows do not replace human scientific or disclosure approval.
   data, results, decisions, and reproducibility work, not only failures.
 - Before a new Explore intake, read the private reviewed-knowledge and closure-
   lesson indexes, inspect primary evidence for applicable entries, and record
-  how their stable IDs change the new scorecard or contract.
+  how their stable IDs change the new scorecard or contract. Also declare the
+  portfolio intent, search shape, domains considered or excluded, and actual
+  candidate coverage. For publication-targeted work, assess the paper-shaped
+  question and bounded path separately from scientific readiness.
+- When a blocker recurs or a repair budget is nearly exhausted, use the bounded
+  impasse protocol in `docs/research-gate-workflow.md`: combine targeted
+  authoritative source search with an independent physics audit, then freeze
+  at most one scoped repair. Do not use internet search as authority, weaken a
+  threshold post hoc, or relabel a technical stop as a physical result.
 - At every closed Explore gate, preserve the result and complete the generic
   closure retrospective in `docs/templates/research-retrospective-template.md`;
   feed lessons into future gates without rewriting the closed one.

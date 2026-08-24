@@ -29,6 +29,22 @@ scientific support, authorization, and disclosure as separate states.
 Treat the repository documents as authoritative when they are stricter than
 this summary.
 
+## Set portfolio intent and search scope
+
+Before generating intake seeds, record whether the portfolio intent is open
+discovery, publication-targeted research, or method/infrastructure learning.
+Also record whether the search is domain-focused, cross-domain, or
+method-focused; list domains considered and intentionally excluded; and give a
+small domain-coverage table. Coverage exposes accidental blind spots and never
+acts as a quota or a reason to advance a weak candidate.
+
+For publication-targeted work, complete the scorecard's separate
+publication-pathway assessment. Require a paper-shaped question, a targeted
+prior-work gap, a physical discriminator or mechanism, source and artifact
+readiness, a plausible short gate sequence, and a bounded repair or pivot
+budget. Use this assessment to prioritize candidates, not to claim novelty or
+weaken the scientific readiness gates.
+
 ## Qualify the candidate before a detailed gate
 
 Before freezing a calculation contract, copy and complete
@@ -108,6 +124,29 @@ the intake decision remains auditable.
     reviewed gate and its retrospective. The closure handoff must then repeat
     completed/current/next status and fresh A-E choices for the next eligible
     decision; do not end only with `no approval pending`.
+
+## Handle a repeated blocker
+
+When the same blocker recurs, the approved repair budget is nearly exhausted,
+or the critic identifies a tractable alternative, follow the bounded impasse
+protocol in `docs/research-gate-workflow.md`:
+
+1. classify it as source/provenance, physics/dictionary, analytic, numerical,
+   or implementation;
+2. search targeted primary evidence, later records, corrections, citations,
+   public author artifacts, or official maintained-library documentation;
+3. independently audit dimensions, symmetries, ensemble, boundaries,
+   constraints, exact limits, signs, and branch support;
+4. audit conditioning, representation, convergence, maintained functions, and
+   an independent formulation when the blocker is numerical;
+5. freeze at most one bounded repair with evidence, acceptance, stop, cost,
+   and authorization boundaries; and
+6. preserve the correct stopped or unresolved outcome if the repair fails.
+
+Internet search locates evidence; it does not validate a fix. A self-derived
+correction must remain distinct from an author-sourced correction and receive
+its own checks and owner review. Never use the protocol to loosen a threshold
+post hoc or enlarge the failed gate.
 
 ## Maintain a progress snapshot
 

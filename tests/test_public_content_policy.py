@@ -233,6 +233,87 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertNotIn("/users/", scorecard)
         self.assertNotIn("holoforge-explore-private", scorecard)
 
+    def test_intake_records_portfolio_intent_scope_and_publication_path(self):
+        workflow = (
+            ROOT / "docs/research-gate-workflow.md"
+        ).read_text(encoding="utf-8").lower()
+        private_workflow = (
+            ROOT / "docs/private-research-workflow.md"
+        ).read_text(encoding="utf-8").lower()
+        skill = (
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md"
+        ).read_text(encoding="utf-8").lower()
+        scorecard = (
+            ROOT
+            / ".agents/skills/holoforge-research-gate/assets/explore-intake-scorecard.example.md"
+        ).read_text(encoding="utf-8").lower()
+        combined = " ".join(
+            "\n".join((workflow, private_workflow, skill, scorecard)).split()
+        )
+
+        for required_term in (
+            "portfolio intent",
+            "publication-targeted",
+            "search shape",
+            "domains considered",
+            "domains intentionally excluded",
+            "domain-coverage",
+            "publication-pathway assessment",
+            "paper-shaped question",
+            "physical discriminator or mechanism",
+            "short gate sequence",
+            "repair or pivot budget",
+        ):
+            self.assertIn(required_term, combined)
+
+        self.assertIn("holographic qcd", workflow)
+        self.assertIn("not a quota", combined)
+        self.assertIn("does not establish novelty", scorecard)
+        self.assertIn("does not establish novelty", workflow)
+        self.assertIn("replace the five scientific readiness tests", workflow)
+        self.assertNotIn("/users/", combined)
+        self.assertNotIn("holoforge-explore-private", combined)
+
+    def test_repeated_blockers_use_a_bounded_impasse_protocol(self):
+        workflow = (
+            ROOT / "docs/research-gate-workflow.md"
+        ).read_text(encoding="utf-8").lower()
+        private_workflow = (
+            ROOT / "docs/private-research-workflow.md"
+        ).read_text(encoding="utf-8").lower()
+        skill = (
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md"
+        ).read_text(encoding="utf-8").lower()
+        instructions = (ROOT / "AGENTS.md").read_text(encoding="utf-8").lower()
+        quickstart = (
+            ROOT / "docs/agent-quickstart.md"
+        ).read_text(encoding="utf-8").lower()
+        combined = " ".join(
+            "\n".join(
+                (workflow, private_workflow, skill, instructions, quickstart)
+            ).split()
+        )
+
+        for required_term in (
+            "bounded impasse protocol",
+            "classify the blocker",
+            "targeted external evidence",
+            "independent physics audit",
+            "official documentation",
+            "conditioning",
+            "maintained library",
+            "one bounded repair",
+            "self-derived correction",
+            "technical stop",
+        ):
+            self.assertIn(required_term, combined)
+
+        self.assertIn("internet result is a locator for evidence", workflow)
+        self.assertIn("does not validate a fix", skill)
+        self.assertIn("do not loosen a threshold", workflow)
+        self.assertNotIn("/users/", combined)
+        self.assertNotIn("holoforge-explore-private", combined)
+
     def test_closed_gate_requires_a_generic_research_retrospective(self):
         workflow = (
             ROOT / "docs/research-gate-workflow.md"

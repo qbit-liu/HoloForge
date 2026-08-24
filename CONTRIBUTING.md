@@ -50,9 +50,14 @@ new-phenomenon application within a holographically studied parent field, or a
 method-transfer/model-improvement project. Follow the bounded
 [research-gate workflow](docs/research-gate-workflow.md); freeze each contract
 before calculation and keep scientific support, owner authorization, and
-disclosure status separate. Every owner decision list must include an explicit
-item-by-item recommendation, a concise evidence-based reason, a
-completed/current/next status summary, and the standard A-E response paths.
+disclosure status separate. Record the intake's portfolio intent and actual
+domain coverage; for publication-targeted work, assess the paper-shaped path
+separately from the five readiness gates. When a blocker recurs, use the
+workflow's bounded impasse protocol rather than retrying indefinitely or
+loosening a threshold after seeing the result. Every owner decision list must
+include an explicit item-by-item recommendation, a concise evidence-based
+reason, a completed/current/next status summary, and the standard A-E response
+paths.
 When requested, maintain the optional research-progress map in the private
 project; it describes research stages and branches, not HoloForge development.
 When a gate closes, preserve its result and complete the generic
