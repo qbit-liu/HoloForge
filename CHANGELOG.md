@@ -4,6 +4,8 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.5.7] - 2026-08-24
+
 ### Added
 
 - The owner-approved reduced Phase 5B DeWolfe--Gubser--Rosen finite-density
@@ -30,6 +32,14 @@ All notable changes to HoloForge are recorded here.
 - Preserve the complete Phase 4 and Phase 5B amendment, failure, decision, CI,
   and release histories under `docs/benchmarks/history/` while keeping active
   contracts concise.
+- Strengthen Explore intake selection with publication-path assessment, domain
+  coverage checks, and a bounded impasse protocol that requires literature,
+  numerical, and physics-based diagnosis before a candidate is stopped.
+- Synchronize the agent quickstart, contributor guidance, research-gate skill,
+  scorecard example, workflow documentation, and public-content regression
+  tests with the new intake and impasse requirements.
+- Update canonical repository and comparison links for the `xin-yi6` GitHub
+  account.
 
 ## [0.5.6] - 2026-08-22
 
@@ -458,6 +468,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.5.7]: https://github.com/xin-yi6/HoloForge/compare/v0.5.6...v0.5.7
 [0.5.6]: https://github.com/xin-yi6/HoloForge/compare/v0.5.5...v0.5.6
 [0.5.5]: https://github.com/xin-yi6/HoloForge/compare/v0.5.4...v0.5.5
 [0.5.4]: https://github.com/xin-yi6/HoloForge/compare/v0.5.3...v0.5.4

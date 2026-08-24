@@ -181,7 +181,7 @@ They are repository workflows, not substitutes for scientific review.
 
 ## Project status
 
-The latest public release is `0.5.6`. HoloForge remains a pre-1.0 project, not
+The latest public release is `0.5.7`. HoloForge remains a pre-1.0 project, not
 a universal phenomenology or first-principles prediction package. Its current
 reference implementations reproduce published model calculations; they do not
 establish those models as complete descriptions of their target physical
