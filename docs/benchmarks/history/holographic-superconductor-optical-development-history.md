@@ -2834,7 +2834,7 @@ Pull request 26 was merged as `0b20b0492a56333e21b4f13db780e2c19cf73e72`.
 The exact post-merge `main` run `32482531185` passed the same seven-job matrix.
 Annotated tag `v0.5.5` points to that merge commit, and the public non-
 prerelease GitHub release is available at
-`https://github.com/qbit-liu/HoloForge/releases/tag/v0.5.5`.
+`https://github.com/xin-yi6/HoloForge/releases/tag/v0.5.5`.
 
 This closes Phase 4 delivery and release. It does not alter the accepted
 scientific result or any preserved failure: the exact normal response,

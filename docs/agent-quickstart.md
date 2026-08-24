@@ -10,7 +10,7 @@ sources of authority.
 From a terminal, create an isolated environment and install the checkout:
 
 ```bash
-git clone https://github.com/qbit-liu/HoloForge.git
+git clone https://github.com/xin-yi6/HoloForge.git
 cd HoloForge
 python3 -m venv .venv
 source .venv/bin/activate

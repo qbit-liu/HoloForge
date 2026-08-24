@@ -1,6 +1,6 @@
 # HoloForge
 
-[![CI](https://github.com/qbit-liu/HoloForge/actions/workflows/ci.yml/badge.svg)](https://github.com/qbit-liu/HoloForge/actions/workflows/ci.yml)
+[![CI](https://github.com/xin-yi6/HoloForge/actions/workflows/ci.yml/badge.svg)](https://github.com/xin-yi6/HoloForge/actions/workflows/ci.yml)
 
 HoloForge is a verification-first platform for **bottom-up gauge/gravity
 modelling**. It is intended to make scientific assumptions, conventions,

@@ -740,7 +740,7 @@ jobs, the release pull request was merged as
 `32560309807` passed all seven jobs. Annotated tag `v0.5.6` points exactly to
 that merge commit. Tag CI run `32561039255` passed all seven jobs, and the
 public non-prerelease GitHub release is available at
-`https://github.com/qbit-liu/HoloForge/releases/tag/v0.5.6` with no attached
+`https://github.com/xin-yi6/HoloForge/releases/tag/v0.5.6` with no attached
 assets.
 
 The final local repository suite passed `252/252`. The independently installed

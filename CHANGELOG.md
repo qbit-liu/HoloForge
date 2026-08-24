@@ -458,18 +458,18 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
-[0.5.6]: https://github.com/qbit-liu/HoloForge/compare/v0.5.5...v0.5.6
-[0.5.5]: https://github.com/qbit-liu/HoloForge/compare/v0.5.4...v0.5.5
-[0.5.4]: https://github.com/qbit-liu/HoloForge/compare/v0.5.3...v0.5.4
-[0.5.3]: https://github.com/qbit-liu/HoloForge/compare/v0.5.2...v0.5.3
-[0.5.2]: https://github.com/qbit-liu/HoloForge/compare/v0.5.1...v0.5.2
-[0.5.1]: https://github.com/qbit-liu/HoloForge/compare/v0.5.0...v0.5.1
-[0.5.0]: https://github.com/qbit-liu/HoloForge/compare/v0.4.0...v0.5.0
-[0.4.0]: https://github.com/qbit-liu/HoloForge/compare/v0.3.0...v0.4.0
-[0.3.0]: https://github.com/qbit-liu/HoloForge/compare/v0.2.3...v0.3.0
-[0.2.3]: https://github.com/qbit-liu/HoloForge/compare/v0.2.2...v0.2.3
-[0.2.2]: https://github.com/qbit-liu/HoloForge/compare/v0.2.1...v0.2.2
-[0.2.1]: https://github.com/qbit-liu/HoloForge/compare/v0.2.0...v0.2.1
-[0.2.0]: https://github.com/qbit-liu/HoloForge/compare/v0.1.1...v0.2.0
-[0.1.1]: https://github.com/qbit-liu/HoloForge/compare/v0.1.0...v0.1.1
-[0.1.0]: https://github.com/qbit-liu/HoloForge/releases/tag/v0.1.0
+[0.5.6]: https://github.com/xin-yi6/HoloForge/compare/v0.5.5...v0.5.6
+[0.5.5]: https://github.com/xin-yi6/HoloForge/compare/v0.5.4...v0.5.5
+[0.5.4]: https://github.com/xin-yi6/HoloForge/compare/v0.5.3...v0.5.4
+[0.5.3]: https://github.com/xin-yi6/HoloForge/compare/v0.5.2...v0.5.3
+[0.5.2]: https://github.com/xin-yi6/HoloForge/compare/v0.5.1...v0.5.2
+[0.5.1]: https://github.com/xin-yi6/HoloForge/compare/v0.5.0...v0.5.1
+[0.5.0]: https://github.com/xin-yi6/HoloForge/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/xin-yi6/HoloForge/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/xin-yi6/HoloForge/compare/v0.2.3...v0.3.0
+[0.2.3]: https://github.com/xin-yi6/HoloForge/compare/v0.2.2...v0.2.3
+[0.2.2]: https://github.com/xin-yi6/HoloForge/compare/v0.2.1...v0.2.2
+[0.2.1]: https://github.com/xin-yi6/HoloForge/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/xin-yi6/HoloForge/compare/v0.1.1...v0.2.0
+[0.1.1]: https://github.com/xin-yi6/HoloForge/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/xin-yi6/HoloForge/releases/tag/v0.1.0

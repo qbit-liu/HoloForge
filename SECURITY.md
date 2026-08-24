@@ -10,7 +10,7 @@ are not maintained for new security fixes.
 
 Do not put credentials, unpublished research, private filesystem paths, or
 other confidential material in a public issue. Report a suspected
-vulnerability through [GitHub private vulnerability reporting](https://github.com/qbit-liu/HoloForge/security/advisories/new).
+vulnerability through [GitHub private vulnerability reporting](https://github.com/xin-yi6/HoloForge/security/advisories/new).
 
 If that private form is unavailable, open a minimal public issue asking the
 maintainer to enable a private reporting channel. Do not include the sensitive
