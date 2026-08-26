@@ -137,6 +137,9 @@ artifacts. Plot generation requires the optional dependency installed with
   claim-bounded, event-driven research knowledge base that learns from papers,
   derivations, methods, data, decisions, reproducibility work, and every bounded
   result, plus a closure retrospective for each completed gate.
+- [`docs/research-progress-snapshots.md`](docs/research-progress-snapshots.md)
+  defines the compact and grouped project-progress figures used in private
+  research and owner-review packets.
 - [`docs/version-0.5-compatibility-policy.md`](docs/version-0.5-compatibility-policy.md)
   defines the protected `0.5.x` commands, Python API, schemas, migrations, and
   platform support; [`SECURITY.md`](SECURITY.md) gives the private reporting

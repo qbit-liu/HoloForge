@@ -19,6 +19,7 @@ ALLOWED_STAGE_STATUSES = frozenset(
 ALLOWED_STAGE_KINDS = frozenset({"task", "check", "decision", "outcome"})
 ALLOWED_TRANSITION_KINDS = frozenset({"normal", "advance", "revision", "stop"})
 ALLOWED_LAYOUT_DIRECTIONS = frozenset({"LR", "TB"})
+ALLOWED_FIGURE_STYLES = frozenset({"compact", "grouped"})
 ALLOWED_FIGURE_FORMATS = frozenset({"pdf", "png", "svg"})
 RESPONSE_IDS = ("A", "B", "C", "D", "E")
 ID_PATTERN = re.compile(r"^[a-z][a-z0-9_-]*$")
@@ -36,6 +37,13 @@ STATUS_COLORS = {
     "pending": ("#f1f3f5", "#6b7280"),
     "blocked": ("#fde8e8", "#a33a3a"),
     "skipped": ("#eee9f7", "#72569a"),
+}
+COMPACT_STATUS_COLORS = {
+    "completed": ("#dcfce7", "#26703e"),
+    "current": ("#fef3c7", "#915e14"),
+    "pending": ("#e0ecff", "#1e3c69"),
+    "blocked": ("#fee2e2", "#9b2d2d"),
+    "skipped": ("#f1f5f9", "#64748b"),
 }
 TRANSITION_STYLES = {
     "normal": ("#475569", "solid", "1.4"),
@@ -112,6 +120,8 @@ def _validate_stages(state: Mapping[str, Any], group_ids: set[str]) -> set[str]:
         group_id = _require_text(stage, "group")
         kind = _require_text(stage, "kind")
         status = _require_text(stage, "status")
+        if "status_label" in stage:
+            _require_text(stage, "status_label")
         if not ID_PATTERN.fullmatch(stage_id):
             raise ProgressError(f"stage id {stage_id!r} must match {ID_PATTERN.pattern}")
         if stage_id in stage_ids:
@@ -220,6 +230,10 @@ def validate_state(state: Any) -> Mapping[str, Any]:
         raise ProgressError("'schema_version' must be '1'")
     if state["layout_direction"] not in ALLOWED_LAYOUT_DIRECTIONS:
         raise ProgressError("'layout_direction' must be 'LR' or 'TB'")
+    figure_style = state.get("figure_style", "grouped")
+    if figure_style not in ALLOWED_FIGURE_STYLES:
+        allowed = ", ".join(sorted(ALLOWED_FIGURE_STYLES))
+        raise ProgressError(f"'figure_style' must be one of: {allowed}")
 
     group_ids = _validate_groups(state)
     stage_ids = _validate_stages(state, group_ids)
@@ -269,6 +283,10 @@ def _stage_maps(
     return indexes, records
 
 
+def _status_label(stage: Mapping[str, Any]) -> str:
+    return stage.get("status_label", STATUS_LABELS[stage["status"]])
+
+
 def _mermaid_node(node_id: str, label: str, kind: str) -> str:
     if kind == "decision":
         return f'  {node_id}{{"{label}"}}'
@@ -292,6 +310,7 @@ def render_markdown(state: Mapping[str, Any]) -> str:
         f"| Research | `{_markdown_text(state['research_id'])}` |",
         f"| Current gate | {_markdown_text(state['current_gate'])} |",
         f"| Current stage | {_markdown_text(current['label'])} |",
+        f"| Figure style | {_markdown_text(state.get('figure_style', 'grouped'))} |",
         f"| Disclosure | {_markdown_text(state['disclosure'])} |",
         f"| Updated | {_markdown_text(state['updated_at'])} |",
         f"| Awaiting owner | {'Yes' if state['awaiting_owner'] else 'No'} |",
@@ -313,7 +332,7 @@ def render_markdown(state: Mapping[str, Any]) -> str:
             status = stage["status"]
             label = (
                 f"{_mermaid_text(stage['label'])}<br/>"
-                f"[{STATUS_LABELS[status]}]"
+                f"[{_mermaid_text(_status_label(stage))}]"
             )
             lines.append(_mermaid_node(node_id, label, stage["kind"]))
         lines.append("  end")
@@ -398,10 +417,90 @@ def render_markdown(state: Mapping[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def _render_compact_dot(state: Mapping[str, Any]) -> str:
+    """Return the compact owner-review figure style without group boxes."""
+
+    indexes, _ = _stage_maps(state)
+    title = _dot_text(state["title"])
+    updated = _dot_text(state["updated_at"].split("T", 1)[0])
+    ranksep = "0.42" if state["layout_direction"] == "TB" else "0.55"
+    lines = [
+        "digraph research_progress {",
+        "  graph [",
+        f'    rankdir="{state["layout_direction"]}",',
+        '    bgcolor="#ffffff",',
+        '    fontname="Helvetica",',
+        '    fontsize="18",',
+        '    labelloc="t",',
+        f'    label="{title} — {updated}",',
+        '    pad="0.25",',
+        '    nodesep="0.35",',
+        f'    ranksep="{ranksep}",',
+        '    newrank="true",',
+        '    splines="spline"',
+        "  ];",
+        "  node [",
+        '    shape="box",',
+        '    style="rounded,filled",',
+        '    fontname="Helvetica",',
+        '    fontsize="10",',
+        '    margin="0.14,0.10",',
+        '    color="#64748b",',
+        '    fontcolor="#1f2937",',
+        '    penwidth="1.3"',
+        "  ];",
+        "  edge [",
+        '    fontname="Helvetica",',
+        '    fontsize="8.5",',
+        '    color="#64748b",',
+        '    fontcolor="#334155",',
+        '    arrowsize="0.75",',
+        '    penwidth="1.5"',
+        "  ];",
+    ]
+
+    for stage in state["stages"]:
+        node_id = f"stage_{indexes[stage['id']]}"
+        fill, stroke = COMPACT_STATUS_COLORS[stage["status"]]
+        penwidth = "2.2" if stage["status"] in {"current", "blocked"} else "1.3"
+        style = (
+            "rounded,filled,dashed"
+            if stage["status"] in {"pending", "skipped"}
+            else "rounded,filled"
+        )
+        label = _dot_text(f"{stage['label']}\n{_status_label(stage)}")
+        lines.append(
+            f'  {node_id} [label="{label}", style="{style}", '
+            f'fillcolor="{fill}", color="{stroke}", penwidth="{penwidth}"];'
+        )
+
+    for transition in state["transitions"]:
+        source = f"stage_{indexes[transition['from']]}"
+        target = f"stage_{indexes[transition['to']]}"
+        color, style, penwidth = TRANSITION_STYLES[transition["kind"]]
+        attributes = [
+            f'color="{color}"',
+            f'fontcolor="{color}"',
+            f'style="{style}"',
+            f'penwidth="{penwidth}"',
+        ]
+        label = _optional_text(transition, "label")
+        if label:
+            attributes.append(f'label="{_dot_text(label)}"')
+        if transition.get("constraint", True) is False:
+            attributes.append('constraint="false"')
+        lines.append(f"  {source} -> {target} [{', '.join(attributes)}];")
+
+    lines.append("}")
+    return "\n".join(lines) + "\n"
+
+
 def render_dot(state: Mapping[str, Any]) -> str:
-    """Return Graphviz DOT for a publication-quality progress figure."""
+    """Return Graphviz DOT for the selected progress-figure style."""
 
     validate_state(state)
+    if state.get("figure_style", "grouped") == "compact":
+        return _render_compact_dot(state)
     indexes, _ = _stage_maps(state)
     title = _dot_text(state["title"])
     subtitle = _dot_text(
@@ -468,7 +567,7 @@ def render_dot(state: Mapping[str, Any]) -> str:
                 else "rounded,filled"
             )
             label = _dot_text(
-                f"{stage['label']}\n[{STATUS_LABELS[stage['status']]}]"
+                f"{stage['label']}\n[{_status_label(stage)}]"
             )
             lines.append(
                 f'    {node_id} [label="{label}", shape="{shape}", '

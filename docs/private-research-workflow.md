@@ -66,7 +66,9 @@ response menu, and a completed/current/next status summary. The optional
 agent-updated research-progress map is generated from a state file kept in the
 private repository. Its standalone figure tracks literature, frozen gates,
 parallel checks, decisions, and later research stages; a dated PDF rendering
-may also be embedded in an owner-review packet.
+may also be embedded in an owner-review packet. The checked-in example uses the
+compact owner-review style; the canonical state and full-size figure remain
+project-local. See the [snapshot style guide](research-progress-snapshots.md).
 
 After an approved gate is recorded and closed, the agent must repeat the
 completed/current/next summary and present fresh A-E choices for the next

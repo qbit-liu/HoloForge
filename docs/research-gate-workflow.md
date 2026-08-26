@@ -319,6 +319,15 @@ The research-gate skill includes:
 - `scripts/render_research_progress.py`, a renderer that validates groups,
   stages, transitions, branches, one current stage, and the owner menu.
 
+The optional top-level `figure_style` selects `compact` or `grouped`.
+`compact` is the recommended owner-review style and the default in the copied
+example: a clean stage rail with rounded nodes, written status labels,
+semantic colors, a strong current/blocked outline, and dashed future work.
+Older records without the field retain the original `grouped` map. A stage may
+use `status_label` to refine visible wording such as `SOURCE STOP` or
+`PROPOSED`, but the wording must not contradict its semantic `status`. See the
+[research-progress snapshot guide](research-progress-snapshots.md).
+
 Copy the JSON template into the research project, update it after each durable
 milestone, and render Markdown/Mermaid from the public HoloForge checkout:
 

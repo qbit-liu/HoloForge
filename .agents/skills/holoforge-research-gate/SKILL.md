@@ -154,7 +154,14 @@ When the owner wants workflow visibility, represent the research project, not
 the development history of HoloForge. Copy
 `assets/research-progress.example.json` into the private project and replace
 its generic groups, stages, transitions, branches, and status values with the
-reviewed state of that research. Keep exactly one stage `current`.
+reviewed state of that research. Keep exactly one stage `current`. The example
+selects the generic `compact` figure style: a top-to-bottom stage rail with
+rounded boxes, semantic status colors and written labels, strong current or
+blocked outlines, and dashed future work. Retain `compact` for concise owner
+packets; use `grouped` when group clusters and node-kind shapes materially aid
+review. An optional `status_label` may clarify a semantic status but must not
+contradict it. The durable visual contract is documented in
+`docs/research-progress-snapshots.md`.
 
 Render Markdown/Mermaid plus standalone vector and PDF figures with:
 

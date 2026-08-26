@@ -6,6 +6,7 @@
   "disclosure": "private",
   "updated_at": "2026-01-01T00:00:00Z",
   "layout_direction": "TB",
+  "figure_style": "compact",
   "current_stage": "owner_review",
   "groups": [
     {
