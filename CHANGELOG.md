@@ -4,6 +4,32 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.5.8] - 2026-08-27
+
+### Added
+
+- Compact, accessible research-progress snapshots for private Explore projects,
+  including standalone SVG, PNG, and PDF-ready output plus optional serpentine
+  wrapping for long research paths.
+- Owner-approved bounded autonomy windows that allow routine work inside a
+  frozen contract to proceed to one consolidated review while preserving
+  mandatory returns for scientific, resource, disclosure, and Git decisions.
+
+### Changed
+
+- Make publication-targeted Explore intake physics-first by assessing the
+  paper-shaped question separately from source, physical, and numerical
+  readiness and by tracking a cumulative repair budget without aggregating
+  distinct scientific judgments.
+- Synchronize the research-gate skill, agent quickstart, contributor guidance,
+  templates, examples, privacy policy, and regression tests with the updated
+  autonomy and progress-reporting contracts.
+
+### Scientific results
+
+- No model equation, solver, default, acceptance tolerance, benchmark result,
+  schema version, or protected command behavior changed in this release.
+
 ## [0.5.7] - 2026-08-24
 
 ### Added
@@ -468,6 +494,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.5.8]: https://github.com/xin-yi6/HoloForge/compare/v0.5.7...v0.5.8
 [0.5.7]: https://github.com/xin-yi6/HoloForge/compare/v0.5.6...v0.5.7
 [0.5.6]: https://github.com/xin-yi6/HoloForge/compare/v0.5.5...v0.5.6
 [0.5.5]: https://github.com/xin-yi6/HoloForge/compare/v0.5.4...v0.5.5
