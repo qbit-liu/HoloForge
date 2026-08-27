@@ -122,14 +122,22 @@ cheaper evidence task, and a failed item must defer or reject the candidate.
 The scorecard also records portfolio intent and the actual domain coverage of
 the search. Publication-targeted work receives a separate pathway assessment;
 this prioritization does not replace scientific readiness or establish
-novelty.
+novelty. It must name the minimum publishable physical claim, first physical-
+discriminator gate, numerical-dependence lane, and candidate-wide repair
+budget, while tracking physical-claim progress, source and novelty readiness,
+and numerical credibility separately. By default, the first or second detailed
+gate reaches the physical discriminator rather than extending a tool-only
+qualification sequence.
 
 If the same blocker recurs, ask the agent to use the bounded impasse protocol:
 classify the problem, inspect targeted authoritative external evidence, audit
 the physics independently, inspect the corresponding numerical or software
 layer, and propose at most one costed repair before returning for approval.
 Internet search locates evidence; it does not validate a fix or authorize a
-post-hoc threshold change.
+post-hoc threshold change. For a publication-targeted candidate, a failed first
+repair triggers portfolio-level reassessment; a second repair needs a new
+owner-approved rationale showing that it directly unlocks the frozen physical
+discriminator.
 
 At each owner gate, and again after an approved gate is recorded and closed,
 the agent should state what is completed, the current stage, the proposed next

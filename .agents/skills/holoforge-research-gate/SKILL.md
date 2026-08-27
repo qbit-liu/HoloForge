@@ -45,6 +45,23 @@ readiness, a plausible short gate sequence, and a bounded repair or pivot
 budget. Use this assessment to prioritize candidates, not to claim novelty or
 weaken the scientific readiness gates.
 
+Keep publication-targeted work physics-first. Record the minimum publishable
+physical claim, name the first physical-discriminator gate, and classify the
+numerical-dependence lane as analytic or semi-analytic, reuse of an already
+qualified route, new numerical infrastructure, or an explicitly
+publication-targeted numerical-method contribution. By default, the first or
+second detailed gate must evaluate the physical discriminator. Track
+physical-claim progress, source and novelty readiness, and numerical
+credibility as three non-aggregate axes.
+
+Set one candidate-wide numerical-repair budget that cannot be reset through a
+chain of smaller gates. After the first prospectively frozen numerical repair
+fails to qualify its route, return to a portfolio-level reassessment. Open a
+second repair only with a new owner-approved rationale showing that it directly
+unlocks the already frozen physical discriminator within the remaining cost
+ceiling. Otherwise pause or pivot. Do not loosen numerical gates; rebalance the
+order and amount of numerical work.
+
 ## Qualify the candidate before a detailed gate
 
 Before freezing a calculation contract, copy and complete

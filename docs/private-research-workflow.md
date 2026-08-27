@@ -84,13 +84,18 @@ false pending state in the closed research project.
    applies, record the knowledge classes and tags searched. Then record the
    portfolio intent, search shape, domains considered or deliberately excluded,
    and candidate-pool coverage. For publication-targeted work, complete the
-   separate publication-pathway assessment before prioritizing a lead. Then
-   record the candidate dictionary, assumptions, falsification test, AI
-   involvement, and decision owner in a private hypothesis card and complete
-   the five-part Explore intake scorecard: source-complete inputs, an invariant
-   target beyond the generic baseline, a cheap kill test, a positive-result
-   endpoint, and a cost ceiling. A detailed gate opens only after all five
-   pass; a conditional item may open only one cheaper bounded evidence task.
+   separate publication-pathway assessment before prioritizing a lead. Record
+   its minimum publishable physical claim, the first physical-discriminator
+   gate, numerical-dependence lane, candidate-wide numerical-repair budget,
+   and non-aggregate physical-claim, source-and-novelty, and numerical-
+   credibility status. By default, the first or second detailed gate must
+   evaluate the physical discriminator. Then record the candidate dictionary,
+   assumptions, falsification test, AI involvement, and decision owner in a
+   private hypothesis card and complete the five-part Explore intake scorecard:
+   source-complete inputs, an invariant target beyond the generic baseline, a
+   cheap kill test, a positive-result endpoint, and a cost ceiling. A detailed
+   gate opens only after all five pass; a conditional item may open only one
+   cheaper bounded evidence task.
 2. **Screening:** search prior work and test dimensional, symmetry, boundary,
    and ensemble consistency before investing in a large calculation.
 3. **Discriminating calculation:** compare against a simpler baseline and use a
@@ -121,6 +126,15 @@ freeze at most one scoped repair before returning to the owner. Internet search
 is an evidence-locating step, not a substitute for physical reasoning. Preserve
 an unresolved source or technical stop if the bounded repair fails; do not
 silently loosen thresholds or expand the hypothesis.
+
+For publication-targeted work, the repair budget is cumulative across the
+candidate, not reset by each small gate. After a first numerical repair fails,
+return to a portfolio-level reassessment. A second repair requires a new owner-
+approved rationale showing that it directly unlocks the already frozen
+physical discriminator within the remaining cost ceiling. Otherwise pause or
+pivot the candidate. A longer qualification campaign belongs in an explicitly
+declared numerical-method publication lane rather than being treated as hidden
+progress toward an untouched physical question.
 
 ## Public export checklist
 

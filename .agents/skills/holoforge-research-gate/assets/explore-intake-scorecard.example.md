@@ -42,11 +42,31 @@ the five readiness tests below.
 | Pathway question | Evidence available | Main risk | Assessment |
 | --- | --- | --- | --- |
 | Paper-shaped scientific question | `<specific contribution, not only a tool check>` | `<scope or significance risk>` | `<credible | conditional | blocked>` |
+| Minimum publishable physical claim | `<smallest bounded physical conclusion that could anchor a paper>` | `<risk that only a technical result is reached>` | `<assessment>` |
 | Targeted prior-work gap | `<search contract and closest overlap>` | `<novelty uncertainty>` | `<assessment>` |
 | Physical discriminator or mechanism | `<observable that survives generic flexibility>` | `<genericity risk>` | `<assessment>` |
 | Source and artifact readiness | `<common action, branch, data/code route>` | `<reconstruction risk>` | `<assessment>` |
-| Short gate sequence | `<plausible two-to-three-gate path>` | `<escalation risk>` | `<assessment>` |
-| Repair or pivot budget | `<maximum bounded repair and pivot rule>` | `<sunk-cost risk>` | `<assessment>` |
+| First physical-discriminator gate | `<first or second detailed gate by default>` | `<risk of a tool-only gate sequence>` | `<assessment>` |
+| Numerical-dependence lane | `<analytic/semi-analytic | qualified-route reuse | new infrastructure | numerical-method contribution>` | `<implementation risk>` | `<assessment>` |
+| Candidate-wide repair or pivot budget | `<maximum repair count, cost, and pivot rule>` | `<sunk-cost or repair-ladder risk>` | `<assessment>` |
+
+The candidate-wide budget is cumulative. A failed first numerical repair
+requires portfolio-level reassessment before any second repair. A second repair
+requires a new owner-approved rationale showing that it directly unlocks the
+already frozen physical discriminator. A longer pre-physical sequence requires
+an explicit exception, normally because the numerical method is itself the
+publication target.
+
+### Three-axis progress snapshot
+
+Do not combine these axes into one score. Numerical progress cannot compensate
+for a missing physical claim or unresolved source and novelty boundary.
+
+| Evidence axis | Current status | Evidence | Next condition |
+| --- | --- | --- | --- |
+| Physical-claim progress | `<not started | conditional | testing | supported | stopped>` | `<physical endpoint reached, or not>` | `<next physical discriminator>` |
+| Source and novelty readiness | `<not started | conditional | ready | stopped>` | `<source and targeted-overlap evidence>` | `<missing source or positioning check>` |
+| Numerical credibility | `<not started | conditional | qualified | stopped>` | `<analytic, convergence, residual, or independent-route evidence>` | `<next proportional numerical check>` |
 
 - **Portfolio recommendation:** `<prioritize | retain as reserve | defer>`
 - **Reason:** `<why this path deserves or does not deserve the next research investment>`

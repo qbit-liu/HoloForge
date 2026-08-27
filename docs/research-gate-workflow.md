@@ -49,6 +49,36 @@ prioritizes research investment; it does not establish novelty, promise a
 publication, replace the five scientific readiness tests, or weaken any
 acceptance or stop condition.
 
+### Keep publication-targeted work physics-first
+
+For publication-targeted work, numerical credibility is one evidence axis,
+not the research endpoint. Before selecting the lead, also record:
+
+- the **minimum publishable physical claim**: the smallest bounded physical
+  conclusion that could anchor a paper if it survives its controls;
+- the **first physical-discriminator gate**: by default, the first or second
+  detailed gate must evaluate the declared physical discriminator rather than
+  only qualify a solver, artifact, or numerical representation;
+- the **numerical-dependence lane**: analytic or semi-analytic, reuse of an
+  already qualified numerical route, new numerical infrastructure, or an
+  explicitly publication-targeted numerical-method contribution;
+- a **candidate-wide numerical-repair budget** that cannot be reset by opening
+  a sequence of smaller gates; and
+- separate, non-aggregate status for physical-claim progress, source and
+  novelty readiness, and numerical credibility.
+
+If a first prospectively frozen numerical repair fails to qualify its route,
+return to a portfolio-level reassessment before another repair. A second repair
+may open only when the owner approves a new rationale showing that it directly
+unlocks the already frozen physical discriminator within the remaining cost
+ceiling. Otherwise pause or pivot the candidate. A longer pre-physical gate
+sequence requires an explicit owner-approved exception, normally because the
+numerical method is itself the declared publication contribution.
+
+Do not weaken numerical acceptance gates to create apparent physical progress.
+The purpose of this rule is to change research ordering and investment, not
+verification rigor.
+
 ## Qualify candidates with an Explore intake scorecard
 
 Before writing a detailed frozen contract, complete the generic

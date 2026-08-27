@@ -58,12 +58,20 @@ These workflows do not replace human scientific or disclosure approval.
   how their stable IDs change the new scorecard or contract. Also declare the
   portfolio intent, search shape, domains considered or excluded, and actual
   candidate coverage. For publication-targeted work, assess the paper-shaped
-  question and bounded path separately from scientific readiness.
+  question and bounded path separately from scientific readiness. Record the
+  minimum publishable physical claim, first physical-discriminator gate,
+  numerical-dependence lane, candidate-wide repair budget, and separate
+  physical-claim, source-and-novelty, and numerical-credibility status. By
+  default the first or second detailed gate must reach the physical
+  discriminator.
 - When a blocker recurs or a repair budget is nearly exhausted, use the bounded
   impasse protocol in `docs/research-gate-workflow.md`: combine targeted
   authoritative source search with an independent physics audit, then freeze
-  at most one scoped repair. Do not use internet search as authority, weaken a
-  threshold post hoc, or relabel a technical stop as a physical result.
+  at most one scoped repair. The repair budget is cumulative across a
+  publication-targeted candidate; after one failed numerical repair, require a
+  portfolio-level reassessment before any second repair. Do not use internet
+  search as authority, weaken a threshold post hoc, or relabel a technical stop
+  as a physical result.
 - At every closed Explore gate, preserve the result and complete the generic
   closure retrospective in `docs/templates/research-retrospective-template.md`;
   feed lessons into future gates without rewriting the closed one.
