@@ -37,6 +37,7 @@ class ResearchProgressTests(unittest.TestCase):
         self.assertIn("Theoretical consistency checks", markdown)
         self.assertIn("Discriminating calculation", markdown)
         self.assertIn("Current stage | Owner review and decision", markdown)
+        self.assertIn("Figure style | compact", markdown)
         self.assertIn("Advance to the next bounded gate", markdown)
         self.assertIn("Pause or close", markdown)
         self.assertIn("A **(Recommended)**", markdown)
@@ -44,15 +45,72 @@ class ResearchProgressTests(unittest.TestCase):
         self.assertIn("scientific-support level", markdown)
         self.assertIn("not background telemetry", markdown)
 
-    def test_dot_uses_groups_shapes_status_and_feedback_edges(self) -> None:
+    def test_compact_dot_uses_stage_rail_status_and_feedback_edges(self) -> None:
         dot = RENDERER.render_dot(self.load_example())
 
         self.assertIn("digraph research_progress", dot)
-        self.assertIn("subgraph cluster_", dot)
-        self.assertIn('shape="diamond"', dot)
-        self.assertIn("[CURRENT]", dot)
+        self.assertNotIn("subgraph cluster_", dot)
+        self.assertIn('shape="box"', dot)
+        self.assertIn('fillcolor="#dcfce7"', dot)
+        self.assertIn('fillcolor="#fef3c7"', dot)
+        self.assertIn(r"\nCURRENT", dot)
         self.assertIn('style="dashed"', dot)
         self.assertIn('constraint="false"', dot)
+
+    def test_compact_dot_can_wrap_a_long_path_without_changing_transitions(self) -> None:
+        state = self.load_example()
+        state["compact_wrap_after"] = 6
+
+        dot = RENDERER.render_dot(state)
+
+        self.assertIn('group="wrap_col_1"', dot)
+        self.assertIn('group="wrap_col_2"', dot)
+        self.assertIn("{ rank=same;", dot)
+        self.assertIn('style="invis"', dot)
+        self.assertIn('label="advance"', dot)
+        self.assertIn('constraint="false"', dot)
+
+    def test_compact_wrap_requires_vertical_compact_style(self) -> None:
+        state = self.load_example()
+        state["compact_wrap_after"] = 1
+        with self.assertRaisesRegex(RENDERER.ProgressError, "integer >= 2"):
+            RENDERER.validate_state(state)
+
+        state["compact_wrap_after"] = 6
+        state["figure_style"] = "grouped"
+        with self.assertRaisesRegex(RENDERER.ProgressError, "compact style"):
+            RENDERER.validate_state(state)
+
+        state["figure_style"] = "compact"
+        state["layout_direction"] = "LR"
+        with self.assertRaisesRegex(RENDERER.ProgressError, "TB direction"):
+            RENDERER.validate_state(state)
+
+    def test_missing_style_retains_grouped_backward_compatibility(self) -> None:
+        state = self.load_example()
+        state.pop("figure_style")
+
+        dot = RENDERER.render_dot(state)
+
+        self.assertIn("subgraph cluster_", dot)
+        self.assertIn('shape="diamond"', dot)
+
+    def test_stage_status_label_refines_visible_wording(self) -> None:
+        state = self.load_example()
+        state["stages"][8]["status_label"] = "PROPOSED"
+
+        markdown = RENDERER.render_markdown(state)
+        dot = RENDERER.render_dot(state)
+
+        self.assertIn("[PROPOSED]", markdown)
+        self.assertIn("PROPOSED", dot)
+
+    def test_unknown_figure_style_fails_closed(self) -> None:
+        state = self.load_example()
+        state["figure_style"] = "private-copy"
+
+        with self.assertRaisesRegex(RENDERER.ProgressError, "figure_style"):
+            RENDERER.validate_state(state)
 
     def test_cli_writes_markdown_and_dot(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -162,6 +220,9 @@ class ResearchProgressTests(unittest.TestCase):
             "render_research_progress.py",
             "actual research project",
             "standalone svg",
+            "figure_style",
+            "compact",
+            "compact_wrap_after",
             "holoforgeincludeprogress",
             "researchprogressfile",
             "does not by itself strengthen a scientific claim",

@@ -66,7 +66,9 @@ response menu, and a completed/current/next status summary. The optional
 agent-updated research-progress map is generated from a state file kept in the
 private repository. Its standalone figure tracks literature, frozen gates,
 parallel checks, decisions, and later research stages; a dated PDF rendering
-may also be embedded in an owner-review packet.
+may also be embedded in an owner-review packet. The checked-in example uses the
+compact owner-review style; the canonical state and full-size figure remain
+project-local. See the [snapshot style guide](research-progress-snapshots.md).
 
 After an approved gate is recorded and closed, the agent must repeat the
 completed/current/next summary and present fresh A-E choices for the next
@@ -76,19 +78,36 @@ calculation, or turn `no approval pending` into an approval. A separate
 portfolio choice must be identified as a separate gate rather than inserted as
 false pending state in the closed research project.
 
+After a detailed gate contract is frozen, the owner may reduce unnecessary
+interruptions by approving a project-local
+[`bounded autonomy window`](templates/bounded-autonomy-window-template.md).
+The window lets the agent finish the listed routine source, derivation,
+implementation, verification, criticism, knowledge, progress, and report work
+before one consolidated return. It must retain explicit cost and repair
+ceilings and mandatory returns for scientific-scope or threshold changes,
+stops and impasses, interpretation or publication judgments, disclosure,
+external communication, and Git or remote actions. It never rolls over to a
+new gate or candidate. The owner may approve it together with the frozen
+contract so the window does not introduce an extra decision gate.
+
 1. **Intake:** read the current private reviewed-knowledge and closure-lesson
    indexes and record which stable knowledge and lesson IDs and evidence apply
    to this candidate. Translate each into a candidate-specific control; if none
    applies, record the knowledge classes and tags searched. Then record the
    portfolio intent, search shape, domains considered or deliberately excluded,
    and candidate-pool coverage. For publication-targeted work, complete the
-   separate publication-pathway assessment before prioritizing a lead. Then
-   record the candidate dictionary, assumptions, falsification test, AI
-   involvement, and decision owner in a private hypothesis card and complete
-   the five-part Explore intake scorecard: source-complete inputs, an invariant
-   target beyond the generic baseline, a cheap kill test, a positive-result
-   endpoint, and a cost ceiling. A detailed gate opens only after all five
-   pass; a conditional item may open only one cheaper bounded evidence task.
+   separate publication-pathway assessment before prioritizing a lead. Record
+   its minimum publishable physical claim, the first physical-discriminator
+   gate, numerical-dependence lane, candidate-wide numerical-repair budget,
+   and non-aggregate physical-claim, source-and-novelty, and numerical-
+   credibility status. By default, the first or second detailed gate must
+   evaluate the physical discriminator. Then record the candidate dictionary,
+   assumptions, falsification test, AI involvement, and decision owner in a
+   private hypothesis card and complete the five-part Explore intake scorecard:
+   source-complete inputs, an invariant target beyond the generic baseline, a
+   cheap kill test, a positive-result endpoint, and a cost ceiling. A detailed
+   gate opens only after all five pass; a conditional item may open only one
+   cheaper bounded evidence task.
 2. **Screening:** search prior work and test dimensional, symmetry, boundary,
    and ensemble consistency before investing in a large calculation.
 3. **Discriminating calculation:** compare against a simpler baseline and use a
@@ -119,6 +138,15 @@ freeze at most one scoped repair before returning to the owner. Internet search
 is an evidence-locating step, not a substitute for physical reasoning. Preserve
 an unresolved source or technical stop if the bounded repair fails; do not
 silently loosen thresholds or expand the hypothesis.
+
+For publication-targeted work, the repair budget is cumulative across the
+candidate, not reset by each small gate. After a first numerical repair fails,
+return to a portfolio-level reassessment. A second repair requires a new owner-
+approved rationale showing that it directly unlocks the already frozen
+physical discriminator within the remaining cost ceiling. Otherwise pause or
+pivot the candidate. A longer qualification campaign belongs in an explicitly
+declared numerical-method publication lane rather than being treated as hidden
+progress toward an untouched physical question.
 
 ## Public export checklist
 

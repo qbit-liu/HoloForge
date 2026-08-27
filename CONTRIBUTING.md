@@ -52,12 +52,22 @@ method-transfer/model-improvement project. Follow the bounded
 before calculation and keep scientific support, owner authorization, and
 disclosure status separate. Record the intake's portfolio intent and actual
 domain coverage; for publication-targeted work, assess the paper-shaped path
-separately from the five readiness gates. When a blocker recurs, use the
-workflow's bounded impasse protocol rather than retrying indefinitely or
-loosening a threshold after seeing the result. Every owner decision list must
-include an explicit item-by-item recommendation, a concise evidence-based
-reason, a completed/current/next status summary, and the standard A-E response
-paths.
+separately from the five readiness gates. Publication-targeted scorecards must
+name the minimum publishable physical claim, first physical-discriminator gate,
+numerical-dependence lane, and candidate-wide repair budget; physical-claim,
+source-and-novelty, and numerical-credibility status remain non-aggregate. When
+a blocker recurs, use the workflow's bounded impasse protocol rather than
+retrying indefinitely or loosening a threshold after seeing the result. A
+failed first numerical repair requires portfolio-level reassessment before a
+second repair. Every owner decision list must include an explicit item-by-item
+recommendation, a concise evidence-based reason, a completed/current/next
+status summary, and the standard A-E response paths.
+After a detailed contract is frozen, an owner may approve the
+[`bounded autonomy window template`](docs/templates/bounded-autonomy-window-template.md)
+so routine in-scope work reaches one consolidated owner return instead of many
+intermediate approval gates. The window preserves mandatory returns for scope,
+threshold, cost, repair, interpretation, disclosure, Git, and external-action
+changes and never rolls over to another gate.
 When requested, maintain the optional research-progress map in the private
 project; it describes research stages and branches, not HoloForge development.
 When a gate closes, preserve its result and complete the generic

@@ -45,6 +45,23 @@ readiness, a plausible short gate sequence, and a bounded repair or pivot
 budget. Use this assessment to prioritize candidates, not to claim novelty or
 weaken the scientific readiness gates.
 
+Keep publication-targeted work physics-first. Record the minimum publishable
+physical claim, name the first physical-discriminator gate, and classify the
+numerical-dependence lane as analytic or semi-analytic, reuse of an already
+qualified route, new numerical infrastructure, or an explicitly
+publication-targeted numerical-method contribution. By default, the first or
+second detailed gate must evaluate the physical discriminator. Track
+physical-claim progress, source and novelty readiness, and numerical
+credibility as three non-aggregate axes.
+
+Set one candidate-wide numerical-repair budget that cannot be reset through a
+chain of smaller gates. After the first prospectively frozen numerical repair
+fails to qualify its route, return to a portfolio-level reassessment. Open a
+second repair only with a new owner-approved rationale showing that it directly
+unlocks the already frozen physical discriminator within the remaining cost
+ceiling. Otherwise pause or pivot. Do not loosen numerical gates; rebalance the
+order and amount of numerical work.
+
 ## Qualify the candidate before a detailed gate
 
 Before freezing a calculation contract, copy and complete
@@ -125,6 +142,39 @@ the intake decision remains auditable.
     completed/current/next status and fresh A-E choices for the next eligible
     decision; do not end only with `no approval pending`.
 
+## Work inside a bounded autonomy window
+
+When the owner wants fewer intermediate approval requests, use the public
+[`bounded-autonomy-window template`](../../../docs/templates/bounded-autonomy-window-template.md)
+after the gate contract is frozen. Confirm that the record names the allowed
+routine work, source and compute limits, implementation boundary, repair
+budget, return milestone, expiry, disclosure class, and closed scope.
+It may be prepared with the frozen contract and approved in the same owner
+decision, but it has no effect until the approval is recorded.
+
+Within that exact window, continue through ordinary source inspection,
+derivation, local implementation, frozen verification, evidence and report
+generation, knowledge and progress updates, and hostile criticism without
+turning every intermediate choice into an owner gate. Choose among routine
+alternatives only when the frozen criteria already distinguish them; record
+the rationale and uncertainty. Progress updates remain informational.
+
+Return immediately when the declared outcome or stop is reached; the question,
+model, ensemble, branch, dictionary, observable, boundary condition,
+acceptance threshold, or stop rule would change; any cost or repair ceiling
+would be exceeded; an impasse repair or portfolio pivot is needed; owner
+judgment is required for interpretation, novelty, publication, or author
+intent; disclosure or external communication is proposed; or an unlisted Git
+or remote action is proposed. One local commit may be included only when the
+owner explicitly checks it. A window never authorizes push, merge, release,
+branch deletion, public export, disclosure, or another gate, and it cannot
+renew itself.
+
+At the first return trigger, deliver one consolidated outcome, verification,
+critic, budget, non-claim, and recommendation packet with the standard A--E
+paths. Follow the full controlling rules in
+`docs/research-gate-workflow.md`.
+
 ## Handle a repeated blocker
 
 When the same blocker recurs, the approved repair budget is nearly exhausted,
@@ -154,7 +204,14 @@ When the owner wants workflow visibility, represent the research project, not
 the development history of HoloForge. Copy
 `assets/research-progress.example.json` into the private project and replace
 its generic groups, stages, transitions, branches, and status values with the
-reviewed state of that research. Keep exactly one stage `current`.
+reviewed state of that research. Keep exactly one stage `current`. The example
+selects the generic `compact` figure style: a top-to-bottom stage rail with
+rounded boxes, semantic status colors and written labels, strong current or
+blocked outlines, and dashed future work. Retain `compact` for concise owner
+packets; use `grouped` when group clusters and node-kind shapes materially aid
+review. An optional `status_label` may clarify a semantic status but must not
+contradict it. The durable visual contract is documented in
+`docs/research-progress-snapshots.md`.
 
 Render Markdown/Mermaid plus standalone vector and PDF figures with:
 
@@ -188,6 +245,12 @@ scientific claim. A local file can change during an active agent session;
 GitHub shows only the latest committed and pushed snapshot. Keep unpublished
 state and figures in the private project and never copy them into public
 HoloForge without a separate export review.
+
+For a long, mostly sequential compact `TB` path, the figure may turn across
+multiple columns instead of remaining one tall straight rail. Use the optional
+integer `compact_wrap_after` only when it improves reviewability. It changes
+placement, not the canonical transitions or scientific state; never hide or
+reorder a branch, stop, current stage, or closed boundary for visual neatness.
 
 ## Apply hard boundaries
 

@@ -49,6 +49,36 @@ prioritizes research investment; it does not establish novelty, promise a
 publication, replace the five scientific readiness tests, or weaken any
 acceptance or stop condition.
 
+### Keep publication-targeted work physics-first
+
+For publication-targeted work, numerical credibility is one evidence axis,
+not the research endpoint. Before selecting the lead, also record:
+
+- the **minimum publishable physical claim**: the smallest bounded physical
+  conclusion that could anchor a paper if it survives its controls;
+- the **first physical-discriminator gate**: by default, the first or second
+  detailed gate must evaluate the declared physical discriminator rather than
+  only qualify a solver, artifact, or numerical representation;
+- the **numerical-dependence lane**: analytic or semi-analytic, reuse of an
+  already qualified numerical route, new numerical infrastructure, or an
+  explicitly publication-targeted numerical-method contribution;
+- a **candidate-wide numerical-repair budget** that cannot be reset by opening
+  a sequence of smaller gates; and
+- separate, non-aggregate status for physical-claim progress, source and
+  novelty readiness, and numerical credibility.
+
+If a first prospectively frozen numerical repair fails to qualify its route,
+return to a portfolio-level reassessment before another repair. A second repair
+may open only when the owner approves a new rationale showing that it directly
+unlocks the already frozen physical discriminator within the remaining cost
+ceiling. Otherwise pause or pivot the candidate. A longer pre-physical gate
+sequence requires an explicit owner-approved exception, normally because the
+numerical method is itself the declared publication contribution.
+
+Do not weaken numerical acceptance gates to create apparent physical progress.
+The purpose of this rule is to change research ordering and investment, not
+verification rigor.
+
 ## Qualify candidates with an Explore intake scorecard
 
 Before writing a detailed frozen contract, complete the generic
@@ -121,6 +151,53 @@ Every research gate should contain the following records:
 If a stop condition fires, stop the gate, preserve the bounded stopped result
 under its correct outcome class, and return to owner review. Do not expand the
 scope to rescue the hypothesis.
+
+## Use an owner-approved bounded autonomy window
+
+HoloForge should not require a new owner decision for every source read, plot,
+test, or routine implementation choice. After the scientific contract is
+frozen, the owner may approve one **bounded autonomy window** using the
+[`bounded-autonomy-window template`](templates/bounded-autonomy-window-template.md).
+The window is an authorization record, not a scientific-support label.
+It may be attached to the frozen contract and approved in the same owner
+decision, so it need not create an additional review gate; it has no effect
+until that approval is recorded.
+
+Before work starts, it must identify the frozen contract, allowed routine
+work, source and compute limits, implementation boundary, repair budget,
+return milestone, disclosure class, expiry, and scope that remains closed.
+Inside that exact window, the agent should continue through source inspection,
+derivation, local implementation, frozen checks, evidence generation,
+knowledge and progress updates, hostile criticism, and packet preparation
+without asking the owner to approve each intermediate step. Informational
+progress updates are not decision gates. When the frozen criteria already
+distinguish routine alternatives, the agent may choose the best-supported one
+and record its rationale and uncertainty.
+
+The window ends and the agent must return immediately when:
+
+1. the physical discriminator, declared outcome, stop condition, or return
+   milestone is reached;
+2. the scientific question, model or action, ensemble or branch, boundary
+   conditions, source--response dictionary, observable, acceptance threshold,
+   or stop rule would change;
+3. a source, implementation, compute, review, or repair ceiling would be
+   exceeded;
+4. the bounded impasse protocol, a new repair, a pivot, a new candidate, or a
+   different portfolio direction is needed;
+5. physical interpretation, novelty, priority, publication value, author
+   intent, or a public claim needs owner judgment;
+6. author contact, disclosure, public export, data sharing, or another external
+   communication is proposed; or
+7. an unlisted local commit, push, merge, release, branch deletion, repository
+   visibility change, or other remote mutation is proposed.
+
+A window may include one local commit only when the owner explicitly checks
+that item. It never implies permission to push, merge, release, delete a
+branch, disclose research, or start another gate. It ends at the first return
+trigger and cannot renew itself. The return should consolidate the outcome,
+verification, critic, budget used, non-claims, and recommended next decision
+into one owner packet and A--E handoff.
 
 ## Check the version of record before a source stop
 
@@ -318,6 +395,21 @@ The research-gate skill includes:
   and
 - `scripts/render_research_progress.py`, a renderer that validates groups,
   stages, transitions, branches, one current stage, and the owner menu.
+
+The optional top-level `figure_style` selects `compact` or `grouped`.
+`compact` is the recommended owner-review style and the default in the copied
+example: a clean stage rail with rounded nodes, written status labels,
+semantic colors, a strong current/blocked outline, and dashed future work.
+Older records without the field retain the original `grouped` map. A stage may
+use `status_label` to refine visible wording such as `SOURCE STOP` or
+`PROPOSED`, but the wording must not contradict its semantic `status`. See the
+[research-progress snapshot guide](research-progress-snapshots.md).
+
+The compact path does not have to remain one straight rail. When a long,
+mostly sequential `TB` path becomes too tall for review, set the optional
+integer `compact_wrap_after` to lay the declared stage order out in
+serpentine columns. The turns are presentation hints only: preserve every
+real transition, branch, current or blocked state, and closed-scope boundary.
 
 Copy the JSON template into the research project, update it after each durable
 milestone, and render Markdown/Mermaid from the public HoloForge checkout:

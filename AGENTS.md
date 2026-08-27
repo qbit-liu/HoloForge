@@ -58,12 +58,20 @@ These workflows do not replace human scientific or disclosure approval.
   how their stable IDs change the new scorecard or contract. Also declare the
   portfolio intent, search shape, domains considered or excluded, and actual
   candidate coverage. For publication-targeted work, assess the paper-shaped
-  question and bounded path separately from scientific readiness.
+  question and bounded path separately from scientific readiness. Record the
+  minimum publishable physical claim, first physical-discriminator gate,
+  numerical-dependence lane, candidate-wide repair budget, and separate
+  physical-claim, source-and-novelty, and numerical-credibility status. By
+  default the first or second detailed gate must reach the physical
+  discriminator.
 - When a blocker recurs or a repair budget is nearly exhausted, use the bounded
   impasse protocol in `docs/research-gate-workflow.md`: combine targeted
   authoritative source search with an independent physics audit, then freeze
-  at most one scoped repair. Do not use internet search as authority, weaken a
-  threshold post hoc, or relabel a technical stop as a physical result.
+  at most one scoped repair. The repair budget is cumulative across a
+  publication-targeted candidate; after one failed numerical repair, require a
+  portfolio-level reassessment before any second repair. Do not use internet
+  search as authority, weaken a threshold post hoc, or relabel a technical stop
+  as a physical result.
 - At every closed Explore gate, preserve the result and complete the generic
   closure retrospective in `docs/templates/research-retrospective-template.md`;
   feed lessons into future gates without rewriting the closed one.
@@ -73,6 +81,13 @@ These workflows do not replace human scientific or disclosure approval.
   or unpublished candidate identifiers to this public repository.
 - Do not infer that approval to calculate authorizes publication or public
   transfer.
+- When an owner-approved bounded autonomy window is recorded for a frozen
+  Explore gate, finish its listed routine work without requesting approval at
+  every intermediate source, plot, test, or implementation choice. Return at
+  the first declared outcome, stop, scope or threshold change, cost or repair
+  overrun, impasse, interpretation or publication judgment, disclosure or
+  external communication, or unlisted Git/remote action. The window never
+  rolls over to another gate or candidate.
 
 ## Validation
 
@@ -93,6 +108,9 @@ results require synchronized documentation, model records, and tests.
 - Stage only intended files; never discard unrelated work.
 - Do not push, merge, publish, release, or delete branches without explicit
   authorization.
+- Treat a bounded autonomy window as execution authority only. A local commit
+  must be explicitly included in it; push, merge, release, branch deletion,
+  public export, and disclosure always remain separate owner decisions.
 - Before requesting an owner decision, give an item-by-item recommendation,
   reason, scope opened, scope remaining closed, and important uncertainty.
 - At an owner gate, also state completed, current, and proposed next stages,

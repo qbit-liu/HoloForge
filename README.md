@@ -137,6 +137,9 @@ artifacts. Plot generation requires the optional dependency installed with
   claim-bounded, event-driven research knowledge base that learns from papers,
   derivations, methods, data, decisions, reproducibility work, and every bounded
   result, plus a closure retrospective for each completed gate.
+- [`docs/research-progress-snapshots.md`](docs/research-progress-snapshots.md)
+  defines the compact and grouped project-progress figures used in private
+  research and owner-review packets.
 - [`docs/version-0.5-compatibility-policy.md`](docs/version-0.5-compatibility-policy.md)
   defines the protected `0.5.x` commands, Python API, schemas, migrations, and
   platform support; [`SECURITY.md`](SECURITY.md) gives the private reporting
@@ -168,7 +171,10 @@ The checked-in skills package procedures that are specific to HoloForge:
   response paths and an optional project-local research-progress map in
   Markdown/Mermaid, standalone vector, and PDF-ready forms, while updating the
   reviewed research knowledge base and preserving a closure retrospective that
-  feeds bounded lessons into later gates;
+  feeds bounded lessons into later gates; after a contract is frozen, an
+  owner-approved bounded autonomy window can carry routine in-scope work to one
+  consolidated mandatory return without delegating scientific or disclosure
+  decisions;
 - `$holoforge-public-export` audits a proposed private-to-public artifact and
   includes a deterministic scanner for common private-path and forbidden-token
   leaks; and
