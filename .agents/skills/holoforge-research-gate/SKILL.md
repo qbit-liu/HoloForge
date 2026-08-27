@@ -142,6 +142,39 @@ the intake decision remains auditable.
     completed/current/next status and fresh A-E choices for the next eligible
     decision; do not end only with `no approval pending`.
 
+## Work inside a bounded autonomy window
+
+When the owner wants fewer intermediate approval requests, use the public
+[`bounded-autonomy-window template`](../../../docs/templates/bounded-autonomy-window-template.md)
+after the gate contract is frozen. Confirm that the record names the allowed
+routine work, source and compute limits, implementation boundary, repair
+budget, return milestone, expiry, disclosure class, and closed scope.
+It may be prepared with the frozen contract and approved in the same owner
+decision, but it has no effect until the approval is recorded.
+
+Within that exact window, continue through ordinary source inspection,
+derivation, local implementation, frozen verification, evidence and report
+generation, knowledge and progress updates, and hostile criticism without
+turning every intermediate choice into an owner gate. Choose among routine
+alternatives only when the frozen criteria already distinguish them; record
+the rationale and uncertainty. Progress updates remain informational.
+
+Return immediately when the declared outcome or stop is reached; the question,
+model, ensemble, branch, dictionary, observable, boundary condition,
+acceptance threshold, or stop rule would change; any cost or repair ceiling
+would be exceeded; an impasse repair or portfolio pivot is needed; owner
+judgment is required for interpretation, novelty, publication, or author
+intent; disclosure or external communication is proposed; or an unlisted Git
+or remote action is proposed. One local commit may be included only when the
+owner explicitly checks it. A window never authorizes push, merge, release,
+branch deletion, public export, disclosure, or another gate, and it cannot
+renew itself.
+
+At the first return trigger, deliver one consolidated outcome, verification,
+critic, budget, non-claim, and recommendation packet with the standard A--E
+paths. Follow the full controlling rules in
+`docs/research-gate-workflow.md`.
+
 ## Handle a repeated blocker
 
 When the same blocker recurs, the approved repair budget is nearly exhausted,

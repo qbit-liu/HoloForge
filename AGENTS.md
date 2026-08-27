@@ -81,6 +81,13 @@ These workflows do not replace human scientific or disclosure approval.
   or unpublished candidate identifiers to this public repository.
 - Do not infer that approval to calculate authorizes publication or public
   transfer.
+- When an owner-approved bounded autonomy window is recorded for a frozen
+  Explore gate, finish its listed routine work without requesting approval at
+  every intermediate source, plot, test, or implementation choice. Return at
+  the first declared outcome, stop, scope or threshold change, cost or repair
+  overrun, impasse, interpretation or publication judgment, disclosure or
+  external communication, or unlisted Git/remote action. The window never
+  rolls over to another gate or candidate.
 
 ## Validation
 
@@ -101,6 +108,9 @@ results require synchronized documentation, model records, and tests.
 - Stage only intended files; never discard unrelated work.
 - Do not push, merge, publish, release, or delete branches without explicit
   authorization.
+- Treat a bounded autonomy window as execution authority only. A local commit
+  must be explicitly included in it; push, merge, release, branch deletion,
+  public export, and disclosure always remain separate owner decisions.
 - Before requesting an owner decision, give an item-by-item recommendation,
   reason, scope opened, scope remaining closed, and important uncertainty.
 - At an owner gate, also state completed, current, and proposed next stages,

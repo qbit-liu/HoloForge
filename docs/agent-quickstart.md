@@ -129,6 +129,27 @@ and numerical credibility separately. By default, the first or second detailed
 gate reaches the physical discriminator rather than extending a tool-only
 qualification sequence.
 
+To let the agent work for a longer interval without weakening owner control,
+freeze the detailed gate first and then approve a project-local copy of
+[`bounded-autonomy-window-template.md`](templates/bounded-autonomy-window-template.md).
+The agent may prepare the window with the contract so both can be approved in
+one owner decision.
+A useful request is:
+
+```text
+Use the frozen gate contract to prepare a bounded autonomy window. List the
+routine work you may finish without another decision, the source, compute and
+repair ceilings, the return milestone, and every mandatory return trigger.
+After I approve that window, continue through the in-scope verification and
+review packet without asking me to approve each intermediate source, plot,
+test, or implementation choice. Return immediately if the scientific scope,
+threshold, cost, repair, disclosure, Git, or external-action boundary changes.
+```
+
+This delegates execution only. It does not delegate the physical verdict,
+novelty or publication judgment, disclosure decision, or permission to push,
+merge, release, or start another gate.
+
 If the same blocker recurs, ask the agent to use the bounded impasse protocol:
 classify the problem, inspect targeted authoritative external evidence, audit
 the physics independently, inspect the corresponding numerical or software

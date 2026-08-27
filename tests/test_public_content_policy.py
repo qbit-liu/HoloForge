@@ -350,6 +350,57 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertNotIn("/users/", combined)
         self.assertNotIn("holoforge-explore-private", combined)
 
+    def test_bounded_autonomy_window_reduces_interruptions_without_scope_drift(self):
+        paths = (
+            ROOT / "AGENTS.md",
+            ROOT / "CONTRIBUTING.md",
+            ROOT / "docs/research-gate-workflow.md",
+            ROOT / "docs/private-research-workflow.md",
+            ROOT / "docs/agent-quickstart.md",
+            ROOT / "docs/templates/bounded-autonomy-window-template.md",
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md",
+        )
+        texts = {
+            path: " ".join(path.read_text(encoding="utf-8").lower().split())
+            for path in paths
+        }
+        combined = "\n".join(texts.values())
+
+        for path, text in texts.items():
+            with self.subTest(path=path.name):
+                self.assertIn("bounded autonomy window", text)
+
+        template = texts[
+            ROOT / "docs/templates/bounded-autonomy-window-template.md"
+        ]
+        for required_boundary in (
+            "frozen contract",
+            "return milestone",
+            "cost and repair ceilings",
+            "mandatory return triggers",
+            "acceptance threshold",
+            "physical interpretation",
+            "public export",
+            "push, merge, release, branch deletion",
+            "never rolls over",
+            "standard a--e owner response paths",
+        ):
+            self.assertIn(required_boundary, template)
+
+        self.assertIn(
+            "without asking the owner to approve each intermediate step",
+            combined,
+        )
+        self.assertIn(
+            "one local commit only when the owner explicitly checks",
+            combined,
+        )
+        self.assertIn("never authorizes push, merge, release", combined)
+        self.assertNotIn("/users/", combined)
+        self.assertNotIn("holoforge-explore-private", combined)
+        for private_identifier in ("i13", "c01", "c02", "c03", "d001", "m001"):
+            self.assertNotIn(private_identifier, combined)
+
     def test_closed_gate_requires_a_generic_research_retrospective(self):
         workflow = (
             ROOT / "docs/research-gate-workflow.md"

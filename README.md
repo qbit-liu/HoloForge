@@ -171,7 +171,10 @@ The checked-in skills package procedures that are specific to HoloForge:
   response paths and an optional project-local research-progress map in
   Markdown/Mermaid, standalone vector, and PDF-ready forms, while updating the
   reviewed research knowledge base and preserving a closure retrospective that
-  feeds bounded lessons into later gates;
+  feeds bounded lessons into later gates; after a contract is frozen, an
+  owner-approved bounded autonomy window can carry routine in-scope work to one
+  consolidated mandatory return without delegating scientific or disclosure
+  decisions;
 - `$holoforge-public-export` audits a proposed private-to-public artifact and
   includes a deterministic scanner for common private-path and forbidden-token
   leaks; and

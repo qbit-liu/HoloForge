@@ -152,6 +152,53 @@ If a stop condition fires, stop the gate, preserve the bounded stopped result
 under its correct outcome class, and return to owner review. Do not expand the
 scope to rescue the hypothesis.
 
+## Use an owner-approved bounded autonomy window
+
+HoloForge should not require a new owner decision for every source read, plot,
+test, or routine implementation choice. After the scientific contract is
+frozen, the owner may approve one **bounded autonomy window** using the
+[`bounded-autonomy-window template`](templates/bounded-autonomy-window-template.md).
+The window is an authorization record, not a scientific-support label.
+It may be attached to the frozen contract and approved in the same owner
+decision, so it need not create an additional review gate; it has no effect
+until that approval is recorded.
+
+Before work starts, it must identify the frozen contract, allowed routine
+work, source and compute limits, implementation boundary, repair budget,
+return milestone, disclosure class, expiry, and scope that remains closed.
+Inside that exact window, the agent should continue through source inspection,
+derivation, local implementation, frozen checks, evidence generation,
+knowledge and progress updates, hostile criticism, and packet preparation
+without asking the owner to approve each intermediate step. Informational
+progress updates are not decision gates. When the frozen criteria already
+distinguish routine alternatives, the agent may choose the best-supported one
+and record its rationale and uncertainty.
+
+The window ends and the agent must return immediately when:
+
+1. the physical discriminator, declared outcome, stop condition, or return
+   milestone is reached;
+2. the scientific question, model or action, ensemble or branch, boundary
+   conditions, source--response dictionary, observable, acceptance threshold,
+   or stop rule would change;
+3. a source, implementation, compute, review, or repair ceiling would be
+   exceeded;
+4. the bounded impasse protocol, a new repair, a pivot, a new candidate, or a
+   different portfolio direction is needed;
+5. physical interpretation, novelty, priority, publication value, author
+   intent, or a public claim needs owner judgment;
+6. author contact, disclosure, public export, data sharing, or another external
+   communication is proposed; or
+7. an unlisted local commit, push, merge, release, branch deletion, repository
+   visibility change, or other remote mutation is proposed.
+
+A window may include one local commit only when the owner explicitly checks
+that item. It never implies permission to push, merge, release, delete a
+branch, disclose research, or start another gate. It ends at the first return
+trigger and cannot renew itself. The return should consolidate the outcome,
+verification, critic, budget used, non-claims, and recommended next decision
+into one owner packet and A--E handoff.
+
 ## Check the version of record before a source stop
 
 Do not close a source or source-normalization stop from preprint text alone

@@ -78,6 +78,18 @@ calculation, or turn `no approval pending` into an approval. A separate
 portfolio choice must be identified as a separate gate rather than inserted as
 false pending state in the closed research project.
 
+After a detailed gate contract is frozen, the owner may reduce unnecessary
+interruptions by approving a project-local
+[`bounded autonomy window`](templates/bounded-autonomy-window-template.md).
+The window lets the agent finish the listed routine source, derivation,
+implementation, verification, criticism, knowledge, progress, and report work
+before one consolidated return. It must retain explicit cost and repair
+ceilings and mandatory returns for scientific-scope or threshold changes,
+stops and impasses, interpretation or publication judgments, disclosure,
+external communication, and Git or remote actions. It never rolls over to a
+new gate or candidate. The owner may approve it together with the frozen
+contract so the window does not introduce an extra decision gate.
+
 1. **Intake:** read the current private reviewed-knowledge and closure-lesson
    indexes and record which stable knowledge and lesson IDs and evidence apply
    to this candidate. Translate each into a candidate-specific control; if none
