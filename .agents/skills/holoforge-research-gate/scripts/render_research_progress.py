@@ -234,6 +234,18 @@ def validate_state(state: Any) -> Mapping[str, Any]:
     if figure_style not in ALLOWED_FIGURE_STYLES:
         allowed = ", ".join(sorted(ALLOWED_FIGURE_STYLES))
         raise ProgressError(f"'figure_style' must be one of: {allowed}")
+    compact_wrap_after = state.get("compact_wrap_after")
+    if compact_wrap_after is not None:
+        if (
+            isinstance(compact_wrap_after, bool)
+            or not isinstance(compact_wrap_after, int)
+            or compact_wrap_after < 2
+        ):
+            raise ProgressError("'compact_wrap_after' must be an integer >= 2")
+        if figure_style != "compact" or state["layout_direction"] != "TB":
+            raise ProgressError(
+                "'compact_wrap_after' requires compact style with TB direction"
+            )
 
     group_ids = _validate_groups(state)
     stage_ids = _validate_stages(state, group_ids)
@@ -421,6 +433,21 @@ def _render_compact_dot(state: Mapping[str, Any]) -> str:
     """Return the compact owner-review figure style without group boxes."""
 
     indexes, _ = _stage_maps(state)
+    wrap_after = state.get("compact_wrap_after")
+    stage_ids = [stage["id"] for stage in state["stages"]]
+    wrap_columns = (
+        [
+            stage_ids[index : index + wrap_after]
+            for index in range(0, len(stage_ids), wrap_after)
+        ]
+        if wrap_after is not None
+        else []
+    )
+    node_columns = {
+        stage_id: column_index
+        for column_index, column in enumerate(wrap_columns)
+        for stage_id in column
+    }
     title = _dot_text(state["title"])
     updated = _dot_text(state["updated_at"].split("T", 1)[0])
     ranksep = "0.42" if state["layout_direction"] == "TB" else "0.55"
@@ -469,10 +496,42 @@ def _render_compact_dot(state: Mapping[str, Any]) -> str:
             else "rounded,filled"
         )
         label = _dot_text(f"{stage['label']}\n{_status_label(stage)}")
+        group = (
+            f', group="wrap_col_{node_columns[stage["id"]] + 1}"'
+            if wrap_columns
+            else ""
+        )
         lines.append(
             f'  {node_id} [label="{label}", style="{style}", '
-            f'fillcolor="{fill}", color="{stroke}", penwidth="{penwidth}"];'
+            f'fillcolor="{fill}", color="{stroke}", penwidth="{penwidth}"'
+            f'{group}];'
         )
+
+    if wrap_columns:
+        display_columns = [
+            column if index % 2 == 0 else list(reversed(column))
+            for index, column in enumerate(wrap_columns)
+        ]
+        for column in display_columns:
+            for source, target in zip(column, column[1:]):
+                lines.append(
+                    f"  stage_{indexes[source]} -> stage_{indexes[target]} "
+                    '[style="invis", weight="100"];'
+                )
+        for row_index in range(max(len(column) for column in display_columns)):
+            row = [
+                column[row_index]
+                for column in display_columns
+                if row_index < len(column)
+            ]
+            if len(row) > 1:
+                nodes = "; ".join(f"stage_{indexes[stage_id]}" for stage_id in row)
+                lines.append(f"  {{ rank=same; {nodes}; }}")
+                for source, target in zip(row, row[1:]):
+                    lines.append(
+                        f"  stage_{indexes[source]} -> stage_{indexes[target]} "
+                        '[style="invis", weight="100", constraint="false"];'
+                    )
 
     for transition in state["transitions"]:
         source = f"stage_{indexes[transition['from']]}"
@@ -488,6 +547,8 @@ def _render_compact_dot(state: Mapping[str, Any]) -> str:
         if label:
             attributes.append(f'label="{_dot_text(label)}"')
         if transition.get("constraint", True) is False:
+            attributes.append('constraint="false"')
+        elif wrap_columns:
             attributes.append('constraint="false"')
         lines.append(f"  {source} -> {target} [{', '.join(attributes)}];")
 

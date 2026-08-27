@@ -57,6 +57,35 @@ class ResearchProgressTests(unittest.TestCase):
         self.assertIn('style="dashed"', dot)
         self.assertIn('constraint="false"', dot)
 
+    def test_compact_dot_can_wrap_a_long_path_without_changing_transitions(self) -> None:
+        state = self.load_example()
+        state["compact_wrap_after"] = 6
+
+        dot = RENDERER.render_dot(state)
+
+        self.assertIn('group="wrap_col_1"', dot)
+        self.assertIn('group="wrap_col_2"', dot)
+        self.assertIn("{ rank=same;", dot)
+        self.assertIn('style="invis"', dot)
+        self.assertIn('label="advance"', dot)
+        self.assertIn('constraint="false"', dot)
+
+    def test_compact_wrap_requires_vertical_compact_style(self) -> None:
+        state = self.load_example()
+        state["compact_wrap_after"] = 1
+        with self.assertRaisesRegex(RENDERER.ProgressError, "integer >= 2"):
+            RENDERER.validate_state(state)
+
+        state["compact_wrap_after"] = 6
+        state["figure_style"] = "grouped"
+        with self.assertRaisesRegex(RENDERER.ProgressError, "compact style"):
+            RENDERER.validate_state(state)
+
+        state["figure_style"] = "compact"
+        state["layout_direction"] = "LR"
+        with self.assertRaisesRegex(RENDERER.ProgressError, "TB direction"):
+            RENDERER.validate_state(state)
+
     def test_missing_style_retains_grouped_backward_compatibility(self) -> None:
         state = self.load_example()
         state.pop("figure_style")
@@ -193,6 +222,7 @@ class ResearchProgressTests(unittest.TestCase):
             "standalone svg",
             "figure_style",
             "compact",
+            "compact_wrap_after",
             "holoforgeincludeprogress",
             "researchprogressfile",
             "does not by itself strengthen a scientific claim",

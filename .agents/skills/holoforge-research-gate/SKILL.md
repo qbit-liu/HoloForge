@@ -246,6 +246,12 @@ GitHub shows only the latest committed and pushed snapshot. Keep unpublished
 state and figures in the private project and never copy them into public
 HoloForge without a separate export review.
 
+For a long, mostly sequential compact `TB` path, the figure may turn across
+multiple columns instead of remaining one tall straight rail. Use the optional
+integer `compact_wrap_after` only when it improves reviewability. It changes
+placement, not the canonical transitions or scientific state; never hide or
+reorder a branch, stop, current stage, or closed boundary for visual neatness.
+
 ## Apply hard boundaries
 
 - Do not enlarge a failed gate to rescue a hypothesis.

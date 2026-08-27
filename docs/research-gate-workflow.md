@@ -405,6 +405,12 @@ use `status_label` to refine visible wording such as `SOURCE STOP` or
 `PROPOSED`, but the wording must not contradict its semantic `status`. See the
 [research-progress snapshot guide](research-progress-snapshots.md).
 
+The compact path does not have to remain one straight rail. When a long,
+mostly sequential `TB` path becomes too tall for review, set the optional
+integer `compact_wrap_after` to lay the declared stage order out in
+serpentine columns. The turns are presentation hints only: preserve every
+real transition, branch, current or blocked state, and closed-scope boundary.
+
 Copy the JSON template into the research project, update it after each durable
 milestone, and render Markdown/Mermaid from the public HoloForge checkout:
 

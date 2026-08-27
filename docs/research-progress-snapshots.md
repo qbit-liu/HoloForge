@@ -29,6 +29,27 @@ Use `layout_direction: "TB"` for a vertical research path and `"LR"` for a
 wide map. The compact style is designed first for `TB`, which normally fits a
 dedicated progress page in the review-packet template.
 
+For a long, mostly sequential `compact`/`TB` path, the optional integer
+`compact_wrap_after` sets the maximum number of stages in each display column.
+The renderer lays the declared stage order out as a serpentine path, so the
+route may turn into the next column instead of becoming one increasingly tall
+straight rail. For example:
+
+```json
+{
+  "layout_direction": "TB",
+  "figure_style": "compact",
+  "compact_wrap_after": 9
+}
+```
+
+Omit the field for the ordinary straight rail. Use wrapping only when it makes
+the actual research path easier to review; the `stages` array should then
+follow the intended owner-facing sequence. Wrapping changes positions only.
+The declared transitions, written statuses, current stage, completed work,
+and closed scope remain authoritative. Do not rearrange or omit a scientific
+branch merely to make the picture tidier.
+
 ## Status language and accessibility
 
 Every node retains a written status as well as a color:
