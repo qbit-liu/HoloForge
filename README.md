@@ -127,6 +127,9 @@ artifacts. Plot generation requires the optional dependency installed with
 - [`docs/architecture.md`](docs/architecture.md) maps the benchmark-harness
   execution path, repository layers, dependency rules, and deliberate
   non-goals.
+- [`docs/research-objective.md`](docs/research-objective.md) defines the
+  physics-first objective, discovery/confirmation loops, conditional evidence
+  profiles, and research-pulled development boundary.
 - [`docs/version-*.md`](docs/) contains the scientific and infrastructure
   contracts for each public release.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software

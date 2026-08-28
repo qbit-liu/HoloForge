@@ -9,6 +9,24 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class PublicContentPolicyTests(unittest.TestCase):
+    def test_research_acceleration_stays_physics_first_and_private_safe(self) -> None:
+        paths = (
+            ROOT / "docs/research-objective.md",
+            ROOT / "docs/research-acceleration-plan-v3.md",
+            ROOT / "docs/research-acceleration-agent-brief-v3.md",
+            ROOT / "docs/version-0.5.9.md",
+        )
+        combined = "\n".join(path.read_text(encoding="utf-8") for path in paths)
+        lowered = combined.lower()
+        self.assertIn("physical discriminator", lowered)
+        self.assertIn("private vertical slice", lowered)
+        self.assertIn("must not certify novelty", lowered)
+        self.assertIn("not a physical negative result", lowered)
+        self.assertNotIn("/Users/", combined)
+        self.assertNotIn("HoloForge-Explore-Private", combined)
+        for private_identifier in ("C01", "C02", "C03", "D001", "M001"):
+            self.assertNotIn(private_identifier, combined)
+
     def test_private_workspace_names_are_ignored(self) -> None:
         entries = {
             line.strip()

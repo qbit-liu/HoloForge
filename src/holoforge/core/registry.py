@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import json
 from pathlib import Path, PurePosixPath
 import re
 from types import MappingProxyType
@@ -11,6 +12,12 @@ from typing import Any, Callable, Dict, Iterator, Mapping, Sequence, Tuple
 
 _IDENTIFIER = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
+_SUPPORT_LEVELS = {
+    "established-source",
+    "reproduced",
+    "model-extension",
+    "hypothesis",
+}
 
 
 class BenchmarkRegistryError(ValueError):
@@ -54,6 +61,40 @@ class BenchmarkExecution:
             raise BenchmarkRegistryError("benchmark payload must be a mapping")
         if not isinstance(self.passed, bool):
             raise BenchmarkRegistryError("benchmark passed flag must be boolean")
+        payload_passed = self.payload.get("passed")
+        if not isinstance(payload_passed, bool):
+            raise BenchmarkRegistryError(
+                "benchmark payload must contain a boolean passed field"
+            )
+        checks = self.payload.get("acceptance_checks")
+        if not isinstance(checks, (list, tuple)) or not checks:
+            raise BenchmarkRegistryError(
+                "benchmark payload requires at least one acceptance check"
+            )
+        if not all(
+            isinstance(check, Mapping)
+            and isinstance(check.get("passed"), bool)
+            for check in checks
+        ):
+            raise BenchmarkRegistryError(
+                "benchmark acceptance checks require boolean passed fields"
+            )
+        derived_passed = all(check["passed"] for check in checks)
+        if payload_passed != derived_passed or self.passed != derived_passed:
+            raise BenchmarkRegistryError(
+                "benchmark execution, payload, and acceptance checks disagree"
+            )
+        support_level = self.payload.get("support_level")
+        if support_level not in _SUPPORT_LEVELS:
+            raise BenchmarkRegistryError(
+                "benchmark payload requires an explicit recognized support level"
+            )
+        try:
+            json.dumps(self.payload, allow_nan=False, sort_keys=True)
+        except (TypeError, ValueError) as exc:
+            raise BenchmarkRegistryError(
+                "benchmark payload must contain strict finite JSON values"
+            ) from exc
         if not isinstance(self.artifacts, Mapping):
             raise BenchmarkRegistryError("benchmark artifacts must be a mapping")
         for role, path in self.artifacts.items():

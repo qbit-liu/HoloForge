@@ -989,7 +989,6 @@ def verify_dewolfe_gubser_rosen_emd(
             "result_review_state": "approved",
             "result_reviewed_by": "Xin-Yi Liu",
             "result_reviewed_on": "2026-08-22",
-            "support_level": "reproduced",
             "generated_by_ai": True,
         },
     )

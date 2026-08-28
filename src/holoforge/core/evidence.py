@@ -16,6 +16,7 @@ import mimetypes
 from pathlib import Path, PurePosixPath
 import re
 import shutil
+import tempfile
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from holoforge import __version__
@@ -37,6 +38,29 @@ _STATE_FIELDS = (
     "conventions",
     "source_record_versions",
 )
+_MANIFEST_FIELDS = {
+    "schema_version",
+    "bundle_id",
+    "command_identity",
+    "holoforge_version",
+    "support_level",
+    "disclosure_class",
+    "scientific_state",
+    "model_cards",
+    "acceptance",
+    "software_versions",
+    "scope",
+    "limitations",
+    "files",
+    "execution",
+    "scientific_payload_digest",
+}
+_SUPPORT_LEVELS = {
+    "established-source",
+    "reproduced",
+    "model-extension",
+    "hypothesis",
+}
 _ABSOLUTE_WINDOWS_PATH = re.compile(r"^[A-Za-z]:[\\/]")
 _PRIVATE_KEY_MARKER = "-----BEGIN " + "PRIVATE KEY-----"
 _FORBIDDEN_METADATA_KEYS = {
@@ -155,7 +179,7 @@ def write_evidence_bundle(
     artifacts: Optional[Mapping[str, Path]] = None,
     created_at_utc: Optional[str] = None,
 ) -> Path:
-    """Write one relocatable bundle without overwriting existing content.
+    """Transactionally write a relocatable bundle without overwriting content.
 
     ``scientific_state`` is the complete input to the compatibility preflight.
     Controls are parameter names that may differ between otherwise compatible
@@ -163,18 +187,91 @@ def write_evidence_bundle(
     only paths relative to the bundle root.
     """
 
-    result = _json_copy(result_record)
-    state = _json_copy(scientific_state)
-    model_cards = [_json_copy(reference) for reference in model_card_references]
+    if not isinstance(command_identity, str) or not command_identity.strip():
+        raise EvidenceBundleError("command_identity must be non-empty")
+    try:
+        result = _json_copy(result_record)
+        state = _json_copy(scientific_state)
+        model_cards = [_json_copy(reference) for reference in model_card_references]
+    except (TypeError, ValueError) as exc:
+        raise EvidenceBundleError(
+            "bundle inputs must contain strict finite JSON values"
+        ) from exc
+    _validate_result_record(result)
     _validate_state(state)
     _validate_model_card_references(model_cards)
+    _reject_nonportable_metadata(result)
+    _reject_nonportable_metadata(state)
+    _reject_nonportable_metadata(model_cards)
+
+    artifact_sources: List[Tuple[str, Path]] = []
+    if artifacts:
+        for role, source_value in sorted(artifacts.items()):
+            if not isinstance(role, str) or not role.strip():
+                raise EvidenceBundleError("artifact roles must be non-empty strings")
+            source = Path(source_value)
+            if source.is_symlink():
+                raise EvidenceBundleError(f"artifact must not be symbolic: {source}")
+            if not source.is_file():
+                raise EvidenceBundleError(f"artifact is not a file: {source}")
+            artifact_sources.append((role, source))
 
     directory = Path(bundle_directory)
+    if not directory.name or directory in {Path("."), Path("/")}:
+        raise EvidenceBundleError("bundle path must name a dedicated directory")
+    if directory.is_symlink():
+        raise EvidenceBundleError("bundle path must not be symbolic")
+    existed_empty = directory.exists()
     if directory.exists():
         if not directory.is_dir():
             raise EvidenceBundleError("bundle path exists and is not a directory")
         if any(directory.iterdir()):
             raise EvidenceBundleError("bundle directory must be empty")
+    directory.parent.mkdir(parents=True, exist_ok=True)
+    working = Path(
+        tempfile.mkdtemp(
+            prefix=f".{directory.name}.tmp-",
+            dir=str(directory.parent),
+        )
+    )
+    committed = False
+    try:
+        _write_evidence_bundle_contents(
+            working,
+            command_identity=command_identity,
+            result=result,
+            state=state,
+            model_cards=model_cards,
+            artifact_sources=artifact_sources,
+            created_at_utc=created_at_utc,
+        )
+        if existed_empty:
+            directory.rmdir()
+        try:
+            working.replace(directory)
+        except OSError:
+            if existed_empty and not directory.exists():
+                directory.mkdir()
+            raise
+        committed = True
+    finally:
+        if not committed and working.exists():
+            shutil.rmtree(working)
+    return directory
+
+
+def _write_evidence_bundle_contents(
+    directory: Path,
+    *,
+    command_identity: str,
+    result: Mapping[str, Any],
+    state: Mapping[str, Any],
+    model_cards: Sequence[Mapping[str, Any]],
+    artifact_sources: Sequence[Tuple[str, Path]],
+    created_at_utc: Optional[str],
+) -> None:
+    """Write a complete bundle inside a private staging directory."""
+
     records_directory = directory / "records"
     artifacts_directory = directory / "artifacts"
     records_directory.mkdir(parents=True, exist_ok=True)
@@ -198,8 +295,6 @@ def write_evidence_bundle(
     }
     _reject_nonportable_metadata(configuration_record)
     _reject_nonportable_metadata(scientific_context_record)
-    _reject_nonportable_metadata(result)
-
     record_paths = (
         ("records/configuration.json", "configuration", configuration_record),
         (
@@ -215,12 +310,9 @@ def write_evidence_bundle(
         _write_json(target, payload)
         files.append(_file_entry(target, directory, role))
 
-    if artifacts:
+    if artifact_sources:
         artifacts_directory.mkdir(parents=True, exist_ok=True)
-        for index, (role, source_value) in enumerate(sorted(artifacts.items())):
-            source = Path(source_value)
-            if not source.is_file():
-                raise EvidenceBundleError(f"artifact is not a file: {source}")
+        for index, (role, source) in enumerate(artifact_sources):
             target = artifacts_directory / f"{index:02d}-{source.name}"
             shutil.copyfile(source, target)
             files.append(_file_entry(target, directory, f"artifact:{role}"))
@@ -228,19 +320,20 @@ def write_evidence_bundle(
     timestamp = created_at_utc
     if timestamp is None:
         timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    _validate_timestamp(timestamp)
     manifest: Dict[str, Any] = {
         "schema_version": BUNDLE_SCHEMA_VERSION,
         "command_identity": command_identity,
         "holoforge_version": __version__,
-        "support_level": str(result.get("support_level", "reproduced")),
+        "support_level": result["support_level"],
         "disclosure_class": "public",
         "scientific_state": state,
         "model_cards": model_cards,
         "acceptance": {
-            "passed": bool(result.get("passed", False)),
-            "checks": result.get("acceptance_checks", []),
+            "passed": result["passed"],
+            "checks": result["acceptance_checks"],
         },
-        "software_versions": result.get("software_versions", {}),
+        "software_versions": result["software_versions"],
         "scope": _result_scope(result),
         "limitations": _result_limitations(result),
         "files": sorted(files, key=lambda item: item["path"]),
@@ -250,8 +343,8 @@ def write_evidence_bundle(
     scientific_digest = _scientific_payload_digest(manifest)
     manifest["bundle_id"] = f"{_slug(command_identity)}-{scientific_digest[:16]}"
     manifest["scientific_payload_digest"] = scientific_digest
+    _validate_manifest_structure(manifest)
     _write_json(directory / "manifest.json", manifest)
-    return directory
 
 
 def audit_evidence_bundle(bundle_directory: Path) -> BundleAuditResult:
@@ -285,29 +378,28 @@ def audit_evidence_bundle(bundle_directory: Path) -> BundleAuditResult:
         )
 
     bundle_id = manifest.get("bundle_id")
-    required_manifest_fields = {
-        "schema_version",
-        "bundle_id",
-        "command_identity",
-        "holoforge_version",
-        "support_level",
-        "disclosure_class",
-        "scientific_state",
-        "model_cards",
-        "acceptance",
-        "software_versions",
-        "scope",
-        "limitations",
-        "files",
-        "execution",
-        "scientific_payload_digest",
-    }
-    missing_fields = sorted(required_manifest_fields - set(manifest))
+    missing_fields = sorted(_MANIFEST_FIELDS - set(manifest))
+    extra_fields = sorted(set(manifest) - _MANIFEST_FIELDS)
     checks.append(
         _check(
             "manifest-fields",
-            not missing_fields,
-            "complete" if not missing_fields else f"missing: {', '.join(missing_fields)}",
+            not missing_fields and not extra_fields,
+            (
+                "complete"
+                if not missing_fields and not extra_fields
+                else "; ".join(
+                    detail
+                    for detail in (
+                        f"missing: {', '.join(missing_fields)}"
+                        if missing_fields
+                        else "",
+                        f"unexpected: {', '.join(extra_fields)}"
+                        if extra_fields
+                        else "",
+                    )
+                    if detail
+                )
+            ),
         )
     )
     checks.append(
@@ -405,6 +497,24 @@ def audit_evidence_bundle(bundle_directory: Path) -> BundleAuditResult:
             not extras,
             "none" if not extras else f"undeclared: {', '.join(extras)}",
         )
+    )
+
+    try:
+        _validate_record_consistency(directory, manifest)
+        consistency_ok = True
+        consistency_detail = "manifest and canonical records agree"
+    except (
+        EvidenceBundleError,
+        KeyError,
+        OSError,
+        TypeError,
+        UnicodeDecodeError,
+        json.JSONDecodeError,
+    ) as exc:
+        consistency_ok = False
+        consistency_detail = str(exc)
+    checks.append(
+        _check("record-consistency", consistency_ok, consistency_detail)
     )
 
     expected_payload_digest = manifest.get("scientific_payload_digest")
@@ -613,6 +723,82 @@ def _result_limitations(result: Mapping[str, Any]) -> List[str]:
     return [_result_scope(result)]
 
 
+def _validate_result_record(result: Mapping[str, Any]) -> None:
+    if not isinstance(result, Mapping):
+        raise EvidenceBundleError("result record must be an object")
+    support_level = result.get("support_level")
+    if support_level not in _SUPPORT_LEVELS:
+        raise EvidenceBundleError(
+            "result record requires an explicit recognized support_level"
+        )
+    passed = result.get("passed")
+    if not isinstance(passed, bool):
+        raise EvidenceBundleError("result record passed state must be boolean")
+    checks = result.get("acceptance_checks")
+    _validate_acceptance_checks(checks, "result record")
+    derived_passed = all(check["passed"] for check in checks)
+    if passed != derived_passed:
+        raise EvidenceBundleError(
+            "result record passed state disagrees with acceptance checks"
+        )
+    versions = result.get("software_versions")
+    if not isinstance(versions, Mapping) or not versions or not all(
+        isinstance(key, str)
+        and key.strip()
+        and isinstance(value, str)
+        and value.strip()
+        for key, value in versions.items()
+    ):
+        raise EvidenceBundleError(
+            "result record software_versions must contain non-empty strings"
+        )
+    scope = result.get("scope")
+    interpretation_limits = result.get("interpretation_limits")
+    if not (
+        isinstance(scope, str)
+        and scope.strip()
+        or isinstance(interpretation_limits, list)
+        and interpretation_limits
+        and all(
+            isinstance(item, str) and item.strip()
+            for item in interpretation_limits
+        )
+    ):
+        raise EvidenceBundleError(
+            "result record requires scope or non-empty interpretation_limits"
+        )
+
+
+def _validate_acceptance_checks(value: Any, location: str) -> None:
+    if not isinstance(value, list) or not value:
+        raise EvidenceBundleError(
+            f"{location} requires at least one acceptance check"
+        )
+    identifiers: List[str] = []
+    for index, check in enumerate(value):
+        if not isinstance(check, Mapping):
+            raise EvidenceBundleError(
+                f"{location} acceptance check {index} must be an object"
+            )
+        identifier = check.get("id")
+        description = check.get("description")
+        if not isinstance(identifier, str) or not identifier.strip():
+            raise EvidenceBundleError(
+                f"{location} acceptance check {index} requires an id"
+            )
+        if not isinstance(description, str) or not description.strip():
+            raise EvidenceBundleError(
+                f"{location} acceptance check {identifier!r} requires a description"
+            )
+        if not isinstance(check.get("passed"), bool):
+            raise EvidenceBundleError(
+                f"{location} acceptance check {identifier!r} must pass or fail"
+            )
+        identifiers.append(identifier)
+    if len(identifiers) != len(set(identifiers)):
+        raise EvidenceBundleError(f"{location} acceptance check ids must be unique")
+
+
 def _validate_state(state: Mapping[str, Any]) -> None:
     if not isinstance(state, Mapping):
         raise EvidenceBundleError("scientific_state must be an object")
@@ -620,6 +806,11 @@ def _validate_state(state: Mapping[str, Any]) -> None:
     if missing:
         raise EvidenceBundleError(
             f"scientific_state is missing: {', '.join(missing)}"
+        )
+    extras = sorted(set(state) - set(_STATE_FIELDS))
+    if extras:
+        raise EvidenceBundleError(
+            f"scientific_state has unexpected fields: {', '.join(extras)}"
         )
     for field in (
         "model_identifier",
@@ -649,6 +840,8 @@ def _validate_state(state: Mapping[str, Any]) -> None:
         )
     if len(controls) != len(set(controls)):
         raise EvidenceBundleError("declared_controls contains duplicates")
+    if not all(re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", item) for item in controls):
+        raise EvidenceBundleError("declared_controls contains an invalid name")
 
 
 def _validate_model_card_references(references: Sequence[Mapping[str, Any]]) -> None:
@@ -661,6 +854,18 @@ def _validate_model_card_references(references: Sequence[Mapping[str, Any]]) -> 
             raise EvidenceBundleError(
                 f"model-card reference is missing: {', '.join(sorted(missing))}"
             )
+        extras = set(reference) - required
+        if extras:
+            raise EvidenceBundleError(
+                "model-card reference has unexpected fields: "
+                + ", ".join(sorted(extras))
+            )
+        if not isinstance(reference["id"], str) or not reference["id"].strip():
+            raise EvidenceBundleError("model-card id must be non-empty")
+        if not isinstance(reference["schema_version"], str) or not reference[
+            "schema_version"
+        ].strip():
+            raise EvidenceBundleError("model-card schema_version must be non-empty")
         if not _is_safe_relative_path(reference["repository_path"]):
             raise EvidenceBundleError("model-card repository_path must be relative")
         digest = reference["sha256"]
@@ -669,6 +874,15 @@ def _validate_model_card_references(references: Sequence[Mapping[str, Any]]) -> 
 
 
 def _validate_manifest_structure(manifest: Mapping[str, Any]) -> None:
+    missing = _MANIFEST_FIELDS - set(manifest)
+    extras = set(manifest) - _MANIFEST_FIELDS
+    if missing or extras:
+        details = []
+        if missing:
+            details.append("missing " + ", ".join(sorted(missing)))
+        if extras:
+            details.append("unexpected " + ", ".join(sorted(extras)))
+        raise EvidenceBundleError("manifest fields: " + "; ".join(details))
     for field in (
         "bundle_id",
         "command_identity",
@@ -679,34 +893,164 @@ def _validate_manifest_structure(manifest: Mapping[str, Any]) -> None:
     ):
         if not isinstance(manifest.get(field), str) or not manifest[field]:
             raise EvidenceBundleError(f"manifest.{field} must be non-empty")
+    if manifest["support_level"] not in _SUPPORT_LEVELS:
+        raise EvidenceBundleError("manifest.support_level is not recognized")
+    if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*-[0-9a-f]{16}", manifest["bundle_id"]):
+        raise EvidenceBundleError("manifest.bundle_id has an invalid form")
     if manifest.get("disclosure_class") != "public":
         raise EvidenceBundleError("manifest.disclosure_class must be public")
     _validate_model_card_references(manifest.get("model_cards", []))
     acceptance = manifest.get("acceptance")
     if not isinstance(acceptance, Mapping):
         raise EvidenceBundleError("manifest.acceptance must be an object")
-    if not isinstance(acceptance.get("passed"), bool) or not isinstance(
-        acceptance.get("checks"), list
-    ):
+    if set(acceptance) != {"passed", "checks"}:
         raise EvidenceBundleError("manifest.acceptance has invalid fields")
-    versions = manifest.get("software_versions")
-    if not isinstance(versions, Mapping) or not all(
-        isinstance(value, str) for value in versions.values()
+    if not isinstance(acceptance.get("passed"), bool):
+        raise EvidenceBundleError("manifest.acceptance.passed must be boolean")
+    _validate_acceptance_checks(acceptance.get("checks"), "manifest")
+    if acceptance["passed"] != all(
+        check["passed"] for check in acceptance["checks"]
     ):
-        raise EvidenceBundleError("manifest.software_versions must contain strings")
+        raise EvidenceBundleError(
+            "manifest acceptance state disagrees with acceptance checks"
+        )
+    versions = manifest.get("software_versions")
+    if not isinstance(versions, Mapping) or not versions or not all(
+        isinstance(key, str)
+        and key.strip()
+        and isinstance(value, str)
+        and value.strip()
+        for key, value in versions.items()
+    ):
+        raise EvidenceBundleError(
+            "manifest.software_versions must contain non-empty strings"
+        )
     limitations = manifest.get("limitations")
     if not isinstance(limitations, list) or not limitations or not all(
         isinstance(item, str) and item for item in limitations
     ):
         raise EvidenceBundleError("manifest.limitations must be non-empty strings")
     execution = manifest.get("execution")
-    if not isinstance(execution, Mapping) or not isinstance(
-        execution.get("created_at_utc"), str
-    ):
+    if not isinstance(execution, Mapping) or set(execution) != {"created_at_utc"}:
         raise EvidenceBundleError("manifest.execution timestamp is missing")
+    _validate_timestamp(execution["created_at_utc"])
+    files = manifest.get("files")
+    if not isinstance(files, list) or len(files) < 3:
+        raise EvidenceBundleError("manifest.files must contain at least three files")
+    for entry in files:
+        required = {"path", "role", "media_type", "sha256"}
+        if not isinstance(entry, Mapping) or set(entry) != required:
+            raise EvidenceBundleError("manifest file entry has invalid fields")
+        if not _is_safe_relative_path(entry["path"]):
+            raise EvidenceBundleError("manifest file path must be relative")
+        if not isinstance(entry["role"], str) or not entry["role"].strip():
+            raise EvidenceBundleError("manifest file role must be non-empty")
+        if not isinstance(entry["media_type"], str) or not entry[
+            "media_type"
+        ].strip():
+            raise EvidenceBundleError("manifest file media_type must be non-empty")
+        if not isinstance(entry["sha256"], str) or not re.fullmatch(
+            r"[0-9a-f]{64}", entry["sha256"]
+        ):
+            raise EvidenceBundleError("manifest file sha256 is invalid")
     digest = manifest.get("scientific_payload_digest")
     if not re.fullmatch(r"[0-9a-f]{64}", digest):
         raise EvidenceBundleError("scientific_payload_digest is not SHA-256")
+
+
+def _validate_timestamp(value: Any) -> None:
+    if not isinstance(value, str) or not value.strip():
+        raise EvidenceBundleError("timestamp must be non-empty")
+    normalized = value[:-1] + "+00:00" if value.endswith("Z") else value
+    try:
+        parsed = datetime.fromisoformat(normalized)
+    except ValueError as exc:
+        raise EvidenceBundleError("timestamp must be ISO 8601") from exc
+    if parsed.tzinfo is None:
+        raise EvidenceBundleError("timestamp must include a timezone")
+
+
+def _validate_record_consistency(
+    directory: Path, manifest: Mapping[str, Any]
+) -> None:
+    """Require the canonical records to agree with their manifest envelope."""
+
+    entries = manifest.get("files")
+    if not isinstance(entries, list):
+        raise EvidenceBundleError("manifest files are unavailable")
+    paths_by_role: Dict[str, str] = {}
+    for entry in entries:
+        if not isinstance(entry, Mapping):
+            continue
+        role = entry.get("role")
+        path = entry.get("path")
+        if role in {"configuration", "model-card-context", "result"}:
+            if role in paths_by_role:
+                raise EvidenceBundleError(f"duplicate canonical record role: {role}")
+            if not _is_safe_relative_path(path):
+                raise EvidenceBundleError(f"unsafe canonical record path: {path!r}")
+            paths_by_role[str(role)] = str(path)
+    required_roles = {"configuration", "model-card-context", "result"}
+    missing_roles = required_roles - set(paths_by_role)
+    if missing_roles:
+        raise EvidenceBundleError(
+            "missing canonical record roles: " + ", ".join(sorted(missing_roles))
+        )
+
+    configuration = _read_json(directory / paths_by_role["configuration"])
+    model_context = _read_json(directory / paths_by_role["model-card-context"])
+    result = _read_json(directory / paths_by_role["result"])
+    _validate_result_record(result)
+
+    expected_configuration = {
+        "schema_version": BUNDLE_SCHEMA_VERSION,
+        "command_identity": manifest["command_identity"],
+        "calculation_configuration": result.get(
+            "configuration",
+            {"comparison": result.get("comparison", manifest["command_identity"])},
+        ),
+        "numerical_method": result.get(
+            "numerical_method", result.get("numerical_validation", {})
+        ),
+        "scientific_state": manifest["scientific_state"],
+    }
+    if configuration != expected_configuration:
+        raise EvidenceBundleError(
+            "configuration record disagrees with manifest or result record"
+        )
+
+    expected_model_context = {
+        "schema_version": BUNDLE_SCHEMA_VERSION,
+        "model_cards": manifest["model_cards"],
+        "benchmark_definition": _extract_benchmark_definition(result),
+    }
+    if model_context != expected_model_context:
+        raise EvidenceBundleError(
+            "model-card context disagrees with manifest or result record"
+        )
+
+    comparisons = {
+        "support_level": (result["support_level"], manifest["support_level"]),
+        "passed": (result["passed"], manifest["acceptance"]["passed"]),
+        "acceptance_checks": (
+            result["acceptance_checks"],
+            manifest["acceptance"]["checks"],
+        ),
+        "software_versions": (
+            result["software_versions"],
+            manifest["software_versions"],
+        ),
+        "scope": (_result_scope(result), manifest["scope"]),
+        "limitations": (_result_limitations(result), manifest["limitations"]),
+    }
+    mismatches = [
+        name for name, (record_value, manifest_value) in comparisons.items()
+        if record_value != manifest_value
+    ]
+    if mismatches:
+        raise EvidenceBundleError(
+            "result record disagrees with manifest: " + ", ".join(mismatches)
+        )
 
 
 def _reject_nonportable_metadata(value: Any, location: str = "$") -> None:
@@ -758,10 +1102,14 @@ def _write_json(path: Path, payload: Any) -> None:
 
 def _read_json(path: Path) -> Dict[str, Any]:
     with Path(path).open(encoding="utf-8") as handle:
-        payload = json.load(handle)
+        payload = json.load(handle, parse_constant=_reject_json_constant)
     if not isinstance(payload, dict):
         raise json.JSONDecodeError("expected a JSON object", "", 0)
     return payload
+
+
+def _reject_json_constant(value: str) -> None:
+    raise json.JSONDecodeError(f"non-finite JSON constant: {value}", value, 0)
 
 
 def _json_copy(value: Any) -> Any:

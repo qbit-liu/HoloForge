@@ -118,7 +118,9 @@ class VectorSpectrumComparisonResult:
 
     @property
     def passed(self) -> bool:
-        return all(check.passed for check in self.acceptance_checks)
+        return bool(self.acceptance_checks) and all(
+            check.passed for check in self.acceptance_checks
+        )
 
     def prediction(self, identifier: str) -> SpectrumPrediction:
         for item in self.predictions:

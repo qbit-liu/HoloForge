@@ -6,6 +6,7 @@ from dataclasses import replace
 import io
 import json
 from pathlib import Path
+from types import SimpleNamespace
 import tempfile
 import unittest
 from contextlib import redirect_stdout
@@ -87,6 +88,30 @@ SYNTHETIC_ADAPTER = BenchmarkAdapter(
 
 
 class BenchmarkRegistryTests(unittest.TestCase):
+    def test_execution_rejects_contradictory_passed_state(self) -> None:
+        payload = dict(execute_synthetic(SimpleNamespace(control=2.0)).payload)
+        payload["passed"] = False
+        with self.assertRaisesRegex(BenchmarkRegistryError, "disagree"):
+            BenchmarkExecution(payload=payload, passed=True)
+
+    def test_execution_rejects_empty_acceptance_checks(self) -> None:
+        payload = dict(execute_synthetic(SimpleNamespace(control=2.0)).payload)
+        payload["acceptance_checks"] = []
+        with self.assertRaisesRegex(BenchmarkRegistryError, "at least one"):
+            BenchmarkExecution(payload=payload, passed=True)
+
+    def test_execution_rejects_implicit_support_and_nonfinite_json(self) -> None:
+        base = dict(execute_synthetic(SimpleNamespace(control=2.0)).payload)
+        missing_support = dict(base)
+        del missing_support["support_level"]
+        with self.assertRaisesRegex(BenchmarkRegistryError, "support level"):
+            BenchmarkExecution(payload=missing_support, passed=True)
+
+        nonfinite = dict(base)
+        nonfinite["results"] = [{"value": float("nan")}]
+        with self.assertRaisesRegex(BenchmarkRegistryError, "finite JSON"):
+            BenchmarkExecution(payload=nonfinite, passed=True)
+
     def test_registry_order_is_identifier_sorted(self) -> None:
         reverse = tuple(reversed(tuple(BUILTIN_BENCHMARKS)))
         registry = BenchmarkRegistry(reverse)
