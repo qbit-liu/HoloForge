@@ -8,8 +8,8 @@ abstract: >-
 authors:
   - family-names: "Liu"
     given-names: "Xin-Yi"
-version: 0.5.8
-date-released: 2026-08-27
+version: 0.5.9
+date-released: 2026-08-29
 license: BSD-3-Clause
 repository-code: "https://github.com/xin-yi6/HoloForge"
 url: "https://github.com/xin-yi6/HoloForge"
