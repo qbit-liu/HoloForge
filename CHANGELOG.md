@@ -4,6 +4,8 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.5.9] - 2026-08-29
+
 ### Added
 
 - A public research objective and revised Version 3 acceleration plan that
@@ -522,6 +524,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.5.9]: https://github.com/xin-yi6/HoloForge/compare/v0.5.8...v0.5.9
 [0.5.8]: https://github.com/xin-yi6/HoloForge/compare/v0.5.7...v0.5.8
 [0.5.7]: https://github.com/xin-yi6/HoloForge/compare/v0.5.6...v0.5.7
 [0.5.6]: https://github.com/xin-yi6/HoloForge/compare/v0.5.5...v0.5.6

@@ -104,7 +104,7 @@
   [compatibility policy](docs/version-0.5-compatibility-policy.md), and
   [public benchmark shortlist](docs/version-0.5-benchmark-shortlist.md).
 
-## Version 0.5.9 — fail-closed integrity hardening (in development)
+## Version 0.5.9 — fail-closed integrity hardening (completed)
 
 - Reject empty, contradictory, non-boolean, or non-finite verification state.
 - Prevent extension metadata from replacing canonical result fields.
