@@ -5,6 +5,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from holoforge.benchmarks.registry import (
     GUBSER_ROCHA_MODEL_CARD,
@@ -78,6 +79,138 @@ def write_synthetic_bundle(
 
 
 class EvidenceBundleTests(unittest.TestCase):
+    def test_bundle_requires_explicit_consistent_acceptance_state(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            missing_support = synthetic_result()
+            del missing_support["support_level"]
+            with self.assertRaisesRegex(EvidenceBundleError, "support_level"):
+                write_evidence_bundle(
+                    Path(directory) / "missing-support",
+                    command_identity="verify synthetic-public-evidence-test",
+                    result_record=missing_support,
+                    scientific_state=synthetic_state(),
+                    model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
+                )
+
+            empty_checks = synthetic_result()
+            empty_checks["acceptance_checks"] = []
+            with self.assertRaisesRegex(EvidenceBundleError, "at least one"):
+                write_evidence_bundle(
+                    Path(directory) / "empty-checks",
+                    command_identity="verify synthetic-public-evidence-test",
+                    result_record=empty_checks,
+                    scientific_state=synthetic_state(),
+                    model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
+                )
+
+            contradictory = synthetic_result()
+            contradictory["passed"] = False
+            with self.assertRaisesRegex(EvidenceBundleError, "disagrees"):
+                write_evidence_bundle(
+                    Path(directory) / "contradictory",
+                    command_identity="verify synthetic-public-evidence-test",
+                    result_record=contradictory,
+                    scientific_state=synthetic_state(),
+                    model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
+                )
+
+    def test_nonfinite_bundle_input_is_rejected_without_partial_output(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            bundle = Path(directory) / "bundle"
+            result = synthetic_result()
+            result["results"] = [{"value": float("nan")}]
+            with self.assertRaisesRegex(EvidenceBundleError, "finite JSON"):
+                write_evidence_bundle(
+                    bundle,
+                    command_identity="verify synthetic-public-evidence-test",
+                    result_record=result,
+                    scientific_state=synthetic_state(),
+                    model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
+                )
+            self.assertFalse(bundle.exists())
+
+    def test_failed_staged_write_leaves_no_partial_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            bundle = root / "bundle"
+            with patch(
+                "holoforge.core.evidence._write_json",
+                side_effect=OSError("synthetic write failure"),
+            ), self.assertRaisesRegex(OSError, "synthetic write failure"):
+                write_synthetic_bundle(bundle)
+            self.assertFalse(bundle.exists())
+            self.assertEqual(list(root.iterdir()), [])
+
+    def test_failed_staged_write_preserves_existing_empty_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            bundle = Path(directory) / "bundle"
+            bundle.mkdir()
+            with patch(
+                "holoforge.core.evidence._write_json",
+                side_effect=OSError("synthetic write failure"),
+            ), self.assertRaisesRegex(OSError, "synthetic write failure"):
+                write_synthetic_bundle(bundle)
+            self.assertTrue(bundle.is_dir())
+            self.assertEqual(list(bundle.iterdir()), [])
+
+    def test_symbolic_artifact_is_rejected_at_creation(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source.txt"
+            symbolic = root / "symbolic.txt"
+            source.write_text("synthetic", encoding="utf-8")
+            try:
+                symbolic.symlink_to(source)
+            except OSError as exc:
+                self.skipTest(f"symbolic links unavailable: {exc}")
+            with self.assertRaisesRegex(EvidenceBundleError, "symbolic"):
+                write_evidence_bundle(
+                    root / "bundle",
+                    command_identity="verify synthetic-public-evidence-test",
+                    result_record=synthetic_result(),
+                    scientific_state=synthetic_state(),
+                    model_card_references=(SOFT_WALL_MODEL_CARD.to_dict(),),
+                    artifacts={"figure": symbolic},
+                )
+
+    def test_audit_detects_semantic_cross_record_mismatch(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            bundle = Path(directory) / "bundle"
+            write_synthetic_bundle(bundle)
+            result_path = bundle / "records" / "result.json"
+            result = json.loads(result_path.read_text())
+            result["support_level"] = "model-extension"
+            result_path.write_text(
+                json.dumps(result, allow_nan=False, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+
+            manifest_path = bundle / "manifest.json"
+            manifest = json.loads(manifest_path.read_text())
+            result_entry = next(
+                item for item in manifest["files"] if item["role"] == "result"
+            )
+            result_entry["sha256"] = file_sha256(result_path)
+            digest_payload = dict(manifest)
+            digest_payload.pop("bundle_id")
+            digest_payload.pop("execution")
+            digest_payload.pop("scientific_payload_digest")
+            digest = canonical_json_sha256(digest_payload)
+            prefix = manifest["bundle_id"][:-16]
+            manifest["bundle_id"] = prefix + digest[:16]
+            manifest["scientific_payload_digest"] = digest
+            manifest_path.write_text(
+                json.dumps(manifest, allow_nan=False, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+
+            report = audit_evidence_bundle(bundle)
+            checks = {check["id"]: check for check in report.checks}
+            self.assertTrue(checks["declared-file-integrity"]["passed"])
+            self.assertFalse(checks["record-consistency"]["passed"])
+            self.assertIn("support_level", checks["record-consistency"]["detail"])
+            self.assertFalse(report.passed)
+
     def test_canonical_digest_ignores_object_key_order(self) -> None:
         left = {"outer": {"b": 2, "a": 1}, "items": [3, 4]}
         right = {"items": [3, 4], "outer": {"a": 1, "b": 2}}

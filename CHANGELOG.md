@@ -4,6 +4,34 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- A public research objective and revised Version 3 acceleration plan that
+  separate fast discovery from confirmation, use claim-type-dependent evidence
+  profiles, and defer a generic research runtime until a private vertical slice
+  demonstrates reusable needs.
+- Fail-closed contract, evidence-consistency, transactional-write, strict-JSON,
+  symbolic-artifact, and privacy-safe runtime-provenance regression tests.
+
+### Changed
+
+- Require nonempty acceptance checks and agreement among derived, serialized,
+  and execution pass states; extension metadata can no longer overwrite
+  canonical result fields.
+- Require explicit support labels and strict finite JSON before a public result
+  or evidence bundle is emitted.
+- Stage portable evidence bundles before publishing them and audit semantic
+  consistency across the manifest, configuration, model context, and result
+  records in addition to file hashes.
+- Record a hashed NumPy/SciPy build fingerprint and privacy-safe platform class
+  without raw paths, hostnames, usernames, or environment variables.
+
+### Scientific results
+
+- No model equation, solver, default, tolerance, benchmark result, or accepted
+  physical claim changed. The published evidence-bundle schema remains Version
+  `0.4`; invalid empty or contradictory states now fail the runtime audit.
+
 ## [0.5.8] - 2026-08-27
 
 ### Added

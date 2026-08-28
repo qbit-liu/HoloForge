@@ -104,6 +104,19 @@
   [compatibility policy](docs/version-0.5-compatibility-policy.md), and
   [public benchmark shortlist](docs/version-0.5-benchmark-shortlist.md).
 
+## Version 0.5.9 — fail-closed integrity hardening (in development)
+
+- Reject empty, contradictory, non-boolean, or non-finite verification state.
+- Prevent extension metadata from replacing canonical result fields.
+- Require explicit support labels and consistency across evidence records.
+- Write evidence bundles transactionally and reject symbolic artifact inputs.
+- Strengthen privacy-safe numerical environment fingerprints.
+- Preserve all accepted equations, solvers, defaults, tolerances, results,
+  commands, and supported Version 0.5 schemas.
+- Follow the bounded
+  [Version 0.5.9 specification](docs/version-0.5.9.md) and
+  [research-acceleration implementation brief](docs/research-acceleration-agent-brief-v3.md).
+
 ## Classical benchmark sequence
 
 This sequence records the owner-selected Forge/Verify progression. A completed
@@ -138,9 +151,18 @@ unfinished classical-example work.
 
 - Publicly demonstrate the screening gates with synthetic or already-published
   material.
-- Run the first genuinely novel hypothesis in a separate private repository;
-  disclose it only after journal acceptance or another explicit release
-  decision by the research owner.
+- Use the [research objective](docs/research-objective.md) to run one private,
+  end-to-end physical vertical slice with a qualified route and an early
+  discriminator.
+- Treat that vertical slice as a research capability proof, not a public
+  package release or a promise of a positive result.
+- Draft new contracts inside the private project first, then promote only
+  demonstrated reusable behavior through a separate public-export review.
+- Do not add another public benchmark unless it directly unlocks an approved
+  claim or supplies an otherwise missing integrity control.
+- Disclose private work only after journal acceptance or another explicit
+  release decision by the research owner.
 
 The roadmap intentionally does not name a speculative application before that
-screening is done.
+screening is done. Documentation-only workflow changes do not by themselves
+require a new package release.

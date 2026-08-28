@@ -28,7 +28,11 @@ from holoforge.core.evidence import (
     audit_same_state_family,
     write_evidence_bundle,
 )
-from holoforge.core.registry import BenchmarkExecutionError, BenchmarkRegistry
+from holoforge.core.registry import (
+    BenchmarkExecutionError,
+    BenchmarkRegistry,
+    BenchmarkRegistryError,
+)
 
 
 def build_parser(
@@ -125,7 +129,8 @@ def main(
     if args.command == "audit" and args.audit_kind == "bundle":
         report = audit_evidence_bundle(args.path)
         if args.json:
-            print(json.dumps(report.to_dict(), indent=2, sort_keys=True))
+            if not _emit_json(report.to_dict()):
+                return 2
         else:
             _print_bundle_audit(report)
         return 0 if report.passed else 1
@@ -133,7 +138,8 @@ def main(
     if args.command == "audit" and args.audit_kind == "compatibility":
         report = audit_same_state_family(args.bundle_a, args.bundle_b)
         if args.json:
-            print(json.dumps(report.to_dict(), indent=2, sort_keys=True))
+            if not _emit_json(report.to_dict()):
+                return 2
         else:
             _print_compatibility_audit(report)
         return 0 if report.passed else 1
@@ -142,7 +148,7 @@ def main(
         adapter = benchmark_registry.get(args.benchmark)
         try:
             execution = adapter.execute(args)
-        except BenchmarkExecutionError as exc:
+        except (BenchmarkExecutionError, BenchmarkRegistryError) as exc:
             print(f"error: {exc}", file=sys.stderr)
             return 2
         try:
@@ -166,7 +172,8 @@ def main(
                 }
             if bundle_path is not None:
                 output_payload["evidence_bundle"] = str(bundle_path)
-            print(json.dumps(output_payload, indent=2, sort_keys=True))
+            if not _emit_json(output_payload):
+                return 2
         else:
             for line in adapter.render_human(execution):
                 print(line)
@@ -209,7 +216,8 @@ def main(
                 output_payload["artifacts"] = artifacts
             if bundle_path is not None:
                 output_payload["evidence_bundle"] = str(bundle_path)
-            print(json.dumps(output_payload, indent=2, sort_keys=True))
+            if not _emit_json(output_payload):
+                return 2
         else:
             _print_vector_spectrum_comparison(comparison_result, artifacts)
             _print_bundle_path(bundle_path)
@@ -230,6 +238,26 @@ def _add_bundle_argument(parser: argparse.ArgumentParser) -> None:
             "Existing command behavior is unchanged when omitted."
         ),
     )
+
+
+def _emit_json(payload: Mapping[str, Any]) -> bool:
+    """Print strict JSON or report one controlled serialization failure."""
+
+    try:
+        rendered = json.dumps(
+            payload,
+            allow_nan=False,
+            indent=2,
+            sort_keys=True,
+        )
+    except (TypeError, ValueError) as exc:
+        print(
+            f"error: JSON output is not finite and serializable: {exc}",
+            file=sys.stderr,
+        )
+        return False
+    print(rendered)
+    return True
 
 
 def _write_requested_bundle(

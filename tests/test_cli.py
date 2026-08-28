@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from jsonschema import Draft202012Validator
 
-from holoforge.cli import main
+from holoforge.cli import _emit_json, main
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -320,6 +320,15 @@ class FastDGRFiniteDensityResult:
 
 
 class CommandLineTests(unittest.TestCase):
+    def test_json_emission_rejects_nonfinite_values(self) -> None:
+        output = io.StringIO()
+        error = io.StringIO()
+        with redirect_stdout(output), redirect_stderr(error):
+            emitted = _emit_json({"value": float("nan")})
+        self.assertFalse(emitted)
+        self.assertEqual(output.getvalue(), "")
+        self.assertIn("not finite", error.getvalue())
+
     def test_json_output_contains_evidence_and_passes(self) -> None:
         output = io.StringIO()
         with redirect_stdout(output):

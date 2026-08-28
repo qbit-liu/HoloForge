@@ -660,7 +660,9 @@ class LinearAxionVerificationResult:
 
     @property
     def passed(self) -> bool:
-        return all(check.passed for check in self.acceptance_checks)
+        return bool(self.acceptance_checks) and all(
+            check.passed for check in self.acceptance_checks
+        )
 
     def to_dict(self) -> Dict[str, Any]:
         record = VerificationRecord(
