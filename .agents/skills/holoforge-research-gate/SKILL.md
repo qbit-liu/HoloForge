@@ -38,37 +38,63 @@ method-focused; list domains considered and intentionally excluded; and give a
 small domain-coverage table. Coverage exposes accidental blind spots and never
 acts as a quota or a reason to advance a weak candidate.
 
+Before inspecting capability receipts or ranking by cost, complete the
+scorecard's scientific-opportunity assessment. Address physical importance,
+gap plausibility, falsifiability, holographic leverage, explanatory or
+predictive depth, the value of positive/negative/inconclusive outcomes, and
+fit with the human owner's expertise and portfolio. Agents assemble evidence
+and alternatives; they do not collapse these rows into one score or certify
+importance, novelty, or publication value. The named human research owner
+decides scientific value and investment.
+
 For publication-targeted work, complete the scorecard's separate
-publication-pathway assessment. Require a paper-shaped question, a targeted
-prior-work gap, a physical discriminator or mechanism, source and artifact
-readiness, a plausible short gate sequence, and a bounded repair or pivot
-budget. Use this assessment to prioritize candidates, not to claim novelty or
-weaken the scientific readiness gates.
+publication-pathway assessment after the opportunity assessment. Require a
+paper-shaped question, a targeted prior-work gap, a physical discriminator or
+mechanism, an honest research horizon, a staged route from current readiness
+to physics, and bounded construction, repair, and pivot budgets. Source and
+artifact readiness determine the route; they do not decide scientific value.
+
+Classify the opportunity as open discovery, strategic development, or short-
+horizon execution. Open discovery may develop a new dictionary, mechanism,
+model, or observable. Strategic development may construct several declared
+capabilities when dependencies, milestones, cost, failure value, and the first
+physical checkpoint are explicit. Short-horizon execution reuses a source-
+complete analytic route, qualified artifact, or verified solver. Capability
+receipts inform horizon and cost but must not select the questions worth
+pursuing or privilege existing benchmark families.
 
 Keep publication-targeted work physics-first. Record the minimum publishable
-physical claim, name the first physical-discriminator gate, and classify the
+physical claim, name the earliest honest physical-discriminator gate and every
+prerequisite before it, and classify the
 numerical-dependence lane as analytic or semi-analytic, reuse of an already
 qualified route, new numerical infrastructure, or an explicitly
-publication-targeted numerical-method contribution. By default, the first or
-second detailed gate must evaluate the physical discriminator. Track
+publication-targeted numerical-method contribution. Only the short-horizon
+lane normally expects the first or second detailed gate to evaluate the
+physical discriminator. Longer campaigns require owner-approved, question-
+necessary prerequisite milestones and a planned physics checkpoint. Track
 physical-claim progress, source and novelty readiness, and numerical
 credibility as three non-aggregate axes.
 
-Set one candidate-wide numerical-repair budget that cannot be reset through a
-chain of smaller gates. After the first prospectively frozen numerical repair
-fails to qualify its route, return to a portfolio-level reassessment. Open a
-second repair only with a new owner-approved rationale showing that it directly
-unlocks the already frozen physical discriminator within the remaining cost
-ceiling. Otherwise pause or pivot. Do not loosen numerical gates; rebalance the
-order and amount of numerical work.
+Set a campaign construction budget for planned capabilities and a separate
+candidate-wide numerical-repair budget that cannot be reset through a chain of
+smaller gates. Planned model or capability construction is not a repair. After
+the first prospectively frozen numerical repair fails to qualify its route,
+return to a portfolio-level reassessment. Open a second repair only with a new
+owner-approved rationale showing that it directly unlocks the already frozen
+physical discriminator within the remaining cost ceiling. Otherwise pause or
+pivot. Do not loosen numerical gates; rebalance the order and amount of
+numerical work.
 
-## Qualify the candidate before a detailed gate
+## Record opportunity and qualify the next gate
 
 Before freezing a calculation contract, copy and complete
-`assets/explore-intake-scorecard.example.md` in the private project. Audit five
-questions: source-complete inputs, an invariant target beyond the generic
-baseline, a cheap kill test, a defined positive-result endpoint, and an
-explicit cost ceiling.
+`assets/explore-intake-scorecard.example.md` in the private project. Keep the
+scientific-opportunity decision separate from five next-gate checks: gate-
+complete inputs, an invariant target beyond the generic baseline, the cheapest
+discriminating test, a defined positive-result endpoint, and an explicit cost
+ceiling. Prefer a cheap kill test when one exists. Its absence does not
+automatically reject an otherwise valuable flagship question; record the
+cheapest honest alternative and the owner's risk decision.
 
 Retrieve prior knowledge by class, topic, source convention, method risk,
 outcome, and failure mode. For each applicable stable knowledge or lesson ID,
@@ -77,12 +103,14 @@ rule. If none applies, record which classes and tags were searched. Never infer
 that a new candidate fails because an earlier one did, and never copy an old
 threshold without re-establishing applicability.
 
-Use `pass`, `conditional`, or `fail` for each item. A detailed research gate
-may open only when all five items pass. A conditional item may open only one
-named, bounded evidence task that is cheaper than the proposed gate. Any
-failed item defers or rejects the candidate; do not compensate for it by
-adding scores from other rows. Record the evidence and owner disposition so
-the intake decision remains auditable.
+Use `pass`, `conditional`, or `fail` for each next-gate item. Open a gate only
+when its inputs, endpoint, methods, cost, and stop conditions are prospectively
+closed. A conditional item may open one named evidence task or one owner-
+approved strategic-development milestone whose purpose is to close it. A
+failed prerequisite stops that proposed gate; it does not prove that the
+scientific opportunity is valueless. Do not compensate for a failed gate row
+by adding scores from other rows. Record the evidence, horizon, and owner
+disposition so the decision remains auditable.
 
 ## Run one gate
 

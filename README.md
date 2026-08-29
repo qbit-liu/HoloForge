@@ -17,7 +17,11 @@ HoloForge has two deliberately separated modes:
 Explore recognizes three useful research tracks: applications to a genuinely
 new parent domain, applications to an unexplored subfield or phenomenon inside
 an already holographic parent field, and method transfer or model improvement.
-See the [research-gate workflow](docs/research-gate-workflow.md).
+Scientific value is assessed separately from current software readiness: a
+missing model, dictionary, observable, or solver can define a strategic
+research campaign rather than automatically disqualifying the question. See
+the [research objective](docs/research-objective.md) and
+[research-gate workflow](docs/research-gate-workflow.md).
 
 ## Framework scope
 
@@ -105,7 +109,9 @@ holoforge inspect benchmark BENCHMARK --require CAPABILITY_ID --json
 
 Exact `--require` identifiers are classified as `qualified`, `known-gap`, or
 `not-declared`. This is a static evidence receipt, not a natural-language
-physics, novelty, or publication judge. See the
+physics, novelty, scientific-value, or publication judge. A receipt informs
+cost and research-horizon planning; it must not select the questions worth
+pursuing. See the
 [Version 0.6 capability contract](docs/version-0.6.md).
 
 ## Included reference implementations

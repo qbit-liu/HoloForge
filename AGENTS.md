@@ -57,13 +57,20 @@ These workflows do not replace human scientific or disclosure approval.
   lesson indexes, inspect primary evidence for applicable entries, and record
   how their stable IDs change the new scorecard or contract. Also declare the
   portfolio intent, search shape, domains considered or excluded, and actual
-  candidate coverage. For publication-targeted work, assess the paper-shaped
-  question and bounded path separately from scientific readiness. Record the
-  minimum publishable physical claim, first physical-discriminator gate,
-  numerical-dependence lane, candidate-wide repair budget, and separate
-  physical-claim, source-and-novelty, and numerical-credibility status. By
-  default the first or second detailed gate must reach the physical
-  discriminator.
+  candidate coverage. Before capability matching, assess scientific
+  opportunity through physical importance, gap plausibility, falsifiability,
+  holographic leverage, explanatory or predictive depth, outcome value, and
+  owner fit. The named human owner decides scientific value; capability
+  receipts must not select the question. Then classify the horizon as open
+  discovery, strategic development, or short-horizon execution. For
+  publication-targeted work, record the minimum publishable physical claim,
+  earliest honest physical-discriminator gate and prerequisites, numerical-
+  dependence lane, campaign construction budget, separate candidate-wide
+  repair budget, and non-aggregate scientific-opportunity, physical-claim,
+  source-and-novelty, and numerical-credibility status. Only the short-horizon
+  lane normally reaches the discriminator in the first or second detailed
+  gate; question-necessary model and capability construction may use an owner-
+  approved strategic campaign.
 - When a blocker recurs or a repair budget is nearly exhausted, use the bounded
   impasse protocol in `docs/research-gate-workflow.md`: combine targeted
   authoritative source search with an independent physics audit, then freeze

@@ -14,11 +14,21 @@ is explicitly supplied and supported.
 must state its source, conventions, parameters, equations, boundary conditions,
 observables, validation tests, and known limitations.
 
-**Explore** develops cross-domain analogies and candidate applications. Explore
-work uses a hypothesis card, gives a falsification test, and cannot be presented
-as established merely because code runs or an AI system proposed it. Novel,
-unpublished Explore work may remain in a separate private workspace; Explore is
-an evidence category, not a requirement to disclose research in progress.
+**Explore** develops and tests three complementary kinds of research: candidate
+applications in genuinely new domains; unexplored subfields, phenomena,
+regimes, mechanisms, or observables inside already holographic parent fields;
+and method transfer or model improvement. A candidate bottom-up dictionary may
+require a new action, source-response map, observable, solver, or validation
+campaign. That development distance affects the research horizon and cost; it
+does not by itself decide whether the physics question is worth pursuing.
+
+Explore work uses a hypothesis card, gives a falsification or discriminating
+test, and cannot be presented as established merely because code runs or an AI
+system proposed it. Agents and structured records may assemble evidence and
+compare opportunities, but the named human research owner decides scientific
+value and authorizes investment. Novel, unpublished Explore work may remain in
+a separate private workspace; Explore is an evidence category, not a
+requirement to disclose research in progress.
 
 ## 3. Claim labels
 

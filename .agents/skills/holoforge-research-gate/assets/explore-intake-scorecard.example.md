@@ -10,12 +10,16 @@
 - **Disclosure:** `<private research record>`
 - **Knowledge base reviewed:** `<project-local path and revision or commit>`
 - **Applicable knowledge and lesson IDs:** `<IDs, or none after the review described below>`
-- **Overall disposition:** `<admit | one bounded evidence task | defer | reject>`
+- **Scientific-opportunity disposition:** `<prioritize | retain | decline | owner undecided>`
+- **Research horizon:** `<open discovery | strategic development | short-horizon execution>`
+- **Next-gate disposition:** `<admit | bounded evidence task | development milestone | defer | reject gate>`
 
-Use `pass`, `conditional`, or `fail` for each test. A detailed research gate may
-open only when all five tests pass. A conditional item may open only one named
-evidence task that is cheaper than the proposed gate. Any failed item defers or
-rejects the candidate; do not average or add scores to hide the failure.
+Keep scientific value separate from execution readiness. Agents and literature
+records assemble evidence; the named human owner decides whether the opportunity
+deserves investment. Use `pass`, `conditional`, or `fail` for next-gate checks.
+A failed gate prerequisite stops that proposed gate but does not by itself show
+that the scientific opportunity is unimportant. Do not average or add rows to
+hide a failed prerequisite or replace owner judgment.
 
 ## Search-scope and domain-coverage declaration
 
@@ -32,12 +36,49 @@ The table records the actual search scope; it is not a quota. A focused intake
 may cover one domain, and a cross-domain intake need not represent every field.
 Do not advance a candidate merely to balance the table.
 
+## Scientific-opportunity assessment
+
+Complete this section before inspecting capability receipts or ranking by
+implementation cost. The rows are non-aggregate evidence for comparative human
+judgment, not an automatic score or a novelty/publication certificate.
+
+| Opportunity question | Evidence and competing interpretation | Main uncertainty | Owner assessment |
+| --- | --- | --- | --- |
+| Physical importance | `<phenomenon, tension, missing explanation, or new application>` | `<why importance may be overstated>` | `<strong | plausible | weak | undecided>` |
+| Gap plausibility | `<exact closest prior work and bounded no-hit evidence>` | `<coverage limitation>` | `<assessment>` |
+| Falsifiability | `<observable, derivation, scaling relation, branch comparison, or discriminator>` | `<risk that coefficients absorb the effect>` | `<assessment>` |
+| Holographic leverage | `<what gauge/gravity adds beyond simpler descriptions>` | `<risk that holography is decorative or unnecessarily flexible>` | `<assessment>` |
+| Explanatory or predictive depth | `<mechanism, relation, controlled regime, or reusable dictionary>` | `<risk of another curve or fit>` | `<assessment>` |
+| Outcome value | `<what positive, negative, and inconclusive results would teach>` | `<risk that only a technical artifact is produced>` | `<assessment>` |
+| Owner fit | `<expertise, interest, time, risk tolerance, and portfolio role>` | `<opportunity cost>` | `<assessment by named owner>` |
+
+- **Agent recommendation:** `<prioritize | retain | decline | no defensible preference>`
+- **Human owner decision:** `<pending or exact recorded decision>`
+- **Reason:** `<comparative scientific judgment; do not cite readiness alone>`
+- **Non-inference boundary:** `<no novelty, truth, or publication claim follows>`
+
+## Research-horizon and capability map
+
+Choose the horizon after the opportunity assessment. Capability receipts map
+the current starting point; they do not decide which question is valuable.
+
+| Planning field | Record |
+| --- | --- |
+| Selected horizon | `<open discovery | strategic development | short-horizon execution>` |
+| Existing qualified capabilities | `<IDs and exact evidence boundaries, or none>` |
+| Planned new capabilities | `<dictionary, action, observable, artifact, solver, validation route, or none>` |
+| Dependency order and milestones | `<bounded sequence; several capabilities are allowed when explicit>` |
+| First planned physical checkpoint | `<earliest honest discriminator and prerequisites>` |
+| Campaign construction budget | `<literature, derivation, implementation, compute, and review ceiling>` |
+| Separate numerical-repair budget | `<begins only after a frozen route fails>` |
+| Failure value and pivot rule | `<what is retained and when the campaign stops>` |
+
 ## Publication-pathway assessment
 
 Complete this section when the portfolio intent is `publication-targeted`;
 otherwise record `not applicable` and why. This assessment prioritizes
-investment and does not establish novelty, guarantee publication, or replace
-the five readiness tests below.
+investment after the opportunity assessment and does not establish novelty,
+guarantee publication, or replace the next-gate checks below.
 
 | Pathway question | Evidence available | Main risk | Assessment |
 | --- | --- | --- | --- |
@@ -45,30 +86,33 @@ the five readiness tests below.
 | Minimum publishable physical claim | `<smallest bounded physical conclusion that could anchor a paper>` | `<risk that only a technical result is reached>` | `<assessment>` |
 | Targeted prior-work gap | `<search contract and closest overlap>` | `<novelty uncertainty>` | `<assessment>` |
 | Physical discriminator or mechanism | `<observable that survives generic flexibility>` | `<genericity risk>` | `<assessment>` |
-| Source and artifact readiness | `<common action, branch, data/code route>` | `<reconstruction risk>` | `<assessment>` |
-| First physical-discriminator gate | `<first or second detailed gate by default>` | `<risk of a tool-only gate sequence>` | `<assessment>` |
+| Research horizon and current readiness | `<why this is discovery, strategic development, or short-horizon execution>` | `<construction or sunk-cost risk>` | `<assessment>` |
+| First physical-discriminator gate | `<earliest honest checkpoint plus prerequisite milestones>` | `<risk that infrastructure loses contact with physics>` | `<assessment>` |
 | Numerical-dependence lane | `<analytic/semi-analytic | qualified-route reuse | new infrastructure | numerical-method contribution>` | `<implementation risk>` | `<assessment>` |
-| Candidate-wide repair or pivot budget | `<maximum repair count, cost, and pivot rule>` | `<sunk-cost or repair-ladder risk>` | `<assessment>` |
+| Construction, repair, and pivot budgets | `<planned capability cost; separate maximum repair count; pivot rule>` | `<sunk-cost or repair-ladder risk>` | `<assessment>` |
 
-The candidate-wide budget is cumulative. A failed first numerical repair
+The construction budget covers planned, question-necessary model and capability
+work. It is not a numerical repair budget. A failed first numerical repair
 requires portfolio-level reassessment before any second repair. A second repair
 requires a new owner-approved rationale showing that it directly unlocks the
-already frozen physical discriminator. A longer pre-physical sequence requires
-an explicit exception, normally because the numerical method is itself the
-publication target.
+already frozen physical discriminator. Only short-horizon execution normally
+expects physics in the first or second detailed gate. Longer campaigns require
+explicit prerequisite milestones and a planned physical checkpoint.
 
-### Three-axis progress snapshot
+### Four-axis progress snapshot
 
-Do not combine these axes into one score. Numerical progress cannot compensate
-for a missing physical claim or unresolved source and novelty boundary.
+Do not combine these axes into one score. Readiness cannot decide scientific
+value, and numerical progress cannot compensate for a missing physical claim
+or unresolved source and novelty boundary.
 
 | Evidence axis | Current status | Evidence | Next condition |
 | --- | --- | --- | --- |
+| Scientific opportunity | `<unassessed | retained | prioritized | declined>` | `<importance, gap, discriminator, leverage, outcome value, owner decision>` | `<next comparative owner decision>` |
 | Physical-claim progress | `<not started | conditional | testing | supported | stopped>` | `<physical endpoint reached, or not>` | `<next physical discriminator>` |
 | Source and novelty readiness | `<not started | conditional | ready | stopped>` | `<source and targeted-overlap evidence>` | `<missing source or positioning check>` |
 | Numerical credibility | `<not started | conditional | qualified | stopped>` | `<analytic, convergence, residual, or independent-route evidence>` | `<next proportional numerical check>` |
 
-- **Portfolio recommendation:** `<prioritize | retain as reserve | defer>`
+- **Portfolio recommendation:** `<prioritize | retain as reserve | decline | owner undecided>`
 - **Reason:** `<why this path deserves or does not deserve the next research investment>`
 - **Non-inference boundary:** `<no novelty, publication, or physical claim follows from prioritization>`
 
@@ -88,18 +132,19 @@ were searched. Do not treat a previous gate's failure as evidence that a
 different candidate must fail. Do not copy an old threshold, convention, paper
 claim, or conclusion without re-establishing its applicability.
 
-| Readiness test | Status | Evidence already available | Missing evidence or risk | Exact consequence |
+| Next-gate readiness test | Status | Evidence already available | Missing evidence or risk | Exact consequence |
 | --- | --- | --- | --- | --- |
-| Source-complete inputs | `<status>` | `<primary sources, equations, data, conventions, branch, ensemble>` | `<one bounded source gap, or none>` | `<admit, evidence task, defer, or reject>` |
+| Gate-complete inputs | `<status>` | `<sources, equations, data, conventions, branch, ensemble needed for this gate>` | `<bounded gap or declared construction target>` | `<admit, evidence task, development milestone, defer, or reject gate>` |
 | Invariant target beyond the generic baseline | `<status>` | `<dimensionless ratio, branch feature, consistency condition, or other discriminator>` | `<genericity or convention risk>` | `<consequence>` |
-| Cheap kill test | `<status>` | `<predeclared low-cost falsification test and threshold>` | `<why it may not discriminate>` | `<consequence>` |
+| Cheapest discriminating test | `<status>` | `<predeclared cheap kill test, or cheapest honest alternative>` | `<cost and why no cheaper test exists>` | `<consequence and owner risk decision>` |
 | Positive-result endpoint | `<status>` | `<exact supported result and later decision a pass would open>` | `<risk of a merely formal or already-known result>` | `<consequence>` |
 | Cost ceiling | `<status>` | `<maximum literature, implementation, compute, and review cost>` | `<likely escalation pressure>` | `<stop condition>` |
 
-## Cheapest first action
+## Cheapest honest next action
 
-`<Name one source, analytic, or low-cost numerical action. State its input,
-acceptance condition, stop condition, and maximum cost.>`
+`<Name one source, derivation, construction, analytic, or numerical action
+appropriate to the selected horizon. State its input, acceptance condition,
+stop condition, maximum cost, and link to the physical question.>`
 
 ## Generic baseline and discriminator
 
@@ -115,7 +160,8 @@ publication, public transfer, or disclosure unless explicitly stated.>`
 
 ## Owner disposition
 
-- **Recommendation:** `<admit | one bounded evidence task | defer | reject>`
+- **Scientific-opportunity recommendation:** `<prioritize | retain | decline | no defensible preference>`
+- **Next-gate recommendation:** `<admit | bounded evidence task | development milestone | defer | reject gate>`
 - **Reason:** `<short evidence-based reason>`
 - **Work opened:** `<exact scope>`
 - **Work remaining closed:** `<later calculations, disclosure, and Git scope>`

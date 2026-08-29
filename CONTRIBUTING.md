@@ -51,12 +51,18 @@ method-transfer/model-improvement project. Follow the bounded
 [research-gate workflow](docs/research-gate-workflow.md); freeze each contract
 before calculation and keep scientific support, owner authorization, and
 disclosure status separate. Record the intake's portfolio intent and actual
-domain coverage; for publication-targeted work, assess the paper-shaped path
-separately from the five readiness gates. Publication-targeted scorecards must
-name the minimum publishable physical claim, first physical-discriminator gate,
-numerical-dependence lane, and candidate-wide repair budget; physical-claim,
-source-and-novelty, and numerical-credibility status remain non-aggregate. When
-a blocker recurs, use the workflow's bounded impasse protocol rather than
+domain coverage. Assess scientific opportunity before capability readiness;
+the named human owner decides scientific value after reviewing importance,
+gap plausibility, falsifiability, holographic leverage, explanatory depth,
+outcome value, and owner fit. Then classify the opportunity as open discovery,
+strategic development, or short-horizon execution. Publication-targeted
+scorecards must name the minimum publishable physical claim, earliest honest
+physical-discriminator gate and prerequisites, numerical-dependence lane,
+campaign construction budget, and separate candidate-wide repair budget;
+scientific-opportunity, physical-claim, source-and-novelty, and numerical-
+credibility status remain non-aggregate. Capability receipts inform the route
+and cost but never decide which question is valuable. When a blocker recurs,
+use the workflow's bounded impasse protocol rather than
 retrying indefinitely or loosening a threshold after seeing the result. A
 failed first numerical repair requires portfolio-level reassessment before a
 second repair. Every owner decision list must include an explicit item-by-item

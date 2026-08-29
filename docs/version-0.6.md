@@ -69,8 +69,11 @@ contracts are exported as:
 A receipt is an index of declared public evidence. It does not infer support
 from similar wording, answer a natural-language physics question, establish
 that a model is true, certify novelty or publishability, or authorize a private
-research direction. `not-declared` means only that this public receipt makes no
-qualification statement.
+research direction. It also must not determine which physics questions are
+scientifically valuable: it informs execution readiness, cost, and research-
+horizon planning only. `not-declared` means only that this public receipt makes
+no qualification statement, not that the missing capability or its motivating
+question is unworthy of research.
 
 A downstream transformation is qualified only when its domain, conventions,
 uncertainty propagation, numerical convergence, acceptance evidence, and
