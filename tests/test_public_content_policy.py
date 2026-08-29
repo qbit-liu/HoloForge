@@ -251,6 +251,36 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertNotIn("/users/", scorecard)
         self.assertNotIn("holoforge-explore-private", scorecard)
 
+    def test_model_derived_repair_requires_a_separate_gate(self):
+        workflow = (
+            ROOT / "docs/research-gate-workflow.md"
+        ).read_text(encoding="utf-8").lower()
+        skill = (
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md"
+        ).read_text(encoding="utf-8").lower()
+        combined = " ".join("\n".join((workflow, skill)).split())
+
+        for required_term in (
+            "model-derived repair",
+            "separate derivation gate",
+            "preserve the source-stop result",
+            "same-order",
+            "physical observable",
+            "normalization",
+            "field redefinition",
+            "counterterm",
+            "algebraic kill tests",
+            "cancellations",
+            "before numerical work",
+            "does not establish that the correction is nonzero",
+        ):
+            self.assertIn(required_term, combined)
+
+        self.assertNotIn("/users/", combined)
+        self.assertNotIn("holoforge-explore-private", combined)
+        for private_identifier in ("c01", "c02", "c03", "d001", "m001"):
+            self.assertNotIn(private_identifier, combined)
+
     def test_intake_records_portfolio_intent_scope_and_publication_path(self):
         workflow = (
             ROOT / "docs/research-gate-workflow.md"

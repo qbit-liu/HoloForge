@@ -198,6 +198,15 @@ correction must remain distinct from an author-sourced correction and receive
 its own checks and owner review. Never use the protocol to loosen a threshold
 post hoc or enlarge the failed gate.
 
+If the owner proposes deriving a missing quantity from the exact model,
+preserve the source-stop result and freeze a separate model-derived-repair
+gate. Fix the exact equations and source caveats, retain every term at the same
+order, map intermediate amplitudes to the physical observable, test
+normalization, field-redefinition, and counterterm invariance, and run
+algebraic kill tests on proposed invariants before numerical work. Preserve
+cancellations and failed targets; do not silently rescue the old gate or label
+the new result as reproduced from the source.
+
 ## Maintain a progress snapshot
 
 When the owner wants workflow visibility, represent the research project, not

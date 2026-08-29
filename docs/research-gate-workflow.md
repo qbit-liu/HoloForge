@@ -248,10 +248,32 @@ explanation that the current contract cannot distinguish:
    could reopen it. Do not loosen a threshold or enlarge the hypothesis after
    seeing the result.
 
-A model-derived correction is allowed when the exact action and conventions
-support it, but it must be labelled as an internal derivation rather than a
-sourced author correction and must receive analytic, numerical, and owner
-review appropriate to the claim.
+## Treat a model-derived repair as a new gate
+
+A source stop answers what the inspected record supplies; it is not evidence
+that the exact model cannot determine the missing quantity. If an exact action,
+ensemble, boundary conditions, and observable dictionary may support a repair,
+preserve the source-stop result and freeze a separate derivation gate before
+doing the new work. Do not silently enlarge the stopped gate or relabel a
+model-derived result as reproduced from the source.
+
+The new contract must fix:
+
+1. the exact source equations and every unresolved source caveat, without
+   guessing author intent;
+2. one bounded model-derived question and a same-order-complete expansion;
+3. the map from intermediate fields or amplitudes to the physical observable;
+4. checks under allowed normalizations, field redefinitions, counterterms, and
+   other representation choices;
+5. algebraic kill tests for every proposed invariant, retaining cancellations
+   and failed targets rather than replacing them post hoc; and
+6. a cost ceiling and automatic stop before numerical work if the analytic
+   hierarchy, observable map, or invariance checks do not close.
+
+Such a gate may establish a `model-extension` formula or a bounded feasibility
+result. It does not establish that the correction is nonzero, numerically
+resolvable, novel, publishable, or empirically validated. Numerical evaluation,
+public transfer, and disclosure remain separate owner decisions.
 
 ## Update research knowledge during the gate
 
