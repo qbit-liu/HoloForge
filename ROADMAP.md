@@ -117,7 +117,7 @@
   [Version 0.5.9 specification](docs/version-0.5.9.md) and
   [research-acceleration implementation brief](docs/research-acceleration-agent-brief-v3.md).
 
-## Version 0.6 — inspectable capability contracts (in progress)
+## Version 0.6 — inspectable capability contracts (complete)
 
 - Ship one fail-closed capability receipt for every built-in verifier.
 - Record branch, ensemble, parameter, output, artifact-role, validated-
