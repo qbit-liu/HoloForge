@@ -11,6 +11,12 @@ from holoforge.core.contracts import (
     VerificationRecord,
 )
 from holoforge.core.comparison import NormalizedSpectrum, normalize_spectrum
+from holoforge.core.capabilities import (
+    CapabilityInspection,
+    CapabilityReceipt,
+    CapabilityReceiptError,
+    CapabilityRegistry,
+)
 from holoforge.core.evidence import (
     BundleAuditResult,
     CompatibilityAuditResult,
@@ -40,6 +46,10 @@ __all__ = [
     "BenchmarkRegistry",
     "BenchmarkRegistryError",
     "BoundaryConditionSpec",
+    "CapabilityInspection",
+    "CapabilityReceipt",
+    "CapabilityReceiptError",
+    "CapabilityRegistry",
     "BundleAuditResult",
     "CompatibilityAuditResult",
     "EquationSpec",

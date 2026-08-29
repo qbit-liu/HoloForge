@@ -1,6 +1,7 @@
 # Card Schemas
 
-HoloForge v0.1 uses JSON Schema Draft 2020-12.
+HoloForge uses JSON Schema Draft 2020-12. Individual records retain explicit
+schema versions so later contracts do not silently change earlier meanings.
 
 - `model-card.schema.json` is the contract for literature-anchored
   Forge/Verify models.
@@ -20,6 +21,10 @@ HoloForge v0.1 uses JSON Schema Draft 2020-12.
 - `evidence-compatibility.schema.json` records every match, mismatch, declared
   control, and allowed control change in a fail-closed `same-state-family`
   preflight.
+- `benchmark-capability.schema.json` records one built-in verifier's declared
+  branch, ensemble, parameter, output, artifact-role, transformation, evidence,
+  and known-gap boundary for solver-free inspection. It cannot certify an
+  unstated route or scientific claim.
 
 Canonical examples live at
 `domains/qcd/soft_wall_vector/model-card.json`,
@@ -32,6 +37,7 @@ Validate them by running:
 ```bash
 python3 -m unittest tests.test_schemas -v
 python3 -m unittest tests.test_evidence_schemas -v
+python3 -m unittest tests.test_capabilities -v
 ```
 
 Schema conformance checks structure and required provenance. It does not replace

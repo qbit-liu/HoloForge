@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "soft-wall-vector",
+  "summary": "Low transverse-vector modes of the quadratic soft-wall model.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["ordered low transverse-vector normal modes"],
+    "ensembles": ["fixed zero-temperature quadratic soft-wall background"],
+    "parameters": [
+      {"id": "parameter.kappa", "description": "Positive soft-wall scale with a declared numerical range.", "coverage_kind": "bounded"},
+      {"id": "parameter.radial-domain", "description": "Finite UV and IR numerical boundaries selected by the caller.", "coverage_kind": "configurable"},
+      {"id": "parameter.mode-count", "description": "Requested number of low modes.", "coverage_kind": "configurable"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.vector-squared-masses", "description": "Ordered low-mode squared masses in GeV squared.", "artifact_role": "result", "evidence": ["domains/qcd/soft_wall_vector/model-card.json#/observables/0"]},
+    {"id": "artifact.verification-record", "description": "Strict JSON result with configuration and acceptance checks.", "artifact_role": "evidence", "evidence": ["docs/benchmarks/soft-wall-vector.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.analytic-spectrum-comparison", "description": "Compares numerical eigenvalues with the analytic quadratic soft-wall spectrum.", "evidence": ["docs/benchmarks/soft-wall-vector.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.decay-constants", "description": "Decay constants are not computed."},
+    {"id": "gap.phenomenological-fit", "description": "The benchmark does not fit experimental data."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "qcd.soft-wall-vector.kkss", "repository_path": "domains/qcd/soft_wall_vector/model-card.json"}],
+    "documentation": ["docs/benchmarks/soft-wall-vector.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

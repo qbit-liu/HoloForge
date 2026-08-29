@@ -9,6 +9,7 @@ import sys
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from holoforge import __version__
+from holoforge.capabilities import BUILTIN_CAPABILITIES
 from holoforge.benchmarks.registry import (
     BUILTIN_BENCHMARKS,
     HARD_WALL_MODEL_CARD,
@@ -28,6 +29,10 @@ from holoforge.core.evidence import (
     audit_same_state_family,
     write_evidence_bundle,
 )
+from holoforge.core.capabilities import (
+    CapabilityReceiptError,
+    CapabilityRegistry,
+)
 from holoforge.core.registry import (
     BenchmarkExecutionError,
     BenchmarkRegistry,
@@ -37,6 +42,7 @@ from holoforge.core.registry import (
 
 def build_parser(
     benchmark_registry: BenchmarkRegistry = BUILTIN_BENCHMARKS,
+    capability_registry: CapabilityRegistry = BUILTIN_CAPABILITIES,
 ) -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="holoforge",
@@ -113,6 +119,34 @@ def build_parser(
         "--json", action="store_true", help="Emit a machine-readable report."
     )
 
+    inspect = commands.add_parser(
+        "inspect", help="Inspect static public contracts without running a solver."
+    )
+    inspect_kinds = inspect.add_subparsers(dest="inspect_kind", required=True)
+    benchmark_inspect = inspect_kinds.add_parser(
+        "benchmark",
+        help="Read one built-in benchmark capability receipt.",
+    )
+    benchmark_inspect.add_argument(
+        "inspect_benchmark",
+        choices=capability_registry.identifiers,
+        metavar="BENCHMARK",
+    )
+    benchmark_inspect.add_argument(
+        "--require",
+        dest="required_capabilities",
+        action="append",
+        default=[],
+        metavar="CAPABILITY_ID",
+        help=(
+            "Classify one exact capability ID as qualified, known-gap, or "
+            "not-declared. Repeat for multiple requirements."
+        ),
+    )
+    benchmark_inspect.add_argument(
+        "--json", action="store_true", help="Emit the complete receipt as JSON."
+    )
+
     return parser
 
 
@@ -120,11 +154,27 @@ def main(
     argv: Optional[List[str]] = None,
     *,
     benchmark_registry: BenchmarkRegistry = BUILTIN_BENCHMARKS,
+    capability_registry: CapabilityRegistry = BUILTIN_CAPABILITIES,
 ) -> int:
     """Run the CLI and return a process exit code."""
 
-    parser = build_parser(benchmark_registry)
+    parser = build_parser(benchmark_registry, capability_registry)
     args = parser.parse_args(argv)
+
+    if args.command == "inspect" and args.inspect_kind == "benchmark":
+        try:
+            receipt = capability_registry.get(args.inspect_benchmark)
+            payload = receipt.to_dict(args.required_capabilities)
+        except CapabilityReceiptError as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 2
+        if args.json:
+            if not _emit_json(payload):
+                return 2
+        else:
+            _print_capability_receipt(payload)
+        requirements = payload["inspection"]["requirements"]
+        return 0 if all(item["status"] == "qualified" for item in requirements) else 1
 
     if args.command == "audit" and args.audit_kind == "bundle":
         report = audit_evidence_bundle(args.path)
@@ -258,6 +308,32 @@ def _emit_json(payload: Mapping[str, Any]) -> bool:
         return False
     print(rendered)
     return True
+
+
+def _print_capability_receipt(payload: Mapping[str, Any]) -> None:
+    print(f"Benchmark capability receipt: {payload['benchmark_id']}")
+    print(f"  {payload['summary']}")
+    print(f"  support: {payload['support_level']}")
+    print(f"  review: {payload['provenance']['review_status']}")
+    print("  solver executed: no")
+    print("Qualified outputs:")
+    for item in payload["outputs"]:
+        print(f"  - {item['id']} [{item['artifact_role']}]")
+    print("Validated transformations:")
+    for item in payload["validated_transformations"]:
+        print(f"  - {item['id']}")
+    print("Known gaps:")
+    for item in payload["known_gaps"]:
+        print(f"  - {item['id']}")
+    requirements = payload["inspection"]["requirements"]
+    if requirements:
+        print("Requested capabilities:")
+        for item in requirements:
+            print(f"  - {item['capability_id']}: {item['status']}")
+    print(
+        "Boundary: static declared evidence only; no truth, novelty, or "
+        "publishability judgment was performed."
+    )
 
 
 def _write_requested_bundle(

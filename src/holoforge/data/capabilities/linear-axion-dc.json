@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "linear-axion-dc",
+  "summary": "Electric conductivity and DC-limit checks in the linear-axion model.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["regular charged black-brane fluctuation branch"],
+    "ensembles": ["fixed nonzero chemical potential and translation-breaking scalar sources"],
+    "parameters": [
+      {"id": "parameter.source-cases", "description": "Three frozen chemical-potential and axion-gradient cases.", "coverage_kind": "finite-set"},
+      {"id": "parameter.frequency-sequence", "description": "Preregistered low-frequency sequence for the DC extrapolation.", "coverage_kind": "finite-set"},
+      {"id": "parameter.horizon-cutoff", "description": "Regulated ingoing initialization with a declared refinement range.", "coverage_kind": "bounded"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.complex-electric-conductivity", "description": "Complex electric conductivity on the frozen low-frequency sequence.", "artifact_role": "result", "evidence": ["domains/transport/linear_axion_dc/model-card.json#/observables/0"]},
+    {"id": "observable.dc-electric-conductivity", "description": "DC conductivity from the declared extrapolation and flux checks.", "artifact_role": "result", "evidence": ["domains/transport/linear_axion_dc/model-card.json#/observables/1"]},
+    {"id": "artifact.verification-record", "description": "Strict JSON result with fluctuation, flux, and DC acceptance checks.", "artifact_role": "evidence", "evidence": ["docs/benchmarks/linear-axion-dc.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.uv-source-response", "description": "Maps UV fluctuation coefficients to complex electric conductivity.", "evidence": ["docs/benchmarks/linear-axion-dc.md"]},
+    {"id": "transformation.dc-limit-extrapolation", "description": "Extrapolates the low-frequency sequence and cross-checks radial-flux intercepts.", "evidence": ["docs/benchmarks/linear-axion-dc.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.full-optical-spectrum", "description": "The frozen frequency sequence is not a full optical-conductivity spectrum."},
+    {"id": "gap.neutral-translation-invariant-extremal-limits", "description": "Neutral, translation-invariant, and extremal limits are excluded."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "transport.linear-axion-dc.andrade-withers", "repository_path": "domains/transport/linear_axion_dc/model-card.json"}],
+    "documentation": ["docs/benchmarks/linear-axion-dc.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

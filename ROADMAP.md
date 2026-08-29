@@ -117,6 +117,19 @@
   [Version 0.5.9 specification](docs/version-0.5.9.md) and
   [research-acceleration implementation brief](docs/research-acceleration-agent-brief-v3.md).
 
+## Version 0.6 — inspectable capability contracts (in progress)
+
+- Ship one fail-closed capability receipt for every built-in verifier.
+- Record branch, ensemble, parameter, output, artifact-role, validated-
+  transformation, evidence, and known-gap boundaries.
+- Add a solver-free Python API and `holoforge inspect benchmark` command with
+  exact-ID `qualified`, `known-gap`, and `not-declared` classifications.
+- Keep benchmark equations, solvers, defaults, tolerances, results, and the
+  protected Version 0.5 command meanings unchanged.
+- Do not add a universal solver interface, dynamic plugins, an LLM scientific
+  judge, or a generic research runtime in this milestone.
+- Follow the bounded [Version 0.6 specification](docs/version-0.6.md).
+
 ## Classical benchmark sequence
 
 This sequence records the owner-selected Forge/Verify progression. A completed

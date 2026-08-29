@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "dewolfe-gubser-rosen-emd-finite-density",
+  "summary": "Selected finite-density EMD backgrounds and a local critical-coordinate locator.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["selected neutral and charged states", "local critical-coordinate neighborhood"],
+    "ensembles": ["grand canonical at selected chemical potentials"],
+    "parameters": [
+      {"id": "parameter.source-potential", "description": "Published scalar potential, gauge kinetic function, and scale dictionary.", "coverage_kind": "fixed"},
+      {"id": "parameter.control-states", "description": "Frozen neutral, representative charged, and high-charge controls.", "coverage_kind": "finite-set"},
+      {"id": "parameter.critical-derivative-steps", "description": "Frozen fit steps plus one validation step.", "coverage_kind": "finite-set"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.temperature", "description": "Temperature in black-hole units and published source units.", "artifact_role": "result", "evidence": ["domains/qcd/dewolfe_gubser_rosen_emd_critical_point/model-card.json#/observables/0"]},
+    {"id": "observable.chemical-potential", "description": "Chemical potential in black-hole units and published source units.", "artifact_role": "result", "evidence": ["domains/qcd/dewolfe_gubser_rosen_emd_critical_point/model-card.json#/observables/1"]},
+    {"id": "observable.entropy-density", "description": "Selected-state entropy density in the frozen normalization.", "artifact_role": "result", "evidence": ["domains/qcd/dewolfe_gubser_rosen_emd_critical_point/model-card.json#/observables/2"]},
+    {"id": "observable.canonical-charge-density", "description": "Canonical charge density from conserved Maxwell flux.", "artifact_role": "result", "evidence": ["domains/qcd/dewolfe_gubser_rosen_emd_critical_point/model-card.json#/observables/3"]},
+    {"id": "observable.local-critical-coordinates", "description": "Reported local critical coordinates from the reduced frozen contract.", "artifact_role": "result", "evidence": ["docs/benchmarks/dewolfe-gubser-rosen-emd-critical-point.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.local-critical-locator", "description": "Locates the critical coordinates through the declared local derivative sequence.", "evidence": ["docs/benchmarks/dewolfe-gubser-rosen-emd-critical-point.md"]},
+    {"id": "transformation.canonical-maxwell-flux", "description": "Maps conserved Maxwell flux to the canonical charge-density convention.", "evidence": ["docs/benchmarks/dewolfe-gubser-rosen-emd-critical-point.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.global-phase-diagram", "description": "A global phase diagram and coexistence line are not reproduced."},
+    {"id": "gap.figure-five-absolute-ordinate", "description": "The public source does not provide a verified map to the digitized Figure 5 ordinate."},
+    {"id": "gap.critical-exponents", "description": "Critical exponents are outside the reduced contract."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "qcd.dewolfe-gubser-rosen-emd-critical-point", "repository_path": "domains/qcd/dewolfe_gubser_rosen_emd_critical_point/model-card.json"}],
+    "documentation": ["docs/benchmarks/dewolfe-gubser-rosen-emd-critical-point.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

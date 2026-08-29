@@ -95,6 +95,19 @@ An agent can help execute a workflow, but it does not replace the benchmark
 acceptance gates, scientific review, or explicit authorization to disclose
 private research.
 
+Before running an expensive calculation, an agent or user can inspect one
+built-in benchmark's declared public coverage without executing its solver:
+
+```bash
+holoforge inspect benchmark BENCHMARK
+holoforge inspect benchmark BENCHMARK --require CAPABILITY_ID --json
+```
+
+Exact `--require` identifiers are classified as `qualified`, `known-gap`, or
+`not-declared`. This is a static evidence receipt, not a natural-language
+physics, novelty, or publication judge. See the
+[Version 0.6 capability contract](docs/version-0.6.md).
+
 ## Included reference implementations
 
 The following are the reference calculations implemented today. Their names
@@ -115,6 +128,7 @@ summarized in the [classical benchmark sequence](docs/benchmarks/classical-seque
 | Top-down-derived charged EMD control with exact-background, flux, thermodynamic, and low-temperature checks | `holoforge verify gubser-rocha-emd` | [Gubser--Rocha EMD control guide](docs/benchmarks/gubser-rocha-emd.md) |
 | Controlled model/reference comparison with uncertainty provenance | `holoforge compare vector-spectrum` | [comparison guide](docs/benchmarks/vector-spectrum-comparison.md) |
 | Portable provenance and scientific-state compatibility | Add `--bundle-dir PATH` to any command, then use `holoforge audit bundle` or `holoforge audit compatibility` | [evidence-bundle guide](docs/evidence-bundles.md) |
+| Solver-free inspection of declared benchmark coverage, outputs, transformations, and gaps | `holoforge inspect benchmark BENCHMARK` | [Version 0.6 capability contract](docs/version-0.6.md) |
 
 Commands accept documented options for machine-readable records and generated
 artifacts. Plot generation requires the optional dependency installed with

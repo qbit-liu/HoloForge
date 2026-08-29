@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "holographic-superconductor-optical",
+  "summary": "Probe-limit HHH optical response and near-critical superfluid density.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["dimension-two condensed branch near the critical point"],
+    "ensembles": ["probe limit at zero spatial momentum and positive frequency"],
+    "parameters": [
+      {"id": "parameter.quantization", "description": "Dimension-two quantization with vanishing lower scalar source.", "coverage_kind": "fixed"},
+      {"id": "parameter.temperature-window", "description": "Frozen near-critical temperature points.", "coverage_kind": "finite-set"},
+      {"id": "parameter.spectral-degrees", "description": "Frozen refinement, primary, and audit degrees.", "coverage_kind": "finite-set"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.complex-optical-conductivity", "description": "Complex zero-momentum optical conductivity at declared positive frequencies.", "artifact_role": "result", "evidence": ["domains/condensed_matter/holographic_superconductor_optical/model-card.json#/observables/0"]},
+    {"id": "observable.superfluid-density-coefficient", "description": "Near-critical superfluid-density coefficient from static and finite-frequency routes.", "artifact_role": "result", "evidence": ["domains/condensed_matter/holographic_superconductor_optical/model-card.json#/observables/1"]},
+    {"id": "artifact.conductivity-plot", "description": "Generated optical-response plot from the benchmark output.", "artifact_role": "evidence", "evidence": ["docs/benchmarks/holographic-superconductor-optical.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.kubo-source-response", "description": "Maps the UV source and response coefficients to complex conductivity.", "evidence": ["docs/benchmarks/holographic-superconductor-optical.md"]},
+    {"id": "transformation.near-critical-pole-fit", "description": "Fits the declared near-critical window using static and finite-frequency pole data.", "evidence": ["docs/benchmarks/holographic-superconductor-optical.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.figure-two-rightmost-curve", "description": "The public rightmost source Figure 2 curve is provenance-only and not reproduced."},
+    {"id": "gap.quasinormal-modes", "description": "Quasinormal modes are outside scope."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "condensed-matter.holographic-superconductor.hhh-optical", "repository_path": "domains/condensed_matter/holographic_superconductor_optical/model-card.json"}],
+    "documentation": ["docs/benchmarks/holographic-superconductor-optical.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

@@ -10,6 +10,9 @@ governed Explore workflow. It is therefore broader than a generic test harness.
 ```mermaid
 flowchart LR
     user["User or CI"] --> cli["CLI: verify"]
+    user --> inspect["CLI: inspect benchmark"]
+    inspect --> receipts["Validated static capability receipts"]
+    receipts --> inspection["Coverage, outputs, transformations, gaps"]
     cli --> registry["Validated built-in registry"]
     registry --> adapter["One benchmark adapter"]
     adapter --> implementation["Benchmark implementation"]
@@ -34,6 +37,7 @@ boundary conditions, solver signatures, or scientific acceptance gates.
 | Scientific authority | `CONSTITUTION.md`, `docs/scientific-support.md`, version contracts | Defines evidence, review, claim, and privacy rules. |
 | Public model records | `domains/` | Keeps literature-anchored model cards and benchmark guides separate from executable code. |
 | Command entry point | `src/holoforge/cli.py` | Provides `verify`, `compare`, and `audit` commands and their protected exit meanings. |
+| Capability inspection | `src/holoforge/core/capabilities.py`, `src/holoforge/capabilities.py` | Validates and indexes static built-in receipts; classifies exact capability IDs without executing a solver. |
 | Harness contracts | `src/holoforge/core/registry.py` | Defines immutable adapter, execution, model-card-reference, and registry contracts. |
 | Adapter modules | `src/holoforge/benchmarks/adapters/` | Keeps parser, execution, rendering, scientific-state, and model-card glue isolated per benchmark. |
 | Composition root | `src/holoforge/benchmarks/registry.py` | Imports reviewed adapters and declares the explicit immutable built-in suite. |
@@ -42,6 +46,7 @@ boundary conditions, solver signatures, or scientific acceptance gates.
 | Comparison implementation | `src/holoforge/comparisons/` | Performs controlled comparisons without treating descriptive agreement as empirical validation. |
 | Provenance and audit | `src/holoforge/core/evidence.py`, `schemas/` | Writes, validates, relocates, and compares declared evidence records. |
 | Reference inputs | `src/holoforge/data/reference/` | Ships frozen public reference data with source and uncertainty provenance. |
+| Capability receipts | `src/holoforge/data/capabilities/` | Ships one schema-conforming coverage and evidence index for each built-in verifier. |
 | Verification | `tests/`, `.github/workflows/ci.yml` | Checks numerical results, schemas, interfaces, privacy rules, packaging, and cross-platform behavior. |
 | Public-safe exploration | `incubator/` | Contains only synthetic, public-literature, or disclosure-approved Explore material. |
 
@@ -65,6 +70,10 @@ boundary conditions, solver signatures, or scientific acceptance gates.
 7. Shared numerical modules may provide grids or maintained-library assembly
    helpers, but benchmark modules retain endpoint regularization, boundary
    rows, gauge or constraint treatment, mode filtering, and acceptance gates.
+8. Capability receipts index existing reviewed public evidence. They do not
+   execute a benchmark, infer unstated support, or certify truth, novelty, or
+   publishability. A new post-processing route is not qualified until its own
+   domain, uncertainty, convergence, and acceptance evidence are declared.
 
 ## Extension point
 
@@ -85,6 +94,11 @@ The Version 0.5 adapter registry covers `verify` benchmarks. The controlled
 Their behavior is protected during the `0.5.x` line, so moving them behind new
 registries would require a separately reviewed compatibility contract rather
 than an incidental refactor.
+
+Version 0.6 adds a separate static capability registry rather than changing
+the protected adapter contract. Its identifiers must match the deterministic
+built-in benchmark registry exactly, and every receipt must point to the same
+public model-card references as its adapter.
 
 ## Scientific boundary
 

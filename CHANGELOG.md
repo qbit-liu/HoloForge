@@ -4,6 +4,20 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- Fail-closed Version 0.6 capability receipts for every built-in verifier,
+  including branch, ensemble, parameter, output, artifact-role,
+  transformation, evidence, and known-gap declarations.
+- A solver-free `holoforge inspect benchmark` command and Python inspection
+  API with exact-ID requirement classification.
+
+### Scientific results
+
+- No model equation, solver, default, tolerance, accepted benchmark result, or
+  physical claim changed. Capability inspection indexes existing public
+  evidence and performs no novelty or publication judgment.
+
 ## [0.5.9] - 2026-08-29
 
 ### Added
