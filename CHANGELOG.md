@@ -4,6 +4,8 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-08-29
+
 ### Changed
 
 - Restore the full Explore research intent by separating scientific opportunity
@@ -556,6 +558,7 @@ All notable changes to HoloForge are recorded here.
 - Added machine-readable model-card and hypothesis-card schemas.
 - Added the verified quadratic soft-wall vector-spectrum benchmark.
 
+[0.6.1]: https://github.com/xin-yi6/HoloForge/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/xin-yi6/HoloForge/compare/v0.5.9...v0.6.0
 [0.5.9]: https://github.com/xin-yi6/HoloForge/compare/v0.5.8...v0.5.9
 [0.5.8]: https://github.com/xin-yi6/HoloForge/compare/v0.5.7...v0.5.8
