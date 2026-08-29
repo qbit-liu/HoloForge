@@ -20,6 +20,8 @@ class PublicContentPolicyTests(unittest.TestCase):
         lowered = combined.lower()
         self.assertIn("physical discriminator", lowered)
         self.assertIn("private vertical slice", lowered)
+        self.assertIn("scientific opportunity", lowered)
+        self.assertIn("strategic development", lowered)
         self.assertIn("must not certify novelty", lowered)
         self.assertIn("not a physical negative result", lowered)
         self.assertNotIn("/Users/", combined)
@@ -78,6 +80,12 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("new-domain application", workflow)
         self.assertIn("new-subfield or new-phenomenon application", workflow)
         self.assertIn("method transfer or model improvement", workflow)
+        self.assertIn("assess scientific opportunity before execution readiness", workflow)
+        self.assertRegex(
+            workflow,
+            r"named human\s+research owner makes the final",
+        )
+        self.assertIn("three research horizons", workflow)
         self.assertIn("frozen contract", workflow)
         self.assertIn("hostile critic report", workflow)
         self.assertIn("owner review", workflow)
@@ -215,7 +223,7 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("must not receive a fabricated pending owner menu", workflow)
         self.assertIn("does not reopen the completed gate", private_workflow)
 
-    def test_explore_intake_scorecard_requires_all_five_readiness_tests(self):
+    def test_explore_intake_separates_opportunity_from_next_gate_readiness(self):
         workflow = (ROOT / "docs/research-gate-workflow.md").read_text(
             encoding="utf-8"
         ).lower()
@@ -229,17 +237,37 @@ class PublicContentPolicyTests(unittest.TestCase):
         combined = " ".join("\n".join((workflow, skill, scorecard)).split())
 
         for readiness_test in (
-            "source-complete inputs",
+            "gate-complete inputs",
             "invariant target beyond the generic baseline",
-            "cheap kill test",
+            "cheapest discriminating test",
             "positive-result endpoint",
             "cost ceiling",
         ):
             self.assertIn(readiness_test, combined)
 
-        self.assertIn("all five pass", combined)
-        self.assertIn("one named evidence task", combined)
-        self.assertIn("any failed item defers or rejects", combined)
+        for opportunity_row in (
+            "physical importance",
+            "gap plausibility",
+            "falsifiability",
+            "holographic leverage",
+            "explanatory or predictive depth",
+            "outcome value",
+            "owner fit",
+        ):
+            self.assertIn(opportunity_row, combined)
+
+        for horizon in (
+            "open discovery",
+            "strategic development",
+            "short-horizon execution",
+        ):
+            self.assertIn(horizon, combined)
+
+        self.assertIn("named human owner decides", combined)
+        self.assertIn("does not by itself show", combined)
+        self.assertIn("planned model or capability construction is not a repair", combined)
+        self.assertIn("capability receipts", combined)
+        self.assertIn("must not select the questions worth pursuing", combined)
         self.assertIn("not a novelty", scorecard)
         self.assertIn("prior-knowledge review", scorecard)
         self.assertIn("stable knowledge or lesson id", combined)
@@ -306,11 +334,12 @@ class PublicContentPolicyTests(unittest.TestCase):
             "domains considered",
             "domains intentionally excluded",
             "domain-coverage",
+            "scientific-opportunity assessment",
             "publication-pathway assessment",
             "paper-shaped question",
             "physical discriminator or mechanism",
-            "short gate sequence",
-            "repair or pivot budget",
+            "research horizon",
+            "construction, repair, and pivot budgets",
         ):
             self.assertIn(required_term, combined)
 
@@ -318,7 +347,7 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("not a quota", combined)
         self.assertIn("does not establish novelty", scorecard)
         self.assertIn("does not establish novelty", workflow)
-        self.assertIn("replace the five scientific readiness tests", workflow)
+        self.assertIn("not a scientific-value veto", workflow)
         self.assertNotIn("/users/", combined)
         self.assertNotIn("holoforge-explore-private", combined)
 
@@ -340,9 +369,15 @@ class PublicContentPolicyTests(unittest.TestCase):
         )
 
         for required_term in (
+            "scientific opportunity",
+            "human research owner",
+            "open discovery",
+            "strategic development",
+            "short-horizon execution",
             "minimum publishable physical claim",
             "first physical-discriminator gate",
             "numerical-dependence lane",
+            "campaign construction budget",
             "candidate-wide numerical-repair budget",
             "physical-claim progress",
             "source and novelty readiness",
@@ -354,6 +389,9 @@ class PublicContentPolicyTests(unittest.TestCase):
 
         self.assertIn("cannot be reset", combined)
         self.assertIn("directly unlocks", combined)
+        self.assertIn("only the short-horizon", combined)
+        self.assertIn("planned model or capability construction is not a numerical repair", combined)
+        self.assertIn("must not select the questions worth pursuing", combined)
         self.assertIn("do not weaken numerical acceptance gates", combined)
         self.assertNotIn("/users/", combined)
         self.assertNotIn("holoforge-explore-private", combined)

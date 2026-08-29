@@ -131,18 +131,21 @@ publish, transfer, or disclose any artifact without a later explicit review.
 
 Before the detailed gate, ask the agent to copy and complete
 `.agents/skills/holoforge-research-gate/assets/explore-intake-scorecard.example.md`
-inside the private repository. The agent should admit the candidate only when
-all five readiness tests pass; a conditional item may open only one named
-cheaper evidence task, and a failed item must defer or reject the candidate.
-The scorecard also records portfolio intent and the actual domain coverage of
-the search. Publication-targeted work receives a separate pathway assessment;
-this prioritization does not replace scientific readiness or establish
-novelty. It must name the minimum publishable physical claim, first physical-
-discriminator gate, numerical-dependence lane, and candidate-wide repair
-budget, while tracking physical-claim progress, source and novelty readiness,
-and numerical credibility separately. By default, the first or second detailed
-gate reaches the physical discriminator rather than extending a tool-only
-qualification sequence.
+inside the private repository. First ask it to assess the scientific
+opportunity independently of current capabilities: importance, gap
+plausibility, falsifiability, holographic leverage, explanatory depth, outcome
+value, and owner fit. The agent recommends; the named human owner decides
+whether the question deserves investment. Then choose open discovery,
+strategic development, or short-horizon execution and qualify the proposed
+next gate through its inputs, discriminator, cheapest honest test, endpoint,
+cost, and stop rules. A failed next-gate prerequisite stops that gate, not the
+scientific value judgment. Publication-targeted work must name the minimum
+publishable physical claim, earliest honest physical-discriminator gate and
+prerequisites, numerical-dependence lane, campaign construction budget, and
+separate repair budget, while tracking scientific opportunity, physical-claim
+progress, source and novelty readiness, and numerical credibility separately.
+Only short-horizon execution normally reaches the discriminator in the first
+or second detailed gate.
 
 To let the agent work for a longer interval without weakening owner control,
 freeze the detailed gate first and then approve a project-local copy of

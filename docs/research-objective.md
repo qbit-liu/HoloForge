@@ -31,10 +31,54 @@ confirmation:
   -> hostile review -> human readiness decision
 ```
 
-For publication-targeted Explore work, the first or second substantive study
-should reach the frozen physical discriminator. A longer solver-qualification
-campaign is justified only when the numerical method is itself the declared
-research output.
+The discovery loop may include a bounded derivation, model construction, or
+signal pilot when that is the cheapest honest way to distinguish a valuable
+question. It must not demand a full confirmation package before any physical
+work is attempted.
+
+## Scientific value and research authority
+
+HoloForge separates **scientific opportunity** from **execution readiness**.
+Agents may assemble the evidence and compare candidates, but they cannot
+certify that a question is important, novel, or publication-worthy. The named
+human research owner makes the final value-and-investment decision after a
+non-aggregate assessment of:
+
+- the importance of the physical question or phenomenon;
+- the plausibility and exact limitations of the prior-work gap;
+- falsifiability and the existence of a meaningful physical discriminator;
+- the distinct leverage supplied by gauge/gravity modelling;
+- explanatory or predictive depth beyond a generic flexible-model fit;
+- the prospective value of positive, negative, and inconclusive outcomes; and
+- fit with the owner's expertise, interests, time, and portfolio strategy.
+
+Capability receipts, available artifacts, and estimated cost inform the later
+feasibility and horizon decision. They must not determine scientific value or
+silently privilege the subjects already represented by public benchmarks.
+There is no opaque aggregate score that replaces comparative scientific
+judgment.
+
+## Three research horizons
+
+Classify a selected opportunity by the work it actually requires:
+
+1. **Open discovery** develops a new-domain or new-phenomenon dictionary,
+   mechanism, or model hypothesis. Source and capability gaps are expected and
+   become explicit research questions.
+2. **Strategic development** deliberately constructs and qualifies the action,
+   dictionary, observable, data artifact, solver, or validation route needed
+   for an owner-selected physical question. Several capabilities may be
+   planned when their dependencies, milestones, cost, stop rules, and first
+   physical checkpoint are explicit.
+3. **Short-horizon execution** uses a source-complete analytic route or already
+   qualified capability to reach a physical discriminator quickly.
+
+Only the short-horizon lane normally expects the first or second detailed gate
+to evaluate the physical discriminator. Strategic development instead freezes
+reviewable prerequisite milestones and an early *planned* physics checkpoint;
+it is not restricted to numerical-method papers. Planned model or capability
+construction is distinct from a post-failure numerical repair and does not
+consume the repair budget merely by existing.
 
 ## Evidence core
 
@@ -76,11 +120,12 @@ runtime merely to make HoloForge look complete. Add it when it fixes a
 scientific-integrity problem or when a bounded research project demonstrates
 that the capability is reusable.
 
-The next capability proof is one private, end-to-end vertical slice using a
-qualified route and an owner-selected physical question. Draft its records in
-the private repository, preserve its Git history, and promote only the minimum
-generic artifact after a separate public-export review. The public roadmap
-must not identify or disclose the private candidate.
+The next capability proof is one private, end-to-end vertical slice around an
+owner-selected physical question. It may use a qualified route or an explicitly
+approved strategic-development campaign. Draft its records in the private
+repository, preserve its Git history, and promote only the minimum generic
+artifact after a separate public-export review. The public roadmap must not
+identify or disclose the private candidate.
 
 ## Valid outcomes
 

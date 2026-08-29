@@ -20,6 +20,34 @@ Classify the intended contribution before screening it:
 All three can be scientifically valuable. The class must be stated explicitly,
 and any priority or novelty claim requires a targeted literature search.
 
+## Assess scientific opportunity before execution readiness
+
+Capability availability cannot decide which physics questions are worth
+pursuing. Before inspecting public capability receipts or ranking by cost,
+prepare a **scientific-opportunity assessment** that addresses independently:
+
+1. **Physical importance:** what phenomenon, tension, missing explanation, or
+   new application would become better understood?
+2. **Gap plausibility:** what exact prior-work boundary leaves the question
+   open, and how incomplete is the search?
+3. **Falsifiability:** what observation, derivation, scaling relation, branch
+   comparison, or other physical discriminator could change confidence in the
+   proposal?
+4. **Holographic leverage:** what can gauge/gravity modelling expose that a
+   simpler effective, symmetry, perturbative, or data-fit description cannot?
+5. **Explanatory or predictive depth:** would the result reveal a mechanism,
+   relation, controlled regime, or reusable dictionary rather than only add a
+   curve or flexible fit?
+6. **Outcome value:** what would be learned from positive, negative, and
+   inconclusive outcomes?
+7. **Owner fit:** how does the direction fit the human research owner's
+   expertise, interests, available time, risk tolerance, and portfolio?
+
+Agents, literature records, and hostile critics supply evidence and competing
+interpretations for these rows. They must not collapse them into one opaque
+score or certify importance, novelty, or publication value. The named human
+research owner makes the final scientific-value and investment decision.
+
 ## Declare portfolio intent and search scope
 
 An intake is a bounded candidate search, not an automatic survey of every
@@ -40,14 +68,36 @@ quota: an intake may deliberately focus on one area, and no candidate should
 advance merely to balance the table.
 
 When the portfolio intent is publication-targeted, complete a separate
-**publication-pathway assessment** before choosing the lead. It should ask
-whether the candidate has a paper-shaped question, a targeted prior-work gap,
-a physical discriminator or mechanism beyond generic model flexibility,
-source and artifact readiness, a plausible short gate sequence to a
-substantive result, and a bounded repair or pivot budget. This assessment
-prioritizes research investment; it does not establish novelty, promise a
-publication, replace the five scientific readiness tests, or weaken any
-acceptance or stop condition.
+**publication-pathway assessment** after the scientific-opportunity assessment
+and before choosing the investment. It should ask whether the candidate has a
+paper-shaped question, a targeted prior-work gap, a physical discriminator or
+mechanism beyond generic model flexibility, an honest research horizon, a
+staged route from current readiness to physics, and a bounded construction,
+repair, or pivot budget. Source and artifact readiness determine that route;
+they are not a scientific-value veto. This assessment prioritizes research
+investment; it does not establish novelty, promise a publication, replace the
+gate-specific readiness checks, or weaken any acceptance or stop condition.
+
+### Choose one of three research horizons
+
+Classify each owner-selected opportunity before treating capability distance
+as a stop:
+
+1. **Open discovery:** develop a new-domain or new-phenomenon dictionary,
+   mechanism, model, or observable. Missing sources and capabilities become
+   explicit research questions rather than automatic disqualification.
+2. **Strategic development:** construct and qualify the action, dictionary,
+   artifact, observable, solver, or validation route needed for a valuable
+   physical question. A campaign may contain several declared capabilities
+   when their dependencies, milestones, cost, failure value, and first physical
+   checkpoint are explicit.
+3. **Short-horizon execution:** use a source-complete analytic route, qualified
+   artifact, or already-verified solver to reach a physical discriminator
+   quickly.
+
+Capability receipts describe the current starting point. They may change the
+horizon, cost, ordering, or decision to invest, but must not silently privilege
+the model families already represented in public HoloForge.
 
 ### Keep publication-targeted work physics-first
 
@@ -56,35 +106,46 @@ not the research endpoint. Before selecting the lead, also record:
 
 - the **minimum publishable physical claim**: the smallest bounded physical
   conclusion that could anchor a paper if it survives its controls;
-- the **first physical-discriminator gate**: by default, the first or second
-  detailed gate must evaluate the declared physical discriminator rather than
-  only qualify a solver, artifact, or numerical representation;
+- the **first physical-discriminator gate**: identify the earliest honest
+  physics checkpoint and every prerequisite before it;
 - the **numerical-dependence lane**: analytic or semi-analytic, reuse of an
   already qualified numerical route, new numerical infrastructure, or an
   explicitly publication-targeted numerical-method contribution;
-- a **candidate-wide numerical-repair budget** that cannot be reset by opening
-  a sequence of smaller gates; and
+- a **campaign construction budget** for planned new capabilities and a
+  separate **candidate-wide numerical-repair budget** that cannot be reset by
+  opening a sequence of smaller gates; and
 - separate, non-aggregate status for physical-claim progress, source and
   novelty readiness, and numerical credibility.
 
-If a first prospectively frozen numerical repair fails to qualify its route,
+In the short-horizon lane, the first or second detailed gate should normally
+evaluate the physical discriminator. Open discovery and strategic development
+may require more prerequisite gates, but each one must close a named source,
+dictionary, model, capability, or validation milestone and the owner must
+approve the campaign and its planned physics checkpoint. Do not keep a
+campaign alive through generic infrastructure work that is not necessary for
+the selected question.
+
+Planned model or capability construction is not a numerical repair. A repair
+begins only after a frozen route fails its prospective acceptance criteria. If
+a first prospectively frozen numerical repair fails to qualify its route,
 return to a portfolio-level reassessment before another repair. A second repair
 may open only when the owner approves a new rationale showing that it directly
 unlocks the already frozen physical discriminator within the remaining cost
-ceiling. Otherwise pause or pivot the candidate. A longer pre-physical gate
-sequence requires an explicit owner-approved exception, normally because the
-numerical method is itself the declared publication contribution.
+ceiling. Otherwise pause or pivot the candidate.
 
 Do not weaken numerical acceptance gates to create apparent physical progress.
 The purpose of this rule is to change research ordering and investment, not
 verification rigor.
 
-## Qualify candidates with an Explore intake scorecard
+## Record opportunity and qualify the next gate
 
 Before writing a detailed frozen contract, complete the generic
 [`Explore intake scorecard`](../.agents/skills/holoforge-research-gate/assets/explore-intake-scorecard.example.md)
-inside the private research repository. It tests five conditions that should
-be cheap to decide before substantial calculation:
+inside the private research repository. It keeps two decisions separate:
+
+1. whether the question is a scientific opportunity worth considering; and
+2. whether the **next proposed gate** is ready, bounded, and proportionate to
+   the chosen research horizon.
 
 First read the current private reviewed-knowledge and closure-lesson indexes
 and the primary evidence behind potentially relevant entries. Record the index
@@ -94,16 +155,18 @@ topic, source convention, method risk, outcome, and failure mode. If no item
 applies, record which classes and tags were checked. Prior knowledge sharpens
 the next test; it does not decide a different candidate in advance.
 
-1. **Source-complete inputs:** the primary sources and private records identify
+1. **Gate-complete inputs:** the primary sources and private records identify
    every equation, convention, branch, ensemble, coefficient, and comparison
-   needed by the proposed first gate, or identify one bounded source check
-   that can settle the gap.
+   needed by the proposed next gate. A strategic-development gate may be
+   specifically authorized to derive or construct one missing item.
 2. **Invariant target beyond the generic baseline:** the candidate names a
    dimensionless ratio, branch-resolved feature, consistency condition, or
    other observable that cannot be removed by conventions or obtained from a
    simpler generic model alone.
-3. **Cheap kill test:** one preregistered source, analytic, or low-cost
-   numerical check can reject the candidate before a solver or broad scan.
+3. **Cheapest discriminating test:** use a preregistered source, analytic, or
+   low-cost numerical kill test when one exists. If none exists for an
+   otherwise valuable flagship question, record that fact, the cheapest honest
+   alternative, and the owner's reason for accepting or declining the risk.
 4. **Positive-result endpoint:** the record states exactly what result would
    count as meaningful, what evidence it would support, and which next
    decision it would open.
@@ -111,13 +174,17 @@ the next test; it does not decide a different candidate in advance.
    compute, and review cost of the first gate and the conditions that stop
    further investment.
 
-Mark every item `pass`, `conditional`, or `fail` and cite the evidence. A
-detailed gate opens only when all five pass. One or more conditional items may
-open only a single named intake-evidence task that is cheaper than the proposed
-gate. Any failed item defers or rejects the candidate. There is no aggregate
-score that can hide a failed scientific prerequisite.
+Mark every next-gate item `pass`, `conditional`, or `fail` and cite the
+evidence. A gate opens only when the inputs, endpoint, methods, cost, and stop
+conditions for that gate are prospectively closed. Conditional items may open
+one named evidence task or one owner-approved strategic-development milestone
+whose purpose is to close them. A failed prerequisite stops that proposed gate;
+it does not by itself prove that the scientific opportunity is valueless.
+There is no aggregate score that can hide a failed gate prerequisite or replace
+the owner's scientific judgment.
 
-The scorecard ranks readiness for the next bounded test, not novelty,
+The scorecard records scientific-opportunity evidence, owner judgment, research
+horizon, and readiness for the next bounded test. It does not certify novelty,
 importance, truth, or publication value. It remains private when it contains
 unpublished candidate identities, literature notes, equations, or results.
 

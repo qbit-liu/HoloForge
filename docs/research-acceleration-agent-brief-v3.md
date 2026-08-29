@@ -4,6 +4,13 @@ This brief scopes the first public implementation batch. It supplements, and
 does not replace, `AGENTS.md`, `CONSTITUTION.md`, the Version 0.5 compatibility
 policy, or the repository skills.
 
+The batch was intentionally result-neutral. Any qualified-route pilot language
+in the associated planning record is a bounded first-pilot tactic, not a
+general Explore admission rule. The current research-selection authority is
+`docs/research-objective.md`: assess scientific opportunity first, let the
+named human owner decide value and investment, and then choose open discovery,
+strategic development, or short-horizon execution.
+
 ## Objective
 
 Make HoloForge's existing verification and evidence boundaries fail closed

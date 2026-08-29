@@ -4,6 +4,22 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+### Changed
+
+- Restore the full Explore research intent by separating scientific opportunity
+  from execution readiness and by recognizing open-discovery, strategic-
+  development, and short-horizon research lanes.
+- Make capability receipts inputs to horizon and cost planning rather than
+  selectors of scientific value; the named human owner retains the investment
+  decision.
+- Permit prospectively bounded, question-necessary model and capability
+  construction without misclassifying it as a post-failure numerical repair.
+
+### Scientific results
+
+- No closed private gate, public model equation, solver, default, tolerance,
+  benchmark result, or accepted physical claim changed.
+
 ## [0.6.0] - 2026-08-29
 
 ### Added

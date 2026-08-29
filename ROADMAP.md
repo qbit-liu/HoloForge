@@ -164,9 +164,11 @@ unfinished classical-example work.
 
 - Publicly demonstrate the screening gates with synthetic or already-published
   material.
-- Use the [research objective](docs/research-objective.md) to run one private,
-  end-to-end physical vertical slice with a qualified route and an early
-  discriminator.
+- Use the [research objective](docs/research-objective.md) to select one private
+  scientific opportunity and run an end-to-end vertical slice at its honest
+  horizon: open discovery, strategic development, or short-horizon execution.
+- Treat current capability receipts as cost and readiness evidence, not as a
+  scientific-value ranking or a restriction to existing benchmark families.
 - Treat that vertical slice as a research capability proof, not a public
   package release or a promise of a positive result.
 - Draft new contracts inside the private project first, then promote only

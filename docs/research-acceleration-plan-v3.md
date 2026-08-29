@@ -11,6 +11,12 @@ This plan replaces an infrastructure-first sequence with a research-pulled
 sequence. It preserves the existing Forge/Verify and Explore boundary and does
 not authorize disclosure of any private project.
 
+The original first-pilot proposal favored an already qualified route. Owner
+review on 2026-08-29 clarified that this was a bounded pilot tactic, not a
+general definition of valuable Explore research. The current workflow first
+assesses scientific opportunity and then assigns open-discovery, strategic-
+development, or short-horizon execution scope.
+
 ## Corrections to the previous proposal
 
 1. Fix the public integrity boundary before adding research features, but keep
@@ -58,10 +64,17 @@ authorize a post-hoc tolerance change.
 ## Phase 2 — Private research pilot
 
 After the integrity patch, run one domain-appropriate private vertical slice
-using an already qualified numerical or analytic route. Candidate selection
-remains a separate owner decision. The first or second substantive study must
-reach the frozen physical discriminator unless the declared research output is
-the numerical method itself.
+around an owner-selected scientific opportunity. Candidate selection remains
+a separate human decision informed by importance, gap plausibility,
+falsifiability, holographic leverage, explanatory depth, outcome value, and
+owner fit. Capability receipts then determine the honest horizon and cost:
+open discovery, strategic development, or short-horizon execution.
+
+Only short-horizon execution normally reaches the frozen physical
+discriminator in the first or second substantive study. Strategic development
+may construct several question-necessary capabilities through prospectively
+bounded milestones and a planned physics checkpoint. Planned construction is
+separate from the post-failure numerical-repair budget.
 
 The pilot should draft only the records it actually needs, which may include:
 

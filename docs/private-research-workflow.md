@@ -95,19 +95,31 @@ contract so the window does not introduce an extra decision gate.
    to this candidate. Translate each into a candidate-specific control; if none
    applies, record the knowledge classes and tags searched. Then record the
    portfolio intent, search shape, domains considered or deliberately excluded,
-   and candidate-pool coverage. For publication-targeted work, complete the
-   separate publication-pathway assessment before prioritizing a lead. Record
-   its minimum publishable physical claim, the first physical-discriminator
-   gate, numerical-dependence lane, candidate-wide numerical-repair budget,
-   and non-aggregate physical-claim, source-and-novelty, and numerical-
-   credibility status. By default, the first or second detailed gate must
-   evaluate the physical discriminator. Then record the candidate dictionary,
-   assumptions, falsification test, AI involvement, and decision owner in a
-   private hypothesis card and complete the five-part Explore intake scorecard:
-   source-complete inputs, an invariant target beyond the generic baseline, a
-   cheap kill test, a positive-result endpoint, and a cost ceiling. A detailed
-   gate opens only after all five pass; a conditional item may open only one
-   cheaper bounded evidence task.
+   and candidate-pool coverage. Before inspecting capability receipts or
+   ranking by cost, complete the scientific-opportunity assessment: physical
+   importance, gap plausibility, falsifiability, holographic leverage,
+   explanatory or predictive depth, outcome value, and fit with the named
+   human owner's expertise and portfolio. The agent supplies evidence and a
+   recommendation; the owner decides scientific value and investment.
+
+   Then choose an honest horizon: open discovery, strategic development, or
+   short-horizon execution. For publication-targeted work, complete the
+   separate publication-pathway assessment and record the minimum publishable
+   physical claim, earliest honest physical-discriminator gate and its
+   prerequisites, numerical-dependence lane, campaign construction budget,
+   separate candidate-wide numerical-repair budget, and non-aggregate
+   scientific-opportunity, physical-claim, source-and-novelty, and numerical-
+   credibility status. Only the short-horizon lane normally reaches the
+   physical discriminator in the first or second detailed gate.
+
+   Finally record the candidate dictionary, assumptions, falsification test,
+   AI involvement, and decision owner in a private hypothesis card. Qualify the
+   proposed next gate through gate-complete inputs, an invariant target beyond
+   the generic baseline, the cheapest honest discriminating test, a positive-
+   result endpoint, and a cost ceiling. A conditional item may open one bounded
+   evidence task or one owner-approved strategic-development milestone. A
+   failed gate prerequisite stops that gate without declaring the scientific
+   opportunity valueless.
 2. **Screening:** search prior work and test dimensional, symmetry, boundary,
    and ensemble consistency before investing in a large calculation.
 3. **Discriminating calculation:** compare against a simpler baseline and use a
@@ -144,9 +156,11 @@ candidate, not reset by each small gate. After a first numerical repair fails,
 return to a portfolio-level reassessment. A second repair requires a new owner-
 approved rationale showing that it directly unlocks the already frozen
 physical discriminator within the remaining cost ceiling. Otherwise pause or
-pivot the candidate. A longer qualification campaign belongs in an explicitly
-declared numerical-method publication lane rather than being treated as hidden
-progress toward an untouched physical question.
+pivot the candidate. Planned, owner-approved model and capability construction
+uses the separate campaign construction budget and is not counted as a repair.
+Every prerequisite milestone must remain necessary for the selected physical
+question and retain a planned physical checkpoint; generic infrastructure work
+cannot be treated as hidden research progress.
 
 ## Public export checklist
 
