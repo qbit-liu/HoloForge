@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "holographic-superconductor",
+  "summary": "Probe-limit HHH onset and dimension-two condensate branch.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["normal-state onset mode", "nonlinear condensed branch with dimension-two quantization"],
+    "ensembles": ["probe limit at fixed charge density with vanishing scalar source"],
+    "parameters": [
+      {"id": "parameter.scalar-mass", "description": "Scalar mass squared is fixed to the source value.", "coverage_kind": "fixed"},
+      {"id": "parameter.scalar-charge", "description": "Scalar charge is fixed by the source convention.", "coverage_kind": "fixed"},
+      {"id": "parameter.radial-cutoff", "description": "Endpoint cutoff has a declared numerical range and refinement check.", "coverage_kind": "bounded"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.critical-temperature", "description": "Dimensionless critical temperature from the linear source-free mode.", "artifact_role": "result", "evidence": ["domains/condensed_matter/holographic_superconductor/model-card.json#/observables/0"]},
+    {"id": "observable.dimension-two-condensate", "description": "Dimension-two condensate curve along the nonlinear branch.", "artifact_role": "result", "evidence": ["domains/condensed_matter/holographic_superconductor/model-card.json#/observables/1"]},
+    {"id": "artifact.figure-one-right-panel", "description": "Figure output for the dimension-two condensate presentation.", "artifact_role": "evidence", "evidence": ["docs/benchmarks/holographic-superconductor.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.vanishing-source-quantization", "description": "Extracts the dimension-two response after enforcing a vanishing scalar source.", "evidence": ["docs/benchmarks/holographic-superconductor.md"]},
+    {"id": "transformation.fixed-density-rescaling", "description": "Rescales the nonlinear branch to the fixed-density Figure 1 variables.", "evidence": ["docs/benchmarks/holographic-superconductor.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.optical-conductivity", "description": "Optical conductivity is handled by a separate benchmark."},
+    {"id": "gap.backreaction", "description": "Matter backreaction is not included."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "condensed-matter.holographic-superconductor.hhh", "repository_path": "domains/condensed_matter/holographic_superconductor/model-card.json"}],
+    "documentation": ["docs/benchmarks/holographic-superconductor.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

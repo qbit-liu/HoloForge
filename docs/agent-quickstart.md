@@ -75,6 +75,21 @@ passing result does and does not establish. Do not change files.
 
 The available commands and benchmark guides are listed in `README.md`.
 
+Before choosing or running a benchmark, inspect its exact declared public
+capabilities without executing the solver:
+
+```text
+Run `holoforge inspect benchmark BENCHMARK --json`. Compare my requirement only
+with exact capability IDs in the receipt. Report qualified items, known gaps,
+and undeclared items separately. Do not infer that the receipt establishes
+truth, novelty, publishability, or support for a new post-processing route.
+```
+
+Repeat `--require CAPABILITY_ID` to make the CLI classify exact identifiers.
+Exit `0` means every requested identifier is declared qualified; exit `1`
+means at least one requested identifier is a known gap or is not declared.
+No solver runs during inspection.
+
 To retain a portable, integrity-checked record, ask the agent to add
 `--bundle-dir` to the selected command and run `holoforge audit bundle` on the
 result. The [evidence-bundle guide](evidence-bundles.md) explains what the

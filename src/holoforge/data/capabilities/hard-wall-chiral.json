@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "hard-wall-chiral",
+  "summary": "Two-flavor hard-wall Model A masses, decay constants, overlap, and GMOR checks.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["lowest normalizable vector, axial-vector, and pion modes"],
+    "ensembles": ["zero-temperature two-flavor hard-wall Model A"],
+    "parameters": [
+      {"id": "parameter.model-a-inputs", "description": "Published rounded Model A inputs are held fixed without refitting.", "coverage_kind": "fixed"},
+      {"id": "parameter.spectral-degrees", "description": "Frozen three-resolution spectral sequence.", "coverage_kind": "finite-set"},
+      {"id": "parameter.gmor-mass-factors", "description": "Frozen quark-mass factors used for the GMOR audit.", "coverage_kind": "finite-set"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.chiral-spectrum", "description": "Lowest pion, rho, and axial-vector masses.", "artifact_role": "result", "evidence": ["domains/qcd/hard_wall_chiral/model-card.json#/observables/0"]},
+    {"id": "observable.decay-constants", "description": "Pion, rho, and axial-vector decay-constant quantities.", "artifact_role": "result", "evidence": ["domains/qcd/hard_wall_chiral/model-card.json#/observables/1"]},
+    {"id": "observable.rho-pion-pion-coupling", "description": "Canonical pion-density overlap with the lowest vector mode.", "artifact_role": "result", "evidence": ["domains/qcd/hard_wall_chiral/model-card.json#/observables/2"]},
+    {"id": "artifact.verification-record", "description": "Strict JSON result with source-table and numerical acceptance checks.", "artifact_role": "evidence", "evidence": ["docs/benchmarks/hard-wall-chiral.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.gmor-ratio", "description": "Forms and audits the GMOR ratio at the frozen mass factors.", "evidence": ["domains/qcd/hard_wall_chiral/model-card.json#/observables/3"]},
+    {"id": "transformation.source-table-comparison", "description": "Compares calculated Model A quantities with the published rounded table.", "evidence": ["docs/benchmarks/hard-wall-chiral.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.strange-and-baryon-sectors", "description": "Strange quarks and baryons are outside scope."},
+    {"id": "gap.finite-temperature-density", "description": "Finite temperature and density are outside scope."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "qcd.hard-wall-chiral.ekss-model-a", "repository_path": "domains/qcd/hard_wall_chiral/model-card.json"}],
+    "documentation": ["docs/benchmarks/hard-wall-chiral.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

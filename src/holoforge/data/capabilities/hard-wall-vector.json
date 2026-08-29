@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "hard-wall-vector",
+  "summary": "Low transverse-vector modes of the hard-wall model.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["ordered low transverse-vector normal modes"],
+    "ensembles": ["fixed zero-temperature AdS slice with an IR wall"],
+    "parameters": [
+      {"id": "parameter.wall-position", "description": "Positive IR-wall position with a declared numerical range.", "coverage_kind": "bounded"},
+      {"id": "parameter.uv-cutoff", "description": "Finite UV cutoff selected by the caller.", "coverage_kind": "configurable"},
+      {"id": "parameter.mode-count", "description": "Requested number of low modes.", "coverage_kind": "configurable"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.vector-mass-ratios", "description": "Ordered vector masses normalized by the ground-state mass.", "artifact_role": "result", "evidence": ["domains/qcd/hard_wall_vector/model-card.json#/observables/0"]},
+    {"id": "artifact.verification-record", "description": "Strict JSON result with configuration and acceptance checks.", "artifact_role": "evidence", "evidence": ["docs/benchmarks/hard-wall-vector.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.bessel-root-comparison", "description": "Compares numerical ratios with the analytic Bessel-root spectrum.", "evidence": ["docs/benchmarks/hard-wall-vector.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.chiral-observables", "description": "Chiral observables and decay constants are not computed."},
+    {"id": "gap.large-spectrum-production", "description": "The dense solver is not qualified for large-spectrum production."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "qcd.hard-wall-vector.ekss", "repository_path": "domains/qcd/hard_wall_vector/model-card.json"}],
+    "documentation": ["docs/benchmarks/hard-wall-vector.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

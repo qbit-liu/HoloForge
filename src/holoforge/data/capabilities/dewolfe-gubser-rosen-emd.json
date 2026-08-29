@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "dewolfe-gubser-rosen-emd",
+  "summary": "Zero-density bottom-up EMD thermodynamics and baryon susceptibility.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["declared neutral black-hole family over the frozen horizon-scalar interval"],
+    "ensembles": ["zero chemical potential with neutral backgrounds and linear Maxwell response"],
+    "parameters": [
+      {"id": "parameter.source-potential", "description": "Published scalar potential and gauge kinetic function.", "coverage_kind": "fixed"},
+      {"id": "parameter.horizon-targets", "description": "Frozen public horizon-scalar targets.", "coverage_kind": "finite-set"},
+      {"id": "parameter.spectral-degrees", "description": "Frozen primary and refinement resolutions.", "coverage_kind": "finite-set"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.temperature", "description": "Temperature in the published source scale.", "artifact_role": "result", "evidence": ["domains/qcd/dewolfe_gubser_rosen_emd/model-card.json#/observables/0"]},
+    {"id": "observable.normalized-entropy-density", "description": "Entropy density normalized by temperature cubed.", "artifact_role": "result", "evidence": ["domains/qcd/dewolfe_gubser_rosen_emd/model-card.json#/observables/1"]},
+    {"id": "observable.normalized-baryon-susceptibility", "description": "Zero-density baryon susceptibility normalized by temperature squared.", "artifact_role": "result", "evidence": ["domains/qcd/dewolfe_gubser_rosen_emd/model-card.json#/observables/2"]},
+    {"id": "artifact.figure-three-comparison", "description": "Generated comparison with derived public Figure 3 anchors.", "artifact_role": "evidence", "evidence": ["docs/benchmarks/dewolfe-gubser-rosen-emd.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.source-scale-dictionary", "description": "Applies the published source scale dictionary without refitting.", "evidence": ["docs/benchmarks/dewolfe-gubser-rosen-emd.md"]},
+    {"id": "transformation.maxwell-susceptibility-integral", "description": "Maps the neutral background and gauge kinetic function to zero-density susceptibility.", "evidence": ["docs/benchmarks/dewolfe-gubser-rosen-emd.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.finite-density", "description": "Charged backgrounds and critical behavior are handled by a separate benchmark."},
+    {"id": "gap.empirical-qcd-validation", "description": "Reproduction of the calibrated model is not empirical QCD validation."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "qcd.dewolfe-gubser-rosen-emd", "repository_path": "domains/qcd/dewolfe_gubser_rosen_emd/model-card.json"}],
+    "documentation": ["docs/benchmarks/dewolfe-gubser-rosen-emd.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

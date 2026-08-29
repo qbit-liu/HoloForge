@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "gubser-rocha-emd",
+  "summary": "Top-down-derived charged EMD background used as a classical numerical control.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["analytic equal-charge background", "stable physical cases and unstable analytic verification cases"],
+    "ensembles": ["charged homogeneous EMD background at the frozen scale choice"],
+    "parameters": [
+      {"id": "parameter.charge-ratios", "description": "Seven frozen source charge-ratio cases.", "coverage_kind": "finite-set"},
+      {"id": "parameter.spectral-degrees", "description": "Three aligned Chebyshev resolutions.", "coverage_kind": "finite-set"},
+      {"id": "parameter.collocation-ceiling", "description": "Fixed method-conditioned collocation acceptance ceiling.", "coverage_kind": "fixed"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.temperature", "description": "Exact-horizon temperature in the frozen units.", "artifact_role": "result", "evidence": ["domains/condensed_matter/gubser_rocha_emd/model-card.json#/observables/0"]},
+    {"id": "observable.chemical-potential", "description": "Boundary chemical potential after the fixed scale choice.", "artifact_role": "result", "evidence": ["domains/condensed_matter/gubser_rocha_emd/model-card.json#/observables/1"]},
+    {"id": "observable.entropy-charge-energy-densities", "description": "Source-normalized entropy, charge, and energy densities.", "artifact_role": "result", "evidence": ["domains/condensed_matter/gubser_rocha_emd/model-card.json#/observables/2", "domains/condensed_matter/gubser_rocha_emd/model-card.json#/observables/3", "domains/condensed_matter/gubser_rocha_emd/model-card.json#/observables/4"]},
+    {"id": "artifact.verification-record", "description": "Strict JSON result with exact-background, flux, thermodynamic, and low-temperature checks.", "artifact_role": "evidence", "evidence": ["docs/benchmarks/gubser-rocha-emd.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.exact-background-check", "description": "Compares the numerical solution with the analytic charged background.", "evidence": ["docs/benchmarks/gubser-rocha-emd.md"]},
+    {"id": "transformation.horizon-boundary-thermodynamics", "description": "Extracts thermodynamic quantities from declared horizon and boundary coefficients.", "evidence": ["docs/benchmarks/gubser-rocha-emd.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.charged-fermion-sector", "description": "The charged-fermion Dirac system and source Figure 1 are not reproduced."},
+    {"id": "gap.stable-large-charge-branch", "description": "Charge ratios above one are unstable verification points, not stable phase selections."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "condensed-matter.gubser-rocha-emd", "repository_path": "domains/condensed_matter/gubser_rocha_emd/model-card.json"}],
+    "documentation": ["docs/benchmarks/gubser-rocha-emd.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

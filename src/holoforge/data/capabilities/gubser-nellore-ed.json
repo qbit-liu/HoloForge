@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.6",
+  "benchmark_id": "gubser-nellore-ed",
+  "summary": "Zero-density Einstein-dilaton thermodynamics for two public potential presets.",
+  "mode": "forge-verify",
+  "support_level": "reproduced",
+  "coverage": {
+    "branches": ["declared regular zero-density black-hole branches"],
+    "ensembles": ["zero chemical potential with no Maxwell field"],
+    "parameters": [
+      {"id": "parameter.potential-preset", "description": "Pure-cosh and QCD-like public potential presets.", "coverage_kind": "finite-set"},
+      {"id": "parameter.spectral-degrees", "description": "Preset-specific three-resolution collocation sequences.", "coverage_kind": "finite-set"},
+      {"id": "parameter.horizon-scalar", "description": "Declared public branch sampling in the horizon scalar.", "coverage_kind": "bounded"}
+    ]
+  },
+  "outputs": [
+    {"id": "observable.temperature", "description": "Dimensionless black-hole temperature.", "artifact_role": "result", "evidence": ["domains/qcd/gubser_nellore_ed/model-card.json#/observables/0"]},
+    {"id": "observable.entropy-density", "description": "Dimensionless horizon entropy density.", "artifact_role": "result", "evidence": ["domains/qcd/gubser_nellore_ed/model-card.json#/observables/1"]},
+    {"id": "observable.speed-of-sound-squared", "description": "Speed of sound squared along the declared branch.", "artifact_role": "result", "evidence": ["domains/qcd/gubser_nellore_ed/model-card.json#/observables/2"]},
+    {"id": "artifact.thermodynamic-figure", "description": "Generated source-curve comparison figure with public anchors.", "artifact_role": "evidence", "evidence": ["docs/benchmarks/gubser-nellore-ed.md"]}
+  ],
+  "validated_transformations": [
+    {"id": "transformation.horizon-thermodynamics", "description": "Extracts temperature and entropy from exact-horizon quantities.", "evidence": ["docs/benchmarks/gubser-nellore-ed.md"]},
+    {"id": "transformation.sound-speed-derivative", "description": "Differentiates log temperature with respect to log entropy on one declared branch.", "evidence": ["docs/benchmarks/gubser-nellore-ed.md"]}
+  ],
+  "known_gaps": [
+    {"id": "gap.finite-density", "description": "No Maxwell field or finite-density physics is included."},
+    {"id": "gap.predicted-critical-temperature", "description": "The plot registration is not a predicted critical temperature."}
+  ],
+  "evidence": {
+    "model_cards": [{"identifier": "qcd.gubser-nellore-einstein-dilaton", "repository_path": "domains/qcd/gubser_nellore_ed/model-card.json"}],
+    "documentation": ["docs/benchmarks/gubser-nellore-ed.md"]
+  },
+  "provenance": {"generated_by_ai": true, "review_status": "approved", "reviewed_by": "Xin-Yi Liu", "reviewed_on": "2026-08-29"}
+}

@@ -12,7 +12,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class Version05PolicyTests(unittest.TestCase):
     def test_every_deliberate_package_export_is_documented(self) -> None:
-        policy = (ROOT / "docs/version-0.5-compatibility-policy.md").read_text()
+        policy = "\n".join(
+            (
+                (ROOT / "docs/version-0.5-compatibility-policy.md").read_text(),
+                (ROOT / "docs/version-0.6.md").read_text(),
+            )
+        )
         for module in (core, benchmarks, comparisons):
             for name in module.__all__:
                 with self.subTest(module=module.__name__, name=name):

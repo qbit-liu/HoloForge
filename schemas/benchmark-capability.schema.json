@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xin-yi6.github.io/HoloForge/schemas/benchmark-capability.schema.json",
+  "title": "HoloForge benchmark capability receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "benchmark_id",
+    "summary",
+    "mode",
+    "support_level",
+    "coverage",
+    "outputs",
+    "validated_transformations",
+    "known_gaps",
+    "evidence",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.6"},
+    "benchmark_id": {"$ref": "#/$defs/identifier"},
+    "summary": {"$ref": "#/$defs/nonempty"},
+    "mode": {"const": "forge-verify"},
+    "support_level": {"const": "reproduced"},
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["branches", "ensembles", "parameters"],
+      "properties": {
+        "branches": {"$ref": "#/$defs/nonemptyStringArray"},
+        "ensembles": {"$ref": "#/$defs/nonemptyStringArray"},
+        "parameters": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "description", "coverage_kind"],
+            "properties": {
+              "id": {"$ref": "#/$defs/identifier"},
+              "description": {"$ref": "#/$defs/nonempty"},
+              "coverage_kind": {
+                "enum": ["fixed", "bounded", "finite-set", "configurable"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/output"}
+    },
+    "validated_transformations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/transformation"}
+    },
+    "known_gaps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/gap"}
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model_cards", "documentation"],
+      "properties": {
+        "model_cards": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["identifier", "repository_path"],
+            "properties": {
+              "identifier": {"$ref": "#/$defs/identifier"},
+              "repository_path": {"$ref": "#/$defs/repositoryPath"}
+            }
+          }
+        },
+        "documentation": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/repositoryPath"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generated_by_ai", "review_status"],
+      "properties": {
+        "generated_by_ai": {"const": true},
+        "review_status": {"enum": ["unreviewed", "approved"]},
+        "reviewed_by": {"$ref": "#/$defs/nonempty"},
+        "reviewed_on": {"type": "string", "format": "date"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"review_status": {"const": "approved"}}},
+          "then": {"required": ["reviewed_by", "reviewed_on"]},
+          "else": {
+            "not": {"anyOf": [{"required": ["reviewed_by"]}, {"required": ["reviewed_on"]}]}
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$"
+    },
+    "nonempty": {"type": "string", "minLength": 1},
+    "nonemptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/nonempty"}
+    },
+    "repositoryPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "artifact_role", "evidence"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "description": {"$ref": "#/$defs/nonempty"},
+        "artifact_role": {"enum": ["result", "evidence", "diagnostic"]},
+        "evidence": {"$ref": "#/$defs/nonemptyStringArray"}
+      }
+    },
+    "transformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "evidence"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "description": {"$ref": "#/$defs/nonempty"},
+        "evidence": {"$ref": "#/$defs/nonemptyStringArray"}
+      }
+    },
+    "gap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "description": {"$ref": "#/$defs/nonempty"}
+      }
+    }
+  }
+}
