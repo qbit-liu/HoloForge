@@ -23,6 +23,13 @@ research campaign rather than automatically disqualifying the question. See
 the [research objective](docs/research-objective.md) and
 [research-gate workflow](docs/research-gate-workflow.md).
 
+Holographic leverage may be physical or conceptual, such as a new mechanism or
+relation, and it may also be computational or representational: a controlled
+duality can make an otherwise inaccessible strongly coupled problem
+calculable. The latter is a legitimate research-value route only when the
+dictionary, approximation regime, comparison baseline, accuracy, and actual
+advantage are demonstrated rather than assumed from the extra dimension.
+
 ## Framework scope
 
 HoloForge is not organized around one physical domain, model family, or

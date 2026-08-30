@@ -4,6 +4,18 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+### Changed
+
+- Recognize controlled computational or representational holographic leverage
+  as a scientific-value route alongside physical or conceptual leverage, while
+  requiring a named nonholographic baseline, a valid dictionary and regime,
+  accessible-observable, accuracy, robustness, and total-cost evidence.
+
+### Scientific results
+
+- No public model equation, solver, default, tolerance, benchmark result, or
+  accepted physical claim changed.
+
 ## [0.6.1] - 2026-08-29
 
 ### Changed

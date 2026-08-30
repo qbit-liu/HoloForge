@@ -249,7 +249,8 @@ class PublicContentPolicyTests(unittest.TestCase):
             "physical importance",
             "gap plausibility",
             "falsifiability",
-            "holographic leverage",
+            "physical or conceptual holographic leverage",
+            "computational or representational holographic leverage",
             "explanatory or predictive depth",
             "outcome value",
             "owner fit",
@@ -268,6 +269,9 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertIn("planned model or capability construction is not a repair", combined)
         self.assertIn("capability receipts", combined)
         self.assertIn("must not select the questions worth pursuing", combined)
+        self.assertIn("best nonholographic baseline", combined)
+        self.assertIn("an extra dimension", combined)
+        self.assertIn("total construction and compute cost", combined)
         self.assertIn("not a novelty", scorecard)
         self.assertIn("prior-knowledge review", scorecard)
         self.assertIn("stable knowledge or lesson id", combined)

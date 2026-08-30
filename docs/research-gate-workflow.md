@@ -33,20 +33,38 @@ prepare a **scientific-opportunity assessment** that addresses independently:
 3. **Falsifiability:** what observation, derivation, scaling relation, branch
    comparison, or other physical discriminator could change confidence in the
    proposal?
-4. **Holographic leverage:** what can gauge/gravity modelling expose that a
+4. **Physical or conceptual holographic leverage:** what mechanism, relation,
+   controlled regime, or prediction can gauge/gravity modelling expose that a
    simpler effective, symmetry, perturbative, or data-fit description cannot?
-5. **Explanatory or predictive depth:** would the result reveal a mechanism,
+5. **Computational or representational holographic leverage:** does a
+   controlled dual description make a scientifically important strongly
+   coupled problem calculable, or expose observables and regimes that the best
+   named nonholographic baseline cannot access with comparable control?
+6. **Explanatory or predictive depth:** would the result reveal a mechanism,
    relation, controlled regime, or reusable dictionary rather than only add a
    curve or flexible fit?
-6. **Outcome value:** what would be learned from positive, negative, and
+7. **Outcome value:** what would be learned from positive, negative, and
    inconclusive outcomes?
-7. **Owner fit:** how does the direction fit the human research owner's
+8. **Owner fit:** how does the direction fit the human research owner's
    expertise, interests, available time, risk tolerance, and portfolio?
 
 Agents, literature records, and hostile critics supply evidence and competing
 interpretations for these rows. They must not collapse them into one opaque
 score or certify importance, novelty, or publication value. The named human
 research owner makes the final scientific-value and investment decision.
+
+The two holographic-leverage rows are independent. A candidate does not need
+both a new phenomenon and a calculational advantage, but it must establish at
+least one non-decorative role appropriate to its claim. For the computational
+or representational route, record the hard original problem, the best named
+nonholographic method, why that method is insufficient, the dictionary and
+validity regime of the holographic replacement, which observables become
+accessible, and a prospective comparison of accuracy, robustness, human
+construction effort, and compute cost. Do not award leverage merely because
+the bulk has one extra dimension, because a classical equation can be run, or
+because the nonholographic calculation has not yet been attempted. A
+holographic calculation that is less controlled or more costly than its
+baseline does not gain value from tractability language alone.
 
 ## Declare portfolio intent and search scope
 

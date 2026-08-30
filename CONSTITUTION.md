@@ -26,9 +26,15 @@ Explore work uses a hypothesis card, gives a falsification or discriminating
 test, and cannot be presented as established merely because code runs or an AI
 system proposed it. Agents and structured records may assemble evidence and
 compare opportunities, but the named human research owner decides scientific
-value and authorizes investment. Novel, unpublished Explore work may remain in
-a separate private workspace; Explore is an evidence category, not a
-requirement to disclose research in progress.
+value and authorizes investment. Holographic value may come from a distinct
+physical mechanism, relation, or prediction, or from controlled computational
+or representational leverage over a scientifically important problem that is
+otherwise intractable or poorly controlled. Computational leverage must be
+demonstrated against a named nonholographic baseline with an explicit
+dictionary, validity regime, accuracy boundary, and cost comparison; an extra
+dimension or an easier numerical run is not sufficient by itself. Novel,
+unpublished Explore work may remain in a separate private workspace; Explore
+is an evidence category, not a requirement to disclose research in progress.
 
 ## 3. Claim labels
 

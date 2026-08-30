@@ -59,9 +59,14 @@ These workflows do not replace human scientific or disclosure approval.
   portfolio intent, search shape, domains considered or excluded, and actual
   candidate coverage. Before capability matching, assess scientific
   opportunity through physical importance, gap plausibility, falsifiability,
-  holographic leverage, explanatory or predictive depth, outcome value, and
-  owner fit. The named human owner decides scientific value; capability
-  receipts must not select the question. Then classify the horizon as open
+  physical or conceptual holographic leverage, computational or
+  representational holographic leverage, explanatory or predictive depth,
+  outcome value, and owner fit. A computational-leverage claim must name the
+  hard original problem, best nonholographic baseline, dictionary and validity
+  regime, accessible observables, accuracy, robustness, and total construction
+  and compute cost; an extra dimension alone is not an advantage. The named
+  human owner decides scientific value; capability receipts must not select
+  the question. Then classify the horizon as open
   discovery, strategic development, or short-horizon execution. For
   publication-targeted work, record the minimum publishable physical claim,
   earliest honest physical-discriminator gate and prerequisites, numerical-
