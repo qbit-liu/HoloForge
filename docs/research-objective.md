@@ -47,7 +47,11 @@ non-aggregate assessment of:
 - the importance of the physical question or phenomenon;
 - the plausibility and exact limitations of the prior-work gap;
 - falsifiability and the existence of a meaningful physical discriminator;
-- the distinct leverage supplied by gauge/gravity modelling;
+- physical or conceptual holographic leverage: a mechanism, relation, regime,
+  or prediction unavailable from a simpler description;
+- computational or representational holographic leverage: controlled access
+  to a scientifically important strongly coupled problem that the best named
+  nonholographic baseline cannot solve or control comparably;
 - explanatory or predictive depth beyond a generic flexible-model fit;
 - the prospective value of positive, negative, and inconclusive outcomes; and
 - fit with the owner's expertise, interests, time, and portfolio strategy.
@@ -57,6 +61,17 @@ feasibility and horizon decision. They must not determine scientific value or
 silently privilege the subjects already represented by public benchmarks.
 There is no opaque aggregate score that replaces comparative scientific
 judgment.
+
+Computational or representational leverage is a legitimate research-value
+route even when holography does not predict a qualitatively new phenomenon.
+It is not an automatic pass. The candidate must identify the hard original
+problem and best available comparison method, establish the source-response
+dictionary and duality or modelling regime, and compare accessible
+observables, accuracy, robustness, and total construction and compute cost.
+The higher-dimensional description must provide a real scientific advantage,
+not merely move the difficulty into a more flexible model, an uncontrolled
+dictionary, or an expensive bulk solve. This route may support a physics,
+method, or combined contribution, but its claim must match the evidence.
 
 ## Three research horizons
 

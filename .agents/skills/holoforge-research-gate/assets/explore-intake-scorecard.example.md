@@ -47,7 +47,8 @@ judgment, not an automatic score or a novelty/publication certificate.
 | Physical importance | `<phenomenon, tension, missing explanation, or new application>` | `<why importance may be overstated>` | `<strong | plausible | weak | undecided>` |
 | Gap plausibility | `<exact closest prior work and bounded no-hit evidence>` | `<coverage limitation>` | `<assessment>` |
 | Falsifiability | `<observable, derivation, scaling relation, branch comparison, or discriminator>` | `<risk that coefficients absorb the effect>` | `<assessment>` |
-| Holographic leverage | `<what gauge/gravity adds beyond simpler descriptions>` | `<risk that holography is decorative or unnecessarily flexible>` | `<assessment>` |
+| Physical or conceptual holographic leverage | `<new mechanism, relation, controlled regime, or prediction beyond simpler descriptions>` | `<risk that holography is decorative or unnecessarily flexible>` | `<assessment>` |
+| Computational or representational holographic leverage | `<hard original problem; best nonholographic baseline; what the controlled dual makes accessible; accuracy and total-cost comparison>` | `<risk that the dictionary is uncontrolled, the baseline was not attempted, or the bulk only moves/adds difficulty>` | `<assessment>` |
 | Explanatory or predictive depth | `<mechanism, relation, controlled regime, or reusable dictionary>` | `<risk of another curve or fit>` | `<assessment>` |
 | Outcome value | `<what positive, negative, and inconclusive results would teach>` | `<risk that only a technical artifact is produced>` | `<assessment>` |
 | Owner fit | `<expertise, interest, time, risk tolerance, and portfolio role>` | `<opportunity cost>` | `<assessment by named owner>` |

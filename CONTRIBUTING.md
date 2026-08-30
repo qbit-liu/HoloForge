@@ -53,9 +53,14 @@ before calculation and keep scientific support, owner authorization, and
 disclosure status separate. Record the intake's portfolio intent and actual
 domain coverage. Assess scientific opportunity before capability readiness;
 the named human owner decides scientific value after reviewing importance,
-gap plausibility, falsifiability, holographic leverage, explanatory depth,
-outcome value, and owner fit. Then classify the opportunity as open discovery,
-strategic development, or short-horizon execution. Publication-targeted
+gap plausibility, falsifiability, physical or conceptual holographic leverage,
+computational or representational holographic leverage, explanatory depth,
+outcome value, and owner fit. A computational-leverage route must compare the
+hard original problem and best nonholographic baseline against the holographic
+dictionary, validity regime, accessible observables, accuracy, robustness, and
+total construction and compute cost; an extra dimension alone is not an
+advantage. Then classify the opportunity as open discovery, strategic
+development, or short-horizon execution. Publication-targeted
 scorecards must name the minimum publishable physical claim, earliest honest
 physical-discriminator gate and prerequisites, numerical-dependence lane,
 campaign construction budget, and separate candidate-wide repair budget;

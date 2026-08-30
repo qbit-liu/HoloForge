@@ -97,9 +97,13 @@ contract so the window does not introduce an extra decision gate.
    portfolio intent, search shape, domains considered or deliberately excluded,
    and candidate-pool coverage. Before inspecting capability receipts or
    ranking by cost, complete the scientific-opportunity assessment: physical
-   importance, gap plausibility, falsifiability, holographic leverage,
-   explanatory or predictive depth, outcome value, and fit with the named
-   human owner's expertise and portfolio. The agent supplies evidence and a
+   importance, gap plausibility, falsifiability, physical or conceptual
+   holographic leverage, computational or representational holographic
+   leverage, explanatory or predictive depth, outcome value, and fit with the
+   named human owner's expertise and portfolio. A computational-leverage claim
+   must name the hard original problem, best nonholographic baseline,
+   dictionary and validity regime, accessible observables, accuracy, and total
+   construction and compute cost. The agent supplies evidence and a
    recommendation; the owner decides scientific value and investment.
 
    Then choose an honest horizon: open discovery, strategic development, or

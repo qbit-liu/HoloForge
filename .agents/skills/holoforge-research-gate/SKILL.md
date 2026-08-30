@@ -40,12 +40,17 @@ acts as a quota or a reason to advance a weak candidate.
 
 Before inspecting capability receipts or ranking by cost, complete the
 scorecard's scientific-opportunity assessment. Address physical importance,
-gap plausibility, falsifiability, holographic leverage, explanatory or
+gap plausibility, falsifiability, physical or conceptual holographic leverage,
+computational or representational holographic leverage, explanatory or
 predictive depth, the value of positive/negative/inconclusive outcomes, and
-fit with the human owner's expertise and portfolio. Agents assemble evidence
-and alternatives; they do not collapse these rows into one score or certify
-importance, novelty, or publication value. The named human research owner
-decides scientific value and investment.
+fit with the human owner's expertise and portfolio. For computational or
+representational leverage, name the hard original problem, best
+nonholographic baseline, dictionary and validity regime, accessible
+observables, accuracy, robustness, and total construction and compute cost.
+An extra dimension or runnable bulk equation is not by itself an advantage.
+Agents assemble evidence and alternatives; they do not collapse these rows
+into one score or certify importance, novelty, or publication value. The named
+human research owner decides scientific value and investment.
 
 For publication-targeted work, complete the scorecard's separate
 publication-pathway assessment after the opportunity assessment. Require a
