@@ -62,6 +62,13 @@ silently privilege the subjects already represented by public benchmarks.
 There is no opaque aggregate score that replaces comparative scientific
 judgment.
 
+For an autonomous campaign, the owner may make this investment decision
+prospectively by authorizing an exact question envelope and candidate-selection
+policy. The agent may select among candidates that satisfy that policy, but the
+selection remains AI-generated and unreviewed; it cannot certify importance,
+novelty, truth, or publication value. Any change to the envelope or policy
+returns to the owner.
+
 Computational or representational leverage is a legitimate research-value
 route even when holography does not predict a qualitatively new phenomenon.
 It is not an automatic pass. The candidate must identify the hard original

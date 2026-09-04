@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1",
+  "mission_id": "auto-synthetic-demo",
+  "mission_sha256": "b9b1f5bdba3bdccc245404f2a3668d33faa6d8d88af61387335d486d46ac4b43",
+  "state_sha256": "efa6314bbe8b94a9b0165a5ea84530fd681598d921d85b594d7960f77ad1c052",
+  "outcome": "source-stop",
+  "manuscript": {
+    "status": "not-produced",
+    "path": null
+  },
+  "code": {
+    "status": "not-produced",
+    "path": null
+  },
+  "artifacts": [],
+  "claims": [],
+  "nonclaims": [
+    "The synthetic stop does not establish a physical result, novelty, or publication readiness."
+  ],
+  "limitations": [
+    "This example tests only the generic autonomous control plane."
+  ],
+  "checks": {
+    "scientific_opportunity": {
+      "status": "not-applicable",
+      "evidence_refs": [],
+      "summary": "No scientific opportunity claim is made in the synthetic campaign."
+    },
+    "physical_claim": {
+      "status": "not-applicable",
+      "evidence_refs": [],
+      "summary": "No physical claim was selected or tested."
+    },
+    "source_and_novelty": {
+      "status": "stop",
+      "evidence_refs": ["campaign/evidence/source-receipt.json"],
+      "summary": "The contract's required synthetic source was unavailable."
+    },
+    "numerical_credibility": {
+      "status": "not-applicable",
+      "evidence_refs": [],
+      "summary": "No numerical calculation was attempted after the source stop."
+    },
+    "independent_reproduction": {
+      "status": "not-applicable",
+      "evidence_refs": [],
+      "summary": "There was no claim-bearing calculation to reproduce."
+    },
+    "hostile_review": {
+      "status": "not-applicable",
+      "evidence_refs": [],
+      "summary": "The campaign stopped before a candidate required hostile review."
+    }
+  },
+  "framework_clean": true,
+  "external_actions_performed": false,
+  "owner_decisions_remaining": [
+    "scientific-verdict",
+    "authorship",
+    "disclosure",
+    "submission"
+  ],
+  "provenance": {
+    "created_on": "2026-01-01",
+    "created_by": "coordinator",
+    "ai_assistance": true,
+    "review_status": "unreviewed"
+  }
+}

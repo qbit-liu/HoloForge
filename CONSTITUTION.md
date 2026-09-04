@@ -26,7 +26,14 @@ Explore work uses a hypothesis card, gives a falsification or discriminating
 test, and cannot be presented as established merely because code runs or an AI
 system proposed it. Agents and structured records may assemble evidence and
 compare opportunities, but the named human research owner decides scientific
-value and authorizes investment. Holographic value may come from a distinct
+value and authorizes investment. In a prospectively frozen autonomous mission,
+the owner may make that investment decision by approving an exact portfolio
+envelope, candidate-selection policy, decision set, resource ceiling, and
+mandatory-return boundary. The agent may then select and execute candidates
+inside that authority without a new human choice at every transition. This
+delegation neither assigns human review nor authorizes changes to the framework,
+scientific thresholds, disclosure, submission, or publication. Holographic
+value may come from a distinct
 physical mechanism, relation, or prediction, or from controlled computational
 or representational leverage over a scientifically important problem that is
 otherwise intractable or poorly controlled. Computational leverage must be
@@ -48,6 +55,12 @@ Every consequential physical claim must carry one of these support levels:
 
 AI authorship and scientific support are separate facts. AI-generated claims
 must be marked as such and remain `unreviewed` until a human checks them.
+
+An autonomous campaign must return either a fully auditable submission-ready
+candidate or an equally auditable negative, inconclusive, source, prior-art,
+technical, budget, policy, or owner-return outcome. It must not guarantee a
+paper, hide stopped candidates, or obtain success by changing a frozen claim or
+weakening a failed check.
 
 ## 4. Verification contract
 

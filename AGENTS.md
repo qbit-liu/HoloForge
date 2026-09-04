@@ -34,6 +34,9 @@ For a first session, follow `docs/agent-quickstart.md`.
   `.agents/skills/holoforge-add-benchmark/SKILL.md`.
 - Running a bounded Explore gate: read and follow
   `.agents/skills/holoforge-research-gate/SKILL.md`.
+- Preparing, running, or auditing an owner-authorized end-to-end autonomous
+  Explore campaign: read and follow
+  `.agents/skills/holoforge-auto-research/SKILL.md`.
 - Moving any artifact from private research into this repository: read and
   follow `.agents/skills/holoforge-public-export/SKILL.md`.
 
@@ -106,6 +109,14 @@ These workflows do not replace human scientific or disclosure approval.
   overrun, impasse, interpretation or publication judgment, disclosure or
   external communication, or unlisted Git/remote action. The window never
   rolls over to another gate or candidate.
+- For an owner-authorized autonomous campaign, treat the mission hash as the
+  campaign authority. Use one coordinator as the sole canonical writer and
+  keep literature, execution, and verification roles read-only. Do not touch
+  the pinned HoloForge checkout, other projects, frozen contracts or thresholds,
+  raw evidence, human review states, credentials, global configuration, remote
+  Git state, external communications, disclosure, or submission. Return at the
+  first illegal transition, integrity mismatch, budget overrun, path escape, or
+  undelegated decision. A stopped campaign is a valid terminal deliverable.
 
 ## Validation
 

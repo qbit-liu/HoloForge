@@ -23,6 +23,12 @@ research campaign rather than automatically disqualifying the question. See
 the [research objective](docs/research-objective.md) and
 [research-gate workflow](docs/research-gate-workflow.md).
 
+An experimental [autonomous research workflow](docs/autonomous-research-workflow.md)
+can prospectively delegate candidate generation, selection, repeated frozen
+gates, bounded pivots, and terminal packaging inside a private campaign. It is
+designed for unattended execution, but it does not guarantee a paper or permit
+the agent to modify HoloForge, relax thresholds, assign human review, or publish.
+
 Holographic leverage may be physical or conceptual, such as a new mechanism or
 relation, and it may also be computational or representational: a controlled
 duality can make an otherwise inaccessible strongly coupled problem
@@ -157,6 +163,10 @@ artifacts. Plot generation requires the optional dependency installed with
 - [`docs/research-objective.md`](docs/research-objective.md) defines the
   physics-first objective, discovery/confirmation loops, conditional evidence
   profiles, and research-pulled development boundary.
+- [`docs/autonomous-research-workflow.md`](docs/autonomous-research-workflow.md)
+  defines the experimental campaign-level delegation contract, multi-agent
+  roles, no-touch surfaces, state machine, terminal package, and AR-0--AR-5
+  checkpoints.
 - [`docs/version-*.md`](docs/) contains the scientific and infrastructure
   contracts for each public release.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) explains the scientific and software
@@ -178,7 +188,7 @@ artifacts. Plot generation requires the optional dependency installed with
 - [`CHANGELOG.md`](CHANGELOG.md) records release-level changes.
 - [`schemas/`](schemas/) contains machine-readable model-card,
   hypothesis-card, reference-data, prediction, comparison, evidence-bundle,
-  and compatibility contracts.
+  compatibility, and experimental autonomous-campaign contracts.
 - [`domains/`](domains/) contains literature-anchored, testable models.
 - [`incubator/`](incubator/) contains only public-safe Explore examples and
   proposals.
@@ -205,6 +215,11 @@ The checked-in skills package procedures that are specific to HoloForge:
   owner-approved bounded autonomy window can carry routine in-scope work to one
   consolidated mandatory return without delegating scientific or disclosure
   decisions;
+- `$holoforge-auto-research` governs a true campaign-level auto mode that may
+  search, select, execute, verify, preserve-and-pivot, and package multiple
+  candidates within one owner-authorized mission, using a sole-writer
+  coordinator, read-only specialist roles, deterministic state validation, and
+  honest stopped outcomes;
 - `$holoforge-public-export` audits a proposed private-to-public artifact and
   includes a deterministic scanner for common private-path and forbidden-token
   leaks; and

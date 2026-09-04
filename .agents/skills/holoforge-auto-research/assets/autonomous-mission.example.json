@@ -1,0 +1,142 @@
+{
+  "schema_version": "0.1",
+  "mission_id": "auto-synthetic-demo",
+  "title": "Synthetic autonomous campaign contract",
+  "mode": "autonomous-explore",
+  "maturity": "experimental",
+  "status": "owner-authorized",
+  "portfolio": {
+    "intent": "method-learning",
+    "research_question_envelope": "Exercise the autonomous control plane without pursuing or asserting a novel physical result.",
+    "included_domains": ["synthetic-example"],
+    "excluded_domains": ["human-subjects", "external-deployment"],
+    "search_shape": "Inspect a fixed synthetic source set and retain every screened candidate and stop reason.",
+    "minimum_publishable_claim": "No physical publication claim is permitted in this synthetic contract; only workflow evidence may be produced.",
+    "target_venue": "none-synthetic"
+  },
+  "authorization": {
+    "owner": "synthetic-research-owner",
+    "authorized_on": "2026-01-01",
+    "expires_on": "2099-01-02",
+    "decision_record": "synthetic-owner-decision-001",
+    "delegated_decisions": [
+      "candidate_generation",
+      "candidate_selection",
+      "gate_transition",
+      "bounded_revision",
+      "candidate_pivot",
+      "local_execution"
+    ],
+    "local_commit_allowed": false
+  },
+  "pinned_framework": {
+    "name": "HoloForge",
+    "commit": "0000000000000000000000000000000000000001",
+    "write_policy": "read-only",
+    "require_clean": true
+  },
+  "workspace": {
+    "canonical_writer": "coordinator",
+    "allowed_write_roots": ["campaign"],
+    "forbidden_paths": ["framework-checkout", "other-projects"]
+  },
+  "budgets": {
+    "source_limit": 8,
+    "construction_hours": 0.0,
+    "compute_hours": 1.0,
+    "wall_time_hours": 2.0,
+    "storage_gb": 1.0,
+    "candidate_limit": 2,
+    "pivot_limit": 1,
+    "repair_limit_per_candidate": 1
+  },
+  "scientific_contract": {
+    "selection_policy": "Select only a synthetic candidate with a complete gate contract and a deterministic stop test.",
+    "claim_sufficiency": "The control-plane test passes only when hashes, transitions, budgets, paths, and terminal records validate.",
+    "physical_discriminator": "No physical discriminator is run; the declared discriminator is the synthetic contract validator result.",
+    "threshold_policy": "frozen-no-relaxation",
+    "independent_confirmation": true,
+    "stop_conditions": [
+      "Stop on any schema, hash, path, transition, or budget violation.",
+      "Stop before any physical novelty or publication claim."
+    ]
+  },
+  "roles": [
+    {
+      "role": "coordinator",
+      "write_access": "canonical",
+      "responsibility": "Maintain the synthetic canonical state and terminal package.",
+      "independence": "Does not approve its own scientific claims.",
+      "model": "synthetic-model",
+      "reasoning_effort": "ultra"
+    },
+    {
+      "role": "literature-auditor",
+      "write_access": "read-only",
+      "responsibility": "Inspect the fixed synthetic source ledger.",
+      "independence": "Returns a report without editing canonical state.",
+      "model": "synthetic-model",
+      "reasoning_effort": "high"
+    },
+    {
+      "role": "theory-numerics-executor",
+      "write_access": "read-only",
+      "responsibility": "Exercise deterministic synthetic calculations.",
+      "independence": "Returns artifacts without editing canonical state.",
+      "model": "synthetic-model",
+      "reasoning_effort": "high"
+    },
+    {
+      "role": "verifier-critic",
+      "write_access": "read-only",
+      "responsibility": "Challenge and reproduce the synthetic result.",
+      "independence": "Uses an immutable snapshot and cannot assign approval.",
+      "model": "synthetic-model",
+      "reasoning_effort": "ultra"
+    }
+  ],
+  "external_actions": {
+    "source_access": "offline-only",
+    "forbidden": [
+      "modify-framework",
+      "modify-other-project",
+      "change-frozen-contract",
+      "relax-threshold",
+      "erase-evidence",
+      "assign-human-review",
+      "access-undeclared-secret",
+      "external-communication",
+      "remote-git-action",
+      "publication-or-submission",
+      "purchase-or-account-action",
+      "persistent-system-change"
+    ]
+  },
+  "terminal_outcomes": [
+    "submission-ready-candidate",
+    "no-publishable-result-within-budget",
+    "source-stop",
+    "prior-art-stop",
+    "technical-stop",
+    "budget-stop",
+    "policy-stop",
+    "owner-return"
+  ],
+  "deliverables": [
+    "frozen-mission",
+    "candidate-ledger",
+    "source-ledger",
+    "code-and-tests-or-explicit-not-produced-status",
+    "manuscript-or-explicit-not-produced-status",
+    "reproduction-log",
+    "terminal-package"
+  ],
+  "provenance": {
+    "created_on": "2026-01-01",
+    "created_by": "synthetic-agent",
+    "ai_assistance": true,
+    "review_status": "approved",
+    "reviewed_by": "synthetic-research-owner",
+    "reviewed_on": "2026-01-01"
+  }
+}

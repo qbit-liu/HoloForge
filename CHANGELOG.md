@@ -4,12 +4,21 @@ All notable changes to HoloForge are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- An experimental governed auto-research workflow, repository skill, mission,
+  state and terminal-package schemas, and a deterministic semantic validator
+  for unattended private Explore campaigns with honest stopped outcomes.
+
 ### Changed
 
 - Recognize controlled computational or representational holographic leverage
   as a scientific-value route alongside physical or conceptual leverage, while
   requiring a named nonholographic baseline, a valid dictionary and regime,
   accessible-observable, accuracy, robustness, and total-cost evidence.
+- Permit an owner to delegate candidate generation, policy-bounded selection,
+  repeated frozen gates, and bounded pivots through one prospectively approved
+  autonomous mission while preserving human scientific and disclosure review.
 
 ### Scientific results
 
