@@ -45,6 +45,17 @@ ensemble, branch, or comparison?
 What did it teach about formulations, solvers, norms, diagnostics,
 convergence, conditioning, or independent checks?
 
+### Numerical claim-sufficiency and return to physics
+
+Did the frozen numerical evidence become claim-sufficient? State which
+claim-appropriate checks passed or failed, whether uncertainty could still
+change the physical classification, and whether any source, dictionary,
+boundary-condition, ensemble, branch, or artifact issue limited
+interpretation. If more numerical work is proposed, name the claim-bearing
+physical decision it could change. If it could change none, record that the
+workflow returned to physical interpretation, discriminator design, matched
+comparison, or the next claim-bearing gate.
+
 ### Portfolio or workflow lesson
 
 What cheap test should occur earlier, or what contract field should be clearer,

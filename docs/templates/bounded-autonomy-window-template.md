@@ -18,6 +18,11 @@ same owner decision. It has no effect until that approval is recorded.
 - **Disclosure class:** `<private research record | public literature dry run>`
 - **Return milestone:** `<one outcome, stop, or review packet>`
 - **Window expiry:** `<date, cost ceiling, or milestone; no automatic renewal>`
+- **Claim-bearing physical decision:** `<the classification, comparison, or
+  physical conclusion that the numerical evidence must decide>`
+- **Prospective claim-sufficiency checkpoint:** `<claim-appropriate residual,
+  convergence, smoothness, constraint, reproducibility, uncertainty,
+  independent-check, and interpretation-validity conditions>`
 
 ## Work allowed without another owner decision
 
@@ -47,6 +52,9 @@ owner gate.
 - **Compute ceiling:** `<runs, resolutions, wall time, or other useful bound>`
 - **Independent checks:** `<named checks and maximum attempts>`
 - **Repair budget:** `<zero or one already authorized bounded repair>`
+- **Additional-numerics test:** `<which claim-bearing physical decision could
+  more precision or another run change; write none when no further numerical
+  work is authorized>`
 - **Review artifacts:** `<required result, critic, progress, and PDF records>`
 
 ## Mandatory return triggers
@@ -54,7 +62,8 @@ owner gate.
 Stop the window and return to the owner as soon as any trigger fires:
 
 1. the frozen physical discriminator is reached, an acceptance or stop
-   condition fires, or the stated return milestone is complete;
+   condition fires, the claim-sufficiency checkpoint passes, or the stated
+   return milestone is complete;
 2. the scientific question, action or model, ensemble or branch, boundary
    conditions, source--response dictionary, observable, acceptance threshold,
    or stop rule would need to change;
