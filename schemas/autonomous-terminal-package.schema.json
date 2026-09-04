@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/autonomous-terminal-package.schema.json",
+  "title": "HoloForge autonomous terminal package",
+  "description": "Audited final handoff for either a submission-ready candidate or an honest stopped campaign.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "mission_id", "mission_sha256", "state_sha256", "outcome", "manuscript", "code", "artifacts", "claims", "nonclaims", "limitations", "checks", "framework_clean", "external_actions_performed", "owner_decisions_remaining", "provenance"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "mission_id": {"type": "string", "pattern": "^auto-[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "mission_sha256": {"$ref": "#/$defs/sha256"},
+    "state_sha256": {"$ref": "#/$defs/sha256"},
+    "outcome": {"$ref": "#/$defs/terminal_outcome"},
+    "manuscript": {"$ref": "#/$defs/product"},
+    "code": {"$ref": "#/$defs/product"},
+    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
+    "claims": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+    "nonclaims": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scientific_opportunity", "physical_claim", "source_and_novelty", "numerical_credibility", "independent_reproduction", "hostile_review"],
+      "properties": {
+        "scientific_opportunity": {"$ref": "#/$defs/check"},
+        "physical_claim": {"$ref": "#/$defs/check"},
+        "source_and_novelty": {"$ref": "#/$defs/check"},
+        "numerical_credibility": {"$ref": "#/$defs/check"},
+        "independent_reproduction": {"$ref": "#/$defs/check"},
+        "hostile_review": {"$ref": "#/$defs/check"}
+      }
+    },
+    "framework_clean": {"const": true},
+    "external_actions_performed": {"const": false},
+    "owner_decisions_remaining": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {"enum": ["scientific-verdict", "authorship", "disclosure", "submission"]}
+    },
+    "provenance": {"$ref": "#/$defs/provenance"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"outcome": {"const": "submission-ready-candidate"}}, "required": ["outcome"]},
+      "then": {
+        "properties": {
+          "manuscript": {"properties": {"status": {"const": "ready"}, "path": {"$ref": "#/$defs/relative_path"}}},
+          "code": {"properties": {"status": {"const": "ready"}, "path": {"$ref": "#/$defs/relative_path"}}},
+          "claims": {"minItems": 1}
+        }
+      },
+      "else": {
+        "properties": {
+          "manuscript": {"properties": {"status": {"enum": ["not-produced", "incomplete"]}}}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "terminal_outcome": {"enum": ["submission-ready-candidate", "no-publishable-result-within-budget", "source-stop", "prior-art-stop", "technical-stop", "budget-stop", "policy-stop", "owner-return"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "relative_path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!~)(?![A-Za-z]:)(?!.*\\\\)(?!\\.?\\.?$)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"},
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "path"],
+      "properties": {
+        "status": {"enum": ["ready", "incomplete", "not-produced"]},
+        "path": {"anyOf": [{"$ref": "#/$defs/relative_path"}, {"type": "null"}]}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "role"],
+      "properties": {
+        "path": {"$ref": "#/$defs/relative_path"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "role": {"type": "string", "minLength": 1}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "support_level", "evidence_refs", "generated_by_ai", "review_status"],
+      "properties": {
+        "statement": {"type": "string", "minLength": 20},
+        "support_level": {"enum": ["hypothesis", "calculation-supported", "literature-supported"]},
+        "evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/relative_path"}},
+        "generated_by_ai": {"const": true},
+        "review_status": {"enum": ["unreviewed", "checked", "approved", "rejected"]},
+        "reviewed_by": {"type": "string", "minLength": 1},
+        "reviewed_on": {"type": "string", "format": "date"}
+      },
+      "allOf": [{"if": {"properties": {"review_status": {"enum": ["checked", "approved", "rejected"]}}, "required": ["review_status"]}, "then": {"required": ["reviewed_by", "reviewed_on"]}}]
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence_refs", "summary"],
+      "properties": {
+        "status": {"enum": ["pass", "fail", "stop", "not-applicable"]},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/relative_path"}},
+        "summary": {"type": "string", "minLength": 10}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_on", "created_by", "ai_assistance", "review_status"],
+      "properties": {
+        "created_on": {"type": "string", "format": "date"},
+        "created_by": {"const": "coordinator"},
+        "ai_assistance": {"const": true},
+        "review_status": {"const": "unreviewed"}
+      }
+    }
+  }
+}

@@ -203,6 +203,29 @@ state.
 
 See `docs/private-research-workflow.md` for the recommended private structure.
 
+### Run a governed autonomous research campaign
+
+Use auto mode only from a dedicated access-controlled research repository, not
+from the public HoloForge checkout or another active private project. First ask
+the agent to use `$holoforge-auto-research` to prepare a mission from the
+synthetic examples and validate it without starting research:
+
+```text
+Prepare a HoloForge autonomous-research mission for owner review. Freeze the
+research envelope, candidate-selection policy, physical and claim-sufficiency
+criteria, budgets, delegated decisions, sole-writer multi-agent roles, pinned
+read-only HoloForge commit, no-touch surfaces, and all terminal outcomes. Do
+not start candidate search until I explicitly authorize the exact mission hash.
+```
+
+After that one authorization, the agent may search, select, execute, verify,
+preserve-and-pivot, and package candidates only inside the mission. It must
+return a submission-ready candidate or an audited stopped package; it cannot
+guarantee a paper, change the framework or thresholds, assign human review,
+publish, disclose, communicate externally, or perform remote Git actions.
+The [autonomous research workflow](autonomous-research-workflow.md) defines the
+AR-0--AR-5 rollout and validator.
+
 ### Propose a private-to-public export
 
 Only do this after the research owner explicitly clears the exact artifact for

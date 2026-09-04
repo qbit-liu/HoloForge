@@ -29,6 +29,29 @@ class PublicContentPolicyTests(unittest.TestCase):
         for private_identifier in ("C01", "C02", "C03", "D001", "M001"):
             self.assertNotIn(private_identifier, combined)
 
+    def test_autonomous_workflow_is_generic_private_safe_and_fail_closed(self):
+        paths = (
+            ROOT / "docs/autonomous-research-workflow.md",
+            ROOT / ".agents/skills/holoforge-auto-research/SKILL.md",
+            ROOT / ".agents/skills/holoforge-auto-research/references/campaign-workflow.md",
+            ROOT / ".agents/skills/holoforge-auto-research/references/no-touch-policy.md",
+        )
+        combined = "\n".join(path.read_text(encoding="utf-8") for path in paths)
+        lowered = combined.lower()
+
+        self.assertIn("submission-ready candidate", lowered)
+        self.assertIn("cannot honestly guarantee", lowered)
+        self.assertIn("sole canonical writer", lowered)
+        self.assertIn("read-only", lowered)
+        self.assertIn("frozen", lowered)
+        self.assertIn("no-touch", lowered)
+        self.assertIn("stopped outcome", lowered)
+        self.assertIn("human", lowered)
+        self.assertNotIn("/Users/", combined)
+        self.assertNotIn("HoloForge-Explore-Private", combined)
+        for private_identifier in ("C01", "C02", "C03", "D001", "M001"):
+            self.assertNotIn(private_identifier, combined)
+
     def test_private_workspace_names_are_ignored(self) -> None:
         entries = {
             line.strip()

@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/autonomous-mission.schema.json",
+  "title": "HoloForge autonomous research mission",
+  "description": "Prospectively authorized campaign envelope for unattended Explore research.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mission_id",
+    "title",
+    "mode",
+    "maturity",
+    "status",
+    "portfolio",
+    "authorization",
+    "pinned_framework",
+    "workspace",
+    "budgets",
+    "scientific_contract",
+    "roles",
+    "external_actions",
+    "terminal_outcomes",
+    "deliverables",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "mission_id": {"type": "string", "pattern": "^auto-[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "title": {"type": "string", "minLength": 1},
+    "mode": {"const": "autonomous-explore"},
+    "maturity": {"const": "experimental"},
+    "status": {"enum": ["draft", "owner-authorized", "closed"]},
+    "portfolio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "intent",
+        "research_question_envelope",
+        "included_domains",
+        "excluded_domains",
+        "search_shape",
+        "minimum_publishable_claim",
+        "target_venue"
+      ],
+      "properties": {
+        "intent": {"enum": ["open-discovery", "publication-targeted", "method-learning"]},
+        "research_question_envelope": {"type": "string", "minLength": 20},
+        "included_domains": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "excluded_domains": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "search_shape": {"type": "string", "minLength": 20},
+        "minimum_publishable_claim": {"type": "string", "minLength": 20},
+        "target_venue": {"type": "string", "minLength": 1}
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "authorized_on", "expires_on", "decision_record", "delegated_decisions", "local_commit_allowed"],
+      "properties": {
+        "owner": {"type": "string", "minLength": 1},
+        "authorized_on": {"type": ["string", "null"], "format": "date"},
+        "expires_on": {"type": ["string", "null"], "format": "date"},
+        "decision_record": {"type": "string", "minLength": 1},
+        "delegated_decisions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/delegated_decision"}
+        },
+        "local_commit_allowed": {"type": "boolean"}
+      }
+    },
+    "pinned_framework": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "commit", "write_policy", "require_clean"],
+      "properties": {
+        "name": {"const": "HoloForge"},
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "write_policy": {"const": "read-only"},
+        "require_clean": {"const": true}
+      }
+    },
+    "workspace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonical_writer", "allowed_write_roots", "forbidden_paths"],
+      "properties": {
+        "canonical_writer": {"const": "coordinator"},
+        "allowed_write_roots": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/relative_path"}},
+        "forbidden_paths": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/relative_path"}}
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_limit", "construction_hours", "compute_hours", "wall_time_hours", "storage_gb", "candidate_limit", "pivot_limit", "repair_limit_per_candidate"],
+      "properties": {
+        "source_limit": {"type": "integer", "minimum": 1},
+        "construction_hours": {"type": "number", "minimum": 0},
+        "compute_hours": {"type": "number", "exclusiveMinimum": 0},
+        "wall_time_hours": {"type": "number", "exclusiveMinimum": 0},
+        "storage_gb": {"type": "number", "exclusiveMinimum": 0},
+        "candidate_limit": {"type": "integer", "minimum": 1},
+        "pivot_limit": {"type": "integer", "minimum": 0},
+        "repair_limit_per_candidate": {"type": "integer", "minimum": 0}
+      }
+    },
+    "scientific_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selection_policy", "claim_sufficiency", "physical_discriminator", "threshold_policy", "independent_confirmation", "stop_conditions"],
+      "properties": {
+        "selection_policy": {"type": "string", "minLength": 20},
+        "claim_sufficiency": {"type": "string", "minLength": 20},
+        "physical_discriminator": {"type": "string", "minLength": 20},
+        "threshold_policy": {"const": "frozen-no-relaxation"},
+        "independent_confirmation": {"const": true},
+        "stop_conditions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "roles": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "write_access", "responsibility", "independence", "model", "reasoning_effort"],
+        "properties": {
+          "role": {"enum": ["coordinator", "literature-auditor", "theory-numerics-executor", "verifier-critic"]},
+          "write_access": {"enum": ["canonical", "read-only"]},
+          "responsibility": {"type": "string", "minLength": 10},
+          "independence": {"type": "string", "minLength": 10},
+          "model": {"type": "string", "minLength": 1},
+          "reasoning_effort": {"enum": ["platform-default", "low", "medium", "high", "xhigh", "max", "ultra"]}
+        }
+      }
+    },
+    "external_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_access", "forbidden"],
+      "properties": {
+        "source_access": {"enum": ["offline-only", "bounded-authoritative-sources"]},
+        "forbidden": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/forbidden_action"}}
+      }
+    },
+    "terminal_outcomes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/terminal_outcome"}},
+    "deliverables": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "provenance": {"$ref": "#/$defs/provenance"}
+  },
+  "$defs": {
+    "delegated_decision": {"enum": ["candidate_generation", "candidate_selection", "gate_transition", "bounded_revision", "candidate_pivot", "local_execution", "local_commit"]},
+    "terminal_outcome": {"enum": ["submission-ready-candidate", "no-publishable-result-within-budget", "source-stop", "prior-art-stop", "technical-stop", "budget-stop", "policy-stop", "owner-return"]},
+    "forbidden_action": {"enum": ["modify-framework", "modify-other-project", "change-frozen-contract", "relax-threshold", "erase-evidence", "assign-human-review", "access-undeclared-secret", "external-communication", "remote-git-action", "publication-or-submission", "purchase-or-account-action", "persistent-system-change"]},
+    "relative_path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!~)(?![A-Za-z]:)(?!.*\\\\)(?!\\.?\\.?$)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"},
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_on", "created_by", "ai_assistance", "review_status"],
+      "properties": {
+        "created_on": {"type": "string", "format": "date"},
+        "created_by": {"type": "string", "minLength": 1},
+        "ai_assistance": {"const": true},
+        "review_status": {"enum": ["unreviewed", "checked", "approved", "rejected"]},
+        "reviewed_by": {"type": "string", "minLength": 1},
+        "reviewed_on": {"type": "string", "format": "date"}
+      },
+      "allOf": [{"if": {"properties": {"review_status": {"enum": ["checked", "approved", "rejected"]}}, "required": ["review_status"]}, "then": {"required": ["reviewed_by", "reviewed_on"]}}]
+    }
+  }
+}

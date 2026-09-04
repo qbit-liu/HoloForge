@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holoforge.dev/schemas/autonomous-campaign-state.schema.json",
+  "title": "HoloForge autonomous campaign state",
+  "description": "Append-only execution state linked to a frozen autonomous mission.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "mission_id", "mission_sha256", "phase", "terminal_outcome", "framework_commit", "budgets_used", "candidate_ledger", "transitions", "touched_paths", "last_updated", "provenance"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "mission_id": {"type": "string", "pattern": "^auto-[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "mission_sha256": {"$ref": "#/$defs/sha256"},
+    "phase": {"$ref": "#/$defs/phase"},
+    "terminal_outcome": {"anyOf": [{"$ref": "#/$defs/terminal_outcome"}, {"type": "null"}]},
+    "framework_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "budgets_used": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sources", "construction_hours", "compute_hours", "wall_time_hours", "storage_gb", "candidates", "pivots"],
+      "properties": {
+        "sources": {"type": "integer", "minimum": 0},
+        "construction_hours": {"type": "number", "minimum": 0},
+        "compute_hours": {"type": "number", "minimum": 0},
+        "wall_time_hours": {"type": "number", "minimum": 0},
+        "storage_gb": {"type": "number", "minimum": 0},
+        "candidates": {"type": "integer", "minimum": 0},
+        "pivots": {"type": "integer", "minimum": 0}
+      }
+    },
+    "candidate_ledger": {"type": "array", "items": {"$ref": "#/$defs/candidate"}},
+    "transitions": {"type": "array", "items": {"$ref": "#/$defs/transition"}},
+    "touched_paths": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/relative_path"}},
+    "last_updated": {"type": "string", "format": "date-time"},
+    "provenance": {"$ref": "#/$defs/provenance"}
+  },
+  "allOf": [
+    {"if": {"properties": {"phase": {"const": "terminal"}}, "required": ["phase"]}, "then": {"properties": {"terminal_outcome": {"$ref": "#/$defs/terminal_outcome"}}}},
+    {"if": {"properties": {"phase": {"not": {"const": "terminal"}}}, "required": ["phase"]}, "then": {"properties": {"terminal_outcome": {"type": "null"}}}}
+  ],
+  "$defs": {
+    "phase": {"enum": ["initialized", "searching", "screening", "selected", "discovery", "confirmation", "verification", "critique", "packaging", "awaiting-owner", "terminal"]},
+    "terminal_outcome": {"enum": ["submission-ready-candidate", "no-publishable-result-within-budget", "source-stop", "prior-art-stop", "technical-stop", "budget-stop", "policy-stop", "owner-return"]},
+    "delegated_decision": {"enum": ["candidate_generation", "candidate_selection", "gate_transition", "bounded_revision", "candidate_pivot", "local_execution", "local_commit"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "relative_path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!~)(?![A-Za-z]:)(?!.*\\\\)(?!\\.?\\.?$)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"},
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_id", "status", "disposition", "gate_contract_sha256", "repairs_used"],
+      "properties": {
+        "candidate_id": {"type": "string", "pattern": "^candidate-[0-9]{3,}$"},
+        "status": {"enum": ["screening", "selected", "active", "stopped", "packaged"]},
+        "disposition": {"type": "string", "minLength": 1},
+        "gate_contract_sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "repairs_used": {"type": "integer", "minimum": 0}
+      }
+    },
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "from", "to", "delegated_decision", "candidate_id", "recommendation", "reason", "evidence_refs", "occurred_at"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 1},
+        "from": {"$ref": "#/$defs/phase"},
+        "to": {"$ref": "#/$defs/phase"},
+        "delegated_decision": {"$ref": "#/$defs/delegated_decision"},
+        "candidate_id": {"type": ["string", "null"]},
+        "recommendation": {"type": "string", "minLength": 10},
+        "reason": {"type": "string", "minLength": 10},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/relative_path"}},
+        "occurred_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["updated_by", "ai_assistance", "review_status"],
+      "properties": {
+        "updated_by": {"const": "coordinator"},
+        "ai_assistance": {"const": true},
+        "review_status": {"const": "unreviewed"}
+      }
+    }
+  }
+}

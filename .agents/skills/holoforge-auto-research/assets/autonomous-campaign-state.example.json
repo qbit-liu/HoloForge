@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1",
+  "mission_id": "auto-synthetic-demo",
+  "mission_sha256": "b9b1f5bdba3bdccc245404f2a3668d33faa6d8d88af61387335d486d46ac4b43",
+  "phase": "terminal",
+  "terminal_outcome": "source-stop",
+  "framework_commit": "0000000000000000000000000000000000000001",
+  "budgets_used": {
+    "sources": 1,
+    "construction_hours": 0.0,
+    "compute_hours": 0.0,
+    "wall_time_hours": 0.1,
+    "storage_gb": 0.001,
+    "candidates": 0,
+    "pivots": 0
+  },
+  "candidate_ledger": [],
+  "transitions": [
+    {
+      "sequence": 1,
+      "from": "initialized",
+      "to": "searching",
+      "delegated_decision": "candidate_generation",
+      "candidate_id": null,
+      "recommendation": "Begin the bounded synthetic source inspection.",
+      "reason": "The authorized mission is valid and the source budget is available.",
+      "evidence_refs": [],
+      "occurred_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "sequence": 2,
+      "from": "searching",
+      "to": "terminal",
+      "delegated_decision": "gate_transition",
+      "candidate_id": null,
+      "recommendation": "Close with a source stop and preserve the source receipt.",
+      "reason": "The synthetic authoritative source required by the contract is deliberately unavailable.",
+      "evidence_refs": ["campaign/evidence/source-receipt.json"],
+      "occurred_at": "2026-01-01T00:06:00Z"
+    }
+  ],
+  "touched_paths": ["campaign/state.json", "campaign/evidence/source-receipt.json"],
+  "last_updated": "2026-01-01T00:06:00Z",
+  "provenance": {
+    "updated_by": "coordinator",
+    "ai_assistance": true,
+    "review_status": "unreviewed"
+  }
+}

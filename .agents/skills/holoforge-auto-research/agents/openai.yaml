@@ -1,0 +1,4 @@
+interface:
+  display_name: "HoloForge Auto Research"
+  short_description: "Run a governed end-to-end autonomous research campaign"
+  default_prompt: "Use $holoforge-auto-research to prepare or run a governed autonomous HoloForge research campaign and return an audited terminal package."

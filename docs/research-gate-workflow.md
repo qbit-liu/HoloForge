@@ -277,6 +277,13 @@ scope to rescue the hypothesis.
 
 ## Use an owner-approved bounded autonomy window
 
+This section governs routine execution inside one frozen gate. It is distinct
+from the campaign-level [`autonomous research workflow`](autonomous-research-workflow.md),
+which may prospectively delegate candidate selection and bounded pivots through
+a separate owner-authorized mission. A gate window cannot roll over into auto
+mode, and an auto mission cannot weaken the requirements of the candidate-level
+gate.
+
 HoloForge should not require a new owner decision for every source read, plot,
 test, or routine implementation choice. After the scientific contract is
 frozen, the owner may approve one **bounded autonomy window** using the

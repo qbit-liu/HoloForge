@@ -25,6 +25,14 @@ schema versions so later contracts do not silently change earlier meanings.
   branch, ensemble, parameter, output, artifact-role, transformation, evidence,
   and known-gap boundary for solver-free inspection. It cannot certify an
   unstated route or scientific claim.
+- `autonomous-mission.schema.json` freezes the experimental auto-mode research
+  envelope, delegated decisions, budgets, roles, framework pin, no-touch
+  boundary, and terminal outcomes.
+- `autonomous-campaign-state.schema.json` links candidate and transition history
+  to the mission hash and keeps nonaggregate resource use explicit.
+- `autonomous-terminal-package.schema.json` records either a submission-ready
+  candidate handoff or an audited stopped outcome, while keeping scientific,
+  authorship, disclosure, and submission decisions open.
 
 Canonical examples live at
 `domains/qcd/soft_wall_vector/model-card.json`,
@@ -38,6 +46,7 @@ Validate them by running:
 python3 -m unittest tests.test_schemas -v
 python3 -m unittest tests.test_evidence_schemas -v
 python3 -m unittest tests.test_capabilities -v
+python3 -m unittest tests.test_autonomous_research -v
 ```
 
 Schema conformance checks structure and required provenance. It does not replace

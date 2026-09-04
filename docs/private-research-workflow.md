@@ -29,6 +29,8 @@ keeping its research record independent:
 ```text
 private-project/
   README.private.md
+  autonomous-mission.json       # only for auto mode
+  autonomous-state.json         # only for auto mode
   hypothesis-card.json
   RESEARCH_LESSONS.md
   notes/
@@ -36,6 +38,7 @@ private-project/
   results/
   RETROSPECTIVE.md
   paper/
+  terminal-package.json         # only for auto mode
 ```
 
 The private project should pin the HoloForge version or commit it depends on,
@@ -54,6 +57,24 @@ closure lessons remain a subtype admitted only after owner-reviewed closure.
 Working entries may be provisional, corroborated, challenged, ready for owner
 review, promoted, or retired. A live observation may sharpen the next check,
 but it must not silently become reviewed knowledge or rewrite the frozen gate.
+
+## Autonomous campaign option
+
+For unattended, campaign-level execution, use the separate
+[`autonomous-research workflow`](autonomous-research-workflow.md) and
+`$holoforge-auto-research` skill. This is not a larger bounded-autonomy window:
+the owner prospectively authorizes an exact portfolio envelope, selection
+policy, set of decisions, budgets, no-touch boundary, and terminal outcomes.
+Within that frozen mission the coordinator may generate and select candidates,
+run repeated detailed gates, follow its own in-scope recommendations, and pivot
+without a person repeatedly choosing option A.
+
+The campaign must use a dedicated private repository, a clean read-only
+HoloForge pin, one canonical writer, and read-only specialist agents. It must not
+modify another active private project or its central ledgers. Publication,
+authorship, disclosure, human review, changes to scientific thresholds, and
+remote or external actions remain separate owner decisions. Use a distinct
+mission for every campaign; authority never rolls into a new question envelope.
 
 ## Research gates
 

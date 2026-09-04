@@ -20,6 +20,7 @@ class AgentSkillTests(unittest.TestCase):
     def test_repository_skills_have_complete_metadata(self) -> None:
         expected = {
             "holoforge-research-gate",
+            "holoforge-auto-research",
             "holoforge-public-export",
             "holoforge-add-benchmark",
         }
