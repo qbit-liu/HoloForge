@@ -155,6 +155,43 @@ Do not weaken numerical acceptance gates to create apparent physical progress.
 The purpose of this rule is to change research ordering and investment, not
 verification rigor.
 
+### Use a claim-sufficiency checkpoint
+
+Numerics serve the physical question; they are not the default research
+endpoint. Before a numerical gate starts, name the **claim-bearing physical
+decision** and define prospectively when the numerical evidence will be
+**claim-sufficient**. Numerical evidence is claim-sufficient only when all of
+the following hold:
+
+1. the claim-appropriate residual, convergence, smoothness, constraint,
+   reproducibility, and independent-check requirements declared in the frozen
+   contract pass, with any inapplicable check explained;
+2. the remaining numerical uncertainty cannot change the registered physical
+   classification, reverse the matched comparison, or cross the acceptance
+   boundary;
+3. no unresolved source, dictionary, boundary-condition, ensemble, branch, or
+   artifact problem invalidates the interpretation; and
+4. additional precision would neither test a distinct physical alternative nor
+   materially strengthen the claim within the approved scope.
+
+After this checkpoint passes, stop numerical refinement and return to physical
+interpretation, discriminator design, matched comparison, or the next
+claim-bearing gate. Any proposal for more numerical work must answer:
+
+> Which claim-bearing physical decision can this additional numerical work
+> change?
+
+If the answer is `none`, do not run it. This rule does not stop necessary
+numerics. Continue within the frozen budget when uncertainty could change the
+classification; residual, convergence, smoothness, constraint,
+reproducibility, or independent-method checks remain unresolved; a branch,
+bifurcation, instability, or non-smooth feature is itself under test; the
+numerical method or error analysis is part of the registered scientific claim;
+or an owner-approved strategic-development milestone has not yet reached its
+prospective validation boundary. Do not declare claim-sufficiency by lowering
+a threshold, dropping a failed check, or redefining the physical decision after
+seeing the result.
+
 ## Record opportunity and qualify the next gate
 
 Before writing a detailed frozen contract, complete the generic
@@ -212,7 +249,8 @@ Every research gate should contain the following records:
 
 1. **Frozen contract:** written before the calculation and limited to one
    question. It fixes inputs, methods, diagnostics, acceptance thresholds,
-   stop conditions, exclusions, and the decision owner.
+   stop conditions, exclusions, the claim-bearing physical decision, the
+   prospective claim-sufficiency checkpoint, and the decision owner.
 2. **Calculation and durable artifacts:** code, configuration, environment
    metadata, machine-readable results, and plots needed to inspect the gate.
    Prefer well-tested library functions over new local implementations.

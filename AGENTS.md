@@ -45,6 +45,12 @@ These workflows do not replace human scientific or disclosure approval.
 
 - Record conventions, equations, boundary conditions, ensemble, numerical
   method, tolerances, validation evidence, and limitations.
+- Treat numerics as evidence for a named claim-bearing physical decision, not
+  as the default research endpoint. Before numerical work, freeze the
+  claim-sufficiency criteria in `docs/research-gate-workflow.md`. Once they
+  pass, stop numerical refinement unless more work can change that decision,
+  test a distinct physical alternative, or materially strengthen the claim.
+  Never obtain sufficiency by weakening a threshold or dropping a failed check.
 - Use the support and review labels defined in `docs/scientific-support.md`.
 - Mark material AI involvement; human review must not erase AI provenance.
 - During an active private Explore gate, update its research knowledge base at

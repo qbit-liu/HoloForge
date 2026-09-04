@@ -80,6 +80,20 @@ necessary prerequisite milestones and a planned physics checkpoint. Track
 physical-claim progress, source and novelty readiness, and numerical
 credibility as three non-aggregate axes.
 
+For every numerical gate, freeze the claim-bearing physical decision and its
+prospective claim-sufficiency checkpoint. Apply the full rule in
+`docs/research-gate-workflow.md`: claim-appropriate residual, convergence,
+smoothness, constraint, reproducibility and independent checks must pass;
+remaining numerical uncertainty must be unable to change the registered
+classification or comparison; and no unresolved source, dictionary, boundary,
+ensemble, branch or artifact problem may invalidate the interpretation. Once
+claim-sufficient, stop numerical refinement unless additional work tests a
+distinct physical alternative, materially strengthens the claim, or remains
+necessary for a registered numerical-method or strategic validation milestone.
+Ask which claim-bearing physical decision the extra work can change. Never
+declare sufficiency by weakening a threshold, dropping a failed check, or
+redefining the decision after seeing the result.
+
 Set a campaign construction budget for planned capabilities and a separate
 candidate-wide numerical-repair budget that cannot be reset through a chain of
 smaller gates. Planned model or capability construction is not a repair. After
@@ -120,7 +134,8 @@ disposition so the decision remains auditable.
 ## Run one gate
 
 1. State the question, frozen inputs, allowed methods, acceptance criteria,
-   stop conditions, exclusions, decision owner, and disclosure class before
+   stop conditions, exclusions, claim-bearing physical decision, prospective
+   claim-sufficiency checkpoint, decision owner, and disclosure class before
    calculation.
 2. Check primary literature and provenance needed for this gate. Distinguish a
    missing source from evidence that no source exists. Before closing a source
@@ -137,6 +152,9 @@ disposition so the decision remains auditable.
 4. Verify the result with the checks appropriate to its claim: analytic limits,
    residuals, constraints, sources, Ward identities, convergence, independent
    methods, and comparison data.
+   Then apply the prospective claim-sufficiency checkpoint. If it passes,
+   return to the physical decision rather than adding numerical refinement
+   whose result cannot change that decision.
 5. Write a hostile critic report that identifies the strongest alternative
    explanation and the cheapest discriminating next test.
 6. After every durable milestone that changes the evidence boundary, update a

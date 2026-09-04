@@ -400,6 +400,62 @@ class PublicContentPolicyTests(unittest.TestCase):
         self.assertNotIn("/users/", combined)
         self.assertNotIn("holoforge-explore-private", combined)
 
+    def test_claim_sufficiency_returns_numerical_work_to_physics(self):
+        paths = (
+            ROOT / "CONSTITUTION.md",
+            ROOT / "AGENTS.md",
+            ROOT / "docs/research-gate-workflow.md",
+            ROOT / "docs/templates/bounded-autonomy-window-template.md",
+            ROOT / "docs/templates/research-retrospective-template.md",
+            ROOT / ".agents/skills/holoforge-research-gate/SKILL.md",
+        )
+        texts = {
+            path: " ".join(path.read_text(encoding="utf-8").lower().split())
+            for path in paths
+        }
+        combined = "\n".join(texts.values())
+
+        for required_term in (
+            "numerics serve the physical question",
+            "claim-bearing physical decision",
+            "claim-sufficient",
+            "residual",
+            "convergence",
+            "smoothness",
+            "constraint",
+            "reproducibility",
+            "independent",
+            "numerical uncertainty",
+            "source",
+            "dictionary",
+            "boundary-condition",
+            "ensemble",
+            "artifact",
+            "distinct physical alternative",
+            "materially strengthen the claim",
+            "which claim-bearing physical decision",
+            "return to physical interpretation",
+        ):
+            self.assertIn(required_term, combined)
+
+        workflow = texts[ROOT / "docs/research-gate-workflow.md"]
+        for protected_case in (
+            "bifurcation",
+            "instability",
+            "non-smooth",
+            "numerical method",
+            "strategic-development milestone",
+        ):
+            self.assertIn(protected_case, workflow)
+
+        self.assertIn("never obtain sufficiency by weakening a threshold", combined)
+        self.assertIn("dropping a failed check", combined)
+        self.assertIn("after seeing the result", combined)
+        self.assertNotIn("/users/", combined)
+        self.assertNotIn("holoforge-explore-private", combined)
+        for private_identifier in ("c01", "c02", "c03", "d001", "m001"):
+            self.assertNotIn(private_identifier, combined)
+
     def test_repeated_blockers_use_a_bounded_impasse_protocol(self):
         workflow = (
             ROOT / "docs/research-gate-workflow.md"

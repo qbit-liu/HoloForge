@@ -61,6 +61,14 @@ declare:
 
 Plots without underlying numerical checks are illustrations, not validation.
 
+Numerics serve the physical question; they are not the default research
+endpoint. A scientific contract must define prospectively what numerical
+evidence is sufficient for its claim-bearing decision. Once those checks pass,
+remaining numerical uncertainty cannot change that decision, and no unresolved
+source, dictionary, boundary-condition, ensemble, or artifact problem
+invalidates it, further numerical refinement must stop unless it tests a new
+physical alternative or materially strengthens the claim.
+
 ## 5. Separation and promotion
 
 Mature, literature-anchored public work lives in `domains/`. The public
