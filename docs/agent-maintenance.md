@@ -27,6 +27,22 @@ step does not manufacture another pending scientific decision. Preserve the
 handoff requirements in the research-gate workflow when a real owner gate is
 reached.
 
+## Deliver authorized public changes
+
+`AGENTS.md` records standing owner authorization to commit and push scoped,
+owner-requested work in this public repository. After relevant local checks
+and public-content review pass, inspect every outgoing commit, verify the
+existing `origin` destination and intended branch, and use a normal
+fast-forward push. Do not include unrelated work or repeat the permission
+question for that routine delivery. Verify the remote commit and report the
+actual CI result; a successful push alone does not establish passing CI.
+
+Honor any narrower instruction for the current task. This permission does not
+authorize merging, releases, branch deletion, force pushes or history rewrites,
+changing the remote destination, private export or scientific disclosure. It
+does not expand a frozen research window or autonomous mission, or authorize
+changing its pinned framework. Those actions retain their separate authority.
+
 ## Keep navigation distinct from historical evidence
 
 A private repository needs its own short `AGENTS.md`; instructions in a sibling

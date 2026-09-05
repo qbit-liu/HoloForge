@@ -269,9 +269,12 @@ Confirm that the agent has:
 - run the full test suite and relevant scientific verifier;
 - kept support claims within the evidence;
 - excluded private paths, secrets, unpublished results, and confidential
-  material; and
-- requested separate approval before pushing, merging, releasing, or
-  publishing unless that authority was already explicit.
+  material;
+- used the standing public-repository commit/push authorization in `AGENTS.md`
+  within its scope, verified the remote commit, and reported CI; and
+- obtained separate authority for merging, releasing, private export or
+  scientific disclosure, and honored any narrower task or frozen-campaign
+  restriction.
 
 For contributions, continue with `CONTRIBUTING.md` and submit a narrow pull
 request that lists the checks performed.

@@ -144,11 +144,22 @@ do not run numerical campaigns. Full CI remains required for public integration.
 
 - Keep commits and pull requests limited to one logical change.
 - Stage only intended files; never discard unrelated work.
-- Do not push, merge, publish, release, or delete branches without explicit
-  authorization.
+- For owner-requested work in this public repository, standing owner
+  authorization permits scoped local commits and normal fast-forward pushes
+  to the existing `origin` remote and intended branch. Complete the relevant
+  local validation and public-content review, inspect the outgoing commits,
+  and check the remote state first. Do not ask again for each routine push;
+  verify the remote commit and report CI afterward.
+- Merging, releases, branch deletion, force pushes or history rewrites, changing
+  the remote destination, and private export or scientific disclosure require
+  separate explicit authorization. A later task-specific restriction overrides
+  the standing public-repository permission.
 - Treat a bounded autonomy window as execution authority only. A local commit
   must be explicitly included in it; push, merge, release, branch deletion,
-  public export, and disclosure always remain separate owner decisions.
+  public export, and disclosure remain separate owner decisions for that
+  research scope. Standing public-repository permission does not expand a
+  frozen Explore window or autonomous mission, or permit its pinned framework
+  to be changed.
 - Before requesting an owner decision, give an item-by-item recommendation,
   reason, scope opened, scope remaining closed, and important uncertainty.
 - At an owner gate, also state completed, current, and proposed next stages,
