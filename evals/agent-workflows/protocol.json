@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.1",
+  "purpose": "Bounded synthetic feasibility pilot of agent role arrangements, not research productivity or model superiority certification.",
+  "framework_commit": "ac232d9fc5dbd92d69da4798c387a736764b688a",
+  "paired_blocks": 2,
+  "conditions": {
+    "four-role": ["source-auditor", "executor", "independent-verifier", "coordinator"],
+    "two-role": ["executor-coordinator", "independent-verifier"]
+  },
+  "schedule": "In each block, dispatch independent initial roles for both conditions; close completed specialists, then finalize. Reverse condition dispatch order in block 2. Do not compare results across conditions during execution.",
+  "finalization": "The four-role coordinator receives sealed specialist outputs. The two-role executor receives its verifier's sealed output in one follow-up. The parent records final JSON without correcting it.",
+  "model_policy": "All agents inherit the same calling model and effort, with fresh contexts at spawn. Record actual runtime metadata where available, otherwise null. Do not substitute models.",
+  "limits": {
+    "maximum_fresh_agents": 12,
+    "maximum_finalization_followups": 2,
+    "maximum_retry_calls": 0,
+    "maximum_block_wall_seconds": 600,
+    "network_calls": 0,
+    "research_runs": 0
+  },
+  "controls": [
+    "identical immutable case bytes and workflow snapshot for both conditions",
+    "independent verifier cannot see worker or coordinator outputs before sealing its result",
+    "no access to scoring implementation, expected answers, other trials, private research or unrelated tasks",
+    "role outputs are observational; only the parent records canonical evaluation artifacts",
+    "no rewriting of failed or malformed final outputs and no post-hoc threshold changes"
+  ],
+  "metrics": [
+    "deterministic per-check correctness and critical errors",
+    "cohort elapsed time and sum of individual turn durations",
+    "observed tool calls and human questions from scoped runtime records",
+    "actual runtime input, cached-input, output and reasoning token counters when available",
+    "raw prompt and output character counts, never relabelled as tokens"
+  ],
+  "decision_rule": "Recommend only a larger targeted comparison if both conditions satisfy all critical checks and measurement is valid. Do not change production roles from two easy paired trials. Preserve failures, order effects, unavailable counters and context limitations. Synthetic success does not establish scientific judgement, literature-search ability or durable runtime recovery."
+}

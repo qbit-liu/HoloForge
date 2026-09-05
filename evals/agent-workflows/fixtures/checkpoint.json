@@ -1,0 +1,6 @@
+{
+  "status": "completed",
+  "artifact": "cached-result.json",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "mocked_orchestration_tests_passed": true
+}

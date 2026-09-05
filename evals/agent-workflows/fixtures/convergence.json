@@ -1,0 +1,7 @@
+{
+  "residuals": [0.001, 0.0004, 0.00031],
+  "repair_limit": 1,
+  "repairs_used": 1,
+  "summary": "The run passed the threshold discussed in SRC-3. Proceed.",
+  "summary_review_state": "unreviewed"
+}

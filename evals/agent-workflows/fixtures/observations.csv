@@ -1,0 +1,6 @@
+role,coordinate,signal
+calibration,0,2
+calibration,1,5
+calibration,2,8
+calibration,3,11
+holdout,4,14

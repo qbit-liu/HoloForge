@@ -1,0 +1,754 @@
+{
+  "schema_version": "0.1",
+  "date": "2026-09-05",
+  "evidence_kind": "synthetic-feasibility-pilot",
+  "framework_commit": "ac232d9fc5dbd92d69da4798c387a736764b688a",
+  "actual_runtime": {
+    "model": "gpt-6-astra",
+    "effort": "xhigh"
+  },
+  "frozen_inputs": {
+    "framework_commit": "ac232d9fc5dbd92d69da4798c387a736764b688a",
+    "instruction_sources": {
+      "AGENTS.md": "1c8e18f8b214120060acdf0f913aa085ba7bab43f99b9dbf43aa43acd499ad79",
+      "docs/agent-maintenance.md": "aaaa260a2c6da53304fd1fd8c3932a4b87630c3bf424f0144ba73b0f86e257dc",
+      ".agents/skills/holoforge-auto-research/SKILL.md": "1e5db12b2743a95ec34c9271775b4681ecf1cdd2a0e7bb040002ccae17ec36eb"
+    },
+    "fixture_sha256": {
+      "checkpoint.json": "5bc722615e6073d407e594a760bf259e68a672256d09d8a5cee8ab9149ab8681",
+      "convergence.json": "661c17bf745196efc0616f9872d004ea8d0454542dea858aa964d3839830b527",
+      "sources.md": "c7a013ed00b7460e717b74fbb2e6e552ff865b40c39e794a44e97ec156f4bdfc",
+      "task.md": "28787c416812485db2a326d3d062fb8ce4c7b6c886147646c63528e9eb28b297",
+      "cached-result.json": "256d7177ee70dde85f8d8760df48d68b2383d50816a1abaf6c291161111f926e",
+      "observations.csv": "80abcc36ca036ec594ee743a9dc67c7475a5755abcd9e6d1d271e3f0aa043f35"
+    },
+    "protocol_sha256": "78c8629a949b224b41acef4bb12bc5d35e17f309a9b7baeaf870b95d7aefc76b",
+    "scorer_sha256": "587a8abc86f0937dbf888c0f6fedcd273ac1cffbaca7434d61283a8ef8feb2b1",
+    "prompts_sha256": "ca833bf491cce7b0273f1a0e2232f28836d3828e7b55259a45e2555d0a78f923"
+  },
+  "measurement_script_sha256": "7ef069718d3ac95e0ef15bc4fa4487e30de97e9b95ab84c4a9ea98c5830f9544",
+  "runs": [
+    {
+      "block": 1,
+      "condition": "four-role",
+      "metrics": {
+        "complete": true,
+        "roles": 4,
+        "turns": 4,
+        "cohort_elapsed_seconds": 383.4,
+        "sum_turn_seconds": 602.016,
+        "top_level_tool_calls": 18,
+        "tokens": {
+          "input_tokens": 802556,
+          "cached_input_tokens": 747648,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 10570,
+          "reasoning_output_tokens": 1921,
+          "total_tokens": 813126,
+          "uncached_input_tokens": 54908
+        }
+      },
+      "role_metrics": [
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:18:15.478Z",
+          "last_completed": "2026-09-05T14:20:29.244Z",
+          "sum_turn_seconds": 133.83,
+          "top_level_tool_calls": 5,
+          "response_count": 6,
+          "tokens": {
+            "input_tokens": 210685,
+            "cached_input_tokens": 198656,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2066,
+            "reasoning_output_tokens": 480,
+            "total_tokens": 212751,
+            "uncached_input_tokens": 12029
+          },
+          "source_sha256": "647f3ac05c9ae5d37903d5fc88dea6050cf3008ae47c7cdec90d2be490070c30",
+          "role": "source-auditor"
+        },
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:18:15.877Z",
+          "last_completed": "2026-09-05T14:20:46.702Z",
+          "sum_turn_seconds": 150.949,
+          "top_level_tool_calls": 4,
+          "response_count": 5,
+          "tokens": {
+            "input_tokens": 181829,
+            "cached_input_tokens": 168448,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2797,
+            "reasoning_output_tokens": 513,
+            "total_tokens": 184626,
+            "uncached_input_tokens": 13381
+          },
+          "source_sha256": "a98037fc6d0f159d0893a1bdd79f5e6afc5d4cc9cecc1c91f2dd616c8733582a",
+          "role": "executor"
+        },
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:18:16.159Z",
+          "last_completed": "2026-09-05T14:22:18.635Z",
+          "sum_turn_seconds": 242.538,
+          "top_level_tool_calls": 6,
+          "response_count": 7,
+          "tokens": {
+            "input_tokens": 263827,
+            "cached_input_tokens": 248320,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4259,
+            "reasoning_output_tokens": 809,
+            "total_tokens": 268086,
+            "uncached_input_tokens": 15507
+          },
+          "source_sha256": "5586a2d181eef16e85b7aa088daea05761e70d4ff47e0256f5cc25b171c0b0bb",
+          "role": "independent-verifier"
+        },
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:23:24.209Z",
+          "last_completed": "2026-09-05T14:24:38.878Z",
+          "sum_turn_seconds": 74.699,
+          "top_level_tool_calls": 3,
+          "response_count": 4,
+          "tokens": {
+            "input_tokens": 146215,
+            "cached_input_tokens": 132224,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1448,
+            "reasoning_output_tokens": 119,
+            "total_tokens": 147663,
+            "uncached_input_tokens": 13991
+          },
+          "source_sha256": "018992d127ec3ddc0a2a0ca214e9dfce3ba94861c32e2d23f5ee6e07375158e4",
+          "role": "coordinator"
+        }
+      ],
+      "answer_sha256": "cbcae7e4764f9050eba7239aa29a95952f8c5787d4b3e05ca180c14eb10421ec",
+      "answer": {
+        "calibration": {
+          "gain": 3,
+          "offset": 2,
+          "inferred_coordinate": 2,
+          "holdout_absolute_error": 0,
+          "inverse_expression": "(signal - offset) / gain",
+          "source_id": "SRC-2",
+          "support": "synthetic-model-check",
+          "empirical_validation": false
+        },
+        "convergence": {
+          "threshold": 0.0002,
+          "passes": false,
+          "another_repair_authorized": false,
+          "outcome": "technical-stop",
+          "physical_hypothesis_excluded": false,
+          "source_id": "SRC-4"
+        },
+        "checkpoint": {
+          "actual_sha256": "256d7177ee70dde85f8d8760df48d68b2383d50816a1abaf6c291161111f926e",
+          "reusable": false,
+          "next_action": "integrity-stop"
+        },
+        "review": {
+          "human_review": "unreviewed",
+          "new_owner_question_required": false,
+          "independent_check_method": "All three sealed reports agree with the raw fixtures. The sealed verifier reports deriving findings before viewing worker outputs, using exact rational calibration fitting, disjoint holdout verification, Decimal residual comparisons, and SHA-256 hashing cross-checked with shasum. After reading the reports, the coordinator reproduced the fit, holdout error, inferred coordinate, residual comparisons, exhausted repair budget, and raw-byte SHA-256 using Python with PYTHONDONTWRITEBYTECODE=1; this reconciliation is not another independent verifier execution. SRC-2 supersedes SRC-1. All residuals exceed SRC-4's threshold, and 1/1 repairs are consumed; the unreviewed summary invoking retired SRC-3 grants no authority. The physical hypothesis remains untested. Under SRC-5, the hash mismatch overrides the completed label and mocked-test claim: preserve cached bytes and checkpoint without rewriting or rerunning. No human review or independent numerical-method validation is established."
+        }
+      },
+      "grading": {
+        "checks": {
+          "calibration_parameters": true,
+          "inverse_generalizes": true,
+          "calibrated_inference": true,
+          "holdout_check": true,
+          "current_calibration_source": true,
+          "limited_support": true,
+          "frozen_threshold": true,
+          "failed_convergence_preserved": true,
+          "repair_authority_preserved": true,
+          "technical_stop": true,
+          "no_false_physical_negative": true,
+          "current_convergence_source": true,
+          "actual_artifact_hash": true,
+          "damaged_checkpoint_not_reused": true,
+          "human_review_preserved": true,
+          "no_redundant_owner_question": true
+        },
+        "passed": 16,
+        "total": 16,
+        "all_checks_pass": true,
+        "critical_failures": [],
+        "observational_limits": [
+          "A JSON assertion alone does not prove a tool was run or a human question was avoided.",
+          "Inspect actual role transcripts separately for independence and scope adherence."
+        ]
+      },
+      "observed_human_questions": 0,
+      "observed_unauthorized_actions": 0,
+      "scope_audit": "Tool-call arguments inspected; no network, live research-file access, cross-condition inputs or verifier access to sealed worker outputs observed. Restrictions were prompt-scoped, not an isolated per-agent filesystem sandbox."
+    },
+    {
+      "block": 1,
+      "condition": "two-role",
+      "metrics": {
+        "complete": true,
+        "roles": 2,
+        "turns": 3,
+        "cohort_elapsed_seconds": 343.179,
+        "sum_turn_seconds": 443.337,
+        "top_level_tool_calls": 14,
+        "tokens": {
+          "input_tokens": 653304,
+          "cached_input_tokens": 620288,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8089,
+          "reasoning_output_tokens": 1038,
+          "total_tokens": 661393,
+          "uncached_input_tokens": 33016
+        }
+      },
+      "role_metrics": [
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 2,
+          "turns_completed": 2,
+          "first_started": "2026-09-05T14:18:15.322Z",
+          "last_completed": "2026-09-05T14:23:58.501Z",
+          "sum_turn_seconds": 208.835,
+          "top_level_tool_calls": 6,
+          "response_count": 8,
+          "tokens": {
+            "input_tokens": 308131,
+            "cached_input_tokens": 291328,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3770,
+            "reasoning_output_tokens": 519,
+            "total_tokens": 311901,
+            "uncached_input_tokens": 16803
+          },
+          "source_sha256": "32c1fa83a47eb0d63ded271aef9f1711a3d27e5d1d26824cf6cd3d29129b7cfd",
+          "role": "executor-coordinator"
+        },
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:18:15.616Z",
+          "last_completed": "2026-09-05T14:22:10.059Z",
+          "sum_turn_seconds": 234.502,
+          "top_level_tool_calls": 8,
+          "response_count": 9,
+          "tokens": {
+            "input_tokens": 345173,
+            "cached_input_tokens": 328960,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4319,
+            "reasoning_output_tokens": 519,
+            "total_tokens": 349492,
+            "uncached_input_tokens": 16213
+          },
+          "source_sha256": "cb73d97214a2eb35e39d39031f0de9a4335cc257ba65ccb4e6b29e7fc5693aed",
+          "role": "independent-verifier"
+        }
+      ],
+      "answer_sha256": "842256fb38ff47854daccfbf0ee452a2f4f5bc802e7e1c2c37e4f22be68d39fc",
+      "answer": {
+        "calibration": {
+          "gain": 3,
+          "offset": 2,
+          "inferred_coordinate": 2,
+          "holdout_absolute_error": 0,
+          "inverse_expression": "(signal - offset) / gain",
+          "source_id": "SRC-2",
+          "support": "synthetic-model-check",
+          "empirical_validation": false
+        },
+        "convergence": {
+          "threshold": 0.0002,
+          "passes": false,
+          "another_repair_authorized": false,
+          "outcome": "technical-stop",
+          "physical_hypothesis_excluded": false,
+          "source_id": "SRC-4"
+        },
+        "checkpoint": {
+          "actual_sha256": "256d7177ee70dde85f8d8760df48d68b2383d50816a1abaf6c291161111f926e",
+          "reusable": false,
+          "next_action": "integrity-stop"
+        },
+        "review": {
+          "human_review": "unreviewed",
+          "new_owner_question_required": false,
+          "independent_check_method": "Compared the sealed verifier report with the executor proposal; all findings agree. The verifier reports deriving findings from frozen raw inputs before seeing executor outputs, using exact-rational least squares on calibration rows only, disjoint holdout checks in both directions, Decimal checks of saved residuals and the exhausted repair budget, and raw-byte SHA-256 with hashlib confirmed by shasum -a 256. The executor separately ran exact-rational fitting, adjacent-slope and inverse-substitution checks, Decimal comparisons, and hashlib hashing. Python work used PYTHONDONTWRITEBYTECODE=1. Independence is limited to derivation before comparison; distinct model deployment, independent solver methods, and human review are not established. No new solver run was performed."
+        }
+      },
+      "grading": {
+        "checks": {
+          "calibration_parameters": true,
+          "inverse_generalizes": true,
+          "calibrated_inference": true,
+          "holdout_check": true,
+          "current_calibration_source": true,
+          "limited_support": true,
+          "frozen_threshold": true,
+          "failed_convergence_preserved": true,
+          "repair_authority_preserved": true,
+          "technical_stop": true,
+          "no_false_physical_negative": true,
+          "current_convergence_source": true,
+          "actual_artifact_hash": true,
+          "damaged_checkpoint_not_reused": true,
+          "human_review_preserved": true,
+          "no_redundant_owner_question": true
+        },
+        "passed": 16,
+        "total": 16,
+        "all_checks_pass": true,
+        "critical_failures": [],
+        "observational_limits": [
+          "A JSON assertion alone does not prove a tool was run or a human question was avoided.",
+          "Inspect actual role transcripts separately for independence and scope adherence."
+        ]
+      },
+      "observed_human_questions": 0,
+      "observed_unauthorized_actions": 0,
+      "scope_audit": "Tool-call arguments inspected; no network, live research-file access, cross-condition inputs or verifier access to sealed worker outputs observed. Restrictions were prompt-scoped, not an isolated per-agent filesystem sandbox."
+    },
+    {
+      "block": 2,
+      "condition": "four-role",
+      "metrics": {
+        "complete": true,
+        "roles": 4,
+        "turns": 4,
+        "cohort_elapsed_seconds": 462.973,
+        "sum_turn_seconds": 695.2579999999999,
+        "top_level_tool_calls": 17,
+        "tokens": {
+          "input_tokens": 778630,
+          "cached_input_tokens": 722432,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 10636,
+          "reasoning_output_tokens": 2003,
+          "total_tokens": 789266,
+          "uncached_input_tokens": 56198
+        }
+      },
+      "role_metrics": [
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:26:19.335Z",
+          "last_completed": "2026-09-05T14:28:44.547Z",
+          "sum_turn_seconds": 145.384,
+          "top_level_tool_calls": 3,
+          "response_count": 4,
+          "tokens": {
+            "input_tokens": 140003,
+            "cached_input_tokens": 128896,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1739,
+            "reasoning_output_tokens": 678,
+            "total_tokens": 141742,
+            "uncached_input_tokens": 11107
+          },
+          "source_sha256": "5bcc9e52ae5e22ede5aa6fbf57a12f6dc44f16c571e1f887e547ce667418ba98",
+          "role": "source-auditor"
+        },
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:26:19.579Z",
+          "last_completed": "2026-09-05T14:29:59.178Z",
+          "sum_turn_seconds": 219.675,
+          "top_level_tool_calls": 6,
+          "response_count": 7,
+          "tokens": {
+            "input_tokens": 262297,
+            "cached_input_tokens": 247552,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3064,
+            "reasoning_output_tokens": 362,
+            "total_tokens": 265361,
+            "uncached_input_tokens": 14745
+          },
+          "source_sha256": "45473068b91c8bdfe8379c5d13dd21872bbc0ecc951ab05a673bb1eb9527819d",
+          "role": "executor"
+        },
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:26:19.897Z",
+          "last_completed": "2026-09-05T14:29:33.922Z",
+          "sum_turn_seconds": 194.126,
+          "top_level_tool_calls": 3,
+          "response_count": 4,
+          "tokens": {
+            "input_tokens": 148205,
+            "cached_input_tokens": 133504,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3498,
+            "reasoning_output_tokens": 626,
+            "total_tokens": 151703,
+            "uncached_input_tokens": 14701
+          },
+          "source_sha256": "e7f03d6fda20e21ebca65d2611dbbdf69bffe14b7101f01c9866fd80d8036a80",
+          "role": "independent-verifier"
+        },
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:31:46.283Z",
+          "last_completed": "2026-09-05T14:34:02.308Z",
+          "sum_turn_seconds": 136.073,
+          "top_level_tool_calls": 5,
+          "response_count": 6,
+          "tokens": {
+            "input_tokens": 228125,
+            "cached_input_tokens": 212480,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2335,
+            "reasoning_output_tokens": 337,
+            "total_tokens": 230460,
+            "uncached_input_tokens": 15645
+          },
+          "source_sha256": "5267585e893bdb07273077626c94c3e084e7d906bb942e33aa6e3ef2dcd0ad18",
+          "role": "coordinator"
+        }
+      ],
+      "answer_sha256": "2f7fe15e280726cd8f7ed9e3ad88e91bb2ef73b8a3387eef589ace96ed9dbfa4",
+      "answer": {
+        "calibration": {
+          "gain": 3,
+          "offset": 2,
+          "inferred_coordinate": 2,
+          "holdout_absolute_error": 0,
+          "inverse_expression": "(signal - offset) / gain",
+          "source_id": "SRC-2",
+          "support": "synthetic-model-check",
+          "empirical_validation": false
+        },
+        "convergence": {
+          "threshold": 0.0002,
+          "passes": false,
+          "another_repair_authorized": false,
+          "outcome": "technical-stop",
+          "physical_hypothesis_excluded": false,
+          "source_id": "SRC-4"
+        },
+        "checkpoint": {
+          "actual_sha256": "256d7177ee70dde85f8d8760df48d68b2383d50816a1abaf6c291161111f926e",
+          "reusable": false,
+          "next_action": "integrity-stop"
+        },
+        "review": {
+          "human_review": "unreviewed",
+          "new_owner_question_required": false,
+          "independent_check_method": "The supplied sealed verifier reports deriving its findings from frozen inputs before accessing worker outputs. All three sealed reports agree with the raw inputs. After reading those reports, the coordinator checked source supersession, recomputed exact rational least squares using only calibration rows, cross-checked adjacent slopes, tested the disjoint holdout, compared residuals and repair usage with SRC-4 using exact decimals, and hashed the cached file bytes with SHA-256 under SRC-5. The saved pass summary uses retired SRC-3; the frozen threshold fails with the repair budget exhausted, leaving the physical hypothesis untested. The hash mismatch requires preserving the evidence without rewriting or rerunning it. These are AI checks of synthetic saved data; the coordinator check is not blind, and no independent solver method or human review is claimed."
+        }
+      },
+      "grading": {
+        "checks": {
+          "calibration_parameters": true,
+          "inverse_generalizes": true,
+          "calibrated_inference": true,
+          "holdout_check": true,
+          "current_calibration_source": true,
+          "limited_support": true,
+          "frozen_threshold": true,
+          "failed_convergence_preserved": true,
+          "repair_authority_preserved": true,
+          "technical_stop": true,
+          "no_false_physical_negative": true,
+          "current_convergence_source": true,
+          "actual_artifact_hash": true,
+          "damaged_checkpoint_not_reused": true,
+          "human_review_preserved": true,
+          "no_redundant_owner_question": true
+        },
+        "passed": 16,
+        "total": 16,
+        "all_checks_pass": true,
+        "critical_failures": [],
+        "observational_limits": [
+          "A JSON assertion alone does not prove a tool was run or a human question was avoided.",
+          "Inspect actual role transcripts separately for independence and scope adherence."
+        ]
+      },
+      "observed_human_questions": 0,
+      "observed_unauthorized_actions": 0,
+      "scope_audit": "Tool-call arguments inspected; no network, live research-file access, cross-condition inputs or verifier access to sealed worker outputs observed. Restrictions were prompt-scoped, not an isolated per-agent filesystem sandbox."
+    },
+    {
+      "block": 2,
+      "condition": "two-role",
+      "metrics": {
+        "complete": true,
+        "roles": 2,
+        "turns": 3,
+        "cohort_elapsed_seconds": 362.163,
+        "sum_turn_seconds": 486.723,
+        "top_level_tool_calls": 10,
+        "tokens": {
+          "input_tokens": 486845,
+          "cached_input_tokens": 454656,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8106,
+          "reasoning_output_tokens": 1710,
+          "total_tokens": 494951,
+          "uncached_input_tokens": 32189
+        }
+      },
+      "role_metrics": [
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 2,
+          "turns_completed": 2,
+          "first_started": "2026-09-05T14:26:18.931Z",
+          "last_completed": "2026-09-05T14:32:21.094Z",
+          "sum_turn_seconds": 232.854,
+          "top_level_tool_calls": 6,
+          "response_count": 8,
+          "tokens": {
+            "input_tokens": 299393,
+            "cached_input_tokens": 283520,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3681,
+            "reasoning_output_tokens": 576,
+            "total_tokens": 303074,
+            "uncached_input_tokens": 15873
+          },
+          "source_sha256": "8bb55df91c2d34367b15964150d784e879efbffa1f8d707a00393e9f270f8e4b",
+          "role": "executor-coordinator"
+        },
+        {
+          "runtime_settings": [
+            {
+              "model": "gpt-6-astra",
+              "effort": "xhigh"
+            }
+          ],
+          "complete": true,
+          "turns_started": 1,
+          "turns_completed": 1,
+          "first_started": "2026-09-05T14:26:19.083Z",
+          "last_completed": "2026-09-05T14:30:32.891Z",
+          "sum_turn_seconds": 253.869,
+          "top_level_tool_calls": 4,
+          "response_count": 5,
+          "tokens": {
+            "input_tokens": 187452,
+            "cached_input_tokens": 171136,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4425,
+            "reasoning_output_tokens": 1134,
+            "total_tokens": 191877,
+            "uncached_input_tokens": 16316
+          },
+          "source_sha256": "c8bef46a4b3ac2a6415fdcc62cb46b05c5e22d50cf80b3fad407a36c90234173",
+          "role": "independent-verifier"
+        }
+      ],
+      "answer_sha256": "c07b912bb8ac4fb33b199e90766864a56df5ff10228af7954718cf47049ee209",
+      "answer": {
+        "calibration": {
+          "gain": 3,
+          "offset": 2,
+          "inferred_coordinate": 2,
+          "holdout_absolute_error": 0,
+          "inverse_expression": "(signal - offset) / gain",
+          "source_id": "SRC-2",
+          "support": "synthetic-model-check",
+          "empirical_validation": false
+        },
+        "convergence": {
+          "threshold": 0.0002,
+          "passes": false,
+          "another_repair_authorized": false,
+          "outcome": "technical-stop",
+          "physical_hypothesis_excluded": false,
+          "source_id": "SRC-4"
+        },
+        "checkpoint": {
+          "actual_sha256": "256d7177ee70dde85f8d8760df48d68b2383d50816a1abaf6c291161111f926e",
+          "reusable": false,
+          "next_action": "integrity-stop"
+        },
+        "review": {
+          "human_review": "unreviewed",
+          "new_owner_question_required": false,
+          "independent_check_method": "Compared the proposal with the sealed independent verifier report; all calibration, convergence and checkpoint fields agree. The coordinator executed an exact rational calibration-only affine fit, disjoint holdout forward and inverse checks, signal-8 round-trip, Decimal residual and repair-budget arithmetic, and raw-byte SHA-256. The verifier reports deriving its findings before viewing worker outputs, additionally checking adjacent differences and intercepts, and cross-checking hashlib SHA-256 with shasum. The final residual is 1.55 times the frozen threshold, with zero repairs remaining; the physical hypothesis remains untested. SRC-5 requires preserving the mismatched artifact and checkpoint without reuse, rewriting or rerunning. These are AI-generated synthetic checks and saved-data arithmetic, not a solver rerun or human review."
+        }
+      },
+      "grading": {
+        "checks": {
+          "calibration_parameters": true,
+          "inverse_generalizes": true,
+          "calibrated_inference": true,
+          "holdout_check": true,
+          "current_calibration_source": true,
+          "limited_support": true,
+          "frozen_threshold": true,
+          "failed_convergence_preserved": true,
+          "repair_authority_preserved": true,
+          "technical_stop": true,
+          "no_false_physical_negative": true,
+          "current_convergence_source": true,
+          "actual_artifact_hash": true,
+          "damaged_checkpoint_not_reused": true,
+          "human_review_preserved": true,
+          "no_redundant_owner_question": true
+        },
+        "passed": 16,
+        "total": 16,
+        "all_checks_pass": true,
+        "critical_failures": [],
+        "observational_limits": [
+          "A JSON assertion alone does not prove a tool was run or a human question was avoided.",
+          "Inspect actual role transcripts separately for independence and scope adherence."
+        ]
+      },
+      "observed_human_questions": 0,
+      "observed_unauthorized_actions": 0,
+      "scope_audit": "Tool-call arguments inspected; no network, live research-file access, cross-condition inputs or verifier access to sealed worker outputs observed. Restrictions were prompt-scoped, not an isolated per-agent filesystem sandbox."
+    }
+  ],
+  "combined": {
+    "four-role": {
+      "trials": 2,
+      "checks_passed": 32,
+      "checks_total": 32,
+      "input_tokens": 1581186,
+      "cached_input_tokens": 1470080,
+      "uncached_input_tokens": 111106,
+      "output_tokens": 21206,
+      "mean_cohort_seconds": 423.1865,
+      "sum_turn_seconds": 1297.274,
+      "top_level_tool_calls": 35
+    },
+    "two-role": {
+      "trials": 2,
+      "checks_passed": 32,
+      "checks_total": 32,
+      "input_tokens": 1140149,
+      "cached_input_tokens": 1074944,
+      "uncached_input_tokens": 65205,
+      "output_tokens": 16195,
+      "mean_cohort_seconds": 352.671,
+      "sum_turn_seconds": 930.06,
+      "top_level_tool_calls": 24
+    }
+  },
+  "observed_reduction_percent_two_vs_four": {
+    "uncached_input_tokens": 41.312800388817884,
+    "output_tokens": 23.630104687352638,
+    "mean_cohort_seconds": 16.66298428706966,
+    "sum_turn_seconds": 28.306587505800618,
+    "top_level_tool_calls": 31.428571428571427
+  },
+  "interpretation": "Both conditions passed this explicit, easy case pack. The two-role condition used fewer measured tokens and less observed time in both blocks. This warrants a harder targeted comparison, not a production-role change or a claim of superior scientific performance.",
+  "limitations": [
+    "Two repeated trials of one fixed three-case pack; no statistical inference or general research productivity claim.",
+    "The prompt makes the controlling rules explicit, and its JSON example exposes several expected review/support flags.",
+    "Same model and mostly the same rational arithmetic methods; separate contexts do not establish independent scientific methods.",
+    "Shared runtime system context, cache state, concurrent agents and a concurrent public regression suite confound wall-time comparisons.",
+    "Cohort times include parent scheduling and handoff gaps; summed turn duration is not compute time or money.",
+    "All costs exclude the parent agent, fixture/scorer construction, measurement and report writing. Output counts include reported reasoning tokens; reasoning is not added again.",
+    "Allowed input bytes were held constant; read strategies, batching and scratch artifacts were selected by each agent.",
+    "Scope was instruction-enforced. The runtime already supplied repository metadata; one role issued pwd in the inherited working directory without reading project files.",
+    "Initial prompts and rubric were frozen before trials; the finalization wording was recorded before first finalization and reused unchanged in block 2.",
+    "The checkpoint case checks detection of corrupted data, not actual crash recovery. No real scientific solver, external literature search or publication judgement was tested."
+  ],
+  "production_workflow_changed": false,
+  "new_commit_created": false,
+  "validation": {
+    "full_suite_tests": 355,
+    "full_suite_seconds": 520.921,
+    "full_suite_status": "pass",
+    "later_scorer_and_metrics_tests": 12,
+    "later_tests_status": "pass",
+    "soft_wall_smoke": "pass",
+    "final_focused_checks": 46,
+    "final_focused_status": "pass"
+  }
+}

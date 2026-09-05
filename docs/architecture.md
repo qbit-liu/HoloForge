@@ -108,6 +108,10 @@ dispatch outside the numerical library. Private research, execution receipts,
 owner decisions and current-state indexes belong to their private workspace;
 the public tree contains generic procedures and synthetic regression fixtures.
 
+Changes to agent roles or instruction loading should use the
+[workflow evaluation procedure](agent-workflow-evaluation.md) to measure task
+outcomes and overhead before changing default research workflows.
+
 ## Scientific boundary
 
 A passing harness gate verifies the declared implementation or reproduces a
