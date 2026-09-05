@@ -26,6 +26,11 @@ passing model calculation as empirical validation of nature.
 5. Prefer a narrow, reversible implementation and maintained library
    functions over custom numerical primitives.
 
+For instruction upgrades, concurrent-task maintenance, status retrieval or
+research resumption, follow `docs/agent-maintenance.md`. Honor the current
+request and authorization already recorded for its scope. A routine maintenance
+step or status answer does not open a scientific gate or require a new A-E menu.
+
 For a first session, follow `docs/agent-quickstart.md`.
 
 ## Choose the matching workflow
@@ -120,7 +125,9 @@ These workflows do not replace human scientific or disclosure approval.
 
 ## Validation
 
-Set up the development environment as documented in `README.md`, then run:
+Use the documented environment and choose checks by change type in
+`docs/agent-maintenance.md`. For executable infrastructure or scientific changes,
+run the relevant focused checks, then complete these integration checks once:
 
 ```bash
 python -m unittest discover -s tests -v
@@ -130,6 +137,8 @@ holoforge verify soft-wall-vector
 Run the relevant benchmark or comparison command for scientific changes. Also
 inspect the final diff and run `git diff --check`. Changes to scientific
 results require synchronized documentation, model records, and tests.
+For documentation-only changes, check the affected links, skills and policies;
+do not run numerical campaigns. Full CI remains required for public integration.
 
 ## Git and review
 

@@ -173,6 +173,9 @@ artifacts. Plot generation requires the optional dependency installed with
   contribution workflow.
 - [`docs/agent-quickstart.md`](docs/agent-quickstart.md) explains how a new
   user starts HoloForge safely with Codex, Claude Code, or another agent.
+- [`docs/agent-maintenance.md`](docs/agent-maintenance.md) defines instruction
+  authority, proportionate checks, private workspace navigation, execution
+  receipts, and maintenance holds before resuming research.
 - [`docs/learning-from-results.md`](docs/learning-from-results.md) requires a
   claim-bounded, event-driven research knowledge base that learns from papers,
   derivations, methods, data, decisions, reproducibility work, and every bounded

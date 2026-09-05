@@ -12,8 +12,9 @@ new numerical problem into an unsuitable common solver interface.
 
 1. Read `CONSTITUTION.md`, `CONTRIBUTING.md`, `docs/scientific-support.md`,
    `schemas/model-card.schema.json`, and `src/holoforge/core/contracts.py`.
-2. Inspect both existing benchmark implementations, guides, model cards, CLI
-   routes, and tests before choosing the closest pattern.
+2. Inspect the current built-in registry and the closest relevant benchmark
+   implementations, guides, model cards, adapters, and tests. The reference
+   suite can grow; do not assume it contains only two benchmarks.
 3. Record the primary public source and exact equations or figures reproduced.
 4. For a classical bottom-up example, quantitatively reproduce at least one
    scientifically central source figure or table when feasible. If no source
@@ -82,9 +83,13 @@ Update:
 - analytic, numerical, CLI, schema, and failure tests under `tests/`; and
 - release documentation when the public behavior changes.
 
-Run the full test suite, both existing verifiers, the new verifier in human and
-JSON modes, schema validation, package build/install checks, and
-`git diff --check`. Inspect generated figures visually when present.
+Run the new verifier in human and JSON modes, its declared scientific checks,
+schema validation, the full test suite, and the documented fast smoke verifier.
+Run package build/install checks when packaged behavior changes. Existing
+verifiers already exercised by the full suite need not be duplicated unless a
+new concern requires it. Run `git diff --check` and inspect generated figures
+visually when present. Use `docs/agent-maintenance.md` for documentation-only
+maintenance; it does not authorize another scientific calculation.
 
 ## Report the outcome
 

@@ -15,7 +15,7 @@ It does not delegate changes to HoloForge or convert AI output into human review
 The mode is valuable because it removes routine decision latency, makes
 candidate failures reusable, and allows an overnight or otherwise unattended
 campaign to reach an auditable terminal state. It cannot honestly guarantee a
-publication. The guaranteed product is a terminal package; a submission-ready
+publication. The required handoff is a terminal package; a submission-ready
 paper and code are conditional on a claim surviving the frozen scientific,
 source, numerical, reproduction, and hostile-review checks.
 
@@ -45,12 +45,12 @@ The mission freezes:
   domains, search shape, minimum publishable claim, and target venue;
 - the prospective candidate-selection policy, physical discriminator,
   claim-sufficiency criteria, stop rules, and no-threshold-relaxation rule;
-- exact source, compute, wall-time, storage, candidate, pivot, construction, and
-  candidate-wide repair ceilings;
+- explicit source, compute, wall-time, storage, and construction resource
+  policies, plus finite candidate, pivot, and candidate-wide repair ceilings;
 - the agent roles, sole canonical writer, allowed write roots, pinned clean
   HoloForge commit, and complete no-touch boundary;
 - the decisions delegated to the coordinator and every honest terminal outcome;
-- the authorization date, expiry date, and immutable mission hash; and
+- the authorization date, explicit expiry policy, and immutable mission hash; and
 - the paper, code, evidence, ledger, environment, reproduction, and provenance
   artifacts required at handoff.
 
@@ -59,6 +59,23 @@ The owner may delegate `candidate_generation`, `candidate_selection`,
 and, separately, `local_commit`. Authorization is tied to the hash of the exact
 mission. A preference such as “always choose option A” is not sufficient unless
 these fields and limits have been approved.
+
+Each resource field must be present. A numeric value sets an enforceable cap;
+explicit JSON `null` in `source_limit`, `construction_hours`, `compute_hours`,
+`wall_time_hours`, or `storage_gb` means the owner sets no cap for that resource.
+It is not zero, an omitted value, or a large numeric substitute. All actual usage
+remains mandatory, finite, nonnegative, and cumulative; source and other event
+counts remain integers. Candidate, pivot, and repair limits stay finite. With
+an uncapped resource, the coordinator still applies scientific sufficiency,
+impasse, scope, integrity, and real resource-availability checks. Uncapped usage
+does not delegate purchases, scope expansion, or other external actions.
+
+The required `authorization.expires_on` field may likewise be explicit `null`
+for no automatic expiry. A dated expiry remains enforceable. Active missions
+always require a valid, nonfuture `authorized_on` date and exact owner authority.
+These optional-cap semantics require the updated validator and mission schema;
+older pinned validators reject them. A campaign using an older framework pin
+must record and integrity-bind any separately audited validator/schema overlay.
 
 ## Multi-agent architecture
 
@@ -93,7 +110,7 @@ following are true:
 2. the transition is legal in the campaign state machine;
 3. the recommendation includes evidence, reason, uncertainty, and budget state;
 4. the candidate and mission contracts remain byte-for-byte unchanged;
-5. every resource and repair ceiling remains satisfied;
+5. every declared finite resource and repair ceiling remains satisfied;
 6. the action stays inside the allowed private write roots; and
 7. the validator passes before and after the durable transition.
 
@@ -135,8 +152,10 @@ The public repository supplies three experimental, generic schemas:
 - `autonomous-terminal-package.schema.json` records deliverables, independent
   checks, claims and non-claims, artifact hashes, and remaining human decisions.
 
-Run the standard-library validator before launch, after each durable transition,
-before resume, and at terminal handoff:
+Run semantic and JSON Schema validation before launch, after each durable
+transition, before resume, and at terminal handoff. Use the pinned framework's
+schemas and the documented test environment (which supplies `jsonschema` and
+its `rfc3339-validator` timestamp checker):
 
 ```bash
 python3 PATH_TO_HOLOFORGE/.agents/skills/holoforge-auto-research/scripts/validate_autonomous_campaign.py \
@@ -144,12 +163,33 @@ python3 PATH_TO_HOLOFORGE/.agents/skills/holoforge-auto-research/scripts/validat
   --state campaign/autonomous-state.json \
   --package campaign/terminal-package.json \
   --framework-root PATH_TO_PINNED_HOLOFORGE \
+  --schemas-root PATH_TO_PINNED_HOLOFORGE/schemas \
   --project-root .
 ```
+
+During draft setup, omit state/package/artifact options for records that do not
+yet exist. Without `--schemas-root`, only the standard-library semantic checks
+run, and the result explicitly reports that schemas were not checked. That
+partial pass cannot establish record completeness or launch readiness. Schema
+mode fails if its dependency or a required schema is unavailable.
 
 Structural and hash validation demonstrates control-plane consistency. It does
 not establish novelty, physical truth, peer review, authorship consent, or
 permission to publish.
+
+Draft setup validation must retain an initialized state without research
+transitions. Executed states require an authorized mission, and each transition
+must use the decision delegated for that phase. A submission-ready candidate
+must have completed the confirmation, verification, criticism, and packaging
+sequence for its surviving candidate; an early stop cannot be relabelled as a
+successful campaign.
+
+At terminal handoff, always supply both `--package` and `--project-root`.
+Record checks, claim evidence, and produced manuscript/code files in the
+artifact manifest so the validator can check their existence and hashes.
+Validation without a project root checks records only and cannot establish
+that the declared files exist. These checks complement the private campaign's
+append-only evidence controls and the owner's exact-hash authorization receipt.
 
 ## Checkpoint rollout
 

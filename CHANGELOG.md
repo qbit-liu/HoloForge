@@ -6,12 +6,27 @@ All notable changes to HoloForge are recorded here.
 
 ### Added
 
+- Agent maintenance and resumption guidance with private-workspace entry
+  points, source-linked navigation, execution provenance, and checks scoped
+  to the changed behavior.
 - An experimental governed auto-research workflow, repository skill, mission,
   state and terminal-package schemas, and a deterministic semantic validator
   for unattended private Explore campaigns with honest stopped outcomes.
 
 ### Changed
 
+- Strengthen experimental campaign validation for delegated transitions,
+  frozen candidate identity, complete success checks and hashed artifacts.
+- Support explicit owner-selected null resource caps and null expiry while
+  preserving finite usage accounting and candidate, pivot and repair limits.
+  Older pinned validators retain their original interpretation and are not
+  automatically migrated.
+- Reject malformed model and reasoning-effort declarations. These structural
+  checks do not establish platform availability or actual agent execution.
+- Add explicit JSON Schema preflight for all supplied campaign records;
+  identify semantic-only results as incomplete preflight.
+- Clarify existing execution authority and make local commits explicitly
+  conditional; distinguish mock tests from scientific qualification.
 - Recognize controlled computational or representational holographic leverage
   as a scientific-value route alongside physical or conceptual leverage, while
   requiring a named nonholographic baseline, a valid dictionary and regime,

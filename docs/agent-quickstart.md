@@ -60,6 +60,12 @@ Do not implement anything until you have shown the proposed scope.
 This establishes that the agent is operating in the correct checkout and has
 understood the project before it writes.
 
+For an existing workspace, model upgrade or maintenance hold, use the
+[maintenance and resumption guide](agent-maintenance.md). Previously recorded
+authorization for the exact task remains usable; rereading a skill does not
+require another approval. Open a private workspace through its own `AGENTS.md`
+and current-state pointers, and preserve the framework pin of every frozen gate.
+
 ## 4. Choose one task type
 
 ### Run an existing benchmark

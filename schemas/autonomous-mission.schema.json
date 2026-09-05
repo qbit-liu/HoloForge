@@ -59,8 +59,8 @@
       "required": ["owner", "authorized_on", "expires_on", "decision_record", "delegated_decisions", "local_commit_allowed"],
       "properties": {
         "owner": {"type": "string", "minLength": 1},
-        "authorized_on": {"type": ["string", "null"], "format": "date"},
-        "expires_on": {"type": ["string", "null"], "format": "date"},
+        "authorized_on": {"type": ["string", "null"], "format": "date", "description": "An owner-authorized mission requires a valid date that is not in the future; draft missions may use null."},
+        "expires_on": {"type": ["string", "null"], "format": "date", "description": "Required explicit expiry policy: null means no automatic expiry; a date remains an enforced authorization deadline."},
         "decision_record": {"type": "string", "minLength": 1},
         "delegated_decisions": {
           "type": "array",
@@ -96,11 +96,11 @@
       "additionalProperties": false,
       "required": ["source_limit", "construction_hours", "compute_hours", "wall_time_hours", "storage_gb", "candidate_limit", "pivot_limit", "repair_limit_per_candidate"],
       "properties": {
-        "source_limit": {"type": "integer", "minimum": 1},
-        "construction_hours": {"type": "number", "minimum": 0},
-        "compute_hours": {"type": "number", "exclusiveMinimum": 0},
-        "wall_time_hours": {"type": "number", "exclusiveMinimum": 0},
-        "storage_gb": {"type": "number", "exclusiveMinimum": 0},
+        "source_limit": {"type": ["integer", "null"], "minimum": 1, "description": "Required source ceiling: null means no owner-set numerical cap. Recorded usage remains a finite nonnegative integer."},
+        "construction_hours": {"type": ["number", "null"], "minimum": 0, "description": "Required construction ceiling in hours: null means no owner-set numerical cap. Recorded usage remains finite and nonnegative."},
+        "compute_hours": {"type": ["number", "null"], "exclusiveMinimum": 0, "description": "Required compute ceiling in hours: null means no owner-set numerical cap. Recorded usage remains finite and nonnegative."},
+        "wall_time_hours": {"type": ["number", "null"], "exclusiveMinimum": 0, "description": "Required wall-time ceiling in hours: null means no owner-set numerical cap. Recorded usage remains finite and nonnegative."},
+        "storage_gb": {"type": ["number", "null"], "exclusiveMinimum": 0, "description": "Required storage ceiling in GB: null means no owner-set numerical cap. Recorded usage remains finite and nonnegative."},
         "candidate_limit": {"type": "integer", "minimum": 1},
         "pivot_limit": {"type": "integer", "minimum": 0},
         "repair_limit_per_candidate": {"type": "integer", "minimum": 0}

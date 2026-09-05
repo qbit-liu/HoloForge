@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Validate HoloForge autonomous-research mission, state, and package records.
 
-The script uses only the Python standard library so the preflight remains
-available before project dependencies are installed. JSON Schema tests in the
-public repository separately check the full structural contracts.
+Semantic checks use only the Python standard library. For launch and resumption,
+use --schemas-root with the pinned framework schemas to also validate every
+supplied record structurally; that mode requires the jsonschema test dependency.
+A semantic-only pass does not establish schema completeness or launch authority.
 """
 
 from __future__ import annotations
@@ -11,6 +12,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import subprocess
 import sys
 from datetime import date
@@ -52,6 +54,15 @@ TERMINAL_OUTCOMES = {
     "owner-return",
 }
 OWNER_DECISIONS = {"scientific-verdict", "authorship", "disclosure", "submission"}
+REQUIRED_CHECKS = {
+    "scientific_opportunity", "physical_claim", "source_and_novelty",
+    "numerical_credibility", "independent_reproduction", "hostile_review",
+}
+CANDIDATE_PHASES = {
+    "selected", "discovery", "confirmation", "verification", "critique",
+    "packaging", "awaiting-owner",
+}
+REASONING_EFFORTS = {"platform-default", "low", "medium", "high", "xhigh", "max", "ultra"}
 ROLE_ACCESS = {
     "coordinator": "canonical",
     "literature-auditor": "read-only",
@@ -80,6 +91,13 @@ BUDGET_MAP = {
     "candidates": "candidate_limit",
     "pivots": "pivot_limit",
 }
+NULLABLE_BUDGETS = {
+    "source_limit", "construction_hours", "compute_hours", "wall_time_hours",
+    "storage_gb",
+}
+COUNT_BUDGETS = {
+    "source_limit", "candidate_limit", "pivot_limit", "repair_limit_per_candidate",
+}
 
 
 class ValidationError(ValueError):
@@ -96,6 +114,27 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
+
+def validate_schema(record: dict[str, Any], schemas_root: Path, name: str) -> None:
+    """Use the maintained schema engine only when full preflight is requested."""
+    try:
+        from jsonschema import Draft202012Validator, FormatChecker
+        from jsonschema.exceptions import SchemaError, ValidationError as SchemaValidationError
+    except ImportError as exc:
+        raise ValidationError(
+            "--schemas-root requires jsonschema; install the documented test dependencies"
+        ) from exc
+    require("date-time" in FormatChecker.checkers,
+            "--schemas-root requires rfc3339-validator; install the documented test dependencies")
+    schema = load_json(schemas_root / name)
+    try:
+        Draft202012Validator.check_schema(schema)
+        Draft202012Validator(schema, format_checker=FormatChecker()).validate(record)
+    except (SchemaError, SchemaValidationError) as exc:
+        location = "/".join(str(item) for item in exc.absolute_path) or "<root>"
+        raise ValidationError(f"schema {name} at {location}: {exc.message}") from exc
+
+
 def canonical_sha256(value: dict[str, Any]) -> str:
     encoded = json.dumps(
         value, sort_keys=True, separators=(",", ":"), ensure_ascii=False
@@ -106,6 +145,15 @@ def canonical_sha256(value: dict[str, Any]) -> str:
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise ValidationError(message)
+
+
+def finite_nonnegative(value: Any, *, integer: bool = False) -> bool:
+    """Keep usage finite even when the owner sets no numerical cap."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return False
+    if integer and not isinstance(value, int):
+        return False
+    return value >= 0 and (isinstance(value, int) or math.isfinite(value))
 
 
 def safe_relative_path(value: Any, label: str) -> str:
@@ -135,16 +183,22 @@ def validate_mission(mission: dict[str, Any]) -> None:
     delegated = authorization.get("delegated_decisions", [])
     require(isinstance(delegated, list), "delegated_decisions must be an array")
     require(set(delegated) <= DELEGATED_DECISIONS, "mission contains an unknown delegated decision")
+    require("expires_on" in authorization, "authorization requires explicit expires_on")
     if mission.get("status") == "owner-authorized":
         require(bool(authorization.get("authorized_on")), "authorized mission requires authorized_on")
-        require(bool(authorization.get("expires_on")), "authorized mission requires expires_on")
         try:
             authorized_on = date.fromisoformat(authorization["authorized_on"])
-            expires_on = date.fromisoformat(authorization["expires_on"])
+            expires_on = (
+                None if authorization["expires_on"] is None
+                else date.fromisoformat(authorization["expires_on"])
+            )
         except (TypeError, ValueError) as exc:
             raise ValidationError("authorization dates must use ISO YYYY-MM-DD") from exc
-        require(expires_on >= authorized_on, "mission expiry cannot precede authorization")
-        require(date.today() <= expires_on, "owner authorization has expired")
+        if expires_on is not None:
+            require(expires_on >= authorized_on, "mission expiry cannot precede authorization")
+        require(authorized_on <= date.today(), "owner authorization has not started")
+        if expires_on is not None:
+            require(date.today() <= expires_on, "owner authorization has expired")
     if authorization.get("local_commit_allowed"):
         require("local_commit" in delegated, "local commits require local_commit delegation")
 
@@ -169,22 +223,29 @@ def validate_mission(mission: dict[str, Any]) -> None:
     role_map = {item.get("role"): item.get("write_access") for item in roles if isinstance(item, dict)}
     require(role_map == ROLE_ACCESS and len(roles) == len(ROLE_ACCESS), "roles must contain one canonical coordinator and three read-only independent roles")
     for role in roles:
-        require(bool(role.get("model")), "every role must record its model")
-        require(bool(role.get("reasoning_effort")), "every role must record its reasoning effort")
+        model = role.get("model")
+        require(isinstance(model, str) and bool(model.strip()), "every role must record a nonempty model string")
+        effort = role.get("reasoning_effort")
+        require(isinstance(effort, str) and effort in REASONING_EFFORTS, "every role must record a supported reasoning effort")
 
     external = mission.get("external_actions", {})
     require(set(external.get("forbidden", [])) == FORBIDDEN_ACTIONS, "mission must forbid every required no-touch action")
     require(set(mission.get("terminal_outcomes", [])) == TERMINAL_OUTCOMES, "mission must preserve every honest terminal outcome")
 
     budgets = mission.get("budgets", {})
-    for limit in BUDGET_MAP.values():
-        value = budgets.get(limit)
-        require(isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0, f"invalid budget: {limit}")
+    require(isinstance(budgets, dict), "budgets must be an object")
+    for limit in (*BUDGET_MAP.values(), "repair_limit_per_candidate"):
+        require(limit in budgets, f"missing budget: {limit}")
+        value = budgets[limit]
+        if value is None and limit in NULLABLE_BUDGETS:
+            continue
+        require(finite_nonnegative(value, integer=limit in COUNT_BUDGETS), f"invalid budget: {limit}")
     require(budgets.get("candidate_limit", 0) >= 1, "candidate_limit must be positive")
-    require(budgets.get("source_limit", 0) >= 1, "source_limit must be positive")
-    require(budgets.get("compute_hours", 0) > 0, "compute_hours must be positive")
-    require(budgets.get("wall_time_hours", 0) > 0, "wall_time_hours must be positive")
-    require(budgets.get("storage_gb", 0) > 0, "storage_gb must be positive")
+    if budgets["source_limit"] is not None:
+        require(budgets["source_limit"] >= 1, "source_limit must be positive")
+    for limit in ("compute_hours", "wall_time_hours", "storage_gb"):
+        if budgets[limit] is not None:
+            require(budgets[limit] > 0, f"{limit} must be positive")
 
     contract = mission.get("scientific_contract", {})
     require(contract.get("threshold_policy") == "frozen-no-relaxation", "thresholds must be frozen without relaxation")
@@ -207,11 +268,13 @@ def validate_state(mission: dict[str, Any], state: dict[str, Any]) -> None:
     require(state.get("framework_commit") == mission["pinned_framework"]["commit"], "state framework commit mismatch")
 
     used = state.get("budgets_used", {})
+    require(isinstance(used, dict), "budgets_used must be an object")
     limits = mission["budgets"]
     for used_name, limit_name in BUDGET_MAP.items():
         value = used.get(used_name)
-        require(isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0, f"invalid used budget: {used_name}")
-        require(value <= limits[limit_name], f"budget exceeded: {used_name}")
+        require(finite_nonnegative(value, integer=limit_name in COUNT_BUDGETS), f"invalid used budget: {used_name}")
+        if limits[limit_name] is not None:
+            require(value <= limits[limit_name], f"budget exceeded: {used_name}")
 
     candidates = state.get("candidate_ledger", [])
     require(isinstance(candidates, list), "candidate_ledger must be an array")
@@ -219,12 +282,18 @@ def validate_state(mission: dict[str, Any], state: dict[str, Any]) -> None:
     require(len(ids) == len(candidates) == len(set(ids)), "candidate identifiers must be unique")
     require(used.get("candidates") == len(candidates), "used candidate count must match the ledger")
     for candidate in candidates:
-        require(candidate.get("repairs_used", -1) <= limits["repair_limit_per_candidate"], "candidate repair budget exceeded")
+        repairs = candidate.get("repairs_used")
+        require(finite_nonnegative(repairs, integer=True), "invalid candidate repairs_used")
+        require(repairs <= limits["repair_limit_per_candidate"], "candidate repair budget exceeded")
 
     transitions = state.get("transitions", [])
     require(isinstance(transitions, list), "transitions must be an array")
+    if transitions:
+        require(mission.get("status") == "owner-authorized", "executed state requires an owner-authorized mission")
     delegated = set(mission["authorization"]["delegated_decisions"])
+    candidate_map = {item["candidate_id"]: item for item in candidates}
     current = "initialized"
+    active_candidate = None
     pivot_count = 0
     for index, transition in enumerate(transitions, start=1):
         require(transition.get("sequence") == index, "transition sequence must be contiguous")
@@ -233,12 +302,35 @@ def validate_state(mission: dict[str, Any], state: dict[str, Any]) -> None:
         require(legal_transition(current, after), f"illegal transition: {current} -> {after}")
         decision = transition.get("delegated_decision")
         require(decision in delegated, f"transition uses undelegated decision: {decision}")
+        expected_decision = (
+            "candidate_generation" if after == "searching" and current == "initialized"
+            else "candidate_pivot" if after == "searching"
+            else "candidate_selection" if after == "selected"
+            else "gate_transition"
+        )
+        require(decision == expected_decision, f"transition requires {expected_decision}: {current} -> {after}")
+        candidate_id = transition.get("candidate_id")
+        require(candidate_id is None or candidate_id in candidate_map, "transition candidate must exist in the ledger")
+        if after in CANDIDATE_PHASES:
+            require(candidate_id is not None, "candidate phase requires a candidate identifier")
+            if after == "selected":
+                active_candidate = candidate_id
+            require(candidate_id == active_candidate, "candidate changed without a preserved pivot")
+            contract_hash = candidate_map[candidate_id].get("gate_contract_sha256")
+            require(isinstance(contract_hash, str) and len(contract_hash) == 64 and all(c in "0123456789abcdef" for c in contract_hash), "selected candidate requires a frozen gate contract hash")
+            if after == "discovery":
+                require("local_execution" in delegated, "discovery requires local_execution delegation")
         require(bool(transition.get("recommendation")), "transition recommendation is required")
         require(bool(transition.get("reason")), "transition reason is required")
         for path in transition.get("evidence_refs", []):
             safe_relative_path(path, "transition evidence path")
         if after == "searching" and current != "initialized":
             require(decision == "candidate_pivot", "return to searching requires candidate_pivot")
+            require("candidate_selection" in delegated, "pivot requires candidate_selection delegation")
+            require(candidate_id is not None and candidate_map[candidate_id].get("status") == "stopped", "pivot requires a preserved stopped candidate")
+            if active_candidate is not None:
+                require(candidate_id == active_candidate, "pivot must preserve the active candidate")
+            active_candidate = None
             pivot_count += 1
         current = after
     require(state.get("phase") == current, "state phase must equal the last transition target")
@@ -247,6 +339,10 @@ def validate_state(mission: dict[str, Any], state: dict[str, Any]) -> None:
     outcome = state.get("terminal_outcome")
     if current == "terminal":
         require(outcome in TERMINAL_OUTCOMES, "terminal phase requires an allowed outcome")
+        if outcome == "submission-ready-candidate":
+            require(transitions[-1].get("from") == "awaiting-owner", "submission-ready outcome requires completed confirmation, verification, critique, and packaging phases")
+            require(active_candidate is not None and candidate_map[active_candidate].get("status") == "packaged", "submission-ready outcome requires a packaged candidate")
+            require(transitions[-1].get("candidate_id") == active_candidate, "submission-ready terminal transition must name the packaged candidate")
     else:
         require(outcome is None, "nonterminal phase cannot have a terminal outcome")
 
@@ -283,12 +379,20 @@ def validate_package(mission: dict[str, Any], state: dict[str, Any], package: di
         if review_status != "unreviewed":
             require(bool(claim.get("reviewed_by")) and bool(claim.get("reviewed_on")), "non-unreviewed claims require human reviewer metadata")
 
+    checks = package.get("checks", {})
+    require(isinstance(checks, dict) and set(checks) == REQUIRED_CHECKS, "package must contain all six nonaggregate checks")
+    for check in checks.values():
+        for path in check.get("evidence_refs", []):
+            safe_relative_path(path, "check evidence path")
+
     if outcome == "submission-ready-candidate":
         require(package.get("manuscript", {}).get("status") == "ready", "submission-ready candidate requires manuscript")
         require(package.get("code", {}).get("status") == "ready", "submission-ready candidate requires code")
         require(bool(package.get("claims")), "submission-ready candidate requires at least one claim")
-        checks = package.get("checks", {})
         require(all(item.get("status") == "pass" for item in checks.values()), "submission-ready candidate requires every nonaggregate check to pass")
+        require(all(item.get("evidence_refs") for item in checks.values()), "submission-ready candidate requires evidence for every check")
+        for product_name in ("manuscript", "code"):
+            safe_relative_path(package[product_name].get("path"), f"ready {product_name} path")
     else:
         require(package.get("manuscript", {}).get("status") != "ready", "stopped outcome cannot claim a ready manuscript")
 
@@ -310,13 +414,38 @@ def validate_framework(mission: dict[str, Any], root: Path) -> None:
 
 def validate_project_artifacts(package: dict[str, Any], root: Path) -> None:
     require(root.is_dir(), "project root does not exist")
+    root = root.resolve()
+    artifact_paths = set()
     for artifact in package.get("artifacts", []):
         relative = safe_relative_path(artifact.get("path"), "artifact path")
+        require(relative not in artifact_paths, "artifact paths must be unique")
+        artifact_paths.add(relative)
         path = (root / relative).resolve()
         require(path.is_relative_to(root.resolve()), "artifact escapes project root")
         require(path.is_file(), f"artifact is missing: {relative}")
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         require(digest == artifact.get("sha256"), f"artifact hash mismatch: {relative}")
+    references = [path for claim in package.get("claims", []) for path in claim.get("evidence_refs", [])]
+    references += [path for check in package.get("checks", {}).values() for path in check.get("evidence_refs", [])]
+    for reference in references:
+        relative = safe_relative_path(reference, "evidence path")
+        require(relative in artifact_paths, f"evidence reference is absent from hashed artifacts: {relative}")
+    for product_name in ("manuscript", "code"):
+        product = package.get(product_name, {})
+        if product.get("path") is None:
+            continue
+        relative = safe_relative_path(product["path"], f"{product_name} path")
+        product_path = (root / relative).resolve()
+        require(product_path.is_relative_to(root.resolve()), f"{product_name} escapes project root")
+        require(product_path.exists(), f"{product_name} is missing: {relative}")
+        if product_path.is_dir():
+            files = [path for path in product_path.rglob("*") if path.is_file()]
+            require(bool(files), f"{product_name} directory is empty")
+            for path in files:
+                require(path.resolve().is_relative_to(root.resolve()), f"{product_name} file escapes project root")
+                require(path.relative_to(root).as_posix() in artifact_paths, f"{product_name} file is absent from hashed artifacts")
+        else:
+            require(relative in artifact_paths, f"{product_name} is absent from hashed artifacts: {relative}")
 
 
 def parser() -> argparse.ArgumentParser:
@@ -326,6 +455,7 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--package", type=Path, dest="package_path", help="terminal package JSON")
     result.add_argument("--framework-root", type=Path, help="read-only pinned HoloForge checkout")
     result.add_argument("--project-root", type=Path, help="private project root for artifact hash checks")
+    result.add_argument("--schemas-root", type=Path, help="pinned schema directory; required for full structural preflight")
     result.add_argument("--json", action="store_true", help="emit a machine-readable result")
     return result
 
@@ -334,15 +464,21 @@ def main() -> int:
     arguments = parser().parse_args()
     try:
         mission = load_json(arguments.mission)
+        if arguments.schemas_root:
+            validate_schema(mission, arguments.schemas_root, "autonomous-mission.schema.json")
         validate_mission(mission)
         state = None
         package = None
         if arguments.state:
             state = load_json(arguments.state)
+            if arguments.schemas_root:
+                validate_schema(state, arguments.schemas_root, "autonomous-campaign-state.schema.json")
             validate_state(mission, state)
         if arguments.package_path:
             require(state is not None, "--package requires --state")
             package = load_json(arguments.package_path)
+            if arguments.schemas_root:
+                validate_schema(package, arguments.schemas_root, "autonomous-terminal-package.schema.json")
             validate_package(mission, state, package)
         if arguments.framework_root:
             validate_framework(mission, arguments.framework_root)
@@ -359,6 +495,8 @@ def main() -> int:
         return 1
 
     checked = ["mission"]
+    if arguments.schemas_root:
+        checked.append("schemas")
     if state is not None:
         checked.append("state")
     if package is not None:
@@ -368,9 +506,11 @@ def main() -> int:
     if arguments.project_root:
         checked.append("artifacts")
     if arguments.json:
-        print(json.dumps({"status": "pass", "checked": checked}, sort_keys=True))
+        print(json.dumps({"status": "pass", "checked": checked, "schema_validation": bool(arguments.schemas_root)}, sort_keys=True))
     else:
         print("PASS: autonomous campaign " + ", ".join(checked))
+        if not arguments.schemas_root:
+            print("JSON Schema NOT checked; use --schemas-root before launch or resumption.")
         print("Manual scientific, novelty, authorship, disclosure, and submission review remain required.")
     return 0
 

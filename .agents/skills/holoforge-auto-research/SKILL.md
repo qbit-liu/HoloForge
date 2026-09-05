@@ -10,6 +10,10 @@ Use this skill as the campaign-level controller above repeated
 `docs/autonomous-research-workflow.md`, `docs/private-research-workflow.md`, and
 `docs/research-gate-workflow.md` before preparing or running a campaign.
 
+For infrastructure maintenance or a model upgrade, first use
+`docs/agent-maintenance.md`. Preserve terminal campaigns and their immutable
+pins; a maintenance-complete notice does not authorize another candidate.
+
 The mode is autonomous execution, not guaranteed success. Its terminal product
 is either a submission-ready **candidate** package with paper, code, evidence,
 and reproduction instructions, or an equally complete audited stop package.
@@ -23,9 +27,19 @@ and reproduction instructions, or an equally complete audited stop package.
 3. Freeze the mission: research envelope, success definition, claim-sufficiency
    criteria, delegated decisions, budgets, roles, no-touch boundary, terminal
    outcomes, and exact HoloForge commit.
-4. Run `scripts/validate_autonomous_campaign.py MISSION --framework-root PATH`.
+4. Run `scripts/validate_autonomous_campaign.py MISSION --framework-root PATH
+   --schemas-root PATH/schemas` using the pinned framework and its documented
+   test dependencies. Include each available state/package record. The schema
+   option is required before launch or resumption; a semantic-only pass is an
+   incomplete preflight, and neither mode checks platform capability.
 5. Obtain one explicit owner authorization for that exact mission. Do not infer
    authorization from a conversational preference for the recommended option.
+
+The current mission schema allows explicit `null` source, construction,
+compute, wall-time and storage caps, and explicit `null` expiry, only when the
+owner chooses that policy. Usage accounting and finite candidate/pivot/repair
+limits remain mandatory. An omitted field is invalid, not uncapped. Preserve
+an older mission's exact caps and validator rather than migrating it in place.
 
 The authorization may delegate candidate generation, candidate selection,
 routine gate transitions, bounded revisions, candidate pivots, local execution,
@@ -47,7 +61,11 @@ access to immutable snapshots or evidence bundles:
 
 Do not let multiple agents edit the same checkout or approve one another's
 claims. A single agent may fill several roles only when the mission records the
-loss of independence.
+loss of independence. Confirm specialist tools and requested model/effort support
+in the actual runtime before launch; record actual execution receipts and
+unavailable metadata honestly. A role declaration alone is not evidence of a
+separate execution. Give the verifier fresh, scoped common inputs and let it
+seal its independent result before comparing executor reasoning or outputs.
 
 ## Run the autonomous loop
 

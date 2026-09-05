@@ -8,10 +8,20 @@ description: Run a bounded, auditable HoloForge Explore research gate from froze
 Run one question-sized scientific gate. Preserve negative results and keep
 scientific support, authorization, and disclosure as separate states.
 
+## Route the current task
+
+Use this workflow for a scientific gate. For an ordinary status request or an
+infrastructure/model upgrade, use `docs/agent-maintenance.md` and the current
+canonical state; do not launch intake, create new research artifacts or invent
+an owner decision. Preserve authorization already recorded for the same scope.
+A named model upgrade does not reopen a completed gate.
+
 ## Load the controlling records
 
 1. Read `CONSTITUTION.md`.
-2. Read `docs/research-gate-workflow.md` completely.
+2. Read `docs/research-gate-workflow.md` completely when entering this workflow
+   at a new relevant revision. Reuse that reading during the same frozen gate;
+   revisit changed sections or authority when the task or revision changes.
 3. Read `docs/scientific-support.md`.
 4. For unpublished work, also read `docs/private-research-workflow.md` and
    inspect the private project's current hypothesis card, decision log, and Git
@@ -188,8 +198,10 @@ disposition so the decision remains auditable.
    unresolved entries as provisional or challenged.
    Do not use reflection to rewrite the frozen gate or strengthen its support
    label.
-11. Update status and evidence boundaries, run checks, and commit only the
-    reviewed gate and its retrospective. The closure handoff must then repeat
+11. Update status and evidence boundaries and run the required checks. Commit
+    only the reviewed gate and its retrospective, and only when that local Git
+    action is explicitly authorized. Otherwise deliver the reviewed files
+    without staging or committing them. The closure handoff must then repeat
     completed/current/next status and fresh A-E choices for the next eligible
     decision; do not end only with `no approval pending`.
 

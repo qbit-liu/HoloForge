@@ -267,9 +267,11 @@ Every research gate should contain the following records:
    followed by an explicit recommendation for every requested choice.
 7. **Decision record:** after human approval, record what was accepted and what
    remains closed.
-8. **Closure retrospective and commit:** classify the outcome, preserve what
+8. **Closure retrospective and optional commit:** classify the outcome, preserve what
    failed as well as what held, state the reusable lesson and non-inference
-   boundary, name a reopening trigger, then commit one logical reviewed gate.
+   boundary, and name a reopening trigger. Commit one logical reviewed gate
+   only when that local Git action is explicitly authorized. Scientific
+   acceptance alone is not commit authority.
 
 If a stop condition fires, stop the gate, preserve the bounded stopped result
 under its correct outcome class, and return to owner review. Do not expand the

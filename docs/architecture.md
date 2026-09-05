@@ -48,6 +48,8 @@ boundary conditions, solver signatures, or scientific acceptance gates.
 | Reference inputs | `src/holoforge/data/reference/` | Ships frozen public reference data with source and uncertainty provenance. |
 | Capability receipts | `src/holoforge/data/capabilities/` | Ships one schema-conforming coverage and evidence index for each built-in verifier. |
 | Verification | `tests/`, `.github/workflows/ci.yml` | Checks numerical results, schemas, interfaces, privacy rules, packaging, and cross-platform behavior. |
+| Agent workflow | `AGENTS.md`, `.agents/skills/`, `docs/agent-maintenance.md` | Routes scoped work and maintenance; does not own equations or authorize a scientific calculation. |
+| Experimental campaign contracts | `schemas/autonomous-*.schema.json`, `.agents/skills/holoforge-auto-research/scripts/` | Validates declared authority, transitions and artifact integrity independently of an agent provider. |
 | Public-safe exploration | `incubator/` | Contains only synthetic, public-literature, or disclosure-approved Explore material. |
 
 ## Dependency rules
@@ -99,6 +101,12 @@ Version 0.6 adds a separate static capability registry rather than changing
 the protected adapter contract. Its identifiers must match the deterministic
 built-in benchmark registry exactly, and every receipt must point to the same
 public model-card references as its adapter.
+
+Campaign validation is a repository workflow tool, not an OpenAI client or a
+new numerical abstraction. Keep model selection and deployment-specific tool
+dispatch outside the numerical library. Private research, execution receipts,
+owner decisions and current-state indexes belong to their private workspace;
+the public tree contains generic procedures and synthetic regression fixtures.
 
 ## Scientific boundary
 
