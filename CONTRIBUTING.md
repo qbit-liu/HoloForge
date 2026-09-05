@@ -7,7 +7,7 @@ carefully scoped research hypotheses. Contributions must follow the
 ## Development setup
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -e ".[test]"

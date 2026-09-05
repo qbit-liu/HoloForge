@@ -74,7 +74,14 @@ changes.
 | Numerical method, observable or scientific result | Run the frozen claim-specific controls, relevant public commands, full regression suite and synchronized scientific records. |
 | Packaging, dependencies or public interfaces | Exercise the affected installed-package behavior plus the full suite and smoke verifier. |
 
-Full CI remains required for a public integration. Once the required checks
+Full default CI remains required for a public integration. During pre-1.0
+development, this means the complete Python 3.11 scientific suite, historical
+audit, package smoke check, and macOS wheel-portability check. The wider Python
+and operating-system matrix is an explicit manual `full_compatibility` run;
+use it before Version 1.0 or a broader compatibility claim, as described in the
+[runtime policy](version-0.5-compatibility-policy.md#supported-runtime-and-platforms).
+Do not multiply routine jobs across other Python versions merely because they
+remain in the package's allowed installation range. Once the required checks
 pass, rerun them only after a relevant change or new evidence of a problem.
 Do not weaken a scientific check to save time.
 

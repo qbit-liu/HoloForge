@@ -12,7 +12,7 @@ From a terminal, create an isolated environment and install the checkout:
 ```bash
 git clone https://github.com/xin-yi6/HoloForge.git
 cd HoloForge
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -e ".[test]"

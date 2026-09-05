@@ -6,20 +6,46 @@ calculation into empirical validation.
 
 ## Supported runtime and platforms
 
-HoloForge supports Python 3.9 or newer. The default unit-test matrix exercises
-Python 3.9, 3.11, and 3.14 on Ubuntu and runs every current scientific verifier,
-including the accepted Phase 4 and Phase 5 calculations, once per Python
-version. Superseded numerical routes and development-era ladders remain in an
-explicit extended audit that runs once on Python 3.11; they are preserved but
-do not multiply the current verifier inside every matrix job.
+The package declares Python 3.9 or newer as its installation range. During
+pre-1.0 development, routine CI uses **Python 3.11**, matching the primary
+development environment's minor version. CI installs the available 3.11 patch
+and dependencies; this is not an exact reproduction of every local package
+version. Other Python versions are checked explicitly rather than on every
+push. An installation range is not a claim that every allowed environment was
+tested on the current commit.
+
+The default test job runs every current scientific verifier, including the
+accepted Phase 4 and Phase 5 calculations, once on Python 3.11 on Ubuntu.
+Superseded numerical routes and development-era ladders remain in an
+explicit extended audit that runs once on Python 3.11. Scientific checks,
+thresholds, and preserved historical evidence are unchanged by the smaller
+routine matrix.
 
 A built-wheel job checks installed-package identity, registry composition,
-packaged reference data, and a fast verifier. The Python 3.11 wheel-portability
-matrix on Ubuntu, macOS, and Windows exercises focused contracts, selected
-fast benchmarks, evidence-bundle relocation, and integrity audit. It does not
-repeat the long Phase 4 or Phase 5 scientific calculations already required in
-the three-version test matrix. A newer Python or operating-system release is
-not claimed tested until CI includes it.
+packaged reference data, and a fast verifier. A Python 3.11 wheel-portability
+job on macOS exercises focused contracts, selected fast benchmarks,
+evidence-bundle relocation, and integrity audit on the primary development
+operating system. It does not repeat the long Phase 4 or Phase 5 scientific
+calculations already required in the main test job. Ordinary pushes, pull
+requests, tags, and default manual runs therefore use four jobs, all on Python
+3.11.
+
+For a wider check, open **Actions -> CI -> Run workflow** and enable
+`full_compatibility`, or run:
+
+```bash
+gh workflow run ci.yml --ref BRANCH_OR_TAG -f full_compatibility=true
+```
+
+That explicit mode restores the eight-job matrix: full tests on Python 3.9,
+3.11, and 3.14 on Ubuntu; one historical audit and one wheel build; and focused
+Python 3.11 wheel-portability checks on Ubuntu, macOS, and Windows. It retains
+the legacy 3.9 compatibility check without recommending 3.9 for a new
+development environment. Run this mode on the intended release candidate
+before Version 1.0 or making a broader compatibility claim, and record its exact
+commit and results. A version or platform is not claimed tested on a revision
+unless its checks passed there. Earlier release receipts remain historical
+evidence, not proof for a newer commit.
 
 Only the latest `0.5.x` patch receives new compatibility and security fixes.
 Exact older releases remain available for reproducibility.

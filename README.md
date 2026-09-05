@@ -74,10 +74,13 @@ reviewed reproducibility package may be promoted into this repository. See the
 
 ## Quick start
 
-HoloForge currently requires Python 3.9 or newer, NumPy, and SciPy.
+Use Python 3.11 for development and routine CI, with NumPy and SciPy. Package
+metadata permits Python 3.9 or newer, but wider Python and operating-system
+coverage is an explicit manual CI option during pre-1.0 development. See the
+[runtime and CI policy](docs/version-0.5-compatibility-policy.md#supported-runtime-and-platforms).
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python3 -m pip install -e ".[test]"
